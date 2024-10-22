@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: SortOrderData
   m_EditorClassIdentifier: 
   Elements:
-  - Name: BackgroundCanvas
-    SortingLayer: 0
-    OrderInLayer: 0
-  - Name: LeftCanvas
-    SortingLayer: 0
-    OrderInLayer: 1
   - Name: RightCanvas
     SortingLayer: 0
     OrderInLayer: 2
+  - Name: LeftCanvas
+    SortingLayer: 0
+    OrderInLayer: 1
+  - Name: BackgroundCanvas
+    SortingLayer: 0
+    OrderInLayer: 0
