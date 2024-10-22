@@ -72,8 +72,8 @@ public class DeskDraggingDocumentState : DeskBaseState
         Vector2 sceneCenter = docSceneContainer.position;
         Vector2 sceneSize = docSceneContainer.rect.size * docSceneCanvas.scaleFactor;
         Vector2 movement = position - center;
-        Vector2 rebasedMovement = movement * sceneSize / size;
-        docSceneTr.position = rebasedMovement + sceneCenter;
+        Vector2 remappedMovement = movement * sceneSize / size;
+        docSceneTr.position = remappedMovement + sceneCenter;
 
         //Vector2 tempSceneMin = sceneCenter - (sceneSize * 0.5f);
         //Vector2 tempSceneMax = sceneCenter + (sceneSize * 0.5f);
