@@ -10,9 +10,9 @@ public class DeskManager : SimpleInstance<DeskManager>
 {
     [SerializeField] DeskStateMachine stateMachine;
 
-    [Header("Prefabs")]
+    [Header("Documents Prefabs")]
     [SerializeField] DocumentScene prefabLeft;
-    [SerializeField] DocumentInteract prefabRight;
+    [SerializeField] DocumentDraggable prefabRight;
 
     [Header("Put document animation")]
     [SerializeField] Transform leftContainer;
@@ -23,17 +23,23 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] Transform rightEndPosition;
     [SerializeField] float putDocumentAnimationTime = 1;
 
+    //public
+    public DeskStateMachine DeskStateMachine => stateMachine;
+
+    /// <summary>
+    /// Add document both left and right
+    /// </summary>
     [Button("Add Document (only in Play)", ButtonAttribute.EEnableType.PlayMode)]
     public void AddDocument()
     {
         //instantiate both left and right
         DocumentScene docScene = Instantiate(prefabLeft, leftContainer);
         docScene.transform.position = leftStartPosition.position;
-        DocumentInteract docInteract = Instantiate(prefabRight, rightContainer);
+        DocumentDraggable docInteract = Instantiate(prefabRight, rightContainer);
         docInteract.transform.position = rightStartPosition.position;
 
         //init
-        docInteract.Init(docScene, stateMachine);
+        docInteract.Init(docScene);
         docInteract.SetInteractable(false);
 
         //and move on the desk

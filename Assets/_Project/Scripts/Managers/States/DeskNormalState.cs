@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class DeskNormalState : DeskBaseState
 {
-    public void DocumentBeginDrag(DocumentInteract doc, PointerEventData eventData)
+    public void DocumentBeginDrag(DocumentDraggable doc, PointerEventData eventData)
     {
         //only in correct state
         if (IsActive == false)

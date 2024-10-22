@@ -1,10 +1,11 @@
 using redd096.v2.ComponentsSystem;
 using UnityEngine.EventSystems;
+using UnityEngine;
 
 /// <summary>
 /// Statemachine for the desk
 /// </summary>
-public class DeskStateMachine : BasicStateMachineComponent, IDocumentEvents
+public class DeskStateMachine : BasicStateMachineComponent, IInteractablesEvents
 {
     //blackboard
     public const string DRAGGED_OBJECT_BLACKBOARD = "DraggedObject";
@@ -19,21 +20,31 @@ public class DeskStateMachine : BasicStateMachineComponent, IDocumentEvents
         SetState(NormalState);
     }
 
-    #region documents events
+    #region interactables events
 
-    public void DocumentBeginDrag(DocumentInteract doc, PointerEventData eventData)
+    public void DocumentBeginDrag(DocumentDraggable doc, PointerEventData eventData)
     {
         NormalState.DocumentBeginDrag(doc, eventData);
     }
 
-    public void DocumentDrag(DocumentInteract doc, PointerEventData eventData)
+    public void DocumentDrag(DocumentDraggable doc, PointerEventData eventData)
     {
         DraggingDocumentState.DocumentDrag(doc, eventData);
     }
 
-    public void DocumentEndDrag(DocumentInteract doc, PointerEventData eventData)
+    public void DocumentEndDrag(DocumentDraggable doc, PointerEventData eventData)
     {
         DraggingDocumentState.DocumentEndDrag(doc, eventData);
+    }
+
+    public void BellClick()
+    {
+        Debug.Log("TODO - click bell and call next client");
+    }
+
+    public void InstantiatedDraggableClick(GameObject objectInstanceInScene)
+    {
+        Debug.Log("TODO - on click, show object to the right");
     }
 
     #endregion

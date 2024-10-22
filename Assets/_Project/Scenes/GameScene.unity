@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1516019690}
   prefabLeft: {fileID: 4677056616672210689, guid: 2d8d053000d312140a16c954b2419391, type: 3}
-  prefabRight: {fileID: 4803889748533030523, guid: 5d585d9e2c41c174bbabf31ff71c59ae, type: 3}
+  prefabRight: {fileID: 3677135325428189133, guid: 5d585d9e2c41c174bbabf31ff71c59ae, type: 3}
   leftContainer: {fileID: 1143814394}
   leftStartPosition: {fileID: 1974966658}
   leftEndPosition: {fileID: 1988952692}

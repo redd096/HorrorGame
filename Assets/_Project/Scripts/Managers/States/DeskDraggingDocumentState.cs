@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class DeskDraggingDocumentState : DeskBaseState
 {
-    private DocumentInteract draggedDocument;
+    private DocumentDraggable draggedDocument;
     private Vector2 offset;
 
     private Transform docInteractTr;
@@ -24,7 +24,7 @@ public class DeskDraggingDocumentState : DeskBaseState
         base.OnEnter();
 
         //save refs
-        draggedDocument = deskStateMachine.GetBlackboardElement<DocumentInteract>(DeskStateMachine.DRAGGED_OBJECT_BLACKBOARD);
+        draggedDocument = deskStateMachine.GetBlackboardElement<DocumentDraggable>(DeskStateMachine.DRAGGED_OBJECT_BLACKBOARD);
         offset = (Vector2)draggedDocument.transform.position - deskStateMachine.GetBlackboardElement<Vector2>(DeskStateMachine.START_DRAG_POSITION_BLACKBOARD);
 
         docInteractTr = draggedDocument.transform;
@@ -35,7 +35,7 @@ public class DeskDraggingDocumentState : DeskBaseState
         docSceneCanvas = docSceneTr.GetComponentInParent<Canvas>();
     }
 
-    public void DocumentDrag(DocumentInteract doc, PointerEventData eventData)
+    public void DocumentDrag(DocumentDraggable doc, PointerEventData eventData)
     {
         //only in correct state and if this document is the dragged one
         if (IsActive == false || draggedDocument != doc)
@@ -83,7 +83,7 @@ public class DeskDraggingDocumentState : DeskBaseState
         //Debug.DrawLine(new Vector2(tempSceneMax.x, tempSceneMin.y), new Vector2(tempSceneMin.x, tempSceneMin.y), Color.cyan, 10);
     }
 
-    public void DocumentEndDrag(DocumentInteract doc, PointerEventData eventData)
+    public void DocumentEndDrag(DocumentDraggable doc, PointerEventData eventData)
     {
         //only in correct state and if this document is the dragged one
         if (IsActive == false || draggedDocument != doc)
