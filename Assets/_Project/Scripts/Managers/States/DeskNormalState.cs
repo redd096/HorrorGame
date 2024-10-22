@@ -1,39 +1,19 @@
-using redd096.v2.ComponentsSystem;
-using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
-/// This is the state when player an click to start drag objects
+/// State when player can start drag objects
 /// </summary>
-[System.Serializable]
-public class DeskNormalState : State
+public class DeskNormalState : DeskBaseState
 {
-    DeskManager deskManager;
-
-    protected override void OnInit()
+    public void DocumentBeginDrag(DocumentInteract doc, PointerEventData eventData)
     {
-        base.OnInit();
+        //only in correct state
+        if (IsActive == false)
+            return;
 
-        deskManager = StateMachine as DeskManager;
+        //set dragging state
+        deskStateMachine.SetBlackboardElement(DeskStateMachine.DRAGGED_OBJECT_BLACKBOARD, doc);
+        deskStateMachine.SetBlackboardElement(DeskStateMachine.START_DRAG_POSITION_BLACKBOARD, eventData.position);
+        deskStateMachine.SetState(deskStateMachine.DraggingDocumentState);
     }
-
-    //protected override void OnUpdate()
-    //{
-    //    base.OnUpdate();
-
-    //    //check if click a document
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        Ray ray = deskManager.DeskCamera.ScreenPointToRay(Input.mousePosition);
-    //        if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance: 2))
-    //        {
-    //            DocumentRight doc2d = hitInfo.transform.GetComponentInParent<DocumentRight>();
-    //            if (doc2d)
-    //            {
-    //                //set dragging state
-    //                deskManager.SetBlackboardElement(DeskManager.DRAGGED_OBJECT_BLACKBOARD, doc2d);
-    //                deskManager.SetState(deskManager.DraggingState);
-    //            }
-    //        }
-    //    }
-    //}
 }

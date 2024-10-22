@@ -11,8 +11,8 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] DeskStateMachine stateMachine;
 
     [Header("Prefabs")]
-    [SerializeField] DocumentLeft prefabLeft;
-    [SerializeField] DocumentRight prefabRight;
+    [SerializeField] DocumentScene prefabLeft;
+    [SerializeField] DocumentInteract prefabRight;
 
     [Header("Put document animation")]
     [SerializeField] Transform leftContainer;
@@ -23,24 +23,23 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] Transform rightEndPosition;
     [SerializeField] float putDocumentAnimationTime = 1;
 
-    [Button]
-    void AddDocument()
+    [Button("Add Document (only in Play)", ButtonAttribute.EEnableType.PlayMode)]
+    public void AddDocument()
     {
         //instantiate both left and right
-        DocumentLeft docLeft = Instantiate(prefabLeft, leftContainer);
-        docLeft.transform.position = leftStartPosition.position;
-        DocumentRight docRight = Instantiate(prefabRight, rightContainer);
-        docRight.transform.position = rightStartPosition.position;
+        DocumentScene docScene = Instantiate(prefabLeft, leftContainer);
+        docScene.transform.position = leftStartPosition.position;
+        DocumentInteract docInteract = Instantiate(prefabRight, rightContainer);
+        docInteract.transform.position = rightStartPosition.position;
 
         //init
-        docLeft.Init(docRight);
-        docRight.Init(docLeft);
-        docRight.SetInteractable(false);
+        docInteract.Init(docScene, stateMachine);
+        docInteract.SetInteractable(false);
 
         //and move on the desk
-        Tween.Position(docLeft.transform, leftEndPosition.position, putDocumentAnimationTime);
-        Tween.Position(docRight.transform, rightEndPosition.position, putDocumentAnimationTime)
-            .OnComplete(() => docRight.SetInteractable(true));
+        Tween.Position(docScene.transform, leftEndPosition.position, putDocumentAnimationTime);
+        Tween.Position(docInteract.transform, rightEndPosition.position, putDocumentAnimationTime)
+            .OnComplete(() => docInteract.SetInteractable(true));
     }
 
     private System.Collections.IEnumerator Start()
@@ -50,23 +49,4 @@ public class DeskManager : SimpleInstance<DeskManager>
         yield return new WaitForSeconds(0.1f);
         AddDocument();
     }
-
-    #region documents events
-
-    public void DocumentBeginDrag(DocumentRight doc)
-    {
-
-    }
-
-    public void DocumentDrag(DocumentRight doc)
-    {
-
-    }
-
-    public void DocumentEndDrag(DocumentRight doc)
-    {
-
-    }
-
-    #endregion
 }

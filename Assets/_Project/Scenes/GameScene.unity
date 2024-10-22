@@ -307,7 +307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 277423846}
   m_Layer: 5
-  m_Name: DocsContainerLeft
+  m_Name: FrontDesk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,9 +325,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1974966658}
-  - {fileID: 1988952692}
-  - {fileID: 5950932547082460352}
+  - {fileID: 1143814394}
   m_Father: {fileID: 632334048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -914,6 +912,44 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1143814393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1143814394}
+  m_Layer: 5
+  m_Name: DocsContainerLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1143814394
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143814393}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1974966658}
+  - {fileID: 1988952692}
+  - {fileID: 5950932547082460352}
+  m_Father: {fileID: 277423846}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1158584458
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,8 +996,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1516019690}
   prefabLeft: {fileID: 4677056616672210689, guid: 2d8d053000d312140a16c954b2419391, type: 3}
-  prefabRight: {fileID: 5705111663938600200, guid: 5d585d9e2c41c174bbabf31ff71c59ae, type: 3}
-  leftContainer: {fileID: 277423846}
+  prefabRight: {fileID: 4803889748533030523, guid: 5d585d9e2c41c174bbabf31ff71c59ae, type: 3}
+  leftContainer: {fileID: 1143814394}
   leftStartPosition: {fileID: 1974966658}
   leftEndPosition: {fileID: 1988952692}
   rightContainer: {fileID: 1108607719}
@@ -1164,8 +1200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f43fc437009fea42a9f2aeaf6cc1be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setFirstStateOnStart: 1
-  states: []
 --- !u!4 &1516019691
 Transform:
   m_ObjectHideFlags: 0
@@ -1553,7 +1587,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 277423846}
+  m_Father: {fileID: 1143814394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1588,7 +1622,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 277423846}
+  m_Father: {fileID: 1143814394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1783,7 +1817,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 277423846}
+    m_TransformParent: {fileID: 1143814394}
     m_Modifications:
     - target: {fileID: 99315075946643198, guid: 2d8d053000d312140a16c954b2419391, type: 3}
       propertyPath: m_Pivot.x
