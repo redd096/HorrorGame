@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 /// </summary>
 public interface IInteractablesEvents
 {
+    static IInteractablesEvents Instance { get; set; }
+
     //documents
     void DocumentBeginDrag(DocumentDraggable doc, PointerEventData eventData);
     void DocumentDrag(DocumentDraggable doc, PointerEventData eventData);
@@ -15,5 +17,5 @@ public interface IInteractablesEvents
     void BellClick();
 
     //stamps
-    void InstantiatedDraggableClick(GameObject objectInstanceInScene);
+    void InstantiatedDraggableClick(InteractableBase objectInstanceInScene);
 }

@@ -4,14 +4,16 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// On click, instantiate an object and call event
 /// </summary>
-public class InteractableInstantiateObject : InteractableBase, IPointerClickHandler
+public class InteractableInstantiateObject : InteractableBase
 {
-    [SerializeField] GameObject prefab;
+    [SerializeField] InteractableBase prefab;
 
-    private GameObject instantiatedObjectInScene;
+    private InteractableBase instantiatedObjectInScene;
 
-    public void OnPointerClick(PointerEventData eventData)
+    public override void OnPointerClick_Event(PointerEventData eventData)
     {
+        base.OnPointerClick_Event(eventData);
+
         //instantiate if null
         if (instantiatedObjectInScene == null)
             instantiatedObjectInScene = Instantiate(prefab);

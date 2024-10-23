@@ -3,12 +3,11 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// Click this to call next client
 /// </summary>
-public class Bell : InteractableBase, IPointerClickHandler
+public class Bell : InteractableBase
 {
-    public void OnPointerClick(PointerEventData eventData)
+    public override void OnPointerClick_Event(PointerEventData eventData)
     {
-        if (interactable == false)
-            return;
+        base.OnPointerClick_Event(eventData);
 
         callbacks.BellClick();
     }

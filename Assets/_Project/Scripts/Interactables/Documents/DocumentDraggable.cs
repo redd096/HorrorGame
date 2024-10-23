@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 /// Document prefab for the Right Canvas. User can interact with this document
 /// This know if is interactable and have callbacks when user interact with it
 /// </summary>
-public class DocumentDraggable : InteractableBase, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DocumentDraggable : InteractableBase
 {
     private DocumentScene docScene;
     public DocumentScene DocScene => docScene;
@@ -18,26 +18,23 @@ public class DocumentDraggable : InteractableBase, IBeginDragHandler, IEndDragHa
         this.docScene = docScene;
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public override void OnBeginDrag_Event(PointerEventData eventData)
     {
-        if (interactable == false)
-            return;
+        base.OnBeginDrag_Event(eventData);
 
         callbacks.DocumentBeginDrag(this, eventData);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public override void OnDrag_Event(PointerEventData eventData)
     {
-        if (interactable == false)
-            return;
+        base.OnDrag_Event(eventData);
 
         callbacks.DocumentDrag(this, eventData);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public override void OnEndDrag_Event(PointerEventData eventData)
     {
-        if (interactable == false)
-            return;
+        base.OnEndDrag_Event(eventData);
 
         callbacks.DocumentEndDrag(this, eventData);
     }

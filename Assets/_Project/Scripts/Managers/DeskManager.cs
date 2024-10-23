@@ -8,8 +8,6 @@ using redd096;
 /// </summary>
 public class DeskManager : SimpleInstance<DeskManager>
 {
-    [SerializeField] DeskStateMachine stateMachine;
-
     [Header("Documents Prefabs")]
     [SerializeField] DocumentScene prefabLeft;
     [SerializeField] DocumentDraggable prefabRight;
@@ -23,29 +21,46 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] Transform rightEndPosition;
     [SerializeField] float putDocumentAnimationTime = 1;
 
-    //public
-    public DeskStateMachine DeskStateMachine => stateMachine;
+    [Header("Instantiated interactables")]
+    [SerializeField] Transform interactablesContainer;
+    [SerializeField] Transform interactablesStartPosition;
+    [SerializeField] Transform interactablesEndPosition;
+    [SerializeField] float putInteractableAnimationTime = 1;
 
     /// <summary>
-    /// Add document both left and right
+    /// Instantiate document both left and right
     /// </summary>
     [Button("Add Document (only in Play)", ButtonAttribute.EEnableType.PlayMode)]
     public void AddDocument()
     {
         //instantiate both left and right
         DocumentScene docScene = Instantiate(prefabLeft, leftContainer);
-        docScene.transform.position = leftStartPosition.position;
         DocumentDraggable docInteract = Instantiate(prefabRight, rightContainer);
-        docInteract.transform.position = rightStartPosition.position;
 
         //init
         docInteract.Init(docScene);
         docInteract.SetInteractable(false);
 
         //and move on the desk
-        Tween.Position(docScene.transform, leftEndPosition.position, putDocumentAnimationTime);
-        Tween.Position(docInteract.transform, rightEndPosition.position, putDocumentAnimationTime)
+        Tween.Position(docScene.transform, leftStartPosition.position, leftEndPosition.position, putDocumentAnimationTime);
+        Tween.Position(docInteract.transform, rightStartPosition.position, rightEndPosition.position, putDocumentAnimationTime)
             .OnComplete(() => docInteract.SetInteractable(true));
+    }
+
+    /// <summary>
+    /// Add an object already instantiated
+    /// </summary>
+    /// <param name="interactableInScene"></param>
+    public void AddInteractable(InteractableBase interactableInScene)
+    {
+        //set parent
+        interactableInScene.transform.SetParent(interactablesContainer);
+
+        interactableInScene.SetInteractable(false);
+
+        //and move
+        Tween.Position(interactableInScene.transform, interactablesStartPosition.position, interactablesEndPosition.position, putInteractableAnimationTime)
+            .OnComplete(() => interactableInScene.SetInteractable(true));
     }
 
     private System.Collections.IEnumerator Start()

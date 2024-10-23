@@ -16,6 +16,8 @@ public class DeskStateMachine : BasicStateMachineComponent, IInteractablesEvents
 
     private void Awake()
     {
+        IInteractablesEvents.Instance = this;
+
         //set start state
         SetState(NormalState);
     }
@@ -42,9 +44,9 @@ public class DeskStateMachine : BasicStateMachineComponent, IInteractablesEvents
         Debug.Log("TODO - click bell and call next client");
     }
 
-    public void InstantiatedDraggableClick(GameObject objectInstanceInScene)
+    public void InstantiatedDraggableClick(InteractableBase objectInstanceInScene)
     {
-        Debug.Log("TODO - on click, show object to the right");
+        DeskManager.instance.AddInteractable(objectInstanceInScene);
     }
 
     #endregion
