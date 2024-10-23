@@ -4,63 +4,58 @@ using PrimeTween;
 using redd096;
 
 /// <summary>
-/// This manages UI and has a reference to the statemachine of the desk
+/// This manages UI
 /// </summary>
 public class DeskManager : SimpleInstance<DeskManager>
 {
     [Header("Documents Prefabs")]
-    [SerializeField] DocumentScene prefabLeft;
-    [SerializeField] DocumentDraggable prefabRight;
+    [SerializeField] InteractableOnTheLeft prefabLeft;
+    [SerializeField] InteractableDraggable prefabRight;
 
     [Header("Put document animation")]
     [SerializeField] Transform leftContainer;
-    [SerializeField] Transform leftStartPosition;
-    [SerializeField] Transform leftEndPosition;
+    [SerializeField] Transform leftStartPoint;
+    [SerializeField] Transform leftEndPoint;
     [SerializeField] Transform rightContainer;
-    [SerializeField] Transform rightStartPosition;
-    [SerializeField] Transform rightEndPosition;
-    [SerializeField] float putDocumentAnimationTime = 1;
-
-    [Header("Instantiated interactables")]
-    [SerializeField] Transform interactablesContainer;
-    [SerializeField] Transform interactablesStartPosition;
-    [SerializeField] Transform interactablesEndPosition;
-    [SerializeField] float putInteractableAnimationTime = 1;
+    [SerializeField] Transform rightStartTopPoint;
+    [SerializeField] Transform rightStartBottomPoint;
+    [SerializeField] Transform rightEndPoint;
+    [SerializeField] float putAnimationTime = 1;
 
     /// <summary>
-    /// Instantiate document both left and right
+    /// Add documents already instantiated, both left and right
     /// </summary>
-    [Button("Add Document (only in Play)", ButtonAttribute.EEnableType.PlayMode)]
-    public void AddDocument()
+    public void AddDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable)
     {
-        //instantiate both left and right
-        DocumentScene docScene = Instantiate(prefabLeft, leftContainer);
-        DocumentDraggable docInteract = Instantiate(prefabRight, rightContainer);
+        //set parent
+        docInScene.transform.SetParent(leftContainer, false);
+        docDraggable.transform.SetParent(rightContainer, false);
 
-        //init
-        docInteract.Init(docScene);
-        docInteract.SetInteractable(false);
+        docInScene.SetInteractable(false);
+        docDraggable.SetInteractable(false);
 
         //and move on the desk
-        Tween.Position(docScene.transform, leftStartPosition.position, leftEndPosition.position, putDocumentAnimationTime);
-        Tween.Position(docInteract.transform, rightStartPosition.position, rightEndPosition.position, putDocumentAnimationTime)
-            .OnComplete(() => docInteract.SetInteractable(true));
+        Tween.Position(docInScene.transform, leftStartPoint.position, leftEndPoint.position, putAnimationTime);
+        Tween.Position(docDraggable.transform, rightStartTopPoint.position, rightEndPoint.position, putAnimationTime)
+            .OnComplete(() => docDraggable.SetInteractable(true));
     }
 
     /// <summary>
     /// Add an object already instantiated
     /// </summary>
-    /// <param name="interactableInScene"></param>
-    public void AddInteractable(InteractableBase interactableInScene)
+    public void AddInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
     {
         //set parent
-        interactableInScene.transform.SetParent(interactablesContainer);
+        clickedInteractable.transform.SetParent(leftContainer, false);
+        instantiatedInScene.transform.SetParent(rightContainer, false);
 
-        interactableInScene.SetInteractable(false);
+        clickedInteractable.SetInteractable(false);
+        instantiatedInScene.SetInteractable(false);
 
         //and move
-        Tween.Position(interactableInScene.transform, interactablesStartPosition.position, interactablesEndPosition.position, putInteractableAnimationTime)
-            .OnComplete(() => interactableInScene.SetInteractable(true));
+        Tween.Position(clickedInteractable.transform, leftEndPoint.position, putAnimationTime);
+        Tween.Position(instantiatedInScene.transform, rightStartBottomPoint.position, rightEndPoint.position, putAnimationTime)
+            .OnComplete(() => instantiatedInScene.SetInteractable(true));
     }
 
     private System.Collections.IEnumerator Start()
@@ -69,5 +64,16 @@ public class DeskManager : SimpleInstance<DeskManager>
 
         yield return new WaitForSeconds(0.1f);
         AddDocument();
+    }
+
+    [Button("Add Document (only in Play)", ButtonAttribute.EEnableType.PlayMode)]
+    void AddDocument()
+    {
+        var left = Instantiate(prefabLeft);
+        var right = Instantiate(prefabRight);
+        IInteractablesEvents callbacks = FindObjectOfType<DeskStateMachine>();
+        left.Init(callbacks);
+        right.Init(callbacks, left);
+        AddDocument(left, right);
     }
 }

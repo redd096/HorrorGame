@@ -1,21 +1,18 @@
-using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// Interface for interactables to send events (e.g. DocumentInteract, Bell...)
+/// Interface for interactables to send events (e.g. Document, Bell...)
 /// </summary>
 public interface IInteractablesEvents
 {
-    static IInteractablesEvents Instance { get; set; }
-
     //documents
-    void DocumentBeginDrag(DocumentDraggable doc, PointerEventData eventData);
-    void DocumentDrag(DocumentDraggable doc, PointerEventData eventData);
-    void DocumentEndDrag(DocumentDraggable doc, PointerEventData eventData);
+    bool InteractableBeginDrag(InteractableDraggable interactable, PointerEventData eventData);
+    bool InteractableDrag(InteractableDraggable interactable, PointerEventData eventData);
+    bool InteractableEndDrag(InteractableDraggable interactable, PointerEventData eventData);
 
     //bell
-    void BellClick();
+    bool BellClick();
 
     //stamps
-    void InstantiatedDraggableClick(InteractableBase objectInstanceInScene);
+    bool ClickAndInstantiateInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene);
 }

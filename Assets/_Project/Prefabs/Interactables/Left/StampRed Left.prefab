@@ -45,14 +45,6 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3528349826375615512, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528349826375615512, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3528349826375615512, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -82,11 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3528349826375615512, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -210
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3528349826375615512, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3528349826375615512, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -100,9 +92,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6605942589097088261, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 667149681345680871, guid: 5694edd2858eeef4eb7848225108dbe9, type: 3}
     - target: {fileID: 8873734271714093279, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
       propertyPath: m_Name
-      value: StampRed Variant
+      value: StampRed Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

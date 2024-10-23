@@ -12,11 +12,14 @@ public class DeskStateMachine : BasicStateMachineComponent, IInteractablesEvents
     public const string START_DRAG_POSITION_BLACKBOARD = "StartDragPosition";
 
     public DeskNormalState NormalState = new DeskNormalState();
-    public DeskDraggingDocumentState DraggingDocumentState = new DeskDraggingDocumentState();
+    public DeskDraggingState DraggingState = new DeskDraggingState();
 
     private void Awake()
     {
-        IInteractablesEvents.Instance = this;
+        //set callbacks for every element in scene
+        InteractableBase[] interactablesInScene = FindObjectsOfType<InteractableBase>();
+        foreach (var interactable in interactablesInScene)
+            interactable.Init(this);
 
         //set start state
         SetState(NormalState);
@@ -24,29 +27,39 @@ public class DeskStateMachine : BasicStateMachineComponent, IInteractablesEvents
 
     #region interactables events
 
-    public void DocumentBeginDrag(DocumentDraggable doc, PointerEventData eventData)
+    public bool InteractableBeginDrag(InteractableDraggable interactable, PointerEventData eventData)
     {
-        NormalState.DocumentBeginDrag(doc, eventData);
+        bool result = CurrentState == NormalState;
+        NormalState.InteractableBeginDrag(interactable, eventData);
+        return result;
     }
 
-    public void DocumentDrag(DocumentDraggable doc, PointerEventData eventData)
+    public bool InteractableDrag(InteractableDraggable interactable, PointerEventData eventData)
     {
-        DraggingDocumentState.DocumentDrag(doc, eventData);
+        bool result = CurrentState == DraggingState;
+        DraggingState.InteractableDrag(interactable, eventData);
+        return result;
     }
 
-    public void DocumentEndDrag(DocumentDraggable doc, PointerEventData eventData)
+    public bool InteractableEndDrag(InteractableDraggable interactable, PointerEventData eventData)
     {
-        DraggingDocumentState.DocumentEndDrag(doc, eventData);
+        bool result = CurrentState == DraggingState;
+        DraggingState.InteractableEndDrag(interactable, eventData);
+        return result;
     }
 
-    public void BellClick()
+    public bool BellClick()
     {
-        Debug.Log("TODO - click bell and call next client");
+        bool result = CurrentState == NormalState;
+        NormalState.BellClick();
+        return result;
     }
 
-    public void InstantiatedDraggableClick(InteractableBase objectInstanceInScene)
+    public bool ClickAndInstantiateInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
     {
-        DeskManager.instance.AddInteractable(objectInstanceInScene);
+        bool result = CurrentState == NormalState;
+        NormalState.ClickAndInstantiateInteractable(clickedInteractable, instantiatedInScene);
+        return result;
     }
 
     #endregion

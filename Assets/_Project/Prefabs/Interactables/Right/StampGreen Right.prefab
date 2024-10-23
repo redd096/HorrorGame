@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2469142892326092627
+--- !u!1 &1308245937205665769
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6598755466901510702}
-  - component: {fileID: 3409472224229305906}
-  - component: {fileID: 4361092931223461630}
+  - component: {fileID: 9221406736646644072}
+  - component: {fileID: 5740160550878882064}
+  - component: {fileID: 806970714355671929}
   m_Layer: 5
   m_Name: ShadowImage
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6598755466901510702
+--- !u!224 &9221406736646644072
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2469142892326092627}
+  m_GameObject: {fileID: 1308245937205665769}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,23 +35,23 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3409472224229305906
+--- !u!222 &5740160550878882064
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2469142892326092627}
+  m_GameObject: {fileID: 1308245937205665769}
   m_CullTransparentMesh: 1
---- !u!114 &4361092931223461630
+--- !u!114 &806970714355671929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2469142892326092627}
+  m_GameObject: {fileID: 1308245937205665769}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -101,19 +101,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 497693527213990552, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 497693527213990552, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
-      propertyPath: m_SizeDelta.y
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 497693527213990552, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 497693527213990552, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1996640527894661766, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       propertyPath: m_Name
-      value: StampGreen Left
+      value: StampGreen Right
       objectReference: {fileID: 0}
     - target: {fileID: 5793771846790489665, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       propertyPath: m_Pivot.x
@@ -141,11 +141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5793771846790489665, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5793771846790489665, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5793771846790489665, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -212,14 +212,14 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5793771846790489665, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       insertIndex: 0
-      addedObject: {fileID: 6598755466901510702}
+      addedObject: {fileID: 9221406736646644072}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1996640527894661766, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6605942589097088261}
+      addedObject: {fileID: 7969472568548028932}
     - targetCorrespondingSourceObject: {fileID: 1996640527894661766, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2314601413833992320}
+      addedObject: {fileID: 2563463336104348951}
   m_SourcePrefab: {fileID: 100100000, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
 --- !u!224 &3528349826375615512 stripped
 RectTransform:
@@ -236,7 +236,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1996640527894661766, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
   m_PrefabInstance: {fileID: 6958250219674083929}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6605942589097088261
+--- !u!114 &7969472568548028932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,11 +245,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8873734271714093279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d77e18e0e42d4499020cd9545a064c, type: 3}
+  m_Script: {fileID: 11500000, guid: 87c38638c54a8af4c8a32311c56c9f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7969472568548028932, guid: 1dcd94a2e6f6dce468247d9927a84a8b, type: 3}
---- !u!114 &2314601413833992320
+--- !u!114 &2563463336104348951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,12 +257,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8873734271714093279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b571600f0e422b44892a2eb1260ab32c, type: 3}
+  m_Script: {fileID: 11500000, guid: d07c4f676ab72b74c8488f7f7ee56aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stampTransform: {fileID: 7383794616072192193}
-  shadowTransform: {fileID: 6598755466901510702}
-  height: 100
+  shadowTransform: {fileID: 9221406736646644072}
+  height: 200
   raiseAnimation: 0.2
   rotationIntensity: 4
   rotationSpeed: 0.5

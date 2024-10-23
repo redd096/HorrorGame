@@ -11,10 +11,14 @@ public abstract class InteractableBase : MonoBehaviour, IPointerClickHandler, IB
 
     public bool Interactable => interactable;
 
-    protected virtual void Awake()
+    /// <summary>
+    /// Initialize and set interactable
+    /// </summary>
+    /// <param name="callbacks"></param>
+    public void Init(IInteractablesEvents callbacks)
     {
-        //save refs
-        callbacks = IInteractablesEvents.Instance;
+        this.callbacks = callbacks;
+        interactable = true;
     }
 
     /// <summary>
