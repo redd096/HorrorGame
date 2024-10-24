@@ -13,11 +13,8 @@ public class StampLeftFeedback : MonoBehaviour
     [SerializeField] float rotationIntensity = 4;
     [SerializeField] float rotationSpeed = 0.5f;
 
-    private float startLocalPosition;
-
     protected virtual void Start()
     {
-        startLocalPosition = stampTransform.localPosition.y;
         SetSprite(false);
     }
 
@@ -63,6 +60,6 @@ public class StampLeftFeedback : MonoBehaviour
         SetSprite(false);
 
         //lay down
-        Tween.LocalPositionY(stampTransform, startLocalPosition, raiseAnimation);
+        Tween.LocalPositionY(stampTransform, shadowTransform.localPosition.y * 0.5f, raiseAnimation);
     }
 }

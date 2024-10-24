@@ -7,7 +7,9 @@ using UnityEngine;
 /// </summary>
 public abstract class StampDraggableBase : InteractableDraggable
 {
-    protected abstract void OnStamp(PointerEventData eventData, InteractableOnTheRight hittedInteractable);
+    public System.Action<Vector2, Transform> onStamp;
+    
+    protected abstract void OnStamp(PointerEventData eventData, DocumentDraggable hittedDocument);
 
     public override void OnBeginDrag_Event(PointerEventData eventData)
     {
@@ -45,10 +47,11 @@ public abstract class StampDraggableBase : InteractableDraggable
 
             for (int i = 0; i < results.Count; i++)
             {
-                var hit = results[i].gameObject.GetComponent<InteractableOnTheRight>();
-                if (hit && hit != this)
+                var hit = results[i].gameObject.GetComponentInParent<DocumentDraggable>();
+                if (hit)
                 {
                     OnStamp(eventData, hit);
+                    onStamp?.Invoke(eventData.position, hit.transform);
                     break;
                 }
             }

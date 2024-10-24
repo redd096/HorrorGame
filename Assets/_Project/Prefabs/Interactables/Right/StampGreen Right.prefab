@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6598755466901510702
 RectTransform:
   m_ObjectHideFlags: 0
@@ -262,3 +262,4 @@ MonoBehaviour:
   raiseAnimation: 0.2
   rotationIntensity: 4
   rotationSpeed: 0.5
+  stampToPutOnDocument: {fileID: 5731948797459935244, guid: 50d6e4383af37824782c80ecf06d0786, type: 3}

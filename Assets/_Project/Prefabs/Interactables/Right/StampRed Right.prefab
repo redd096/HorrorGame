@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8159900987776213032, guid: 4bdff22350b72174c8558aaca8b050e3, type: 3}
+      propertyPath: stampToPutOnDocument
+      value: 
+      objectReference: {fileID: 5010523182457780122, guid: 19c32757c109e7b4c8266266cb0ea62e, type: 3}
     - target: {fileID: 623592573277587828, guid: 4bdff22350b72174c8558aaca8b050e3, type: 3}
       propertyPath: m_Sprite
       value: 

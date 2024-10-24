@@ -1312,8 +1312,8 @@ MonoBehaviour:
   giveDocumentsArea: {fileID: 1642615992}
   putBackInteractablesArea: {fileID: 692177347}
   giveDocumentsImage: {fileID: 1524876571}
-  putBackInteractablesImage: {fileID: 533791988}
   giveDocumentsText: {fileID: 123348668}
+  putBackInteractablesImage: {fileID: 533791988}
   putBackInteractablesText: {fileID: 1279217211}
   animationDuration: 1
 --- !u!1 &1080605561
@@ -1604,7 +1604,7 @@ MonoBehaviour:
   rightEndPoint: {fileID: 1093170138}
   putAnimationTime: 1
   prefabLeft: {fileID: 3805698328226946316, guid: 6a1ba551dcde23f46b82122e884ca782, type: 3}
-  prefabRight: {fileID: 730766124887208761, guid: 9f23ebf7daee92e4489e1659d8673e43, type: 3}
+  prefabRight: {fileID: 4473677935905810046, guid: 9f23ebf7daee92e4489e1659d8673e43, type: 3}
 --- !u!1 &1273990193
 GameObject:
   m_ObjectHideFlags: 0

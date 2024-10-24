@@ -22,13 +22,22 @@ public class DeskManager : SimpleInstance<DeskManager>
     
     [Header("TEMP Documents Prefabs")]
     [SerializeField] InteractableOnTheLeft prefabLeft;
-    [SerializeField] InteractableDraggable prefabRight;
+    [SerializeField] DocumentDraggable prefabRight;
+
+    //counter of documents to give back to client or interactables put back on desk
+    private int documentsInScene;
+    private int interactablesInScene;
 
     /// <summary>
     /// Add documents already instantiated, both left and right
     /// </summary>
-    public void AddDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable)
+    /// <param name="isDocumentToGiveBack">After stamp, show area to give back documents</param>
+    public void AddDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable, bool isDocumentToGiveBack = true)
     {
+        //update documents counter
+        if (isDocumentToGiveBack)
+            documentsInScene++;
+        
         //set parent
         Vector2 posLeft = docInScene.transform.position;
         Vector2 posRight = docDraggable.transform.position;
@@ -49,11 +58,20 @@ public class DeskManager : SimpleInstance<DeskManager>
     /// <summary>
     /// Check if inside documents area. If inside, remove document from the scene
     /// </summary>
-    public bool CheckToRemoveDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable)
+    /// <param name="isDocumentToGiveBack">After stamp, show area to give back documents</param>
+    public bool CheckToRemoveDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable, bool isDocumentToGiveBack = true)
     {
         //check is inside area
         if (deskWindowsManager.CheckIsInGiveDocumentsArea(docDraggable.transform.position))
         {
+            //update documents counter and check to hide area
+            if (isDocumentToGiveBack)
+            {
+                documentsInScene--;
+                if (documentsInScene <= 0)
+                    deskWindowsManager.ShowDocumentsArea(false);
+            }
+            
             docInScene.SetInteractable(false);
             docDraggable.SetInteractable(false);
         
@@ -70,10 +88,15 @@ public class DeskManager : SimpleInstance<DeskManager>
     /// <summary>
     /// Add an object already instantiated
     /// </summary>
-    public void AddInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
+    public void AddInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene, bool isInteractableToPutBack = true)
     {
-        //tell windowsManager there is a new interactable
-        deskWindowsManager.AddInteractable();
+        //update interactables counter and show area
+        if (isInteractableToPutBack)
+        {
+            interactablesInScene++;
+            if (interactablesInScene > 0)
+                deskWindowsManager.ShowInteractablesArea(true);
+        }
         
         instantiatedInScene.gameObject.SetActive(true);
         
@@ -100,13 +123,18 @@ public class DeskManager : SimpleInstance<DeskManager>
     /// <summary>
     /// Check if inside interactables area. If inside, put back interactable
     /// </summary>
-    public bool CheckToRemoveInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
+    public bool CheckToRemoveInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene, bool isInteractableToPutBack = true)
     {
         //check is inside area
         if (deskWindowsManager.CheckIsInPutBackInteractablesArea(instantiatedInScene.transform.position))
         {
-            //tell windowsManager to remove an interactable
-            deskWindowsManager.RemoveInteractable();
+            //update interactables counter and check to hide area
+            if (isInteractableToPutBack)
+            {
+                interactablesInScene--;
+                if (interactablesInScene <= 0)
+                    deskWindowsManager.ShowInteractablesArea(false);
+            }
             
             //set parent
             Vector2 posLeft = clickedInteractable.transform.position;
@@ -129,6 +157,14 @@ public class DeskManager : SimpleInstance<DeskManager>
         }
 
         return false;
+    }
+    
+    /// <summary>
+    /// When a document receive stamp, show area to give back to client
+    /// </summary>
+    public void OnDocumentReceiveStamp()
+    {
+        deskWindowsManager.ShowDocumentsArea(true);
     }
 
     private System.Collections.IEnumerator Start()

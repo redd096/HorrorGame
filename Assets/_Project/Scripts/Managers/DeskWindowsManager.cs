@@ -21,7 +21,6 @@ public class DeskWindowsManager : MonoBehaviour
 
     private bool isDocumentAreaActive;
     private bool isInteractablesAreaActive;
-    private int interactablesInScene;
 
     private void Awake()
     {
@@ -35,23 +34,29 @@ public class DeskWindowsManager : MonoBehaviour
     #region public API
 
     /// <summary>
-    /// Add interactable and show area
+    /// Show or hide area to give back documents
     /// </summary>
-    public void AddInteractable()
+    /// <param name="show"></param>
+    public void ShowDocumentsArea(bool show)
     {
-        interactablesInScene++;
-        if (interactablesInScene == 1)
-            ShowInteractablesArea(true);
+        if (isDocumentAreaActive != show)
+        {
+            isDocumentAreaActive = show;
+            ShowArea(show, giveDocumentsImage, giveDocumentsText);
+        }
     }
 
     /// <summary>
-    /// Remove interactable and hide area
+    /// Show or hide area to put back interactables
     /// </summary>
-    public void RemoveInteractable()
+    /// <param name="show"></param>
+    public void ShowInteractablesArea(bool show)
     {
-        interactablesInScene--;
-        if (interactablesInScene == 0)
-            ShowInteractablesArea(false);
+        if (isInteractablesAreaActive != show)
+        {
+            isInteractablesAreaActive = show;
+            ShowArea(show, putBackInteractablesImage, putBackInteractablesText);
+        }
     }
     
     /// <summary>
@@ -75,18 +80,6 @@ public class DeskWindowsManager : MonoBehaviour
     #endregion
     
     #region private API
-
-    private void ShowDocumentsArea(bool show)
-    {
-        isDocumentAreaActive = show;
-        ShowArea(show, giveDocumentsImage, giveDocumentsText);
-    }
-
-    private void ShowInteractablesArea(bool show)
-    {
-        isInteractablesAreaActive = show;
-        ShowArea(show, putBackInteractablesImage, putBackInteractablesText);
-    }
 
     private void ShowArea(bool show, Image areaImage, TMP_Text areaText)
     {

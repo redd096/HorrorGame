@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class StampRedDraggable : StampDraggableBase
 {
-    protected override void OnStamp(PointerEventData eventData, InteractableOnTheRight hittedInteractable)
+    protected override void OnStamp(PointerEventData eventData, DocumentDraggable hittedDocument)
     {
-        Debug.Log("TODO - mettere stampino rosso");
+        hittedDocument.OnReceiveStamp(false);
     }
 }

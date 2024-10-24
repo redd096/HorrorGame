@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
@@ -6,8 +5,8 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class StampGreenDraggable : StampDraggableBase
 {
-    protected override void OnStamp(PointerEventData eventData, InteractableOnTheRight hittedInteractable)
+    protected override void OnStamp(PointerEventData eventData, DocumentDraggable hittedDocument)
     {
-        Debug.Log("TODO - mettere stampino verde");
+        hittedDocument.OnReceiveStamp(true);
     }
 }

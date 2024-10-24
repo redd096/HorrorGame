@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -6,6 +7,9 @@ using UnityEngine;
 [RequireComponent(typeof(StampDraggableBase))]
 public class StampRightFeedback : StampLeftFeedback
 {
+    [Space] 
+    [SerializeField] private GameObject stampToPutOnDocument;
+    
     private StampDraggableBase stamp;
     private StampLeftFeedback left;
 
@@ -19,6 +23,7 @@ public class StampRightFeedback : StampLeftFeedback
         //add events
         stamp.onBeginDrag += OnBeginDrag;
         stamp.onEndDrag += OnEndDrag;
+        stamp.onStamp += OnStamp;
 
         //add events also for stamp on the left screen
         left = stamp.CopyInScene.GetComponent<StampLeftFeedback>();
@@ -33,6 +38,7 @@ public class StampRightFeedback : StampLeftFeedback
         {
             stamp.onBeginDrag -= OnBeginDrag;
             stamp.onEndDrag -= OnEndDrag;
+            stamp.onStamp -= OnStamp;
 
             //remove events also for stamp on the left screen
             if (left)
@@ -41,5 +47,20 @@ public class StampRightFeedback : StampLeftFeedback
                 stamp.onEndDrag += left.OnEndDrag;
             }
         }
+    }
+
+    private void OnStamp(Vector2 position, Transform stampParent)
+    {
+        StartCoroutine(OnStampCoroutine(position, stampParent));
+    }
+
+    private IEnumerator OnStampCoroutine(Vector2 position, Transform stampParent)
+    {
+        //wait few seconds to move stamp down
+        yield return new WaitForSeconds(0.1f);
+        
+        //put stamp on the document
+        GameObject go = Instantiate(stampToPutOnDocument, stampParent);
+        go.transform.position = position;
     }
 }
