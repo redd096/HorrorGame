@@ -34,7 +34,7 @@ public class StampRightFeedback : StampLeftFeedback
             stamp.onBeginDrag -= OnBeginDrag;
             stamp.onEndDrag -= OnEndDrag;
 
-            //remove events alfo for stamp on the left screen
+            //remove events also for stamp on the left screen
             if (left)
             {
                 stamp.onBeginDrag += left.OnBeginDrag;

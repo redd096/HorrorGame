@@ -8,11 +8,9 @@ using redd096;
 /// </summary>
 public class DeskManager : SimpleInstance<DeskManager>
 {
-    [Header("Documents Prefabs")]
-    [SerializeField] InteractableOnTheLeft prefabLeft;
-    [SerializeField] InteractableDraggable prefabRight;
+    [SerializeField] DeskWindowsManager deskWindowsManager;
 
-    [Header("Put document animation")]
+    [Header("Put interactables animation")]
     [SerializeField] Transform leftContainer;
     [SerializeField] Transform leftStartPoint;
     [SerializeField] Transform leftEndPoint;
@@ -21,6 +19,10 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] Transform rightStartBottomPoint;
     [SerializeField] Transform rightEndPoint;
     [SerializeField] float putAnimationTime = 1;
+    
+    [Header("TEMP Documents Prefabs")]
+    [SerializeField] InteractableOnTheLeft prefabLeft;
+    [SerializeField] InteractableDraggable prefabRight;
 
     /// <summary>
     /// Add documents already instantiated, both left and right

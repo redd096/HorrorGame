@@ -23,7 +23,7 @@ public class StampLeftFeedback : MonoBehaviour
 
     private void ResetAnimations()
     {
-        //stop raise, laying down or rotation animation
+        //stop raise, laying down, or rotation animation
         Tween.StopAll(stampTransform);
         Tween.StopAll(shadowTransform);
 
@@ -50,7 +50,8 @@ public class StampLeftFeedback : MonoBehaviour
                 SetSprite(true);
 
                 //start rotation animation
-                Tween.LocalRotation(shadowTransform, new Vector3(0, 0, -rotationIntensity), new Vector3(0, 0, rotationIntensity), rotationSpeed, Ease.Default, cycles: -1, CycleMode.Yoyo);
+                Tween.LocalRotation(shadowTransform, new Vector3(0, 0, rotationIntensity), rotationSpeed * 0.5f)
+                    .OnComplete(() => Tween.LocalRotation(shadowTransform, new Vector3(0, 0, rotationIntensity), new Vector3(0, 0, -rotationIntensity), rotationSpeed, Ease.Default, cycles: -1, CycleMode.Yoyo));
             });
     }
 
