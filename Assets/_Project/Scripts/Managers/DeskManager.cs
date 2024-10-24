@@ -28,8 +28,12 @@ public class DeskManager : SimpleInstance<DeskManager>
     public void AddDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable)
     {
         //set parent
+        Vector2 posLeft = docInScene.transform.position;
+        Vector2 posRight = docDraggable.transform.position;
         docInScene.transform.SetParent(leftContainer, false);
         docDraggable.transform.SetParent(rightContainer, false);
+        docInScene.transform.position = posLeft;
+        docDraggable.transform.position = posRight;
 
         docInScene.SetInteractable(false);
         docDraggable.SetInteractable(false);
@@ -46,8 +50,12 @@ public class DeskManager : SimpleInstance<DeskManager>
     public void AddInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
     {
         //set parent
+        Vector2 posLeft = clickedInteractable.transform.position;
+        Vector2 posRight = instantiatedInScene.transform.position;
         clickedInteractable.transform.SetParent(leftContainer, false);
         instantiatedInScene.transform.SetParent(rightContainer, false);
+        clickedInteractable.transform.position = posLeft;
+        instantiatedInScene.transform.position = posRight;
 
         clickedInteractable.SetInteractable(false);
         instantiatedInScene.SetInteractable(false);

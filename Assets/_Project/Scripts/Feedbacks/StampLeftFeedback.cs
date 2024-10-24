@@ -14,23 +14,28 @@ public class StampLeftFeedback : MonoBehaviour
     [SerializeField] float rotationSpeed = 0.5f;
 
     private float startLocalPosition;
-    private Sequence sequence;
 
     protected virtual void Start()
     {
         startLocalPosition = stampTransform.localPosition.y;
-        shadowTransform.localScale = Vector3.zero;
+        SetSprite(false);
     }
 
     private void ResetAnimations()
     {
-        //if still raising or laying down, stop it
-        if (sequence.isAlive)
-            sequence.Stop();
-
-        //if dragging, stop rotation
+        //stop raise, laying down or rotation animation
         Tween.StopAll(stampTransform);
-        stampTransform.localRotation = Quaternion.identity;
+        Tween.StopAll(shadowTransform);
+
+        //and reset rotation
+        shadowTransform.localRotation = Quaternion.identity;
+    }
+
+    private void SetSprite(bool spriteWithShadow)
+    {
+        //set sprite normal or with shadow
+        stampTransform.gameObject.SetActive(spriteWithShadow == false);
+        shadowTransform.gameObject.SetActive(spriteWithShadow);
     }
 
     public void OnBeginDrag()
@@ -38,24 +43,25 @@ public class StampLeftFeedback : MonoBehaviour
         ResetAnimations();
 
         //raise stamp
-        sequence = Sequence.Create();
-        sequence.Chain(Tween.LocalPositionY(stampTransform, height, raiseAnimation));
-        sequence.Group(Tween.Scale(shadowTransform, 1f, raiseAnimation));
+        Tween.LocalPositionY(stampTransform, height, raiseAnimation)
+            .OnComplete(() =>
+            {
+                //change sprite
+                SetSprite(true);
 
-        sequence.OnComplete(() =>
-        {
-            //start rotation animation
-            Tween.LocalRotation(stampTransform, new Vector3(0, 0, -rotationIntensity), new Vector3(0, 0, rotationIntensity), rotationSpeed, Ease.Default, cycles: -1, CycleMode.Yoyo);
-        });
+                //start rotation animation
+                Tween.LocalRotation(shadowTransform, new Vector3(0, 0, -rotationIntensity), new Vector3(0, 0, rotationIntensity), rotationSpeed, Ease.Default, cycles: -1, CycleMode.Yoyo);
+            });
     }
 
     public void OnEndDrag()
     {
         ResetAnimations();
 
+        //change sprite
+        SetSprite(false);
+
         //lay down
-        sequence = Sequence.Create();
-        sequence.Chain(Tween.LocalPositionY(stampTransform, startLocalPosition, raiseAnimation));
-        sequence.Group(Tween.Scale(shadowTransform, 0f, raiseAnimation));
+        Tween.LocalPositionY(stampTransform, startLocalPosition, raiseAnimation);
     }
 }

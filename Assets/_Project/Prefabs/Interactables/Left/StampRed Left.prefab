@@ -9,17 +9,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 623592573277587828, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 623592573277587828, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
-      propertyPath: m_Color.g
-      value: 0.040244635
-      objectReference: {fileID: 0}
-    - target: {fileID: 623592573277587828, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 233b17b8c7bfe124396d6226daa3a54c, type: 3}
     - target: {fileID: 3528349826375615512, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -92,10 +84,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4361092931223461630, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 86a1b8c40e993c74d86038c5a56e0cb6, type: 3}
     - target: {fileID: 6605942589097088261, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 667149681345680871, guid: 5694edd2858eeef4eb7848225108dbe9, type: 3}
+      objectReference: {fileID: 4966357071621350887, guid: eedac39f5be3a584dbffeb733072c51e, type: 3}
     - target: {fileID: 8873734271714093279, guid: c9a15c9fc1e76d24abc1e7cb6756601d, type: 3}
       propertyPath: m_Name
       value: StampRed Left
