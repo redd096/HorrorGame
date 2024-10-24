@@ -1,4 +1,7 @@
+using PrimeTween;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// This manages UI like DeskManager, but only for some windows like box where put documents or box to put back interactables. 
@@ -6,8 +9,117 @@ using UnityEngine;
 /// </summary>
 public class DeskWindowsManager : MonoBehaviour
 {
-    [SerializeField] private RectTransform giveBackDocumentsArea;
+    [SerializeField] private RectTransform giveDocumentsArea;
     [SerializeField] private RectTransform putBackInteractablesArea;
     
+    [Header("Animation")]
+    [SerializeField] private Image giveDocumentsImage;
+    [SerializeField] private TMP_Text giveDocumentsText;
+    [SerializeField] private Image putBackInteractablesImage;
+    [SerializeField] private TMP_Text putBackInteractablesText;
+    [SerializeField] private float animationDuration = 1f;
+
+    private bool isDocumentAreaActive;
+    private bool isInteractablesAreaActive;
+    private int interactablesInScene;
+
+    private void Awake()
+    {
+        //hide by default
+        giveDocumentsImage.color = new Color(giveDocumentsImage.color.r, giveDocumentsImage.color.g, giveDocumentsImage.color.b, 0f);
+        giveDocumentsText.color = new Color(giveDocumentsText.color.r, giveDocumentsText.color.g, giveDocumentsText.color.b, 0f);
+        putBackInteractablesImage.color = new Color(putBackInteractablesImage.color.r, putBackInteractablesImage.color.g, putBackInteractablesImage.color.b, 0f);
+        putBackInteractablesText.color = new Color(putBackInteractablesText.color.r, putBackInteractablesText.color.g, putBackInteractablesText.color.b, 0f); 
+    }
+
+    #region public API
+
+    /// <summary>
+    /// Add interactable and show area
+    /// </summary>
+    public void AddInteractable()
+    {
+        interactablesInScene++;
+        if (interactablesInScene == 1)
+            ShowInteractablesArea(true);
+    }
+
+    /// <summary>
+    /// Remove interactable and hide area
+    /// </summary>
+    public void RemoveInteractable()
+    {
+        interactablesInScene--;
+        if (interactablesInScene == 0)
+            ShowInteractablesArea(false);
+    }
     
+    /// <summary>
+    /// Check if this rect is inside documents area
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckIsInGiveDocumentsArea(Vector2 point)
+    {
+        return CheckIsInArea(point, giveDocumentsArea, isDocumentAreaActive);
+    }
+    
+    /// <summary>
+    /// Check if this rect is inside interactables area
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckIsInPutBackInteractablesArea(Vector2 point)
+    {
+        return CheckIsInArea(point, putBackInteractablesArea, isInteractablesAreaActive);
+    }
+    
+    #endregion
+    
+    #region private API
+
+    private void ShowDocumentsArea(bool show)
+    {
+        isDocumentAreaActive = show;
+        ShowArea(show, giveDocumentsImage, giveDocumentsText);
+    }
+
+    private void ShowInteractablesArea(bool show)
+    {
+        isInteractablesAreaActive = show;
+        ShowArea(show, putBackInteractablesImage, putBackInteractablesText);
+    }
+
+    private void ShowArea(bool show, Image areaImage, TMP_Text areaText)
+    {
+        //stop current animations
+        Tween.StopAll(areaImage);
+        Tween.StopAll(areaText);
+
+        //start blink animation
+        if (show)
+        {
+            Tween.Alpha(areaImage, 1, animationDuration).OnComplete(() =>
+                Tween.Alpha(areaImage, 1f, 0f, animationDuration, Ease.InOutQuad, -1, CycleMode.Yoyo));
+            
+            Tween.Alpha(areaText, 1f, animationDuration).OnComplete(() => 
+                Tween.Alpha(areaText, 1f, 0f, animationDuration, Ease.InOutQuad, -1, CycleMode.Yoyo));
+        }
+        //or fade out
+        else
+        {
+            Tween.Alpha(areaImage, 0, animationDuration);
+            Tween.Alpha(areaText, 0f, animationDuration);
+        }
+    }
+
+    private bool CheckIsInArea(Vector2 point, RectTransform area, bool isAreaActive)
+    {
+        //is area isn't active, return false
+        if (isAreaActive == false)
+            return false;
+        
+        //else, check if point is in area
+        return RectTransformUtility.RectangleContainsScreenPoint(area, point);
+    }
+    
+    #endregion
 }

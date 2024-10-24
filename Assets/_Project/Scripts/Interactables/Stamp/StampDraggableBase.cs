@@ -33,8 +33,12 @@ public abstract class StampDraggableBase : InteractableDraggable
         if (callbacks.InteractableEndDrag(this, eventData))
         {
             onEndDrag?.Invoke();
+            
+            //check to remove interactable
+            if (DeskManager.instance.CheckToRemoveInteractable(CopyInScene, this))
+                return;
 
-            //check what hit where there is the shadow
+            //else, check what hit where there is the shadow
             PointerEventData data = new PointerEventData(EventSystem.current) { position = transform.position };
             List<RaycastResult> results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(data, results);

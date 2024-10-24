@@ -47,10 +47,39 @@ public class DeskManager : SimpleInstance<DeskManager>
     }
 
     /// <summary>
+    /// Check if inside documents area. If inside, remove document from the scene
+    /// </summary>
+    public bool CheckToRemoveDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable)
+    {
+        //check is inside area
+        if (deskWindowsManager.CheckIsInGiveDocumentsArea(docDraggable.transform.position))
+        {
+            docInScene.SetInteractable(false);
+            docDraggable.SetInteractable(false);
+        
+            //move out of the desk
+            Tween.Position(docInScene.transform, leftStartPoint.position, putAnimationTime);
+            Tween.Position(docDraggable.transform, rightStartTopPoint.position, putAnimationTime);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
     /// Add an object already instantiated
     /// </summary>
     public void AddInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
     {
+        //tell windowsManager there is a new interactable
+        deskWindowsManager.AddInteractable();
+        
+        instantiatedInScene.gameObject.SetActive(true);
+        
+        //save position and parent for put back
+        clickedInteractable.SaveStartPositionAndParent();
+        
         //set parent
         Vector2 posLeft = clickedInteractable.transform.position;
         Vector2 posRight = instantiatedInScene.transform.position;
@@ -66,6 +95,40 @@ public class DeskManager : SimpleInstance<DeskManager>
         Tween.Position(clickedInteractable.transform, leftEndPoint.position, putAnimationTime);
         Tween.Position(instantiatedInScene.transform, rightStartBottomPoint.position, rightEndPoint.position, putAnimationTime)
             .OnComplete(() => instantiatedInScene.SetInteractable(true));
+    }
+
+    /// <summary>
+    /// Check if inside interactables area. If inside, put back interactable
+    /// </summary>
+    public bool CheckToRemoveInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
+    {
+        //check is inside area
+        if (deskWindowsManager.CheckIsInPutBackInteractablesArea(instantiatedInScene.transform.position))
+        {
+            //tell windowsManager to remove an interactable
+            deskWindowsManager.RemoveInteractable();
+            
+            //set parent
+            Vector2 posLeft = clickedInteractable.transform.position;
+            clickedInteractable.transform.SetParent(clickedInteractable.StartParent, false);
+            clickedInteractable.transform.position = posLeft;
+            
+            clickedInteractable.SetInteractable(false);
+            instantiatedInScene.SetInteractable(false);
+        
+            //move out of the desk
+            Tween.Position(clickedInteractable.transform, clickedInteractable.StartPosition, putAnimationTime);
+            Tween.Position(instantiatedInScene.transform, rightStartBottomPoint.position, putAnimationTime)
+                .OnComplete(() =>
+                {
+                    instantiatedInScene.gameObject.SetActive(false);
+                    clickedInteractable.SetInteractable(true);
+                });
+
+            return true;
+        }
+
+        return false;
     }
 
     private System.Collections.IEnumerator Start()

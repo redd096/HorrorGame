@@ -36,6 +36,11 @@ public class InteractableDraggable : InteractableOnTheRight
         base.OnEndDrag_Event(eventData);
 
         if (callbacks.InteractableEndDrag(this, eventData))
+        {
             onEndDrag?.Invoke();
+            
+            //check to remove document
+            DeskManager.instance.CheckToRemoveDocument(CopyInScene, this);
+        }
     }
 }

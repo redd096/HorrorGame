@@ -7,10 +7,13 @@ using UnityEngine;
 public class InteractableOnTheLeft : InteractableBase
 {
     private Vector2 startPosition;
+    private Transform startParent;
     public Vector2 StartPosition => startPosition;
+    public Transform StartParent => startParent;
 
-    protected virtual void Start()
+    public void SaveStartPositionAndParent()
     {
         startPosition = transform.position;
+        startParent  = transform.parent;
     }
 }
