@@ -70,11 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2081977839836755732, guid: 50d6e4383af37824782c80ecf06d0786, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1174.0695
       objectReference: {fileID: 0}
     - target: {fileID: 2081977839836755732, guid: 50d6e4383af37824782c80ecf06d0786, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 553.62775
       objectReference: {fileID: 0}
     - target: {fileID: 2081977839836755732, guid: 50d6e4383af37824782c80ecf06d0786, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731948797459935244, guid: 50d6e4383af37824782c80ecf06d0786, type: 3}
       propertyPath: m_Name
-      value: GreenStampOnDocument Variant
+      value: RedStampOnDocument
       objectReference: {fileID: 0}
     - target: {fileID: 9027185016171789252, guid: 50d6e4383af37824782c80ecf06d0786, type: 3}
       propertyPath: m_Sprite
