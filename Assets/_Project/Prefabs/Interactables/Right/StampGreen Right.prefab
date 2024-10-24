@@ -1,5 +1,40 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1589925608751993355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4154017272351272049}
+  m_Layer: 5
+  m_Name: StampPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4154017272351272049
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589925608751993355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3528349826375615512}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -75}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2469142892326092627
 GameObject:
   m_ObjectHideFlags: 0
@@ -17,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6598755466901510702
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34,7 +69,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 150}
+  m_AnchoredPosition: {x: 0, y: 75}
   m_SizeDelta: {x: 98, y: 406}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3409472224229305906
@@ -209,6 +244,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5793771846790489665, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6598755466901510702}
+    - targetCorrespondingSourceObject: {fileID: 5793771846790489665, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4154017272351272049}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1996640527894661766, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       insertIndex: -1
@@ -244,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c38638c54a8af4c8a32311c56c9f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stampPoint: {fileID: 4154017272351272049}
 --- !u!114 &-8159900987776213032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stampTransform: {fileID: 7383794616072192193}
   shadowTransform: {fileID: 6598755466901510702}
-  height: 220
+  height: 150
   raiseAnimation: 0.2
   rotationIntensity: 4
   rotationSpeed: 0.5

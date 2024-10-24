@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 75}
+  m_AnchoredPosition: {x: 0, y: 37.5}
   m_SizeDelta: {x: 49, y: 203}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3409472224229305906
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stampTransform: {fileID: 7383794616072192193}
   shadowTransform: {fileID: 6598755466901510702}
-  height: 110
+  height: 75
   raiseAnimation: 0.2
   rotationIntensity: 4
   rotationSpeed: 0.5

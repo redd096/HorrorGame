@@ -130,3 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934593131fd044b47a6c3e72ca97b8c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stampPoint: {fileID: 7389353962864086195}
+--- !u!224 &7389353962864086195 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4154017272351272049, guid: 4bdff22350b72174c8558aaca8b050e3, type: 3}
+  m_PrefabInstance: {fileID: 6857375794884649154}
+  m_PrefabAsset: {fileID: 0}

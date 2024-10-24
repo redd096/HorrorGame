@@ -60,6 +60,6 @@ public class StampLeftFeedback : MonoBehaviour
         SetSprite(false);
 
         //lay down
-        Tween.LocalPositionY(stampTransform, shadowTransform.localPosition.y * 0.5f, raiseAnimation);
+        Tween.LocalPositionY(stampTransform, 0, raiseAnimation);
     }
 }
