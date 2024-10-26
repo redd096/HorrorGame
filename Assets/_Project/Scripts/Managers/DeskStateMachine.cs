@@ -1,6 +1,7 @@
 using redd096.v2.ComponentsSystem;
-using UnityEngine.EventSystems;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Statemachine for the desk
@@ -13,9 +14,13 @@ public class DeskStateMachine : BasicStateMachineComponent, IInteractablesEvents
 
     public DeskNormalState NormalState = new DeskNormalState();
     public DeskDraggingState DraggingState = new DeskDraggingState();
+    public DeskDragFromTheRightState DragFromTheRightState = new DeskDragFromTheRightState();
 
-    private void Awake()
+    private IEnumerator Start()
     {
+        //wait few seconds, for the canvas to update layout
+        yield return new WaitForSeconds(0.1f);
+
         //set callbacks for every element in scene
         InteractableBase[] interactablesInScene = FindObjectsOfType<InteractableBase>();
         foreach (var interactable in interactablesInScene)
@@ -29,37 +34,82 @@ public class DeskStateMachine : BasicStateMachineComponent, IInteractablesEvents
 
     public bool InteractableBeginDrag(InteractableDraggable interactable, PointerEventData eventData)
     {
-        bool result = CurrentState == NormalState;
-        NormalState.InteractableBeginDrag(interactable, eventData);
-        return result;
+        if (CurrentState == NormalState)
+        {
+            NormalState.InteractableBeginDrag(interactable, eventData);
+            return true;
+        }
+        return false;
     }
 
     public bool InteractableDrag(InteractableDraggable interactable, PointerEventData eventData)
     {
-        bool result = CurrentState == DraggingState;
-        DraggingState.InteractableDrag(interactable, eventData);
-        return result;
+        if (CurrentState == DraggingState)
+        {
+            DraggingState.InteractableDrag(interactable, eventData);
+            return true;
+        }
+        return false;
     }
 
     public bool InteractableEndDrag(InteractableDraggable interactable, PointerEventData eventData)
     {
-        bool result = CurrentState == DraggingState;
-        DraggingState.InteractableEndDrag(interactable, eventData);
-        return result;
+        if (CurrentState == DraggingState)
+        {
+            DraggingState.InteractableEndDrag(interactable, eventData);
+            return true;
+        }
+        return false;
     }
 
     public bool BellClick()
     {
-        bool result = CurrentState == NormalState;
-        NormalState.BellClick();
-        return result;
+        if (CurrentState == NormalState)
+        {
+            NormalState.BellClick();
+            return true;
+        }
+        return false;
     }
 
     public bool ClickAndInstantiateInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
     {
-        bool result = CurrentState == NormalState;
-        NormalState.ClickAndInstantiateInteractable(clickedInteractable, instantiatedInScene);
-        return result;
+        if (CurrentState == NormalState)
+        {
+            NormalState.ClickAndInstantiateInteractable(clickedInteractable, instantiatedInScene);
+            return true;
+        }
+        return false;
+    }
+
+    public bool InteractableFromTheRightBeginDrag(InteractableDragFromTheRight interactable, PointerEventData eventData)
+    {
+        if (CurrentState == NormalState)
+        {
+            NormalState.InteractableFromTheRightBeginDrag(interactable, eventData);
+            return true;
+        }
+        return false;
+    }
+
+    public bool InteractableFromTheRightDrag(InteractableDragFromTheRight interactable, PointerEventData eventData)
+    {
+        if (CurrentState == DragFromTheRightState)
+        {
+            DragFromTheRightState.InteractableFromTheRightDrag(interactable, eventData);
+            return true;
+        }
+        return false;
+    }
+
+    public bool InteractableFromTheRightEndDrag(InteractableDragFromTheRight interactable, PointerEventData eventData)
+    {
+        if (CurrentState == DragFromTheRightState)
+        {
+            DragFromTheRightState.InteractableFromTheRightEndDrag(interactable, eventData);
+            return true;
+        }
+        return false;
     }
 
     #endregion

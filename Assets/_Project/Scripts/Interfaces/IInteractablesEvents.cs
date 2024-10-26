@@ -15,4 +15,9 @@ public interface IInteractablesEvents
 
     //stamps
     bool ClickAndInstantiateInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene);
+
+    //board and journal
+    bool InteractableFromTheRightBeginDrag(InteractableDragFromTheRight interactable, PointerEventData eventData);
+    bool InteractableFromTheRightDrag(InteractableDragFromTheRight interactable, PointerEventData eventData);
+    bool InteractableFromTheRightEndDrag(InteractableDragFromTheRight interactable, PointerEventData eventData);
 }

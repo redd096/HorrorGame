@@ -1,7 +1,7 @@
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// Interactables in the right screen that can be dragged
+/// Interactables in the right screen that can be dragged (documents, stamps, etc...)
 /// </summary>
 public class InteractableDraggable : InteractableOnTheRight
 {

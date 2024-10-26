@@ -100,9 +100,6 @@ public class DeskManager : SimpleInstance<DeskManager>
         
         instantiatedInScene.gameObject.SetActive(true);
         
-        //save position and parent for put back
-        clickedInteractable.SaveStartPositionAndParent();
-        
         //set parent
         Vector2 posLeft = clickedInteractable.transform.position;
         Vector2 posRight = instantiatedInScene.transform.position;
@@ -145,7 +142,7 @@ public class DeskManager : SimpleInstance<DeskManager>
             instantiatedInScene.SetInteractable(false);
         
             //move out of the desk
-            Tween.Position(clickedInteractable.transform, clickedInteractable.StartPosition, putAnimationTime);
+            Tween.UIAnchoredPosition(clickedInteractable.RectTr, clickedInteractable.StartAnchoredPosition, putAnimationTime);
             Tween.Position(instantiatedInScene.transform, rightStartBottomPoint.position, putAnimationTime)
                 .OnComplete(() =>
                 {

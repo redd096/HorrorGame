@@ -9,7 +9,14 @@ public abstract class InteractableBase : MonoBehaviour, IPointerClickHandler, IB
     protected IInteractablesEvents callbacks;
     protected bool interactable;
 
+    protected RectTransform rectTr;
+    protected Vector2 startAnchoredPosition;
+    protected Transform startParent;
+
     public bool Interactable => interactable;
+    public RectTransform RectTr => rectTr;
+    public Vector2 StartAnchoredPosition => startAnchoredPosition;
+    public Transform StartParent => startParent;
 
     /// <summary>
     /// Initialize and set interactable
@@ -19,6 +26,11 @@ public abstract class InteractableBase : MonoBehaviour, IPointerClickHandler, IB
     {
         this.callbacks = callbacks;
         interactable = true;
+
+        //save also start position and parent
+        rectTr = GetComponent<RectTransform>();
+        startAnchoredPosition = rectTr.anchoredPosition;
+        startParent = transform.parent;
     }
 
     /// <summary>

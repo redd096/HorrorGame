@@ -37,8 +37,8 @@ public class DeskDraggingState : DeskBaseState
 
     public void InteractableDrag(InteractableDraggable interactable, PointerEventData eventData)
     {
-        //only in correct state and if this interactable is the dragged one
-        if (IsActive == false || draggedObject != interactable)
+        //only if this interactable is the dragged one
+        if (draggedObject != interactable)
             return;
 
         //calculate limits
@@ -85,8 +85,8 @@ public class DeskDraggingState : DeskBaseState
 
     public void InteractableEndDrag(InteractableDraggable interactable, PointerEventData eventData)
     {
-        //only in correct state and if this interactable is the dragged one
-        if (IsActive == false || draggedObject != interactable)
+        //only if this interactable is the dragged one
+        if (draggedObject != interactable)
             return;
 
         //back to normal state
