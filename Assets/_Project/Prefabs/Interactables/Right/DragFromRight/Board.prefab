@@ -92,9 +92,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5629972731730569057, guid: cc4e11ee4642c124cbab0167254b3c68, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629972731730569057, guid: cc4e11ee4642c124cbab0167254b3c68, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6877785326248362482, guid: cc4e11ee4642c124cbab0167254b3c68, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8452578786556422408, guid: cc4e11ee4642c124cbab0167254b3c68, type: 3}
       propertyPath: m_Name
-      value: Board Variant
+      value: Board
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
