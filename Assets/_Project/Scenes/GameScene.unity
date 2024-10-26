@@ -595,6 +595,56 @@ MonoBehaviour:
     updateOnAwake: 1
     canvas: {fileID: 213721110}
     rend: {fileID: 0}
+--- !u!1 &233283235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 233283236}
+  - component: {fileID: 233283237}
+  m_Layer: 0
+  m_Name: ResidentsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &233283236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233283235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 739459459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &233283237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233283235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b889fa21154c17b43869b49a431ccdce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listOfResidents:
+  - {fileID: 11400000, guid: 60cd415df3b93814fb4a23f627ae09a3, type: 2}
+  - {fileID: 11400000, guid: 5ef85dc75641ee349896a0d18a1fe013, type: 2}
+  - {fileID: 11400000, guid: f9bb4d5520425cc40a3709d56d8a5517, type: 2}
+  - {fileID: 11400000, guid: f35ed744dc43e1f4ca7ccf54fb69a3e0, type: 2}
+  - {fileID: 11400000, guid: 2833d70de79203849a0775237fb68f9a, type: 2}
 --- !u!1 &277423845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1289,7 @@ Transform:
   - {fileID: 1158584459}
   - {fileID: 1516019691}
   - {fileID: 1015270465}
+  - {fileID: 233283236}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &972656106
