@@ -1,3 +1,4 @@
+using redd096.Attributes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,15 +7,34 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class DocumentDraggable : InteractableDraggable
 {
-    [SerializeField] private bool canReceiveStamp = true;
-    [SerializeField] private bool documentToGiveBack = true;
+    [Tooltip("When user put a stamp on this document, it tells to the game if user accept or deny the client")][SerializeField] private bool canReceiveStamp = true;
+    [Tooltip("Used when put this document on the desk, to know if user has to give it back to the client before call another one")][SerializeField] private bool documentToGiveBack = true;
+    [Tooltip("If true, user can put this document in the board")][SerializeField] private bool canBePutInsideBoard = false;
 
-    public bool DocumentToGiveBack => documentToGiveBack;
+    protected bool isInBoardArea;
+
+    public bool DocumentToGiveBack { get => documentToGiveBack; set => documentToGiveBack = value; }
+    public bool CanBePutInsideBoard { get => canBePutInsideBoard; set => canBePutInsideBoard = value; }
+
+    public System.Action onEnterBoard;
+    public System.Action onExitBoard;
+
+    [Button(ButtonAttribute.EEnableType.PlayMode)]
+    void SetDocumentToGiveBack()
+    {
+        DeskManager.instance.ChangeDocumentStatus(this, true, canBePutInsideBoard);
+    }
+
+    [Button(ButtonAttribute.EEnableType.PlayMode)]
+    void SetDocumentToNOTGiveBack()
+    {
+        DeskManager.instance.ChangeDocumentStatus(this, false, canBePutInsideBoard);
+    }
 
     public void OnReceiveStamp(bool isGreen)
     {
         //if this document can receive stamp, tell to DeskManager to show area to give documents back to client
-        if (canReceiveStamp)
+        if (canReceiveStamp && documentToGiveBack)
         {
             DeskManager.instance.OnDocumentReceiveStamp();
 
@@ -29,13 +49,35 @@ public class DocumentDraggable : InteractableDraggable
         if (callbacks.InteractableEndDrag(this, eventData))
         {
             onEndDrag?.Invoke();
-            
-            //check to remove document
-            DeskManager.instance.CheckToRemoveDocument(CopyInScene, this, documentToGiveBack);
 
-            Debug.Log("TODO - if documentToGiveBack, check if in RemoveDocumentArea. Else, check if in BoardArea. \n" +
-                "Maybe some documents can go to the board area, but you have to give them to a specific client. \n" +
-                "So we need an Identifier of the document and a function to set NowCanGiveBack. So the client will find document by identifier and will call that function");
+            //if this document is inside board area
+            if (DeskManager.instance.CheckIsInBoardArea(transform.position))
+            {
+                //if can be put inside board, then set parent and call event
+                if (canBePutInsideBoard)
+                {
+                    isInBoardArea = true;
+                    DeskManager.instance.SetInBoardArea(this, true);
+                    onEnterBoard?.Invoke();
+                }
+            }
+            //if not inside board area
+            else
+            {
+                //if before was inside board area, now reset parent and call event
+                if (isInBoardArea)
+                {
+                    isInBoardArea = false;
+                    DeskManager.instance.SetInBoardArea(this, false);
+                    onExitBoard?.Invoke();
+                }
+
+                //check if this is a document you can give back, and give back if now is in documents area
+                if (documentToGiveBack)
+                {
+                    DeskManager.instance.CheckToRemoveDocument(CopyInScene, this, documentToGiveBack);
+                }
+            }
         }
     }
 }

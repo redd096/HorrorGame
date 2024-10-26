@@ -99,6 +99,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1996640527894661766, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4473677935905810046}
+    - targetCorrespondingSourceObject: {fileID: 1996640527894661766, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6006559236139775016}
   m_SourcePrefab: {fileID: 100100000, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
 --- !u!1 &8873734271714093279 stripped
 GameObject:
@@ -118,3 +121,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canReceiveStamp: 1
+  documentToGiveBack: 1
+  canBePutInsideBoard: 1
+--- !u!114 &6006559236139775016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873734271714093279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a0e3e18b89af54aaf278bd89a14dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minMaxRandomNumberOfTapes: {x: 2, y: 3}
+  tapePrefab: {fileID: 1680443405981651132, guid: ef8edd614ff1f1440b55bf730d7ac3a3, type: 3}
+  b: 1
+  tapePossiblePositions:
+  - {x: 0, y: 0}
+  - {x: 0, y: 1}
+  - {x: 0, y: 2}
+  - {x: 1, y: 0}
+  - {x: 1, y: 2}
+  - {x: 2, y: 0}
+  - {x: 2, y: 1}
+  - {x: 2, y: 2}

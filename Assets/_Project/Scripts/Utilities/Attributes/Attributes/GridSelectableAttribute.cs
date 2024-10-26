@@ -13,6 +13,8 @@ namespace redd096.Attributes
     public class GridSelectableAttribute : PropertyAttribute
     {
         public readonly string vector2IntArrayProperty;
+        [Tooltip("Draw only the grid and hide this property? Or draw this property and below the grid")] public bool hideThisProperty;
+        [Tooltip("If this property is Integer or Vector2Int, use this property as size for the grid instead of sizeX and sizeY declared in the constructor")] public bool useThisPropertyAsGridSize;
         [Tooltip("Show coordinates (x, y) on the button?")] public bool showButtonName;
         [Tooltip("use center as zero, left down button will be negative (in grid 3x3, left down is -1,-1). If false, use left down button as zero")] public bool useCenterAsZero;
         public int sizeX { get; private set; }
@@ -53,8 +55,10 @@ namespace redd096.Attributes
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
+            at = attribute as GridSelectableAttribute;
+
             //size to draw first property (if int or vector2 int)
-            float propertySize = GetPropertySize(property);
+            float propertySize = GetPropertySize();
 
             //property height + little space + every row * (size square + space between)
             int y = (attribute as GridSelectableAttribute).sizeY;
@@ -70,19 +74,16 @@ namespace redd096.Attributes
             Vector2Int[] arrayValues = property.GetValue(at.vector2IntArrayProperty) as Vector2Int[];
 
             //get grid size (number of rows and columns)
-            if (property.propertyType == SerializedPropertyType.Integer)
+            if (at.useThisPropertyAsGridSize)
             {
-                property.intValue = Mathf.Max(1, property.intValue);
-                at.SetSize(property.intValue, property.intValue);
-            }
-            else if (property.propertyType == SerializedPropertyType.Vector2Int)
-            {
-                property.vector2IntValue = new Vector2Int(Mathf.Max(1, property.vector2IntValue.x), Mathf.Max(1, property.vector2IntValue.y));
-                at.SetSize(property.vector2IntValue.x, property.vector2IntValue.y);
+                if (property.propertyType == SerializedPropertyType.Integer)
+                    at.SetSize(property.intValue, property.intValue);
+                else if (property.propertyType == SerializedPropertyType.Vector2Int)
+                    at.SetSize(property.vector2IntValue.x, property.vector2IntValue.y);
             }
 
             //show property to set grid size
-            if (CanDrawPropertyToSetSize(property))
+            if (CanDrawProperty())
                 EditorGUI.PropertyField(new Rect(position.x, position.y, position.width, propertyHeight), property, new GUIContent(property.name));
 
 
@@ -90,7 +91,7 @@ namespace redd096.Attributes
             //==============================================================
             //show grid
             bool someValueIsChanged = false;    //check if update values
-            Vector2 startPosition = new Vector2(position.x, position.y + GetPropertySize(property));
+            Vector2 startPosition = new Vector2(position.x, position.y + GetPropertySize());
 
             //get start coordinates (left down button is zero, or center button is zero and left down is negative?)
             ValueStruct[,] values = new ValueStruct[at.sizeX, at.sizeY];
@@ -162,14 +163,14 @@ namespace redd096.Attributes
             arrayProperty.serializedObject.ApplyModifiedProperties();
         }
 
-        bool CanDrawPropertyToSetSize(SerializedProperty property)
+        bool CanDrawProperty()
         {
-            return property.propertyType == SerializedPropertyType.Integer || property.propertyType == SerializedPropertyType.Vector2Int;
+            return at.hideThisProperty == false;
         }
 
-        float GetPropertySize(SerializedProperty property)
+        float GetPropertySize()
         {
-            return CanDrawPropertyToSetSize(property) ? propertyHeight + littleSpace : 0;
+            return CanDrawProperty() ? propertyHeight + littleSpace : 0;
         }
 
         void GetStartCoordinates(out bool xIsEven, out bool yIsEven, out int coordinatesX, out int coordinatesY)

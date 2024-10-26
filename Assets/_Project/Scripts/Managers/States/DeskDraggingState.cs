@@ -8,6 +8,7 @@ public class DeskDraggingState : DeskBaseState
 {
     private InteractableDraggable draggedObject;
     private Vector2 offset;
+    private RectTransform dragContainer;
 
     private Transform draggableTransform;
     private Transform sceneTransform;
@@ -26,6 +27,7 @@ public class DeskDraggingState : DeskBaseState
         //save refs
         draggedObject = deskStateMachine.GetBlackboardElement<InteractableDraggable>(DeskStateMachine.DRAGGED_OBJECT_BLACKBOARD);
         offset = (Vector2)draggedObject.transform.position - deskStateMachine.GetBlackboardElement<Vector2>(DeskStateMachine.START_DRAG_POSITION_BLACKBOARD);
+        dragContainer = DeskManager.instance.DraggedObjectsContainer;
 
         draggableTransform = draggedObject.transform;
         sceneTransform = draggedObject.CopyInScene.transform;
@@ -33,6 +35,11 @@ public class DeskDraggingState : DeskBaseState
         sceneContainer = sceneTransform.parent.GetComponent<RectTransform>();
         draggableCanvas = draggableTransform.GetComponentInParent<Canvas>();
         sceneCanvas = sceneTransform.GetComponentInParent<Canvas>();
+
+        //set parent
+        Vector2 pos = draggableTransform.position;
+        draggableTransform.SetParent(dragContainer, false);
+        draggableTransform.position = pos;
     }
 
     public void InteractableDrag(InteractableDraggable interactable, PointerEventData eventData)
@@ -42,8 +49,8 @@ public class DeskDraggingState : DeskBaseState
             return;
 
         //calculate limits
-        Vector2 center = draggableContainer.position;
-        Vector2 size = draggableContainer.rect.size * draggableCanvas.scaleFactor;
+        Vector2 center = dragContainer.position;
+        Vector2 size = dragContainer.rect.size * draggableCanvas.scaleFactor;
         Vector2 halfSize = size * 0.5f;
         Vector2 min = center - halfSize + (size * FIX_BOUNDS);
         Vector2 max = center + halfSize - (size * FIX_BOUNDS);
@@ -88,6 +95,11 @@ public class DeskDraggingState : DeskBaseState
         //only if this interactable is the dragged one
         if (draggedObject != interactable)
             return;
+
+        //reset parent
+        Vector2 pos = draggableTransform.position;
+        draggableTransform.SetParent(draggableContainer, false);
+        draggableTransform.position = pos;
 
         //back to normal state
         deskStateMachine.SetState(deskStateMachine.NormalState);

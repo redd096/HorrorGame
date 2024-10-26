@@ -11,6 +11,7 @@ public class DeskWindowsManager : MonoBehaviour
 {
     [SerializeField] private RectTransform giveDocumentsArea;
     [SerializeField] private RectTransform putBackInteractablesArea;
+    [SerializeField] private RectTransform boardArea;
     
     [Header("Animation")]
     [SerializeField] private Image giveDocumentsImage;
@@ -21,6 +22,8 @@ public class DeskWindowsManager : MonoBehaviour
 
     private bool isDocumentAreaActive;
     private bool isInteractablesAreaActive;
+
+    public RectTransform BoardArea => boardArea;
 
     private void Awake()
     {
@@ -75,6 +78,16 @@ public class DeskWindowsManager : MonoBehaviour
     public bool CheckIsInPutBackInteractablesArea(Vector2 point)
     {
         return CheckIsInArea(point, putBackInteractablesArea, isInteractablesAreaActive);
+    }
+
+    /// <summary>
+    /// Check if this rect is inside board area
+    /// </summary>
+    /// <param name="point"></param>
+    /// <returns></returns>
+    public bool CheckIsInBoardArea(Vector2 point)
+    {
+        return CheckIsInArea(point, boardArea, true);
     }
     
     #endregion
