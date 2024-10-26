@@ -51,7 +51,7 @@ public class DocumentDraggable : InteractableDraggable
             onEndDrag?.Invoke();
 
             //if this document is inside board area
-            if (DeskManager.instance.CheckIsInBoardArea(transform.position))
+            if (DeskManager.instance.CheckIsInBoardArea(rectTr))
             {
                 //if can be put inside board, then set parent and call event
                 if (canBePutInsideBoard)

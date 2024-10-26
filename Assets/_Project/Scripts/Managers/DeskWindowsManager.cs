@@ -83,11 +83,11 @@ public class DeskWindowsManager : MonoBehaviour
     /// <summary>
     /// Check if this rect is inside board area
     /// </summary>
-    /// <param name="point"></param>
+    /// <param name="rectTr"></param>
     /// <returns></returns>
-    public bool CheckIsInBoardArea(Vector2 point)
+    public bool CheckIsInBoardArea(RectTransform rectTr)
     {
-        return CheckIsInArea(point, boardArea, true);
+        return CheckIsCompletelyInArea(rectTr, boardArea, true);
     }
     
     #endregion
@@ -119,13 +119,31 @@ public class DeskWindowsManager : MonoBehaviour
 
     private bool CheckIsInArea(Vector2 point, RectTransform area, bool isAreaActive)
     {
-        //is area isn't active, return false
+        //if area isn't active, return false
         if (isAreaActive == false)
             return false;
         
         //else, check if point is in area
         return RectTransformUtility.RectangleContainsScreenPoint(area, point);
     }
-    
+
+    private bool CheckIsCompletelyInArea(RectTransform rectTr, RectTransform area, bool isAreaActive)
+    {
+        //if area isn't active, return false
+        if (isAreaActive == false)
+            return false;
+
+        //else, check if every point is in area
+        Vector3[] points = new Vector3[4];
+        rectTr.GetWorldCorners(points);
+        foreach (var point in points)
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(area, point) == false)
+                return false;
+        }
+
+        return true;
+    }
+
     #endregion
 }

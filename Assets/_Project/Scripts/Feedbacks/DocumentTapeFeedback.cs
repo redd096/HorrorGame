@@ -21,8 +21,8 @@ public class DocumentTapeFeedback : MonoBehaviour
     {
         //add events
         docDraggable = GetComponent<DocumentDraggable>();
+        docDraggable.onBeginDrag += OnBeginDrag;
         docDraggable.onEnterBoard += OnEnterBoard;
-        docDraggable.onExitBoard += OnExitBoard;
     }
 
     private void OnDestroy()
@@ -30,9 +30,15 @@ public class DocumentTapeFeedback : MonoBehaviour
         //remove events
         if (docDraggable)
         {
+            docDraggable.onBeginDrag -= OnBeginDrag;
             docDraggable.onEnterBoard -= OnEnterBoard;
-            docDraggable.onExitBoard -= OnExitBoard;
         }
+    }
+
+    private void OnBeginDrag()
+    {
+        //when start drag document, remove tapes
+        RemoveTapes();
     }
 
     private void OnEnterBoard()
@@ -40,12 +46,6 @@ public class DocumentTapeFeedback : MonoBehaviour
         //show tapes when enter in the board
         RemoveTapes();
         ShowRandomTapes();
-    }
-
-    private void OnExitBoard()
-    {
-        //remove tapes when exit from the board
-        RemoveTapes();
     }
 
     void ShowRandomTapes()

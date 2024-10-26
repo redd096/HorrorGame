@@ -215,11 +215,11 @@ public class DeskManager : SimpleInstance<DeskManager>
     /// <summary>
     /// Return true if this document is inside Board area
     /// </summary>
-    /// <param name="point"></param>
+    /// <param name="rectTr"></param>
     /// <returns></returns>
-    public bool CheckIsInBoardArea(Vector2 point)
+    public bool CheckIsInBoardArea(RectTransform rectTr)
     {
-        return deskWindowsManager.CheckIsInBoardArea(point);
+        return deskWindowsManager.CheckIsInBoardArea(rectTr);
     }
 
     /// <summary>
