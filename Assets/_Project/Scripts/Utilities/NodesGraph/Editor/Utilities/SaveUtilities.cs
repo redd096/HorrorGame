@@ -13,7 +13,7 @@ namespace redd096.NodesGraph.Editor
     /// <summary>
     /// Example of utilities to save graph in a scriptable object and load from scriptable object to graph
     /// </summary>
-    public class SaveUtilities : MonoBehaviour
+    public static class SaveUtilities
     {
         private static List<NodeData> nodes;
         private static List<GroupData> groups;

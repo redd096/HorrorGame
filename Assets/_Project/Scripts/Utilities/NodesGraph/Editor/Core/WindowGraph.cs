@@ -52,7 +52,7 @@ namespace redd096.NodesGraph.Editor
         /// </summary>
         protected virtual void CreateToolbar()
         {
-            toolbar = new NodesGraphToolbar(graph as NodesGraphView);
+            toolbar = new NodesGraphToolbar(graph as NodesGraphView, new SaveLoadGraph());
         }
 
         /// <summary>

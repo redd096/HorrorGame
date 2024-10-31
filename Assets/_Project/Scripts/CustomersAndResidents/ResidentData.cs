@@ -1,6 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "HorrorGame/Resident")]
+/// <summary>
+/// Inside ResidentsManager use this to check which residents are in hotel
+/// </summary>
+[CreateAssetMenu(menuName = "HORROR GAME/Resident")]
 public class ResidentData : ScriptableObject
 {
     public Sprite Photo;

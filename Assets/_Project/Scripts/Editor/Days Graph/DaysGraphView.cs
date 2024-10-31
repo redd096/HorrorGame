@@ -1,8 +1,6 @@
+#if UNITY_EDITOR
 using redd096.NodesGraph.Editor;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 /// <summary>
@@ -19,3 +17,4 @@ public class DaysGraphView : NodesGraphView
         //base.BuildContextualMenu(evt);
     }
 }
+#endif

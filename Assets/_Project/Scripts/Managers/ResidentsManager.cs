@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Keep track residents in the hotel
+/// Keep track of residents in the hotel
 /// </summary>
 public class ResidentsManager : MonoBehaviour
 {

@@ -1,6 +1,6 @@
 
 /// <summary>
-/// Customers can give objects to player
+/// Customers can give objects to player. This contains both prefab for left and right screen
 /// </summary>
 [System.Serializable]
 public struct FGiveToUser

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Document for customers
+/// </summary>
 [System.Serializable]
 public class PoliceDocument
 {

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using redd096.NodesGraph.Editor;
 using UnityEditor;
 using UnityEngine.UIElements;
@@ -21,4 +22,12 @@ public class DaysGraphWindow : WindowGraph
         graph = new DaysGraphView(this);
         graph.StretchToParentSize();
     }
+
+    protected override void CreateToolbar()
+    {
+        //base.CreateToolbar();
+
+        toolbar = new NodesGraphToolbar(graph as DaysGraphView, new DaysGraphSaveLoad());
+    }
 }
+#endif
