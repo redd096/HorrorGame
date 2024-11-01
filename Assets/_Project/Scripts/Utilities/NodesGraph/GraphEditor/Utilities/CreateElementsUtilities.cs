@@ -80,11 +80,12 @@ namespace redd096.NodesGraph.Editor
             return label;
         }
 
-        public static ObjectField CreateObjectField(string label, System.Type objectType, EventCallback<ChangeEvent<Object>> onValueChanged = null, bool allowSceneObjects = false)
+        public static ObjectField CreateObjectField(string label, Object value, System.Type objectType, EventCallback<ChangeEvent<Object>> onValueChanged = null, bool allowSceneObjects = false)
         {
             //create object field
             ObjectField objectField = new ObjectField(label)
             {
+                value = value,
                 objectType = objectType,
                 allowSceneObjects = allowSceneObjects
             };
@@ -102,14 +103,14 @@ namespace redd096.NodesGraph.Editor
         /// <param name="label"></param>
         /// <param name="previewSize"></param>
         /// <param name="onChangeValue"></param>
-        public static ObjectField CreateObjectFieldWithPreview(string label, Vector2 previewSize, out Image previewImage, EventCallback<ChangeEvent<Object>> onChangeValue = null)
+        public static ObjectField CreateObjectFieldWithPreview(string label, Sprite value, Vector2 previewSize, out Image previewImage, EventCallback<ChangeEvent<Object>> onChangeValue = null)
         {
             //create image for preview
-            Image image = CreateImage((Sprite)null, previewSize);
+            Image image = CreateImage(value, previewSize);
             previewImage = image;
 
             //create objectField, when change value set sprite on Image
-            ObjectField objectField = CreateObjectField(label, typeof(Sprite), x =>
+            ObjectField objectField = CreateObjectField(label, value, typeof(Sprite), x =>
             {
                 onChangeValue?.Invoke(x);
                 image.style.backgroundImage = new StyleBackground(x.newValue as Sprite);
@@ -118,9 +119,12 @@ namespace redd096.NodesGraph.Editor
             return objectField;
         }
 
-        public static Toggle CreateToggle(string label, EventCallback<ChangeEvent<bool>> onValueChanged = null)
+        public static Toggle CreateToggle(string label, bool value, EventCallback<ChangeEvent<bool>> onValueChanged = null)
         {
-            Toggle toggle = new Toggle(label);
+            Toggle toggle = new Toggle(label)
+            {
+                value = value
+            };
 
             //register event if not null
             if (onValueChanged != null)
@@ -129,9 +133,12 @@ namespace redd096.NodesGraph.Editor
             return toggle;
         }
 
-        public static IntegerField CreateIntegerField(string label, EventCallback<ChangeEvent<int>> onValueChanged = null, int maxLength = 1000)
+        public static IntegerField CreateIntegerField(string label, int value, EventCallback<ChangeEvent<int>> onValueChanged = null, int maxLength = 1000)
         {
-            IntegerField integerField = new IntegerField(label, maxLength);
+            IntegerField integerField = new IntegerField(label, maxLength)
+            {
+                value = value
+            };
 
             //register event if not null
             if (onValueChanged != null)
@@ -140,9 +147,12 @@ namespace redd096.NodesGraph.Editor
             return integerField;
         }
 
-        public static FloatField CreateFloatField(string label, EventCallback<ChangeEvent<float>> onValueChanged = null, int maxLength = 1000)
+        public static FloatField CreateFloatField(string label, float value, EventCallback<ChangeEvent<float>> onValueChanged = null, int maxLength = 1000)
         {
-            FloatField floatField = new FloatField(label, maxLength);
+            FloatField floatField = new FloatField(label, maxLength)
+            {
+                value = value
+            };
 
             //register event if not null
             if (onValueChanged != null)

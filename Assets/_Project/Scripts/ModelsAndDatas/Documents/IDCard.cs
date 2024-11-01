@@ -28,16 +28,16 @@ public class IDCard
 
         //date birth
         Foldout dateBirthFoldout = CreateElementsUtilities.CreateFoldout("Date Birth");
-        IntegerField day = CreateElementsUtilities.CreateIntegerField("Day", x => DateBirth.Day = x.newValue);
-        IntegerField month = CreateElementsUtilities.CreateIntegerField("Month", x => DateBirth.Month = x.newValue);
-        IntegerField year = CreateElementsUtilities.CreateIntegerField("Year", x => DateBirth.Year = x.newValue);
+        IntegerField day = CreateElementsUtilities.CreateIntegerField("Day", DateBirth.Day, x => DateBirth.Day = x.newValue);
+        IntegerField month = CreateElementsUtilities.CreateIntegerField("Month", DateBirth.Month, x => DateBirth.Month = x.newValue);
+        IntegerField year = CreateElementsUtilities.CreateIntegerField("Year", DateBirth.Year, x => DateBirth.Year = x.newValue);
         dateBirthFoldout.Add(day);
         dateBirthFoldout.Add(month);
         dateBirthFoldout.Add(year);
 
         //signature and photo
-        ObjectField signatureObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Signature", Vector2.one * 100, out Image signatureImage, x => Signature = x.newValue as Sprite);
-        ObjectField photoObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Photo", Vector2.one * 100, out Image photoImage, x => Photo = x.newValue as Sprite);
+        ObjectField signatureObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Signature", Signature, Vector2.one * 100, out Image signatureImage, x => Signature = x.newValue as Sprite);
+        ObjectField photoObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Photo", Photo, Vector2.one * 100, out Image photoImage, x => Photo = x.newValue as Sprite);
 
         //add to container
         container.Add(nameTextField);

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b6abe991b99a4e91a37f02ae05116, type: 3}
+  m_Name: Day1
+  m_EditorClassIdentifier: 
+  FileName: Day1
+  Nodes:
+  - NodeName: Customer
+    ID: 55811d74-52a2-468e-bd00-0714d473a6b8
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: Boolean
+      ConnectedNodeID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
+    - OutputType: Boolean
+      ConnectedNodeID: e2d0a376-4c38-4371-94e0-259704d52d93
+    GroupID: 
+    Position: {x: 293.6, y: 68}
+  - NodeName: Customer1
+    ID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: Boolean
+      ConnectedNodeID: 
+    - OutputType: Boolean
+      ConnectedNodeID: 
+    GroupID: 
+    Position: {x: 691.2, y: 52.8}
+  - NodeName: Customer2
+    ID: e2d0a376-4c38-4371-94e0-259704d52d93
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: Boolean
+      ConnectedNodeID: 
+    - OutputType: Boolean
+      ConnectedNodeID: 
+    GroupID: 
+    Position: {x: 660, y: 379.2}
+  Groups: []

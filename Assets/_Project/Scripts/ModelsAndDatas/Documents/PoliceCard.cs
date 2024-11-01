@@ -9,7 +9,7 @@ using UnityEditor.UIElements;
 /// Document for customers
 /// </summary>
 [System.Serializable]
-public class PoliceDocument
+public class PoliceCard
 {
     public string Name;
     public string Surname;
@@ -27,9 +27,9 @@ public class PoliceDocument
         TextField cardNumberTextField = CreateElementsUtilities.CreateTextField("ID Card Number", IDCardNumber, x => IDCardNumber = x.newValue);
 
         //police stamp, toggle, and police stamp 2
-        ObjectField stampObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Police Stamp", Vector2.one * 100, out Image stampImage, x => PoliceStamp = x.newValue as Sprite);
-        Toggle needSecondStampToggle = CreateElementsUtilities.CreateToggle("Need second stamp", x => NeedSecondStamp = x.newValue);
-        ObjectField stamp2ObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Police Stamp 2", Vector2.one * 100, out Image stamp2Image, x => PoliceStamp2 = x.newValue as Sprite);
+        ObjectField stampObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Police Stamp", PoliceStamp, Vector2.one * 100, out Image stampImage, x => PoliceStamp = x.newValue as Sprite);
+        Toggle needSecondStampToggle = CreateElementsUtilities.CreateToggle("Need second stamp", NeedSecondStamp, x => NeedSecondStamp = x.newValue);
+        ObjectField stamp2ObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Police Stamp 2", PoliceStamp2, Vector2.one * 100, out Image stamp2Image, x => PoliceStamp2 = x.newValue as Sprite);
 
         //add to container
         container.Add(nameTextField);

@@ -17,13 +17,16 @@ namespace redd096.NodesGraph.Editor
     {
         protected NodesGraphView graph;
         protected string assetPathRelativeToProject;
+        protected string directoryPath;
+        protected string directoryPathRelativeToProject;
+        protected string fileName;
 
         protected List<NodeData> nodes;
         protected List<GroupData> groups;
 
         //used on load
-        protected Dictionary<string, GraphGroup> loadedGroups;
         protected Dictionary<string, GraphNode> loadedNodes;
+        protected Dictionary<string, GraphGroup> loadedGroups;
 
         /// <summary>
         /// Save a scriptable object with a reference to every node and group in the graph
@@ -31,8 +34,7 @@ namespace redd096.NodesGraph.Editor
         /// <param name="assetPathRelativeToProject">The path to the file, but the path must starts with Assets</param>
         public virtual void Save(NodesGraphView graph, string assetPathRelativeToProject)
         {
-            this.graph = graph;
-            this.assetPathRelativeToProject = assetPathRelativeToProject;
+            Initialize(graph, assetPathRelativeToProject);
 
             //get elements in graph and save file
             GetElementsFromGraphView();
@@ -45,8 +47,7 @@ namespace redd096.NodesGraph.Editor
         /// <param name="assetPathRelativeToProject">The path to the file, but the path must starts with Assets</param>
         public virtual void Load(NodesGraphView graph, string assetPathRelativeToProject)
         {
-            this.graph = graph;
-            this.assetPathRelativeToProject = assetPathRelativeToProject;
+            Initialize(graph, assetPathRelativeToProject);
 
             //load file and set elements in graph
             if (TryLoadFile())
@@ -55,13 +56,31 @@ namespace redd096.NodesGraph.Editor
             }
         }
 
+        protected virtual void Initialize(NodesGraphView graph, string assetPathRelativeToProject)
+        {
+            //save refs
+            this.graph = graph;
+            this.assetPathRelativeToProject = assetPathRelativeToProject;
+            fileName = Path.GetFileNameWithoutExtension(assetPathRelativeToProject);
+
+            string pathToProject = Application.dataPath.Replace("Assets", string.Empty);    //remove "Assets" because it should already be in assetPath
+            string projectDirectories = Path.GetDirectoryName(assetPathRelativeToProject);  //remove file from path and keep only directories
+
+            //calculate full directory path, and directory path starting from Assets/
+            directoryPath = Path.Combine(pathToProject, projectDirectories);
+            directoryPathRelativeToProject = assetPathRelativeToProject.Replace(Path.GetFileName(assetPathRelativeToProject), "");
+
+            //initialize vars
+            nodes = new List<NodeData>();
+            groups = new List<GroupData>();
+            loadedNodes = new Dictionary<string, GraphNode>();
+            loadedGroups = new Dictionary<string, GraphGroup>();
+        }
+
         #region save API - get elements in graph
 
         protected virtual void GetElementsFromGraphView()
         {
-            //initialize lists
-            InitializeBeforeGetElementsFromGraph();
-
             //add starting node as first node
             BeforeAddGraphElements();
 
@@ -79,13 +98,6 @@ namespace redd096.NodesGraph.Editor
                 if (AddOtherGraphElements(graphElement))
                     return;
             });
-        }
-
-        protected virtual void InitializeBeforeGetElementsFromGraph()
-        {
-            //initialize lists
-            nodes = new List<NodeData>();
-            groups = new List<GroupData>();
         }
 
         protected virtual void BeforeAddGraphElements()
@@ -130,63 +142,63 @@ namespace redd096.NodesGraph.Editor
         protected virtual NodeData CreateNodeData(GraphNode node)
         {
             //create data from GraphNode
-            NodeData data = new NodeData()
-            {
-                NodeName = node.NodeName,
-                ID = node.ID,
-                NodeType = node.GetType().FullName,
-                OutputsData = CreateOutputData(node),
-                GroupID = node.Group != null ? node.Group.ID : "",
-                Position = node.GetPosition().position,
-            };
-
+            NodeData data = new NodeData();
+            SetNodeDataValues(node, data);
             return data;
         }
 
-        protected virtual List<NodeOutputData> CreateOutputData(GraphNode node)
+        protected virtual void SetNodeDataValues(GraphNode node, NodeData data)
         {
-            List<NodeOutputData> datas = new List<NodeOutputData>();
+            //set default data values
+            data.NodeName = node.NodeName;
+            data.ID = node.ID;
+            data.NodeType = node.GetType().FullName;
+            data.OutputsData = node.outputContainer.Query<Port>().ToList().Select(port => CreateOutputData(port)).ToList();   //foreach output port, create output data
+            data.GroupID = node.Group != null ? node.Group.ID : "";
+            data.Position = node.GetPosition().position;
+        }
 
-            //foreach output port
-            List<Port> list = node.outputContainer.Query<Port>().ToList();
-            foreach (Port port in list)
+        protected virtual NodeOutputData CreateOutputData(Port port)
+        {
+            //create data from Port
+            NodeOutputData data = new NodeOutputData();
+            SetOutputDataValues(port, data);
+            return data;
+        }
+
+        protected virtual void SetOutputDataValues(Port port, NodeOutputData data)
+        {
+            //save type
+            data.OutputType = port.portType.Name;
+
+            //and connected node
+            if (port.connected)
             {
-                //save type
-                NodeOutputData data = new NodeOutputData();
-                data.OutputType = port.portType.Name;
-
-                //and connected node
-                if (port.connected)
+                foreach (var edge in port.connections)
                 {
-                    foreach (var edge in port.connections)
+                    if (edge.input != null && edge.input.node is GraphNode connectedNode)
                     {
-                        if (edge.input != null && edge.input.node is GraphNode connectedNode)
-                        {
-                            data.ConnectedNodeID = connectedNode.ID;
-                            break;
-                        }
+                        data.ConnectedNodeID = connectedNode.ID;
+                        break;
                     }
                 }
-
-                //and add to list
-                datas.Add(data);
             }
-
-            return datas;
         }
 
         protected virtual GroupData CreateGroupData(GraphGroup group)
         {
             //create data from GraphGroup
-            GroupData data = new GroupData()
-            {
-                Title = group.title,
-                ID = group.ID,
-                Position = group.GetPosition().position,
-                ContainedNodesID = group.containedElements.Where(x => x is GraphNode).Select(x => (x as GraphNode).ID).ToList(),    //for every contained node, save ID
-            };
-
+            GroupData data = new GroupData();
+            SetGroupDataValues(group, data);
             return data;
+        }
+
+        protected virtual void SetGroupDataValues(GraphGroup group, GroupData data)
+        {
+            data.Title = group.title;
+            data.ID = group.ID;
+            data.Position = group.GetPosition().position;
+            data.ContainedNodesID = group.containedElements.Where(x => x is GraphNode).Select(x => (x as GraphNode).ID).ToList();    //for every contained node, save ID
         }
 
         #endregion
@@ -205,13 +217,9 @@ namespace redd096.NodesGraph.Editor
 
         protected virtual void CreateSaveFolder()
         {
-            string pathToProject = Application.dataPath.Replace("Assets", string.Empty);    //remove "Assets" because it should already be in assetPath
-            string projectDirectories = Path.GetDirectoryName(assetPathRelativeToProject);  //remove file from path and keep only directories
-
             //create folder if not exists
-            string path = Path.Combine(pathToProject, projectDirectories);
-            if (Directory.Exists(path) == false)
-                Directory.CreateDirectory(path);
+            if (Directory.Exists(directoryPath) == false)
+                Directory.CreateDirectory(directoryPath);
         }
 
         protected virtual void SetValuesAndSaveFile()
@@ -226,7 +234,6 @@ namespace redd096.NodesGraph.Editor
             }
 
             //set values
-            string fileName = Path.GetFileNameWithoutExtension(assetPathRelativeToProject);
             asset.Initialize(fileName, nodes, groups);
 
             //set dirty in editor
@@ -274,17 +281,9 @@ namespace redd096.NodesGraph.Editor
 
         protected virtual void SetElementsInGraphView()
         {
-            InitializeBeforeSetElementsInGraph();
             LoadGroups();
             LoadNodes();
             LoadNodesConnections();
-        }
-
-        protected virtual void InitializeBeforeSetElementsInGraph()
-        {
-            //initialize dictionaries
-            loadedGroups = new Dictionary<string, GraphGroup>();
-            loadedNodes = new Dictionary<string, GraphNode>();
         }
 
         protected virtual void LoadGroups()
@@ -296,11 +295,16 @@ namespace redd096.NodesGraph.Editor
             foreach (GroupData data in groups)
             {
                 GraphGroup group = graph.CreateGroup(data.Title, data.Position);
-                group.ID = data.ID;
+                SetGroupValues(group, data);
 
                 //add to dictionary
                 loadedGroups.Add(group.ID, group);
             }
+        }
+
+        protected virtual void SetGroupValues(GraphGroup group, GroupData data)
+        {
+            group.ID = data.ID;
         }
 
         protected virtual void LoadNodes()
@@ -312,27 +316,37 @@ namespace redd096.NodesGraph.Editor
             foreach (NodeData data in nodes)
             {
                 System.Type nodeType = System.Type.GetType(data.NodeType);
-                GraphNode node = graph.CreateNode(data.NodeName, nodeType, data.Position);
-                node.ID = data.ID;
-
-                //if the node is inside a group, find the group in the dictionary and add to it
-                if (string.IsNullOrEmpty(data.GroupID) == false)
-                {
-                    if (loadedGroups.ContainsKey(data.GroupID))
-                    {
-                        GraphGroup group = loadedGroups[data.GroupID];
-                        node.Group = group;
-
-                        group.AddElement(node);
-                    }
-                    else
-                    {
-                        Debug.LogError($"Node with id: {data.ID}. Impossible to find group with id: {data.GroupID}");
-                    }
-                }
+                GraphNode node = graph.CreateNode(data.NodeName, nodeType, data.Position, false);
+                SetNodeValues(node, data);
+                node.DrawNode();
+                SetNodeGroup(node, data);
 
                 //add to dictionary
                 loadedNodes.Add(node.ID, node);
+            }
+        }
+
+        protected virtual void SetNodeValues(GraphNode node, NodeData data)
+        {
+            node.ID = data.ID;
+        }
+
+        protected virtual void SetNodeGroup(GraphNode node, NodeData data)
+        {
+            //if the node is inside a group, find the group in the dictionary and add to it
+            if (string.IsNullOrEmpty(data.GroupID) == false)
+            {
+                if (loadedGroups.ContainsKey(data.GroupID))
+                {
+                    GraphGroup group = loadedGroups[data.GroupID];
+                    node.Group = group;
+
+                    group.AddElement(node);
+                }
+                else
+                {
+                    Debug.LogError($"Error Node with id: {data.ID}. Should be inside a group, but it's impossible to find group with id: {data.GroupID}");
+                }
             }
         }
 
@@ -376,18 +390,23 @@ namespace redd096.NodesGraph.Editor
                             continue;
                         }
 
-                        //find first input port still not connected to other nodes and with correct Port Type
-                        GraphNode connectedNode = loadedNodes[connectedNodeID];
-                        List<Port> inputPorts = connectedNode.inputContainer.Query<Port>().ToList();
-                        Port connectedPort = inputPorts.Where(port => port.connected == false && port.portType.IsAssignableFrom(outputPort.portType)).FirstOrDefault();
-
-                        //connect ports
-                        Edge edge = outputPort.ConnectTo(connectedPort);
-                        graph.AddElement(edge);
-                        node.RefreshPorts();
+                        SetNodeConnection(node, outputPort, connectedNodeID);
                     }
                 }
             }
+        }
+
+        protected virtual void SetNodeConnection(GraphNode node, Port outputPort, string connectedNodeID)
+        {
+            //find first input port still not connected to other nodes and with correct Port Type
+            GraphNode connectedNode = loadedNodes[connectedNodeID];
+            List<Port> inputPorts = connectedNode.inputContainer.Query<Port>().ToList();
+            Port connectedPort = inputPorts.Where(port => port.connected == false && port.portType.IsAssignableFrom(outputPort.portType)).FirstOrDefault();
+
+            //connect ports
+            Edge edge = outputPort.ConnectTo(connectedPort);
+            graph.AddElement(edge);
+            node.RefreshPorts();
         }
 
         #endregion
