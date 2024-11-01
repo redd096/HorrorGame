@@ -6,6 +6,6 @@ using redd096.NodesGraph.Runtime;
 /// </summary>
 public class CustomerNodeData : NodeData
 {
-    public CustomerModel CustomerModel;
+    public CustomerModel CustomerModel = new CustomerModel();
 }
 #endif

@@ -31,7 +31,7 @@ MonoBehaviour:
     - OutputType: Boolean
       ConnectedNodeID: 
     - OutputType: Boolean
-      ConnectedNodeID: 
+      ConnectedNodeID: e786def7-802d-404d-8063-c7375f811368
     GroupID: 
     Position: {x: 691.2, y: 52.8}
   - NodeName: Customer2
@@ -44,4 +44,14 @@ MonoBehaviour:
       ConnectedNodeID: 
     GroupID: 
     Position: {x: 660, y: 379.2}
+  - NodeName: Customer(Clone)
+    ID: e786def7-802d-404d-8063-c7375f811368
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: Boolean
+      ConnectedNodeID: 
+    - OutputType: Boolean
+      ConnectedNodeID: 
+    GroupID: 
+    Position: {x: 1015.2, y: 137.59999}
   Groups: []

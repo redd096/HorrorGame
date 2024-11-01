@@ -16,7 +16,7 @@ MonoBehaviour:
   NodeOnFalse: {fileID: 11400000, guid: 482c105f21523494fa09fd0e08f58e4b, type: 2}
   CustomerModel:
     CustomerImage:
-    - {fileID: 21300000, guid: 48338bfe35b3dc04283c97ec8816faa1, type: 3}
+    - {fileID: 21300000, guid: 2f4d070635cad82449705cefeb4cd70c, type: 3}
     Dialogue: 
     GiveIDCard: 1
     IDCard:
@@ -24,9 +24,9 @@ MonoBehaviour:
       Surname: 
       CardNumber: 
       DateBirth:
-        Year: 0
-        Month: 7
         Day: 1
+        Month: 7
+        Year: 2
       Signature: {fileID: 21300000, guid: 295642318da97c844b2b7bdfee6a3066, type: 3}
       Photo: {fileID: 0}
     GiveRenunciationCard: 0
@@ -35,9 +35,9 @@ MonoBehaviour:
       Surname: 
       IDCardNumber: 
       DateBirth:
-        Year: 0
-        Month: 0
         Day: 0
+        Month: 0
+        Year: 0
       Signature: {fileID: 0}
     GiveResidentCard: 0
     ResidentCard:
@@ -53,7 +53,7 @@ MonoBehaviour:
       Name: 
       Surname: 
       IDCardNumber: 
-      PoliceStamp: {fileID: 0}
+      PoliceStamp: {fileID: 21300000, guid: 48338bfe35b3dc04283c97ec8816faa1, type: 3}
       NeedSecondStamp: 0
       PoliceStamp2: {fileID: 0}
     ObjectsToGiveToPlayer: []

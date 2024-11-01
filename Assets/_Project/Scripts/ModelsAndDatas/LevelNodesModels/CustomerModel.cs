@@ -13,16 +13,16 @@ public class CustomerModel
     [Space]
 
     public bool GiveIDCard;
-    public IDCard IDCard;
+    public IDCard IDCard = new IDCard();
 
     public bool GiveRenunciationCard;
-    public RenunciationCard RenunciationCard;
+    public RenunciationCard RenunciationCard = new RenunciationCard();
 
     public bool GiveResidentCard;
-    public ResidentCard ResidentCard;
+    public ResidentCard ResidentCard = new ResidentCard();
 
     public bool GivePoliceCard;
-    public PoliceCard PoliceCard;
+    public PoliceCard PoliceCard = new PoliceCard();
 
     [Space]
 

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 /// </summary>
 public class CustomerNode : GraphNode
 {
-    public CustomerModel CustomerModel;
+    public CustomerModel CustomerModel = new CustomerModel();
 
     protected override void DrawInputPorts()
     {
@@ -33,18 +33,6 @@ public class CustomerNode : GraphNode
 
     protected override void DrawContent()
     {
-        //be sure customer model isn't null
-        if (CustomerModel == null)
-        {
-            CustomerModel = new CustomerModel();
-            CustomerModel.CustomerImage = new List<Sprite>() { default };
-            CustomerModel.IDCard = new IDCard();
-            CustomerModel.RenunciationCard = new RenunciationCard();
-            CustomerModel.ResidentCard = new ResidentCard();
-            CustomerModel.PoliceCard = new PoliceCard();
-            CustomerModel.ObjectsToGiveToPlayer = new List<FGiveToUser>();
-        }
-
         //create elements
         CreateDefaultElements();
         CreateIDCard();
@@ -55,6 +43,10 @@ public class CustomerNode : GraphNode
 
     void CreateDefaultElements()
     {
+        //be sure to have at least one image
+        if (CustomerModel.CustomerImage == null || CustomerModel.CustomerImage.Count < 1)
+            CustomerModel.CustomerImage = new List<Sprite>() { default };
+
         //create elements
         ObjectField iconObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Customer Icon", CustomerModel.CustomerImage[0], Vector2.one * 100, out Image iconImage, x => CustomerModel.CustomerImage[0] = x.newValue as Sprite);
         TextField dialogueTextField = CreateElementsUtilities.CreateTextField("Dialogue Path", CustomerModel.Dialogue, x => CustomerModel.Dialogue = x.newValue);

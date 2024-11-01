@@ -24,9 +24,9 @@ MonoBehaviour:
       Surname: 
       CardNumber: 
       DateBirth:
-        Year: 0
-        Month: 0
         Day: 0
+        Month: 0
+        Year: 0
       Signature: {fileID: 0}
       Photo: {fileID: 0}
     GiveRenunciationCard: 0
@@ -35,9 +35,9 @@ MonoBehaviour:
       Surname: 
       IDCardNumber: 
       DateBirth:
-        Year: 0
-        Month: 0
         Day: 0
+        Month: 0
+        Year: 0
       Signature: {fileID: 0}
     GiveResidentCard: 0
     ResidentCard:

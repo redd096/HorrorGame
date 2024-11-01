@@ -31,6 +31,12 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             data = new NodeData();
         }
 
+        //be sure there aren't nodes with same NodeName
+        if (nodes.Find(x => x.NodeName == node.NodeName) != null)
+        {
+            node.NodeName += "(Clone)";
+        }
+
         //set default node values
         SetNodeDataValues(node, data);
         return data;
