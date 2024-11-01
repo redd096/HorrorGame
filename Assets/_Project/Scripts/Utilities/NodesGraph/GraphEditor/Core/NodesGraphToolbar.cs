@@ -35,13 +35,13 @@ namespace redd096.NodesGraph.Editor
 
             //add label
             fileName = DEFAULT_FILE_NAME;
-            fileNameTextfield = CreateElementsUtilities.CreatetextField(fileName, "File Name:", callback => fileName = callback.newValue);
+            fileNameTextfield = CreateElementsUtilities.CreateTextField("File Name:", fileName, callback => fileName = callback.newValue);
 
             //add buttons
-            Button saveButton = CreateElementsUtilities.CreateButton("Save", () => ClickSave());
-            Button loadButton = CreateElementsUtilities.CreateButton("Load", () => ClickLoad());
-            Button clearButton = CreateElementsUtilities.CreateButton("Clear", () => ClickClear());
-            minimapButton = CreateElementsUtilities.CreateButton("Minimap", () => ClickToggleMinimap());
+            Button saveButton = CreateElementsUtilities.CreateButton("Save", ClickSave);
+            Button loadButton = CreateElementsUtilities.CreateButton("Load", ClickLoad);
+            Button clearButton = CreateElementsUtilities.CreateButton("Clear", ClickClear);
+            minimapButton = CreateElementsUtilities.CreateButton("Minimap", ClickToggleMinimap);
 
             //check if minimapButton is toggled or not (minimap visible or not)
             if (this.graph.IsMinimapVisible())
