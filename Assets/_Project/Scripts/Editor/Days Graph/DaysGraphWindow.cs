@@ -23,11 +23,11 @@ public class DaysGraphWindow : WindowGraph
         graph.StretchToParentSize();
     }
 
-    protected override void CreateToolbar()
+    protected override void CreateSaveLoad()
     {
-        //base.CreateToolbar();
+        //base.CreateSaveLoad();
 
-        toolbar = new NodesGraphToolbar(graph as DaysGraphView, new DaysGraphSaveLoad());
+        saveLoad = new DaysGraphSaveLoad();
     }
 }
 #endif
