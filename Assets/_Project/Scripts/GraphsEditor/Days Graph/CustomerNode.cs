@@ -23,9 +23,9 @@ public class CustomerNode : GraphNode
     protected override void DrawOutputPorts()
     {
         //output ports - here we create two ports: True and False
-        Port truePort = CreateElementsUtilities.CreatePort(this, "Fatto entrare", Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+        Port truePort = CreateElementsUtilities.CreatePort(this, "OK Enter", Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
         truePort.userData = true;       //value to send to input in another node
-        Port falsePort = CreateElementsUtilities.CreatePort(this, "NON fatto entrare", Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+        Port falsePort = CreateElementsUtilities.CreatePort(this, "NOT Enter", Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
         falsePort.userData = false;     //value to send to input in another node
         outputContainer.Add(truePort);
         outputContainer.Add(falsePort);
@@ -62,11 +62,15 @@ public class CustomerNode : GraphNode
             CreateCustomerIcon(iconsFoldout, i);
 
         //create dialogue textfield
-        TextField dialogueTextField = CreateElementsUtilities.CreateTextField("Dialogue Path", CustomerModel.Dialogue, x => CustomerModel.Dialogue = x.newValue);
+        TextField dialogueTextField = CreateElementsUtilities.CreateTextField("Dialogue When Come", CustomerModel.DialogueWhenCome, x => CustomerModel.DialogueWhenCome = x.newValue);
+        TextField dialogueTrueTextField = CreateElementsUtilities.CreateTextField("Dialogue OK Enter", CustomerModel.DialogueWhenPlayerSayYes, x => CustomerModel.DialogueWhenPlayerSayYes = x.newValue);
+        TextField dialogueFalseTextField = CreateElementsUtilities.CreateTextField("Dialogue NOT Enter", CustomerModel.DialogueWhenPlayerSayNo, x => CustomerModel.DialogueWhenPlayerSayNo = x.newValue);
 
         //and add to container
         extensionContainer.Add(iconsFoldout);
         extensionContainer.Add(dialogueTextField);
+        extensionContainer.Add(dialogueTrueTextField);
+        extensionContainer.Add(dialogueFalseTextField);
     }
 
     private void CreateCustomerIcon(VisualElement container, int index)

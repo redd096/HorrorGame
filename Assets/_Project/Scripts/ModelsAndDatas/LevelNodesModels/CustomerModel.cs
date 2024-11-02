@@ -8,7 +8,9 @@ using UnityEngine;
 public class CustomerModel
 {
     public List<Sprite> CustomerImage = new List<Sprite>();
-    public string Dialogue;
+    public string DialogueWhenCome;
+    public string DialogueWhenPlayerSayNo;
+    public string DialogueWhenPlayerSayYes;
 
     [Space]
 
@@ -33,7 +35,9 @@ public class CustomerModel
         return new CustomerModel()
         {
             CustomerImage = new List<Sprite>(CustomerImage),
-            Dialogue = Dialogue,
+            DialogueWhenCome = DialogueWhenCome,
+            DialogueWhenPlayerSayNo = DialogueWhenPlayerSayNo,
+            DialogueWhenPlayerSayYes = DialogueWhenPlayerSayYes,
             GiveIDCard = GiveIDCard,
             IDCard = new IDCard()
             {
