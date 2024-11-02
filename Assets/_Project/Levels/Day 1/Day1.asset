@@ -23,7 +23,7 @@ MonoBehaviour:
     - OutputType: Boolean
       ConnectedNodeID: e2d0a376-4c38-4371-94e0-259704d52d93
     GroupID: 
-    Position: {x: 293.6, y: 68}
+    Position: {x: 138.4, y: 39.2}
   - NodeName: Customer1
     ID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
     NodeType: CustomerNode

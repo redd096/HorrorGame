@@ -35,6 +35,18 @@ namespace redd096.NodesGraph.Editor
             return foldout;
         }
 
+        public static Foldout CreateFoldoutWithButton(string foldoutTitle, string buttonText, out Button button, bool collapsed = false, System.Action onClick = null)
+        {
+            //create foldout
+            Foldout foldout = CreateFoldout(foldoutTitle, collapsed);
+
+            //create a button inside foldout
+            button = CreateButton(buttonText, onClick);
+            foldout.Add(button);
+
+            return foldout;
+        }
+
         public static Port CreatePort(Node node, string portName, Orientation orientation, Direction direction, Port.Capacity capacity, System.Type type)
         {
             Port port = node.InstantiatePort(orientation, direction, capacity, type);

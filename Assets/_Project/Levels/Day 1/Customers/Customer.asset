@@ -17,6 +17,7 @@ MonoBehaviour:
   CustomerModel:
     CustomerImage:
     - {fileID: 21300000, guid: 2f4d070635cad82449705cefeb4cd70c, type: 3}
+    - {fileID: 21300000, guid: 48338bfe35b3dc04283c97ec8816faa1, type: 3}
     Dialogue: 
     GiveIDCard: 1
     IDCard:
