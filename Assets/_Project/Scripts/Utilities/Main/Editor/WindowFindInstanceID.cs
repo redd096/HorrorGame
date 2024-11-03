@@ -47,9 +47,9 @@ namespace redd096
             EditorGUIUtility.PingObject(result);
         }
 
-        private Object GetGameObjectFromValue(int instanceID)
+        private GameObject GetGameObjectFromValue(int instanceID)
         {
-            GameObject[] gameObjectsInScene = FindObjectsOfType<GameObject>();
+            GameObject[] gameObjectsInScene = FindObjectsOfType<GameObject>(true);
 
             //find file
             foreach (GameObject go in gameObjectsInScene)

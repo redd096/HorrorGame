@@ -15,4 +15,5 @@ MonoBehaviour:
   NodeOnTrue: {fileID: 11400000, guid: 31e9cb748957c2f448937b18500c48bf, type: 2}
   NodeOnFalse: {fileID: 11400000, guid: 31e9cb748957c2f448937b18500c48bf, type: 2}
   EventNewspaper:
+    NewspaperInstanceID: 22838
     NewspaperName: Day 1

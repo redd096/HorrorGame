@@ -29,16 +29,55 @@ public class EventNewspaperNode : GraphNode
 
     protected override void DrawContent()
     {
-        //find newspaper in scene
-        Transform newspaper = string.IsNullOrEmpty(EventNewspaper.NewspaperName) ? null : LevelEventsManager.instance.NewspapersContainer.Find(EventNewspaper.NewspaperName);
-        GameObject newspaperObj = newspaper ? newspaper.gameObject : null;
+        //if saved, try find newspaper in scene
+        GameObject newspaper = null;
+        if (string.IsNullOrEmpty(EventNewspaper.NewspaperName) == false)
+        {
+            //try by InstanceID
+            newspaper = GetGameObjectFromInstanceID(EventNewspaper.NewspaperInstanceID);
+
+            //else, try by name
+            if (newspaper == null)
+            {
+                Debug.LogWarning($"Impossible to find newspaper by InstanceID {EventNewspaper.NewspaperInstanceID}. Try find by name {EventNewspaper.NewspaperName}");
+                Transform newspaperTr = LevelEventsManager.instance.NewspapersContainer.Find(EventNewspaper.NewspaperName);
+                newspaper = newspaperTr ? newspaperTr.gameObject : null;
+            }
+
+        }
 
         //set object field
-        ObjectField objectField = CreateElementsUtilities.CreateObjectField("Newspaper in scene", newspaperObj, typeof(GameObject), 
-            x => EventNewspaper.NewspaperName = x.newValue ? x.newValue.name : "", 
-            allowSceneObjects: true);
+        ObjectField objectField = CreateElementsUtilities.CreateObjectField("Newspaper in scene", newspaper, typeof(GameObject), x =>
+        {
+            EventNewspaper.NewspaperInstanceID = x.newValue ? x.newValue.GetInstanceID() : 0;
+            EventNewspaper.NewspaperName = x.newValue ? x.newValue.name : "";
+        },
+        allowSceneObjects: true);
 
         extensionContainer.Add(objectField);
+    }
+
+    private GameObject GetGameObjectFromInstanceID(int instanceID)
+    {
+        GameObject[] gameObjectsInScene = Object.FindObjectsOfType<GameObject>(true);
+
+        //find file
+        foreach (GameObject go in gameObjectsInScene)
+        {
+            int id = go.GetInstanceID();
+            if (id == instanceID)
+                return go;
+        }
+        ////for some reason in Inspector Debug Mode, the showed Instance ID is wrong. It has +2 at its value, so try decrease to find the correct object
+        //foreach (GameObject go in gameObjectsInScene)
+        //{
+        //    int id = go.GetInstanceID() - 2;
+        //    if (id == instanceID)
+        //        return go;
+        //}
+
+        //file not found
+        return null;
     }
 }
 #endif
