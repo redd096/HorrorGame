@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: SortOrderData
   m_EditorClassIdentifier: 
   Elements:
+  - Name: NewspapersCanvas
+    SortingLayer: 0
+    OrderInLayer: 3
   - Name: RightCanvas
     SortingLayer: 0
     OrderInLayer: 2
