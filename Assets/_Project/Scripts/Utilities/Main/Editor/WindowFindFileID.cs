@@ -51,33 +51,43 @@ namespace redd096
 
         private GameObject GetGameObjectFromValue(long fileID)
         {
-            GameObject resultGo = null;
-
             //get objects in resources and in scene
             List<GameObject> gameObjects = new List<GameObject>(Resources.FindObjectsOfTypeAll<GameObject>());
             GameObject[] gameObjectsInScene = FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID);
             gameObjects.AddRange(gameObjectsInScene);
 
+            ////try find by fileID - for some reason it return always False
+            //foreach (var go in gameObjects)
+            //{
+            //    AssetDatabase.TryGetGUIDAndLocalFileIdentifier(go, out string guid, out long localID);
+            //    if (localID == fileID)
+            //        return go;
+            //}
+
             // Test every gameobjects
             foreach (var go in gameObjects)
             {
-                PropertyInfo inspectorModeInfo = typeof(SerializedObject).GetProperty("inspectorMode", BindingFlags.NonPublic | BindingFlags.Instance);
-                SerializedObject serializedObject = new SerializedObject(go);
-                inspectorModeInfo.SetValue(serializedObject, InspectorMode.Debug, null);
-                SerializedProperty localIdProp = serializedObject.FindProperty("m_LocalIdentfierInFile");
-                if (localIdProp.longValue == fileID) resultGo = go;
+                if (GetFileID(go) == fileID)
+                    return go;
             }
             // Test every gameobjects transforms
             foreach (var go in gameObjects)
             {
-                PropertyInfo inspectorModeInfo = typeof(SerializedObject).GetProperty("inspectorMode", BindingFlags.NonPublic | BindingFlags.Instance);
-                SerializedObject serializedObject = new SerializedObject(go.transform);
-                inspectorModeInfo.SetValue(serializedObject, InspectorMode.Debug, null);
-                SerializedProperty localIdProp = serializedObject.FindProperty("m_LocalIdentfierInFile");
-                if (localIdProp.longValue == fileID) resultGo = go;
+                if (GetFileID(go.transform) == fileID)
+                    return go;
             }
 
-            return resultGo;
+            return null;
+        }
+
+        long GetFileID(Object obj)
+        {
+            PropertyInfo inspectorModeInfo = typeof(SerializedObject).GetProperty("inspectorMode", BindingFlags.NonPublic | BindingFlags.Instance);
+            SerializedObject serializedObject = new SerializedObject(obj);
+            inspectorModeInfo.SetValue(serializedObject, InspectorMode.Debug, null);
+            SerializedProperty localIdProp = serializedObject.FindProperty("m_LocalIdentfierInFile");
+
+            return localIdProp.longValue;
         }
     }
 }

@@ -5,14 +5,14 @@
 [System.Serializable]
 public class EventNewspaper
 {
-    public int NewspaperInstanceID;
+    public long NewspaperFileID;
     public string NewspaperName;
 
     public EventNewspaper Clone()
     {
         return new EventNewspaper()
         {
-            NewspaperInstanceID = NewspaperInstanceID,
+            NewspaperFileID = NewspaperFileID,
             NewspaperName = NewspaperName,
         };
     }

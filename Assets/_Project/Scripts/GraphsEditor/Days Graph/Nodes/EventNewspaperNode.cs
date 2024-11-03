@@ -1,9 +1,10 @@
 #if UNITY_EDITOR
 using redd096.NodesGraph.Editor;
+using System.Reflection;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 /// <summary>
 /// Node to use inside a graph view, to declare an event of type Newspaper
@@ -33,13 +34,13 @@ public class EventNewspaperNode : GraphNode
         GameObject newspaper = null;
         if (string.IsNullOrEmpty(EventNewspaper.NewspaperName) == false)
         {
-            //try by InstanceID
-            newspaper = GetGameObjectFromInstanceID(EventNewspaper.NewspaperInstanceID);
+            //try fileID
+            newspaper = GetGameObjectFromFileID();
 
             //else, try by name
             if (newspaper == null)
             {
-                Debug.LogWarning($"Impossible to find newspaper by InstanceID {EventNewspaper.NewspaperInstanceID}. Try find by name {EventNewspaper.NewspaperName}");
+                Debug.LogWarning($"Impossible to find newspaper by Local Identifier: {EventNewspaper.NewspaperFileID}. Try find by name: {EventNewspaper.NewspaperName}");
                 Transform newspaperTr = LevelEventsManager.instance.NewspapersContainer.Find(EventNewspaper.NewspaperName);
                 newspaper = newspaperTr ? newspaperTr.gameObject : null;
             }
@@ -49,7 +50,7 @@ public class EventNewspaperNode : GraphNode
         //set object field
         ObjectField objectField = CreateElementsUtilities.CreateObjectField("Newspaper in scene", newspaper, typeof(GameObject), x =>
         {
-            EventNewspaper.NewspaperInstanceID = x.newValue ? x.newValue.GetInstanceID() : 0;
+            EventNewspaper.NewspaperFileID = x.newValue ? GetFileID(x.newValue) : 0;
             EventNewspaper.NewspaperName = x.newValue ? x.newValue.name : "";
         },
         allowSceneObjects: true);
@@ -57,27 +58,29 @@ public class EventNewspaperNode : GraphNode
         extensionContainer.Add(objectField);
     }
 
-    private GameObject GetGameObjectFromInstanceID(int instanceID)
+    private GameObject GetGameObjectFromFileID()
     {
         GameObject[] gameObjectsInScene = Object.FindObjectsOfType<GameObject>(true);
 
         //find file
         foreach (GameObject go in gameObjectsInScene)
         {
-            int id = go.GetInstanceID();
-            if (id == instanceID)
+            if (GetFileID(go) == EventNewspaper.NewspaperFileID)
                 return go;
         }
-        ////for some reason in Inspector Debug Mode, the showed Instance ID is wrong. It has +2 at its value, so try decrease to find the correct object
-        //foreach (GameObject go in gameObjectsInScene)
-        //{
-        //    int id = go.GetInstanceID() - 2;
-        //    if (id == instanceID)
-        //        return go;
-        //}
 
         //file not found
         return null;
+    }
+
+    long GetFileID(Object obj)
+    {
+        PropertyInfo inspectorModeInfo = typeof(SerializedObject).GetProperty("inspectorMode", BindingFlags.NonPublic | BindingFlags.Instance);
+        SerializedObject serializedObject = new SerializedObject(obj);
+        inspectorModeInfo.SetValue(serializedObject, InspectorMode.Debug, null);
+        SerializedProperty localIdProp = serializedObject.FindProperty("m_LocalIdentfierInFile");
+
+        return localIdProp.longValue;
     }
 }
 #endif

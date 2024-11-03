@@ -22,7 +22,7 @@ MonoBehaviour:
       ConnectedNodeID: 55811d74-52a2-468e-bd00-0714d473a6b8
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: -284, y: 56.000004}
+    Position: {x: 218.4, y: 56.000004}
   - NodeName: Customer
     ID: 55811d74-52a2-468e-bd00-0714d473a6b8
     NodeType: CustomerNode
@@ -34,7 +34,7 @@ MonoBehaviour:
       ConnectedNodeID: e2d0a376-4c38-4371-94e0-259704d52d93
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 141.6, y: 76}
+    Position: {x: 644, y: 76}
   - NodeName: Customer1
     ID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
     NodeType: CustomerNode
@@ -46,7 +46,7 @@ MonoBehaviour:
       ConnectedNodeID: e786def7-802d-404d-8063-c7375f811368
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 691.2, y: 52.8}
+    Position: {x: 1193.6, y: 52.8}
   - NodeName: Customer2
     ID: e2d0a376-4c38-4371-94e0-259704d52d93
     NodeType: CustomerNode
@@ -58,7 +58,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 660, y: 379.2}
+    Position: {x: 1162.4, y: 379.2}
   - NodeName: Customer(Clone)
     ID: e786def7-802d-404d-8063-c7375f811368
     NodeType: CustomerNode
@@ -70,7 +70,7 @@ MonoBehaviour:
       ConnectedNodeID: 5f963de2-07a3-4fe1-acb5-650c7cd85fb5
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 981.6, y: 150.4}
+    Position: {x: 1484, y: 150.4}
   - NodeName: Save Player Choice
     ID: 5f963de2-07a3-4fe1-acb5-650c7cd85fb5
     NodeType: SaveChoiceNode
@@ -79,7 +79,7 @@ MonoBehaviour:
       ConnectedNodeID: 636f577e-8b0d-4573-903c-137e0ed616dd
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1332.8, y: 150.4}
+    Position: {x: 1835.2, y: 150.4}
   - NodeName: Get Player Choice
     ID: 636f577e-8b0d-4573-903c-137e0ed616dd
     NodeType: GetChoiceNode
@@ -91,7 +91,7 @@ MonoBehaviour:
       ConnectedNodeID: 92bd9025-1726-4cb9-ba90-87873cd299c7
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1764.8, y: 150.4}
+    Position: {x: 2267.2, y: 150.4}
   - NodeName: Customer se hai fatto entrare Customer(Clone)
     ID: 6f3d3576-fdfa-4b88-bb07-459c74fb1294
     NodeType: CustomerNode
@@ -103,7 +103,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2304.8, y: 15.200001}
+    Position: {x: 2807.2, y: 15.200001}
   - NodeName: Customer se NON hai fatto entrare Customer(Clone)
     ID: 92bd9025-1726-4cb9-ba90-87873cd299c7
     NodeType: CustomerNode
@@ -115,5 +115,5 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2236.8, y: 476.80002}
+    Position: {x: 2739.2, y: 476.80002}
   Groups: []
