@@ -30,6 +30,27 @@ public class DaysGraphView : NodesGraphView
             CreateNode("Customer", typeof(CustomerNode),
                 GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
         }
+        //save choice node
+        if (evt.target is GraphView)
+        {
+            evt.menu.AppendAction("Save Player Choice", (actionEvent) =>
+            CreateNode("Save Player Choice", typeof(SaveChoiceNode),
+                GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
+        }
+        //get choice node
+        if (evt.target is GraphView)
+        {
+            evt.menu.AppendAction("Get Player Choice", (actionEvent) =>
+            CreateNode("Get Player Choice", typeof(GetChoiceNode),
+                GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
+        }
+        //events
+        if (evt.target is GraphView)
+        {
+            evt.menu.AppendAction("Events/Newspaper", (actionEvent) =>
+            CreateNode("Show Newspaper", typeof(EventNewspaperNode),
+                GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
+        }
     }
 }
 #endif

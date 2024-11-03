@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: Level_Day1
   m_EditorClassIdentifier: 
   Nodes:
+  - {fileID: 11400000, guid: 79526f25b94734e4ab2655fe73809ad4, type: 2}
   - {fileID: 11400000, guid: 31e9cb748957c2f448937b18500c48bf, type: 2}
   - {fileID: 11400000, guid: 452e84cd6731d7341812c36cb4299433, type: 2}
   - {fileID: 11400000, guid: 482c105f21523494fa09fd0e08f58e4b, type: 2}
   - {fileID: 11400000, guid: 0727631b83b87f74faaa6dff1a84929b, type: 2}
+  - {fileID: 11400000, guid: b5ca8a97963199946a660295a8543fae, type: 2}
+  - {fileID: 11400000, guid: 1127826b6fddd474f8c0facea1f42099, type: 2}
+  - {fileID: 11400000, guid: e5afadcdb1886e349b5a0e65485c5958, type: 2}
+  - {fileID: 11400000, guid: 8f21fc3c1f6575c40bbf550d2ccf4469, type: 2}

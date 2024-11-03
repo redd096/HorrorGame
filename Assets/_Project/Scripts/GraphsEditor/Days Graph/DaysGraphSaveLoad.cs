@@ -12,36 +12,47 @@ using UnityEngine;
 /// </summary>
 public class DaysGraphSaveLoad : SaveLoadGraph
 {
+    const string FOLDER_CUSTOMERS = "Customers";
+    const string FOLDER_SAVE_CHOICE = "SaveChoice";
+    const string FOLDER_GET_CHOICE = "GetChoice";
+    const string FOLDER_EVENTS = "Events";
+
+    Dictionary<string, LevelNodeData> levelNodes;
     Dictionary<string, LevelNodeData> loadedLevelNodes;
+
+    protected override void Initialize(NodesGraphView graph, string assetPathRelativeToProject)
+    {
+        base.Initialize(graph, assetPathRelativeToProject);
+
+        levelNodes = new Dictionary<string, LevelNodeData>();
+        loadedLevelNodes = new Dictionary<string, LevelNodeData>();
+    }
 
     #region save
 
-    protected override NodeData CreateNodeData(GraphNode node)
+    protected override void SetNodeDataValues(GraphNode node, NodeData data)
     {
-        NodeData data;
+        //save data
+        base.SetNodeDataValues(node, data);
 
         //customer node
         if (node is CustomerNode customerNode)
-        {
-            data = new CustomerNodeData() { CustomerModel = customerNode.CustomerModel };
-        }
+            data.UserData = customerNode.Customer;
+        //save choice node
+        else if (node is SaveChoiceNode saveChoiceNode)
+            data.UserData = saveChoiceNode.SaveChoice;
+        //get choice node
+        else if (node is GetChoiceNode getChoiceNode)
+            data.UserData = getChoiceNode.GetChoice;
         //events
-        else
+        else if (node is EventNewspaperNode eventNewspaperNode)
+            data.UserData = eventNewspaperNode.EventNewspaper;
+
+        //be sure there aren't nodes with same NodeName, because we use it to create a ScriptableObject
+        if (nodes.Find(x => x.NodeName == data.NodeName) != null)
         {
-            data = new NodeData();
+            data.NodeName += "(Clone)";
         }
-
-        //be sure there aren't nodes with same NodeName
-        if (nodes.Find(x => x.NodeName == node.NodeName) != null)
-        {
-            node.NodeName += "(Clone)";
-        }
-
-        //set default node values
-        SetNodeDataValues(node, data);
-        return data;
-
-        //return base.CreateNodeData(node);
     }
 
     protected override void CreateSaveFolder()
@@ -49,15 +60,18 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         //create folder for graph file
         base.CreateSaveFolder();
 
-        //create folders for customers
-        string customersPath = Path.Combine(directoryPath, "Customers");
-        if (Directory.Exists(customersPath) == false)
-            Directory.CreateDirectory(customersPath);
+        //create folder for every node
+        CreateFolder(FOLDER_CUSTOMERS);
+        CreateFolder(FOLDER_SAVE_CHOICE);
+        CreateFolder(FOLDER_GET_CHOICE);
+        CreateFolder(FOLDER_EVENTS);
+    }
 
-        //and events
-        string eventsPath = Path.Combine(directoryPath, "Events");
-        if (Directory.Exists(eventsPath) == false)
-            Directory.CreateDirectory(eventsPath);
+    void CreateFolder(string folderName)
+    {
+        string path = Path.Combine(directoryPath, folderName);
+        if (Directory.Exists(path) == false)
+            Directory.CreateDirectory(path);
     }
 
     protected override async void SetValuesAndSaveFile()
@@ -65,36 +79,43 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         //save file normally (to save nodes position and references)
         base.SetValuesAndSaveFile();
 
-        //save also every customer and event
-        string customersPath = Path.Combine(directoryPathRelativeToProject, "Customers");
-        string eventsPath = Path.Combine(directoryPathRelativeToProject, "Events");
-
-        Dictionary<string, LevelNodeData> levelNodes = new Dictionary<string, LevelNodeData>();
+        //save also every node UserData
+        string customersPath = Path.Combine(directoryPathRelativeToProject, FOLDER_CUSTOMERS);
+        string saveChoicePath = Path.Combine(directoryPathRelativeToProject, FOLDER_SAVE_CHOICE);
+        string getChoicePath = Path.Combine(directoryPathRelativeToProject, FOLDER_GET_CHOICE);
+        string eventsPath = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
 
         for (int i = 0; i < nodes.Count; i++)
         {
-            string fileName = nodes[i].NodeName;
+            NodeData nodeData = nodes[i];
 
             //customers
-            if (nodes[i] is CustomerNodeData customerNodeData)
+            if (nodeData.UserData is Customer customer)
             {
-                string assetPath = Path.Combine(customersPath, fileName + ".asset");
-                CustomerData asset = AssetDatabase.LoadAssetAtPath<CustomerData>(assetPath);
-                if (asset == null)
-                {
-                    asset = ScriptableObject.CreateInstance<CustomerData>();
-                    AssetDatabase.CreateAsset(asset, assetPath);
-                }
-
-                asset.CustomerModel = customerNodeData.CustomerModel.Clone();
-                levelNodes.Add(customerNodeData.ID, asset);
+                CustomerData asset = CreateLevelNodeData<CustomerData>(customersPath, nodeData);
+                asset.Customer = customer.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            //save choice
+            else if (nodeData.UserData is SaveChoice saveChoice)
+            {
+                SaveChoiceData asset = CreateLevelNodeData<SaveChoiceData>(saveChoicePath, nodeData);
+                asset.SaveChoice = saveChoice.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            //get choice
+            else if (nodeData.UserData is GetChoice getChoice)
+            {
+                GetChoiceData asset = CreateLevelNodeData<GetChoiceData>(getChoicePath, nodeData);
+                asset.GetChoice = getChoice.Clone();
                 EditorUtility.SetDirty(asset);
             }
             //events
-            else
+            else if (nodeData.UserData is EventNewspaper eventNewspaper)
             {
-                string assetPath = Path.Combine(eventsPath, fileName + ".asset");
-
+                EventNewspaperData asset = CreateLevelNodeData<EventNewspaperData>(eventsPath, nodeData);
+                asset.EventNewspaper = eventNewspaper.Clone();
+                EditorUtility.SetDirty(asset);
             }
 
             //show progress bar and delay of one frame
@@ -102,10 +123,34 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             if (i % 50 == 0)
                 await Task.Delay((int)(Time.deltaTime * 1000));
         }
+
+        //at the end, create also a scriptable object for the level. And connect every Levelnode inside it
+        CreateLevelData();
+        ConnectEveryAsset();
         
-        //at the end, create also a scriptable object for the level
-        string levelFileName = "Level_" + Path.GetFileNameWithoutExtension(assetPathRelativeToProject);
-        string levelAssetPath = Path.Combine(directoryPathRelativeToProject, levelFileName + ".asset");
+        EditorUtility.ClearProgressBar();
+    }
+
+    T CreateLevelNodeData<T>(string folderPath, NodeData nodeData) where T : LevelNodeData
+    {
+        string assetPath = Path.Combine(folderPath, nodeData.NodeName + ".asset");
+        T asset = AssetDatabase.LoadAssetAtPath<T>(assetPath);
+        if (asset == null)
+        {
+            asset = ScriptableObject.CreateInstance<T>();
+            AssetDatabase.CreateAsset(asset, assetPath);
+        }
+
+        levelNodes.Add(nodeData.ID, asset);
+
+        return asset;
+    }
+
+    void CreateLevelData()
+    {
+        //create a scriptable object for the level
+        string levelFileNameWithExtension = "Level_" + Path.GetFileName(assetPathRelativeToProject);
+        string levelAssetPath = Path.Combine(directoryPathRelativeToProject, levelFileNameWithExtension);
         LevelData levelAsset = AssetDatabase.LoadAssetAtPath<LevelData>(levelAssetPath);
         if (levelAsset == null)
         {
@@ -113,43 +158,48 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             AssetDatabase.CreateAsset(levelAsset, levelAssetPath);
         }
 
+        //and set every levelNode
         levelAsset.Nodes = new List<LevelNodeData>(levelNodes.Values);
         EditorUtility.SetDirty(levelAsset);
-        
-        EditorUtility.ClearProgressBar();
+    }
 
+    void ConnectEveryAsset()
+    {
         //and connect every level node also in game data
-        foreach (var node in nodes)
+        foreach (var nodeData in nodes)
         {
-            if (levelNodes.ContainsKey(node.ID) == false)
+            if (levelNodes.ContainsKey(nodeData.ID) == false)
             {
-                Debug.LogError("For some reason we didn't create a scriptable object for node with ID: " + node.ID);
+                Debug.LogError("For some reason we didn't create a scriptable object for node with ID: " + nodeData.ID);
                 continue;
             }
-            if (node.OutputsData == null || node.OutputsData.Count != 2)
+            if (nodeData.OutputsData == null || nodeData.OutputsData.Count < 1)
             {
-                Debug.LogError($"The number of outputs is wrong for node with ID: {node.ID}. They should be 2 but they are {(node.OutputsData != null ? node.OutputsData.Count : 0)}");
+                Debug.LogError($"The number of outputs is wrong for node with ID: {nodeData.ID}. They should be at least one but they are {(nodeData.OutputsData != null ? nodeData.OutputsData.Count : 0)}");
                 continue;
             }
 
-            LevelNodeData levelNode = levelNodes[node.ID];
-            string trueID = node.OutputsData[0].ConnectedNodeID;
-            string falseID = node.OutputsData[1].ConnectedNodeID;
+            LevelNodeData levelNode = levelNodes[nodeData.ID];
 
+            //true door
+            string trueID = nodeData.OutputsData[0].ConnectedNodeID;
             if (string.IsNullOrEmpty(trueID) == false && levelNodes.ContainsKey(trueID) == false)
             {
-                Debug.LogError($"Node with ID [{node.ID}] error in port TRUE. Should be connected to node with ID [{trueID}] but we didn't created a node with that ID");
+                Debug.LogError($"Node with ID [{nodeData.ID}] error in port TRUE. Should be connected to node with ID [{trueID}] but we didn't created a node with that ID");
                 continue;
             }
+            levelNode.NodeOnTrue = string.IsNullOrEmpty(trueID) ? null : levelNodes[trueID];
 
+            //false door (if there isn't the second OutputData, is a node with only one output door. So connect to same levelNode as true door)
+            string falseID = nodeData.OutputsData.Count >= 2 ? nodeData.OutputsData[1].ConnectedNodeID : trueID;
             if (string.IsNullOrEmpty(falseID) == false && levelNodes.ContainsKey(falseID) == false)
             {
-                Debug.LogError($"Node with ID [{node.ID}] error in port FALSE. Should be connected to node with ID [{trueID}] but we didn't created a node with that ID");
+                Debug.LogError($"Node with ID [{nodeData.ID}] error in port FALSE. Should be connected to node with ID [{trueID}] but we didn't created a node with that ID");
                 continue;
             }
-
-            levelNode.NodeOnTrue = string.IsNullOrEmpty(trueID) ? null : levelNodes[trueID];
             levelNode.NodeOnFalse = string.IsNullOrEmpty(falseID) ? null : levelNodes[falseID];
+
+            EditorUtility.SetDirty(levelNode);
         }
     }
 
@@ -165,8 +215,8 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         //load also level data. We use game datas to popolate nodes
         if (loaded)
         {
-            string levelFileName = "Level_" + Path.GetFileNameWithoutExtension(assetPathRelativeToProject);
-            string levelAssetPath = Path.Combine(directoryPathRelativeToProject, levelFileName + ".asset");
+            string levelFileNameWithExtension = "Level_" + Path.GetFileName(assetPathRelativeToProject);
+            string levelAssetPath = Path.Combine(directoryPathRelativeToProject, levelFileNameWithExtension);
             LevelData asset = AssetDatabase.LoadAssetAtPath<LevelData>(levelAssetPath);
 
             //error if not found
@@ -183,7 +233,6 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             }
 
             //save level nodes by file name
-            loadedLevelNodes = new Dictionary<string, LevelNodeData>();
             foreach (var levelNode in asset.Nodes)
             {
                 loadedLevelNodes.Add(levelNode.name, levelNode);
@@ -204,14 +253,40 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is CustomerData customerData)
             {
-                customerNode.CustomerModel = customerData.CustomerModel.Clone();
+                customerNode.Customer = customerData.Customer.Clone();
+                return;
+            }
+        }
+        //save choice
+        else if (node is SaveChoiceNode saveChoiceNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is SaveChoiceData saveChoiceData)
+            {
+                saveChoiceNode.SaveChoice = saveChoiceData.SaveChoice.Clone();
+                return;
+            }
+        }
+        //get choice
+        else if (node is GetChoiceNode getChoiceNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is GetChoiceData getChoiceData)
+            {
+                getChoiceNode.GetChoice = getChoiceData.GetChoice.Clone();
                 return;
             }
         }
         //events
+        else if (node is EventNewspaperNode eventNewspaperNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventNewspaperData eventNewspaperData)
+            {
+                eventNewspaperNode.EventNewspaper = eventNewspaperData.EventNewspaper.Clone();
+                return;
+            }
+        }
         else
         {
-
+            return;
         }
 
         Debug.LogError($"Error load node with ID: {node.ID}. " +

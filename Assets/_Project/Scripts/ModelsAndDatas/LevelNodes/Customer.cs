@@ -5,7 +5,7 @@ using UnityEngine;
 /// Customers values
 /// </summary>
 [System.Serializable]
-public class CustomerModel
+public class Customer
 {
     public List<Sprite> CustomerImage = new List<Sprite>();
     public string DialogueWhenCome;
@@ -30,9 +30,9 @@ public class CustomerModel
 
     public List<FGiveToUser> ObjectsToGiveToPlayer = new List<FGiveToUser>();
 
-    public CustomerModel Clone()
+    public Customer Clone()
     {
-        return new CustomerModel()
+        return new Customer()
         {
             CustomerImage = new List<Sprite>(CustomerImage),
             DialogueWhenCome = DialogueWhenCome,

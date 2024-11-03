@@ -4,14 +4,13 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections.Generic;
 
 /// <summary>
 /// Node to use inside a graph view, to declare a Customer
 /// </summary>
 public class CustomerNode : GraphNode
 {
-    public CustomerModel CustomerModel = new CustomerModel();
+    public Customer Customer = new Customer();
 
     protected override void DrawInputPorts()
     {
@@ -52,19 +51,19 @@ public class CustomerNode : GraphNode
         Foldout iconsFoldout = null;
         iconsFoldout = CreateElementsUtilities.CreateFoldoutWithButton("Customer Icons", "Add Icon", out Button addButton, collapsed: true, onClick: () =>
         {
-            CustomerModel.CustomerImage.Add(null);
-            CreateCustomerIcon(iconsFoldout, CustomerModel.CustomerImage.Count - 1);
+            Customer.CustomerImage.Add(null);
+            CreateCustomerIcon(iconsFoldout, Customer.CustomerImage.Count - 1);
         });
         //StyleSheetUtilities.AddToClassesList(addButton, "ds-node__button");
 
         //and create current icons
-        for (int i = 0; i < CustomerModel.CustomerImage.Count; i++)
+        for (int i = 0; i < Customer.CustomerImage.Count; i++)
             CreateCustomerIcon(iconsFoldout, i);
 
         //create dialogue textfield
-        TextField dialogueTextField = CreateElementsUtilities.CreateTextField("Dialogue When Come", CustomerModel.DialogueWhenCome, x => CustomerModel.DialogueWhenCome = x.newValue);
-        TextField dialogueTrueTextField = CreateElementsUtilities.CreateTextField("Dialogue OK Enter", CustomerModel.DialogueWhenPlayerSayYes, x => CustomerModel.DialogueWhenPlayerSayYes = x.newValue);
-        TextField dialogueFalseTextField = CreateElementsUtilities.CreateTextField("Dialogue NOT Enter", CustomerModel.DialogueWhenPlayerSayNo, x => CustomerModel.DialogueWhenPlayerSayNo = x.newValue);
+        TextField dialogueTextField = CreateElementsUtilities.CreateTextField("Dialogue When Come", Customer.DialogueWhenCome, x => Customer.DialogueWhenCome = x.newValue);
+        TextField dialogueTrueTextField = CreateElementsUtilities.CreateTextField("Dialogue OK Enter", Customer.DialogueWhenPlayerSayYes, x => Customer.DialogueWhenPlayerSayYes = x.newValue);
+        TextField dialogueFalseTextField = CreateElementsUtilities.CreateTextField("Dialogue NOT Enter", Customer.DialogueWhenPlayerSayNo, x => Customer.DialogueWhenPlayerSayNo = x.newValue);
 
         //and add to container
         extensionContainer.Add(iconsFoldout);
@@ -75,7 +74,7 @@ public class CustomerNode : GraphNode
 
     private void CreateCustomerIcon(VisualElement container, int index)
     {
-        ObjectField iconObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Customer Icon", CustomerModel.CustomerImage[index], Vector2.one * 100, out Image iconImage, x => CustomerModel.CustomerImage[index] = x.newValue as Sprite);
+        ObjectField iconObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Customer Icon", Customer.CustomerImage[index], Vector2.one * 100, out Image iconImage, x => Customer.CustomerImage[index] = x.newValue as Sprite);
         
         //add before Add Button
         container.Insert(container.childCount - 1, iconObjectField);
@@ -104,29 +103,29 @@ public class CustomerNode : GraphNode
     void CreateIDCard()
     {
         //create toggle and generate Graph inside container
-        CreateGiveDocumentToggle("ID Card", CustomerModel.GiveIDCard, out VisualElement container, x => CustomerModel.GiveIDCard = x.newValue);
-        CustomerModel.IDCard.CreateGraph(container);
+        CreateGiveDocumentToggle("ID Card", Customer.GiveIDCard, out VisualElement container, x => Customer.GiveIDCard = x.newValue);
+        Customer.IDCard.CreateGraph(container);
     }
 
     void CreateRenunciationCard()
     {
         //create toggle and generate Graph inside container
-        CreateGiveDocumentToggle("Renunciation Card", CustomerModel.GiveRenunciationCard, out VisualElement container, x => CustomerModel.GiveRenunciationCard = x.newValue);
-        CustomerModel.RenunciationCard.CreateGraph(container);
+        CreateGiveDocumentToggle("Renunciation Card", Customer.GiveRenunciationCard, out VisualElement container, x => Customer.GiveRenunciationCard = x.newValue);
+        Customer.RenunciationCard.CreateGraph(container);
     }
 
     void CreateResidentCard()
     {
         //create toggle and generate Graph inside container
-        CreateGiveDocumentToggle("Resident Card", CustomerModel.GiveResidentCard, out VisualElement container, x => CustomerModel.GiveResidentCard = x.newValue);
-        CustomerModel.ResidentCard.CreateGraph(container);
+        CreateGiveDocumentToggle("Resident Card", Customer.GiveResidentCard, out VisualElement container, x => Customer.GiveResidentCard = x.newValue);
+        Customer.ResidentCard.CreateGraph(container);
     }
 
     void CreatePoliceDocument()
     {
         //create toggle and generate Graph inside container
-        CreateGiveDocumentToggle("Police Card", CustomerModel.GivePoliceCard, out VisualElement container, x => CustomerModel.GivePoliceCard = x.newValue);
-        CustomerModel.PoliceCard.CreateGraph(container);
+        CreateGiveDocumentToggle("Police Card", Customer.GivePoliceCard, out VisualElement container, x => Customer.GivePoliceCard = x.newValue);
+        Customer.PoliceCard.CreateGraph(container);
     }
 
     #endregion
@@ -142,12 +141,12 @@ public class CustomerNode : GraphNode
         Foldout foldout = null;
         foldout = CreateElementsUtilities.CreateFoldoutWithButton("Objects to give to Player", "Add Object", out Button addButton, collapsed: true, onClick: () =>
         {
-            CustomerModel.ObjectsToGiveToPlayer.Add(default);
-            CreateObjectToGive(foldout, CustomerModel.ObjectsToGiveToPlayer.Count - 1);
+            Customer.ObjectsToGiveToPlayer.Add(default);
+            CreateObjectToGive(foldout, Customer.ObjectsToGiveToPlayer.Count - 1);
         });
 
         //and create current objects
-        for (int i = 0; i < CustomerModel.ObjectsToGiveToPlayer.Count; i++)
+        for (int i = 0; i < Customer.ObjectsToGiveToPlayer.Count; i++)
             CreateObjectToGive(foldout, i);
 
         //and add to container
@@ -161,19 +160,19 @@ public class CustomerNode : GraphNode
         Foldout foldout = CreateElementsUtilities.CreateFoldout($"Object [{index}]");
         container.Insert(container.childCount - 1, foldout);
 
-        FGiveToUser currentObj = CustomerModel.ObjectsToGiveToPlayer[index];
+        FGiveToUser currentObj = Customer.ObjectsToGiveToPlayer[index];
 
         //create both objects fields
         ObjectField left = CreateElementsUtilities.CreateObjectField("Left Prefab", currentObj.LeftPrefab, typeof(InteractableOnTheLeft), x =>
         {
-            FGiveToUser obj = CustomerModel.ObjectsToGiveToPlayer[index];
-            CustomerModel.ObjectsToGiveToPlayer[index] = new FGiveToUser(x.newValue as InteractableOnTheLeft, obj.RightPrefab);
+            FGiveToUser obj = Customer.ObjectsToGiveToPlayer[index];
+            Customer.ObjectsToGiveToPlayer[index] = new FGiveToUser(x.newValue as InteractableOnTheLeft, obj.RightPrefab);
         });
 
         ObjectField right = CreateElementsUtilities.CreateObjectField("Right Prefab", currentObj.RightPrefab, typeof(InteractableOnTheRight), x =>
         {
-            FGiveToUser obj = CustomerModel.ObjectsToGiveToPlayer[index];
-            CustomerModel.ObjectsToGiveToPlayer[index] = new FGiveToUser(obj.LeftPrefab, x.newValue as InteractableOnTheRight);
+            FGiveToUser obj = Customer.ObjectsToGiveToPlayer[index];
+            Customer.ObjectsToGiveToPlayer[index] = new FGiveToUser(obj.LeftPrefab, x.newValue as InteractableOnTheRight);
         });
 
         //add to foldout

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeOnTrue: {fileID: 0}
   NodeOnFalse: {fileID: 11400000, guid: 0727631b83b87f74faaa6dff1a84929b, type: 2}
-  CustomerModel:
-    CustomerImage:
-    - {fileID: 0}
-    Dialogue: 
+  Customer:
+    CustomerImage: []
+    DialogueWhenCome: 
+    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayYes: 
     GiveIDCard: 0
     IDCard:
       Name: 

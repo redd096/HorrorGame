@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NodeOnTrue: {fileID: 11400000, guid: 452e84cd6731d7341812c36cb4299433, type: 2}
   NodeOnFalse: {fileID: 11400000, guid: 482c105f21523494fa09fd0e08f58e4b, type: 2}
-  CustomerModel:
+  Customer:
     CustomerImage:
     - {fileID: 21300000, guid: 2f4d070635cad82449705cefeb4cd70c, type: 3}
     - {fileID: 21300000, guid: 48338bfe35b3dc04283c97ec8816faa1, type: 3}
-    Dialogue: 
+    DialogueWhenCome: 
+    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayYes: 
     GiveIDCard: 1
     IDCard:
       Name: 
@@ -30,7 +32,7 @@ MonoBehaviour:
         Year: 2
       Signature: {fileID: 21300000, guid: 295642318da97c844b2b7bdfee6a3066, type: 3}
       Photo: {fileID: 0}
-    GiveRenunciationCard: 0
+    GiveRenunciationCard: 1
     RenunciationCard:
       Name: 
       Surname: 

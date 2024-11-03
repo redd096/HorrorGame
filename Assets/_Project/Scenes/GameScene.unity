@@ -3421,7 +3421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortOrderClass:
-    data: {fileID: 11400000, guid: 4ae0c43aa89908e4e96aa2f5f2e9192c, type: 2}
+    data: {fileID: 11400000, guid: 7f945524701a4154bbcbc95acc7bfd77, type: 2}
     elementName: RightCanvas
   details:
     updateOnAwake: 1
@@ -8548,6 +8548,8 @@ Transform:
   - {fileID: 1516019691}
   - {fileID: 1015270465}
   - {fileID: 233283236}
+  - {fileID: 1575504088}
+  - {fileID: 901989675}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &783862221
@@ -10478,6 +10480,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889713071}
   m_CullTransparentMesh: 1
+--- !u!1 &901989674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 901989675}
+  - component: {fileID: 901989676}
+  m_Layer: 0
+  m_Name: LevelEventsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &901989675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901989674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 739459459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &901989676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901989674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0df566413a29d4897c4c9f98615054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NewspapersContainer: {fileID: 617001506}
 --- !u!1 &917221427
 GameObject:
   m_ObjectHideFlags: 0
@@ -12203,7 +12250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortOrderClass:
-    data: {fileID: 11400000, guid: 4ae0c43aa89908e4e96aa2f5f2e9192c, type: 2}
+    data: {fileID: 11400000, guid: 7f945524701a4154bbcbc95acc7bfd77, type: 2}
     elementName: LeftCanvas
   details:
     updateOnAwake: 1
@@ -18389,6 +18436,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575009597}
   m_CullTransparentMesh: 1
+--- !u!1 &1575504087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1575504088}
+  - component: {fileID: 1575504089}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1575504088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575504087}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 739459459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1575504089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575504087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf012062890005439a05b480624ba98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelData: {fileID: 11400000, guid: ed428f93abf4aba4b840d0cb0d68c8b9, type: 2}
 --- !u!1 &1586896082
 GameObject:
   m_ObjectHideFlags: 0
@@ -22563,7 +22655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortOrderClass:
-    data: {fileID: 11400000, guid: 4ae0c43aa89908e4e96aa2f5f2e9192c, type: 2}
+    data: {fileID: 11400000, guid: 7f945524701a4154bbcbc95acc7bfd77, type: 2}
     elementName: BackgroundCanvas
   details:
     updateOnAwake: 1

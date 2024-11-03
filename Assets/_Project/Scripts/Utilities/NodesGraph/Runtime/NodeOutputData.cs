@@ -9,5 +9,6 @@ namespace redd096.NodesGraph.Runtime
     {
         public string OutputType;
         public string ConnectedNodeID;
+        public int ConnectedPortIndex;
     }
 }

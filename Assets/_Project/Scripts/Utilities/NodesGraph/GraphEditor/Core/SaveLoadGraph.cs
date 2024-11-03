@@ -169,7 +169,7 @@ namespace redd096.NodesGraph.Editor
         protected virtual void SetOutputDataValues(Port port, NodeOutputData data)
         {
             //save type
-            data.OutputType = port.portType.Name;
+            data.OutputType = port.portType.FullName;
 
             //and connected node
             if (port.connected)
@@ -179,6 +179,9 @@ namespace redd096.NodesGraph.Editor
                     if (edge.input != null && edge.input.node is GraphNode connectedNode)
                     {
                         data.ConnectedNodeID = connectedNode.ID;
+
+                        //find input door connected with this output door and save its index
+                        data.ConnectedPortIndex = edge.input.node.inputContainer.Query<Port>().ToList().FindIndex(inputPort => inputPort.connections.Any(inputEdge => inputEdge.output != null && inputEdge.output == port));
                         break;
                     }
                 }
@@ -378,7 +381,9 @@ namespace redd096.NodesGraph.Editor
                 for (int i = 0; i < data.OutputsData.Count; i++)
                 {
                     Port outputPort = list[i];
+                    //outputPort.portType = System.Type.GetType(data.OutputsData[i].OutputType);
                     string connectedNodeID = data.OutputsData[i].ConnectedNodeID;
+                    int connectedPortIndex = data.OutputsData[i].ConnectedPortIndex;
 
                     //connect to other node
                     if (string.IsNullOrEmpty(connectedNodeID) == false)
@@ -390,18 +395,35 @@ namespace redd096.NodesGraph.Editor
                             continue;
                         }
 
-                        SetNodeConnection(node, outputPort, connectedNodeID);
+                        SetNodeConnection(node, outputPort, connectedNodeID, connectedPortIndex);
                     }
                 }
             }
         }
 
-        protected virtual void SetNodeConnection(GraphNode node, Port outputPort, string connectedNodeID)
+        protected virtual void SetNodeConnection(GraphNode node, Port outputPort, string connectedNodeID, int connectedPortIndex)
         {
-            //find first input port still not connected to other nodes and with correct Port Type
             GraphNode connectedNode = loadedNodes[connectedNodeID];
             List<Port> inputPorts = connectedNode.inputContainer.Query<Port>().ToList();
-            Port connectedPort = inputPorts.Where(port => port.connected == false && port.portType.IsAssignableFrom(outputPort.portType)).FirstOrDefault();
+
+            //be sure port index is correct and the port is correct type
+            Port connectedPort = inputPorts.Count > connectedPortIndex 
+                && inputPorts[connectedPortIndex].portType.IsAssignableFrom(outputPort.portType) ? inputPorts[connectedPortIndex] : null;
+            
+            //else, try find first input port still not connected to other nodes and with correct Port Type
+            if (connectedPort == null)
+            {
+                Debug.LogError($"Error connecting node with ID {node.ID} with node with ID {connectedNodeID}. " +
+                    $"The second node doesn't have a correct input port at index {connectedPortIndex}. " +
+                    $"Trying to connect to another door");
+                connectedPort = inputPorts.Find(port => port.connected == false && port.portType.IsAssignableFrom(outputPort.portType));
+
+                if (connectedPort == null)
+                {
+                    Debug.LogError($"Error connecting node with ID {node.ID} with node with ID {connectedNodeID}. Impossible to find a correct input door");
+                    return;
+                }
+            }
 
             //connect ports
             Edge edge = outputPort.ConnectTo(connectedPort);

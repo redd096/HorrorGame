@@ -4,5 +4,5 @@
 /// </summary>
 public class CustomerData : LevelNodeData
 {
-    public CustomerModel CustomerModel = new CustomerModel();
+    public Customer Customer = new Customer();
 }
