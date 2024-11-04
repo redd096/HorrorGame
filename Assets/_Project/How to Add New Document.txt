@@ -1,0 +1,32 @@
+Add new document:
+1. go to Scripts/ModelsAndDatas/Documents
+   a. create the class (the current value you need)
+
+2. go to Scripts/ModelsAndDatas/LevelNodes
+   a. open Customer
+      - add a bool (to decide if a customer give or NOT give a specific document to player)
+      - add the class you create at point 1.a. (to have the values)
+      - in Clone add these two values (to clone between UserData and LevelNodeData for the graph view)
+
+3. go to Scripts/GraphsEditor/Days Graph/Nodes
+   a. open CustomerNode
+      - under the region "documents" create a function to visualize the variables created at point 2.a.
+      - in DrawContent add your new function
+
+4. go to Scripts/Interactables/Documents
+   a. create class that inherit from DocumentDraggable (the object we move in game)
+
+5. go to Prefabs/Interactables/Left/Documents
+   a. create a prefab with script InteractableOnTheLeft (the prefab to show on Left screen)
+
+6. go to Prefabs/Interactables/Right/Documents
+   a. create a prefab with script you create at point 2.a. (prefab to show on Right screen)
+
+7. go to Scripts/Managers
+   a. open DeskManager
+      - under Header("Documents Prefab") add your two new prefabs (point 3.a. and 4.a.)
+      - under the region "instantiate document" create a function to instantiate and initialize your prefabs
+
+   b. open LevelManager
+      - in CheckCustomer check if the bool created at point 2.a. is true
+      - if true, call your new function created at point 7.a.

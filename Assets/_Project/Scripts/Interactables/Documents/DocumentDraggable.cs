@@ -36,9 +36,7 @@ public class DocumentDraggable : InteractableDraggable
         //if this document can receive stamp, tell to DeskManager to show area to give documents back to client
         if (canReceiveStamp && documentToGiveBack)
         {
-            DeskManager.instance.OnDocumentReceiveStamp();
-
-            Debug.Log("TODO - tell to another manager to save the stamp color (call always this function, to keep last one as response");
+            DeskManager.instance.OnDocumentReceiveStamp(isGreen);
         }
     }
     

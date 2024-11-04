@@ -130,7 +130,7 @@ public class CustomerNode : GraphNode
 
     #endregion
 
-    #region create default elements
+    #region objects to give to player
 
     void CreateObjectsToGiveToPlayer()
     {

@@ -1,22 +1,48 @@
 using redd096;
 using UnityEngine;
+using PrimeTween;
 
+/// <summary>
+/// This is used by LevelManager and is specific for the events (not customers or other)
+/// </summary>
 public class LevelEventsManager : SimpleInstance<LevelEventsManager>
 {
-    public Transform NewspapersContainer;
+    [SerializeField] CanvasGroup newspapersContainer;
+
+    public Transform NewspapersContainer => newspapersContainer.transform;
 
     /// <summary>
-    /// Show or hide newspaper
+    /// Show for few seconds the newspaper
     /// </summary>
     /// <param name="newspaperName"></param>
-    /// <param name="show"></param>
-    public void ShowNewspaper(string newspaperName, bool show)
+    public Sequence ShowNewspaper(string newspaperName)
     {
-        //show or hide container
-        NewspapersContainer.gameObject.SetActive(show);
+        //find newspaper in scene
+        Transform newspaper = newspapersContainer.transform.Find(newspaperName);
+        if (newspaper == null)
+        {
+            Debug.LogError($"Impossible to find newspaper with this name {newspaperName}");
+            return default;
+        }
 
-        //and newspaper
-        Transform newspaper = NewspapersContainer.Find(newspaperName);
-        if (newspaper) newspaper.gameObject.SetActive(show);
+        //show container and newspaper, and immediatly fade in
+        newspapersContainer.gameObject.SetActive(true);
+        newspaper.gameObject.SetActive(true);
+        newspapersContainer.alpha = 1;
+
+        //then wait few seconds
+        Sequence sequence = Sequence.Create();
+        sequence.ChainDelay(3);
+
+        //fade out
+        sequence.Chain(Tween.Alpha(newspapersContainer, 0, duration: 1f));
+        sequence.ChainCallback(() =>
+        {
+            //hide container and newspaper
+            newspapersContainer.gameObject.SetActive(false);
+            newspaper.gameObject.SetActive(false);
+        });
+
+        return sequence;
     }
 }

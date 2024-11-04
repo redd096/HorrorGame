@@ -1,0 +1,36 @@
+Add new node:
+1. go to Scripts/ModelsAndDatas/LevelNodes 
+   a. create the class (the current value you need)
+   b. create class that inherit from LevelNodeData (scriptable object to insert in LevelData for the game)
+
+2. go to Scripts/GraphsEditor/Days Graph/Nodes 
+   a. create the node (this is how to visualize in GraphView)
+
+3. go to Scripts/GraphsEditor/Days Graph
+   a. open DaysGraphView
+      - in BuildContextualMenu add an Action to create new Node
+
+   b. open DaysGraphSaveLoad
+      - (optional) if you want a new folder, add const string on the top
+      - in SetNodeDataValues save UserData (the value you created at point 1.a.)
+      - (optional) in CreateSaveFolder create folder with the string you create before
+      - in SetValuesAndSaveFile create a LevelNodeData (point 1.b.) from the UserData we saved before
+      - in SetNodeValues load UserData from the LevelNodeData
+
+4. click on top on HORROR GAME/Days Graph
+   a. right click and create your nodes
+   b. click on Save to save the graph, and create also the LevelData with its nodes for the game
+
+5. I'm saving in Levels/Day X
+   a. DayX is the scriptable object to load again the GraphView
+   b. LevelData_DayX is the LevelData for the LevelManager in scene
+   c. the other scriptable objects in sub-folders are the nodes for the LevelManager
+
+6. go in Scene
+   a. select ManagersInScene/LevelManager
+   b. add the LevelData we created (the scriptable object that starts with LevelData_)
+
+7. go to Scripts/Managers
+   a. open LevelManager
+      - in CheckNextNode add a check for your new LevelNodeData (point 1.b.)
+      - and create a function to set what to do with its values

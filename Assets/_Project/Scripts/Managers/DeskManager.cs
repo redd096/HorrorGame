@@ -1,4 +1,3 @@
-using redd096.Attributes;
 using UnityEngine;
 using PrimeTween;
 using redd096;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 public class DeskManager : SimpleInstance<DeskManager>
 {
+    [SerializeField] DeskStateMachine stateMachine;
     [SerializeField] DeskWindowsManager deskWindowsManager;
     [SerializeField] RectTransform draggedObjectsContainer;
 
@@ -22,11 +22,17 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] Transform rightEndPoint;
     [SerializeField] float putAnimationTime = 1;
     
-    [Header("TEMP Documents Prefabs")]
-    [SerializeField] InteractableOnTheLeft prefabLeft;
-    [SerializeField] DocumentDraggable prefabRight;
+    [Header("Documents Prefabs")]
+    [SerializeField] InteractableOnTheLeft idCardLeft;
+    [SerializeField] IDCardDraggable idCardRight;
+    [SerializeField] InteractableOnTheLeft renunciationCardLeft;
+    [SerializeField] RenunciationCardDraggable renunciationCardRight;
+    [SerializeField] InteractableOnTheLeft residentCardLeft;
+    [SerializeField] ResidentCardDraggable residentCardRight;
+    [SerializeField] InteractableOnTheLeft policeCardLeft;
+    [SerializeField] PoliceCardDraggable policeCardRight;
 
-    //counter of documents to give back to client or interactables put back on desk
+    //counter of documents to give back to client or interactables to put back on desk
     private int documentsToGiveBack;
     private int interactablesToPutBack;
 
@@ -35,11 +41,64 @@ public class DeskManager : SimpleInstance<DeskManager>
     public List<InteractableOnTheRight> InteractablesInScene => interactablesInScene;
     public RectTransform DraggedObjectsContainer => draggedObjectsContainer;
 
+    #region instantiate document
+
+    public void InstantiateDocument(IDCard doc)
+    {
+        //instantiate and initialize, then add in scene
+        InstantiateGenericDocument(idCardLeft, idCardRight, out var left, out var right);
+        ((IDCardDraggable)right).InitDocument(doc);
+
+        AddDocument(left, right);
+    }
+
+    public void InstantiateDocument(RenunciationCard doc)
+    {
+        //instantiate and initialize, then add in scene
+        InstantiateGenericDocument(renunciationCardLeft, renunciationCardRight, out var left, out var right);
+        ((RenunciationCardDraggable)right).InitDocument(doc);
+
+        AddDocument(left, right);
+    }
+
+    public void InstantiateDocument(ResidentCard doc)
+    {
+        //instantiate and initialize, then add in scene
+        InstantiateGenericDocument(residentCardLeft, residentCardRight, out var left, out var right);
+        ((ResidentCardDraggable)right).InitDocument(doc);
+
+        AddDocument(left, right);
+    }
+
+    public void InstantiateDocument(PoliceCard doc)
+    {
+        //instantiate and initialize, then add in scene
+        InstantiateGenericDocument(policeCardLeft, policeCardRight, out var left, out var right);
+        ((PoliceCardDraggable)right).InitDocument(doc);
+
+        AddDocument(left, right);
+    }
+
+    private void InstantiateGenericDocument(InteractableOnTheLeft leftPrefab, DocumentDraggable rightPrefab, out InteractableOnTheLeft instanceLeft, out DocumentDraggable instanceRight)
+    {
+        if (leftPrefab == null || rightPrefab == null)
+            Debug.LogError($"Missing left prefab: {leftPrefab == null} - Missing right prefab: {rightPrefab == null}");
+
+        //instantiate and initialize
+        instanceLeft = Instantiate(leftPrefab);
+        instanceRight = Instantiate(rightPrefab);
+
+        instanceLeft.Init(stateMachine);
+        instanceRight.Init(stateMachine, instanceLeft);
+    }
+
+    #endregion
+
     /// <summary>
     /// Add documents already instantiated, both left and right
     /// </summary>
     /// <param name="isDocumentToGiveBack">After stamp, show area to give back documents</param>
-    public void AddDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable, bool isDocumentToGiveBack = true)
+    private void AddDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable, bool isDocumentToGiveBack = true)
     {
         interactablesInScene.Add(docDraggable);
 
@@ -145,7 +204,10 @@ public class DeskManager : SimpleInstance<DeskManager>
             {
                 interactablesToPutBack--;
                 if (interactablesToPutBack <= 0)
+                {
                     deskWindowsManager.ShowInteractablesArea(false);
+                    LevelManager.instance.OnGiveBackAllDocuments();
+                }
             }
             
             //set parent
@@ -174,9 +236,10 @@ public class DeskManager : SimpleInstance<DeskManager>
     /// <summary>
     /// When a document receive stamp, show area to give back to client
     /// </summary>
-    public void OnDocumentReceiveStamp()
+    public void OnDocumentReceiveStamp(bool isGreen)
     {
         deskWindowsManager.ShowDocumentsArea(true);
+        LevelManager.instance.OnDocumentReceiveStamp(isGreen);
     }
 
     /// <summary>
@@ -247,24 +310,5 @@ public class DeskManager : SimpleInstance<DeskManager>
 
             docDraggable.CopyInScene.ShowInScene(true);
         }
-    }
-
-    private System.Collections.IEnumerator Start()
-    {
-        Debug.Log("TODO - example first document");
-
-        yield return new WaitForSeconds(0.1f);
-        AddDocument();
-    }
-
-    [Button("Add Document (only in Play)", ButtonAttribute.EEnableType.PlayMode)]
-    void AddDocument()
-    {
-        var left = Instantiate(prefabLeft);
-        var right = Instantiate(prefabRight);
-        IInteractablesEvents callbacks = FindObjectOfType<DeskStateMachine>();
-        left.Init(callbacks);
-        right.Init(callbacks, left);
-        AddDocument(left, right);
     }
 }

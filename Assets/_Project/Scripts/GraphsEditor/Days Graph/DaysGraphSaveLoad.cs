@@ -80,11 +80,6 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         base.SetValuesAndSaveFile();
 
         //save also every node UserData
-        string customersPath = Path.Combine(directoryPathRelativeToProject, FOLDER_CUSTOMERS);
-        string saveChoicePath = Path.Combine(directoryPathRelativeToProject, FOLDER_SAVE_CHOICE);
-        string getChoicePath = Path.Combine(directoryPathRelativeToProject, FOLDER_GET_CHOICE);
-        string eventsPath = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
-
         for (int i = 0; i < nodes.Count; i++)
         {
             NodeData nodeData = nodes[i];
@@ -92,28 +87,32 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             //customers
             if (nodeData.UserData is Customer customer)
             {
-                CustomerData asset = CreateLevelNodeData<CustomerData>(customersPath, nodeData);
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_CUSTOMERS);
+                CustomerData asset = CreateLevelNodeData<CustomerData>(path, nodeData);
                 asset.Customer = customer.Clone();
                 EditorUtility.SetDirty(asset);
             }
             //save choice
             else if (nodeData.UserData is SaveChoice saveChoice)
             {
-                SaveChoiceData asset = CreateLevelNodeData<SaveChoiceData>(saveChoicePath, nodeData);
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_SAVE_CHOICE);
+                SaveChoiceData asset = CreateLevelNodeData<SaveChoiceData>(path, nodeData);
                 asset.SaveChoice = saveChoice.Clone();
                 EditorUtility.SetDirty(asset);
             }
             //get choice
             else if (nodeData.UserData is GetChoice getChoice)
             {
-                GetChoiceData asset = CreateLevelNodeData<GetChoiceData>(getChoicePath, nodeData);
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_GET_CHOICE);
+                GetChoiceData asset = CreateLevelNodeData<GetChoiceData>(path, nodeData);
                 asset.GetChoice = getChoice.Clone();
                 EditorUtility.SetDirty(asset);
             }
             //events
             else if (nodeData.UserData is EventNewspaper eventNewspaper)
             {
-                EventNewspaperData asset = CreateLevelNodeData<EventNewspaperData>(eventsPath, nodeData);
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
+                EventNewspaperData asset = CreateLevelNodeData<EventNewspaperData>(path, nodeData);
                 asset.EventNewspaper = eventNewspaper.Clone();
                 EditorUtility.SetDirty(asset);
             }
@@ -149,7 +148,7 @@ public class DaysGraphSaveLoad : SaveLoadGraph
     void CreateLevelData()
     {
         //create a scriptable object for the level
-        string levelFileNameWithExtension = "Level_" + Path.GetFileName(assetPathRelativeToProject);
+        string levelFileNameWithExtension = "LevelData_" + Path.GetFileName(assetPathRelativeToProject);
         string levelAssetPath = Path.Combine(directoryPathRelativeToProject, levelFileNameWithExtension);
         LevelData levelAsset = AssetDatabase.LoadAssetAtPath<LevelData>(levelAssetPath);
         if (levelAsset == null)
@@ -215,7 +214,7 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         //load also level data. We use game datas to popolate nodes
         if (loaded)
         {
-            string levelFileNameWithExtension = "Level_" + Path.GetFileName(assetPathRelativeToProject);
+            string levelFileNameWithExtension = "LevelData_" + Path.GetFileName(assetPathRelativeToProject);
             string levelAssetPath = Path.Combine(directoryPathRelativeToProject, levelFileNameWithExtension);
             LevelData asset = AssetDatabase.LoadAssetAtPath<LevelData>(levelAssetPath);
 
