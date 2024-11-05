@@ -9005,13 +9005,13 @@ MonoBehaviour:
   rightEndPoint: {fileID: 1093170138}
   putAnimationTime: 1
   idCardLeft: {fileID: 11984360828113948, guid: 288ac8c6dbbab72468c04123f2322077, type: 3}
-  idCardRight: {fileID: 0}
+  idCardRight: {fileID: -3647333440389115320, guid: eee64db77445c0743b2c4afb90bb7bff, type: 3}
   renunciationCardLeft: {fileID: 3545513177742322442, guid: bc2788c4c5fa78545af3b4b18eeaf1fa, type: 3}
-  renunciationCardRight: {fileID: 0}
+  renunciationCardRight: {fileID: 7128338037014145277, guid: 5c16bf82b0f603e47871c969c29fba11, type: 3}
   residentCardLeft: {fileID: 3545513177742322442, guid: 937b9af8bc75da14fb723784da5db30e, type: 3}
-  residentCardRight: {fileID: 0}
+  residentCardRight: {fileID: -757729295656690233, guid: 953777bca2c86284b85cb9f2a2bfd5b5, type: 3}
   policeCardLeft: {fileID: 3545513177742322442, guid: 61359e22c54b806449e21179afd65849, type: 3}
-  policeCardRight: {fileID: 0}
+  policeCardRight: {fileID: 6027228025492314679, guid: 2f0365c62bab4bd49bf9c108370a3d23, type: 3}
 --- !u!1 &1163484157
 GameObject:
   m_ObjectHideFlags: 0

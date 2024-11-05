@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
 using redd096.NodesGraph.Editor;
+using UnityEngine;
 #endif
 
 /// <summary>
@@ -12,7 +13,7 @@ public class RenunciationCard
     public string Name;
     public string Surname;
     public string IDCardNumber;
-    public FDate DateBirth;
+    public FDate BirthDate;
     public int DurationStayInDays;
     public string Signature;
 
@@ -23,7 +24,7 @@ public class RenunciationCard
             Name = Name,
             Surname = Surname,
             IDCardNumber = IDCardNumber,
-            DateBirth = DateBirth,
+            BirthDate = BirthDate,
             DurationStayInDays = DurationStayInDays,
             Signature = Signature
         };
@@ -37,14 +38,15 @@ public class RenunciationCard
         TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue);
         TextField cardNumberTextField = CreateElementsUtilities.CreateTextField("ID Card Number", IDCardNumber, x => IDCardNumber = x.newValue);
 
-        //date birth
-        Foldout dateBirthFoldout = CreateElementsUtilities.CreateFoldout("Date Birth");
-        IntegerField day = CreateElementsUtilities.CreateIntegerField("Day", DateBirth.Day, x => DateBirth.Day = x.newValue);
-        IntegerField month = CreateElementsUtilities.CreateIntegerField("Month", DateBirth.Month, x => DateBirth.Month = x.newValue);
-        IntegerField year = CreateElementsUtilities.CreateIntegerField("Year", DateBirth.Year, x => DateBirth.Year = x.newValue);
-        dateBirthFoldout.Add(day);
-        dateBirthFoldout.Add(month);
-        dateBirthFoldout.Add(year);
+        //birth date
+        Foldout birthDateFoldout = CreateElementsUtilities.CreateFoldout("Birth Date");
+        BirthDate.Min1();
+        IntegerField day = CreateElementsUtilities.CreateIntegerField("Day", BirthDate.Day, x => BirthDate.Day = Min1(x.newValue));
+        IntegerField month = CreateElementsUtilities.CreateIntegerField("Month", BirthDate.Month, x => BirthDate.Month = Min1(x.newValue));
+        IntegerField year = CreateElementsUtilities.CreateIntegerField("Year", BirthDate.Year, x => BirthDate.Year = Min1(x.newValue));
+        birthDateFoldout.Add(day);
+        birthDateFoldout.Add(month);
+        birthDateFoldout.Add(year);
 
         //duration stay
         IntegerField durationStayIntegerField = CreateElementsUtilities.CreateIntegerField("Duration of Stay", DurationStayInDays, x => DurationStayInDays = x.newValue);
@@ -56,9 +58,14 @@ public class RenunciationCard
         container.Add(nameTextField);
         container.Add(surnameTextField);
         container.Add(cardNumberTextField);
-        container.Add(dateBirthFoldout);
+        container.Add(birthDateFoldout);
         container.Add(durationStayIntegerField);
         container.Add(signatureTextField);
+    }
+
+    int Min1(int value)
+    {
+        return Mathf.Max(value, 1);
     }
 #endif
 }

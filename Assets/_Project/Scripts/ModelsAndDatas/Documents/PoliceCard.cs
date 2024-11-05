@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
 using redd096.NodesGraph.Editor;
+using UnityEngine;
 #endif
 
 /// <summary>
@@ -37,10 +38,11 @@ public class PoliceCard
         TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue);
 
         //validate date
-        Foldout validateDateFoldout = CreateElementsUtilities.CreateFoldout("Date");
-        IntegerField day = CreateElementsUtilities.CreateIntegerField("Day", ValidateDate.Day, x => ValidateDate.Day = x.newValue);
-        IntegerField month = CreateElementsUtilities.CreateIntegerField("Month", ValidateDate.Month, x => ValidateDate.Month = x.newValue);
-        IntegerField year = CreateElementsUtilities.CreateIntegerField("Year", ValidateDate.Year, x => ValidateDate.Year = x.newValue);
+        Foldout validateDateFoldout = CreateElementsUtilities.CreateFoldout("Validate Date");
+        ValidateDate.Min1();
+        IntegerField day = CreateElementsUtilities.CreateIntegerField("Day", ValidateDate.Day, x => ValidateDate.Day = Min1(x.newValue));
+        IntegerField month = CreateElementsUtilities.CreateIntegerField("Month", ValidateDate.Month, x => ValidateDate.Month = Min1(x.newValue));
+        IntegerField year = CreateElementsUtilities.CreateIntegerField("Year", ValidateDate.Year, x => ValidateDate.Year = Min1(x.newValue));
         validateDateFoldout.Add(day);
         validateDateFoldout.Add(month);
         validateDateFoldout.Add(year);
@@ -59,6 +61,11 @@ public class PoliceCard
         container.Add(signatureTextField);
         container.Add(hasFirstStampToggle);
         container.Add(hasSecondStampToggle);
+    }
+
+    int Min1(int value)
+    {
+        return Mathf.Max(value, 1);
     }
 #endif
 }

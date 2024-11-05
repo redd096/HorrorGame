@@ -14,7 +14,7 @@ public class IDCard
     public string Name;
     public string Surname;
     public string CardNumber;
-    public FDate DateBirth;
+    public FDate BirthDate;
     public FDate ExpireDate;
     public string Signature;
     public Sprite Photo;
@@ -26,7 +26,7 @@ public class IDCard
             Name = Name,
             Surname = Surname,
             CardNumber = CardNumber,
-            DateBirth = DateBirth,
+            BirthDate = BirthDate,
             ExpireDate = ExpireDate,
             Signature = Signature,
             Photo = Photo
@@ -43,18 +43,20 @@ public class IDCard
 
         //birth date
         Foldout birthDateFoldout = CreateElementsUtilities.CreateFoldout("Birth Date");
-        IntegerField day = CreateElementsUtilities.CreateIntegerField("Day", DateBirth.Day, x => DateBirth.Day = x.newValue);
-        IntegerField month = CreateElementsUtilities.CreateIntegerField("Month", DateBirth.Month, x => DateBirth.Month = x.newValue);
-        IntegerField year = CreateElementsUtilities.CreateIntegerField("Year", DateBirth.Year, x => DateBirth.Year = x.newValue);
+        BirthDate.Min1();
+        IntegerField day = CreateElementsUtilities.CreateIntegerField("Day", BirthDate.Day, x => BirthDate.Day = Min1(x.newValue));
+        IntegerField month = CreateElementsUtilities.CreateIntegerField("Month", BirthDate.Month, x => BirthDate.Month = Min1(x.newValue));
+        IntegerField year = CreateElementsUtilities.CreateIntegerField("Year", BirthDate.Year, x => BirthDate.Year = Min1(x.newValue));
         birthDateFoldout.Add(day);
         birthDateFoldout.Add(month);
         birthDateFoldout.Add(year);
 
         //expire date
         Foldout expireDateFoldout = CreateElementsUtilities.CreateFoldout("Expire Date");
-        IntegerField dayExpire = CreateElementsUtilities.CreateIntegerField("Day", ExpireDate.Day, x => ExpireDate.Day = x.newValue);
-        IntegerField monthExpire = CreateElementsUtilities.CreateIntegerField("Month", ExpireDate.Month, x => ExpireDate.Month = x.newValue);
-        IntegerField yearExpire = CreateElementsUtilities.CreateIntegerField("Year", ExpireDate.Year, x => ExpireDate.Year = x.newValue);
+        ExpireDate.Min1();
+        IntegerField dayExpire = CreateElementsUtilities.CreateIntegerField("Day", ExpireDate.Day, x => ExpireDate.Day = Min1(x.newValue));
+        IntegerField monthExpire = CreateElementsUtilities.CreateIntegerField("Month", ExpireDate.Month, x => ExpireDate.Month = Min1(x.newValue));
+        IntegerField yearExpire = CreateElementsUtilities.CreateIntegerField("Year", ExpireDate.Year, x => ExpireDate.Year = Min1(x.newValue));
         expireDateFoldout.Add(dayExpire);
         expireDateFoldout.Add(monthExpire);
         expireDateFoldout.Add(yearExpire);
@@ -73,5 +75,11 @@ public class IDCard
         container.Add(photoObjectField);
         container.Add(photoImage);
     }
+
+    int Min1(int value)
+    {
+        return Mathf.Max(value, 1);
+    }
+
 #endif
 }

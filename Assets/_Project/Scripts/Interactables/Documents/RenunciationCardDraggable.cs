@@ -16,7 +16,7 @@ public class RenunciationCardDraggable : DocumentDraggable
     {
         nameText.text = doc.Name + " " + doc.Surname;
         idNumberText.text = doc.IDCardNumber;
-        dateBirthText.text = doc.DateBirth.ToString();
+        dateBirthText.text = doc.BirthDate.ToString();
         durationStayText.text = doc.DurationStayInDays + " Days";
         signatureText.text = doc.Signature;
     }
