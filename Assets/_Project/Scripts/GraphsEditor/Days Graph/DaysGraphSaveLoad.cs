@@ -49,7 +49,7 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             data.UserData = eventNewspaperNode.EventNewspaper;
 
         //be sure there aren't nodes with same NodeName, because we use it to create a ScriptableObject
-        if (nodes.Find(x => x.NodeName == data.NodeName) != null)
+        while (nodes.Find(x => x.NodeName == data.NodeName) != null)
         {
             data.NodeName += "(Clone)";
         }

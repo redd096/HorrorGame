@@ -79,7 +79,7 @@ namespace redd096.NodesGraph.Editor
                 //save
                 saveLoad.Save(graph, filePathInProject);
 
-                UnityEngine.Debug.Log("HA SALVATO MOROSITA!");
+                UnityEngine.Debug.Log("HA SALVATO MOROSITA " + System.DateTime.Now.ToString());
 
                 //and start save automatically
                 if (automaticSaveEnabled)
