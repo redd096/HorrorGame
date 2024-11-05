@@ -9,6 +9,6 @@ public class ResidentData : ScriptableObject
     public Sprite Photo;
     public string Name;
     public string Surname;
-    public FDate DateBirth;
+    public string IDCardNumber;
     public FRoom RoomNumber;
 }
