@@ -15,6 +15,7 @@ public class RenunciationCard
     public string IDCardNumber;
     public FDate BirthDate;
     public int DurationStayInDays;
+    public int CorrectDurationStayInDays;
     public string Signature;
 
     public RenunciationCard Clone()
@@ -26,6 +27,7 @@ public class RenunciationCard
             IDCardNumber = IDCardNumber,
             BirthDate = BirthDate,
             DurationStayInDays = DurationStayInDays,
+            CorrectDurationStayInDays = CorrectDurationStayInDays,
             Signature = Signature
         };
     }
@@ -49,7 +51,8 @@ public class RenunciationCard
         birthDateFoldout.Add(year);
 
         //duration stay
-        IntegerField durationStayIntegerField = CreateElementsUtilities.CreateIntegerField("Duration of Stay", DurationStayInDays, x => DurationStayInDays = x.newValue);
+        IntegerField durationStayIntegerField = CreateElementsUtilities.CreateIntegerField("Duration of Stay (written on document)", DurationStayInDays, x => DurationStayInDays = x.newValue);
+        IntegerField correctTurationStayIntegerField = CreateElementsUtilities.CreateIntegerField("Duration of Stay (correct for player)", CorrectDurationStayInDays, x => CorrectDurationStayInDays = x.newValue);
 
         //signature
         TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue);
@@ -60,6 +63,7 @@ public class RenunciationCard
         container.Add(cardNumberTextField);
         container.Add(birthDateFoldout);
         container.Add(durationStayIntegerField);
+        container.Add(correctTurationStayIntegerField);
         container.Add(signatureTextField);
     }
 

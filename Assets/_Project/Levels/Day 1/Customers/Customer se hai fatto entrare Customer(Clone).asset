@@ -44,6 +44,7 @@ MonoBehaviour:
         Month: 1
         Year: 1
       DurationStayInDays: 0
+      CorrectDurationStayInDays: 0
       Signature: 
     GiveResidentCard: 0
     ResidentCard:
