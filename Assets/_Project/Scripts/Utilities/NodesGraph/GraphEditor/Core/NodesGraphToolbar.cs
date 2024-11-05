@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System.IO;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -11,6 +12,9 @@ namespace redd096.NodesGraph.Editor
     /// </summary>
     public class NodesGraphToolbar : VisualElement
     {
+        protected virtual bool automaticSave => true;
+        protected virtual int automaticSaveTimer => 300;
+
         protected NodesGraphView graph;
         protected SaveLoadGraph saveLoad;
         protected Toolbar toolbar;
@@ -19,6 +23,7 @@ namespace redd096.NodesGraph.Editor
         protected Button minimapButton;
 
         protected string fileName;
+        protected string filePathInProject;
 
         public const string DEFAULT_FILE_NAME = "New File";
         public const string SAVE_FOLDER_NAME = "SavedGraphs";
@@ -60,6 +65,36 @@ namespace redd096.NodesGraph.Editor
             toolbar.Add(element);
         }
 
+        protected async void SaveAutomatically(string prevFileName, string prevFilePathInProject)
+        {
+            //wait few seconds
+            await Task.Delay(automaticSaveTimer * 1000);
+
+            //check if file name and path are still the same and save
+            if (fileName == prevFileName && filePathInProject == prevFilePathInProject)
+            {
+                Save();
+            }
+        }
+
+        #region Save API
+
+        protected virtual void Save()
+        {
+            //if fileName and filePath are setted
+            if (string.IsNullOrEmpty(fileName) == false && string.IsNullOrEmpty(filePathInProject) == false)
+            {
+                //save
+                saveLoad.Save(graph, filePathInProject);
+
+                //and start save automatically
+                if (automaticSave)
+                    SaveAutomatically(fileName, filePathInProject);
+            }
+        }
+
+        #endregion
+
         #region on click buttons
 
         /// <summary>
@@ -79,9 +114,8 @@ namespace redd096.NodesGraph.Editor
             }
 
             //save file
-            string filePathInProject = EditorUtility.SaveFilePanelInProject("Save file", fileName, "asset", "Select folder where save file");
-            if (string.IsNullOrEmpty(filePathInProject) == false)
-                saveLoad.Save(graph, filePathInProject);
+            filePathInProject = EditorUtility.SaveFilePanelInProject("Save file", fileName, "asset", "Select folder where save file");
+            Save();
         }
 
         /// <summary>
@@ -104,7 +138,7 @@ namespace redd096.NodesGraph.Editor
                 fileNameTextfield.SetValueWithoutNotify(fileName);
 
                 //remove path until "Assets", because we need path relative to project folder
-                string filePathInProject = filePath.Substring(filePath.LastIndexOf("Assets"));
+                filePathInProject = filePath.Substring(filePath.LastIndexOf("Assets"));
                 saveLoad.Load(graph, filePathInProject);
             }
         }
