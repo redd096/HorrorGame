@@ -10,45 +10,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
-  m_Name: Personaggio minorenne
+  m_Name: Personaggio no timbro polizia
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 0}
-  NodeOnFalse: {fileID: 0}
+  NodeOnTrue: {fileID: 11400000, guid: 0dbf232a96c97ab4e8ba1742b2546000, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 0dbf232a96c97ab4e8ba1742b2546000, type: 2}
   Customer:
     CustomerImage:
-    - {fileID: 21300000, guid: 7a7b773fe987eec4990110019826e67a, type: 3}
-    - {fileID: 21300000, guid: e678349e9d8207a418da29ecc9de1d82, type: 3}
-    - {fileID: 21300000, guid: 97e53fc14132d244b9d49dd1867186ff, type: 3}
+    - {fileID: 21300000, guid: f220eec651f8d2645856c92bdd8a7244, type: 3}
+    - {fileID: 21300000, guid: 503e4e9f6caf7b84aa72858c4e9e5421, type: 3}
+    - {fileID: 21300000, guid: b06c1a82ee2a0b6439c83188c5619876, type: 3}
     DialogueWhenCome: 
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
     GiveIDCard: 1
     IDCard:
-      Name: Jake
-      Surname: Fury
-      CardNumber: MP85540
+      Name: Mark
+      Surname: Roze
+      CardNumber: HV03783
       BirthDate:
-        Day: 1
-        Month: 1
-        Year: 1924
+        Day: 25
+        Month: 4
+        Year: 1907
       ExpireDate:
-        Day: 31
-        Month: 10
-        Year: 1941
-      Signature: Jake Fury
-      Photo: {fileID: 21300000, guid: 7a7b773fe987eec4990110019826e67a, type: 3}
+        Day: 4
+        Month: 4
+        Year: 1940
+      Signature: Mark Roze
+      Photo: {fileID: 21300000, guid: db592224e84527848b8b3f9bb323cfba, type: 3}
     GiveRenunciationCard: 1
     RenunciationCard:
-      Name: Jake
-      Surname: Fury
-      IDCardNumber: MP85540
+      Name: Mark
+      Surname: Roze
+      IDCardNumber: HV03783
       BirthDate:
-        Day: 1
-        Month: 1
-        Year: 1924
-      DurationStayInDays: 2
-      CorrectDurationStayInDays: 2
-      Signature: Jake Fury
+        Day: 25
+        Month: 4
+        Year: 1907
+      DurationStayInDays: 3
+      CorrectDurationStayInDays: 3
+      Signature: Mark Roze
     GiveResidentCard: 0
     ResidentCard:
       Name: 
@@ -60,14 +60,14 @@ MonoBehaviour:
       Signature: 
     GivePoliceCard: 1
     PoliceCard:
-      Name: Jake
-      Surname: Fury
+      Name: Mark
+      Surname: Roze
       ValidateDate:
         Day: 4
         Month: 4
         Year: 1940
-      Signature: Jake Fury
-      HasFirstStamp: 1
+      Signature: Mark Roze
+      HasFirstStamp: 0
       HasSecondStamp: 0
     GiveAppointmentCard: 0
     AppointmentCard:

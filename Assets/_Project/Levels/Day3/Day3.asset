@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97b6abe991b99a4e91a37f02ae05116, type: 3}
   m_Name: Day3
   m_EditorClassIdentifier: 
-  FileName: Day3
   Nodes:
   - NodeName: Show Newspaper
     ID: 28c28241-506e-442d-9103-81f6337b32c6
@@ -107,4 +106,52 @@ MonoBehaviour:
       ConnectedPortIndex: 0
     GroupID: 
     Position: {x: 2122, y: 85}
+  - NodeName: Personaggio no timbro polizia
+    ID: 78c4bc35-c79c-4d73-8412-6b4c5a0e72f6
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: b13eaa03-db3c-44b3-a7a1-e5e3bef37a8d
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: b13eaa03-db3c-44b3-a7a1-e5e3bef37a8d
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2915, y: 90}
+  - NodeName: Uomo incappucciato
+    ID: b13eaa03-db3c-44b3-a7a1-e5e3bef37a8d
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: ff92c671-c3f2-4873-a6d1-a1922267ead2
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: ff92c671-c3f2-4873-a6d1-a1922267ead2
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3284, y: 88}
+  - NodeName: Sorella Destra
+    ID: ff92c671-c3f2-4873-a6d1-a1922267ead2
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 01e04aae-4a83-43e4-90c2-d6f38bd80878
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 01e04aae-4a83-43e4-90c2-d6f38bd80878
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3755, y: 93}
+  - NodeName: Personaggio ID card scaduta
+    ID: 01e04aae-4a83-43e4-90c2-d6f38bd80878
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 4096, y: 96}
   Groups: []

@@ -10,45 +10,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
-  m_Name: Personaggio minorenne
+  m_Name: Uomo incappucciato
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 0}
-  NodeOnFalse: {fileID: 0}
+  NodeOnTrue: {fileID: 11400000, guid: f89dd759d172252448be6ba935ca09cf, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: f89dd759d172252448be6ba935ca09cf, type: 2}
   Customer:
     CustomerImage:
-    - {fileID: 21300000, guid: 7a7b773fe987eec4990110019826e67a, type: 3}
-    - {fileID: 21300000, guid: e678349e9d8207a418da29ecc9de1d82, type: 3}
-    - {fileID: 21300000, guid: 97e53fc14132d244b9d49dd1867186ff, type: 3}
+    - {fileID: 21300000, guid: cd7a536d18e1aca4c8f1d2a8c187fc81, type: 3}
+    - {fileID: 21300000, guid: e6780334fa0b021449d41ad70ccaedc1, type: 3}
+    - {fileID: 21300000, guid: 8271804fc6d29644fb9dae750951f49c, type: 3}
     DialogueWhenCome: 
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
-    GiveIDCard: 1
+    GiveIDCard: 0
     IDCard:
-      Name: Jake
-      Surname: Fury
-      CardNumber: MP85540
+      Name: 
+      Surname: 
+      CardNumber: 
       BirthDate:
         Day: 1
         Month: 1
-        Year: 1924
+        Year: 1
       ExpireDate:
-        Day: 31
-        Month: 10
-        Year: 1941
-      Signature: Jake Fury
-      Photo: {fileID: 21300000, guid: 7a7b773fe987eec4990110019826e67a, type: 3}
-    GiveRenunciationCard: 1
+        Day: 1
+        Month: 1
+        Year: 1
+      Signature: 
+      Photo: {fileID: 0}
+    GiveRenunciationCard: 0
     RenunciationCard:
-      Name: Jake
-      Surname: Fury
-      IDCardNumber: MP85540
+      Name: 
+      Surname: 
+      IDCardNumber: 
       BirthDate:
         Day: 1
         Month: 1
-        Year: 1924
-      DurationStayInDays: 2
-      CorrectDurationStayInDays: 2
-      Signature: Jake Fury
+        Year: 1
+      DurationStayInDays: 0
+      CorrectDurationStayInDays: 0
+      Signature: 
     GiveResidentCard: 0
     ResidentCard:
       Name: 
@@ -58,16 +58,16 @@ MonoBehaviour:
         Floor: 0
         Room: 0
       Signature: 
-    GivePoliceCard: 1
+    GivePoliceCard: 0
     PoliceCard:
-      Name: Jake
-      Surname: Fury
+      Name: 
+      Surname: 
       ValidateDate:
-        Day: 4
-        Month: 4
-        Year: 1940
-      Signature: Jake Fury
-      HasFirstStamp: 1
+        Day: 1
+        Month: 1
+        Year: 1
+      Signature: 
+      HasFirstStamp: 0
       HasSecondStamp: 0
     GiveAppointmentCard: 0
     AppointmentCard:
@@ -80,4 +80,6 @@ MonoBehaviour:
         Year: 1
       AppointmentReason: 
       HasStamp: 0
-    ObjectsToGiveToPlayer: []
+    ObjectsToGiveToPlayer:
+    - LeftPrefab: {fileID: 0}
+      RightPrefab: {fileID: 0}

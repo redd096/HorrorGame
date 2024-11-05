@@ -10,45 +10,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
-  m_Name: Personaggio minorenne
+  m_Name: Personaggio ID card scaduta
   m_EditorClassIdentifier: 
   NodeOnTrue: {fileID: 0}
   NodeOnFalse: {fileID: 0}
   Customer:
     CustomerImage:
-    - {fileID: 21300000, guid: 7a7b773fe987eec4990110019826e67a, type: 3}
-    - {fileID: 21300000, guid: e678349e9d8207a418da29ecc9de1d82, type: 3}
-    - {fileID: 21300000, guid: 97e53fc14132d244b9d49dd1867186ff, type: 3}
+    - {fileID: 21300000, guid: 37b85e5909980c34a827e05467e40fcc, type: 3}
+    - {fileID: 21300000, guid: 2f4d070635cad82449705cefeb4cd70c, type: 3}
+    - {fileID: 21300000, guid: 2f14ee0626fb69640b2b26a6cc72400e, type: 3}
     DialogueWhenCome: 
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
     GiveIDCard: 1
     IDCard:
-      Name: Jake
-      Surname: Fury
-      CardNumber: MP85540
+      Name: Oliver
+      Surname: Black
+      CardNumber: BL86599
       BirthDate:
-        Day: 1
-        Month: 1
-        Year: 1924
+        Day: 22
+        Month: 2
+        Year: 1903
       ExpireDate:
-        Day: 31
-        Month: 10
-        Year: 1941
-      Signature: Jake Fury
-      Photo: {fileID: 21300000, guid: 7a7b773fe987eec4990110019826e67a, type: 3}
+        Day: 6
+        Month: 8
+        Year: 1939
+      Signature: Oliver Black
+      Photo: {fileID: 21300000, guid: 37b85e5909980c34a827e05467e40fcc, type: 3}
     GiveRenunciationCard: 1
     RenunciationCard:
-      Name: Jake
-      Surname: Fury
-      IDCardNumber: MP85540
+      Name: Oliver
+      Surname: Black
+      IDCardNumber: BL86599
       BirthDate:
-        Day: 1
-        Month: 1
-        Year: 1924
-      DurationStayInDays: 2
-      CorrectDurationStayInDays: 2
-      Signature: Jake Fury
+        Day: 22
+        Month: 2
+        Year: 1903
+      DurationStayInDays: 3
+      CorrectDurationStayInDays: 3
+      Signature: Oliver Black
     GiveResidentCard: 0
     ResidentCard:
       Name: 
@@ -60,13 +60,13 @@ MonoBehaviour:
       Signature: 
     GivePoliceCard: 1
     PoliceCard:
-      Name: Jake
-      Surname: Fury
+      Name: Oliver
+      Surname: Black
       ValidateDate:
         Day: 4
         Month: 4
         Year: 1940
-      Signature: Jake Fury
+      Signature: Oliver Black
       HasFirstStamp: 1
       HasSecondStamp: 0
     GiveAppointmentCard: 0
