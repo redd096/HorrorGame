@@ -7,4 +7,10 @@ public struct FRoom
 {
     public int Floor;
     public int Room;
+
+    public override string ToString()
+    {
+        //return base.ToString();
+        return Floor.ToString() + Room.ToString();
+    }
 }

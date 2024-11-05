@@ -1,8 +1,6 @@
-using UnityEngine;
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
 using redd096.NodesGraph.Editor;
-using UnityEditor.UIElements;
 #endif
 
 /// <summary>
@@ -15,7 +13,19 @@ public class ResidentCard
     public string Surname;
     public string IDCardNumber;
     public FRoom RoomNumber;
-    public Sprite Signature;
+    public string Signature;
+
+    public ResidentCard Clone()
+    {
+        return new ResidentCard()
+        {
+            Name = Name,
+            Surname = Surname,
+            IDCardNumber = IDCardNumber,
+            RoomNumber = RoomNumber,
+            Signature = Signature
+        };
+    }
 
 #if UNITY_EDITOR
     public void CreateGraph(VisualElement container)
@@ -33,15 +43,14 @@ public class ResidentCard
         roomNumberFoldout.Add(room);
 
         //signature
-        ObjectField signatureObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Signature", Signature, Vector2.one * 100, out Image signatureImage, x => Signature = x.newValue as Sprite);
+        TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue);
 
         //add to container
         container.Add(nameTextField);
         container.Add(surnameTextField);
         container.Add(cardNumberTextField);
         container.Add(roomNumberFoldout);
-        container.Add(signatureObjectField);
-        container.Add(signatureImage);
+        container.Add(signatureTextField);
     }
 #endif
 }

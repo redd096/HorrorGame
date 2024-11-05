@@ -39,43 +39,13 @@ public class Customer
             DialogueWhenPlayerSayNo = DialogueWhenPlayerSayNo,
             DialogueWhenPlayerSayYes = DialogueWhenPlayerSayYes,
             GiveIDCard = GiveIDCard,
-            IDCard = new IDCard()
-            {
-                Name = IDCard.Name,
-                Surname = IDCard.Surname,
-                CardNumber = IDCard.CardNumber,
-                DateBirth = IDCard.DateBirth,
-                Signature = IDCard.Signature,
-                Photo = IDCard.Photo,
-            },
+            IDCard = IDCard.Clone(),
             GiveRenunciationCard = GiveRenunciationCard,
-            RenunciationCard = new RenunciationCard()
-            {
-                Name = RenunciationCard.Name,
-                Surname = RenunciationCard.Surname,
-                IDCardNumber = RenunciationCard.IDCardNumber,
-                DateBirth = RenunciationCard.DateBirth,
-                Signature = RenunciationCard.Signature,
-            },
+            RenunciationCard = RenunciationCard.Clone(),
             GiveResidentCard = GiveResidentCard,
-            ResidentCard = new ResidentCard()
-            {
-                Name = ResidentCard.Name,
-                Surname = ResidentCard.Surname,
-                IDCardNumber = ResidentCard.IDCardNumber,
-                RoomNumber = ResidentCard.RoomNumber,
-                Signature = ResidentCard.Signature,
-            },
+            ResidentCard = ResidentCard.Clone(),
             GivePoliceCard = GivePoliceCard,
-            PoliceCard = new PoliceCard()
-            {
-                Name = PoliceCard.Name,
-                Surname = PoliceCard.Surname,
-                IDCardNumber = PoliceCard.IDCardNumber,
-                PoliceStamp = PoliceCard.PoliceStamp,
-                NeedSecondStamp = PoliceCard.NeedSecondStamp,
-                PoliceStamp2 = PoliceCard.PoliceStamp2
-            },
+            PoliceCard = PoliceCard.Clone(),
             ObjectsToGiveToPlayer = new List<FGiveToUser>(ObjectsToGiveToPlayer),
         };
     }

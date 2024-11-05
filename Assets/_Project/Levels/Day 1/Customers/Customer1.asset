@@ -28,7 +28,11 @@ MonoBehaviour:
         Day: 0
         Month: 0
         Year: 0
-      Signature: {fileID: 0}
+      ExpireDate:
+        Day: 0
+        Month: 0
+        Year: 0
+      Signature: 
       Photo: {fileID: 0}
     GiveRenunciationCard: 0
     RenunciationCard:
@@ -39,7 +43,8 @@ MonoBehaviour:
         Day: 0
         Month: 0
         Year: 0
-      Signature: {fileID: 0}
+      DurationStayInDays: 0
+      Signature: 
     GiveResidentCard: 0
     ResidentCard:
       Name: 
@@ -48,13 +53,16 @@ MonoBehaviour:
       RoomNumber:
         Floor: 0
         Room: 0
-      Signature: {fileID: 0}
+      Signature: 
     GivePoliceCard: 0
     PoliceCard:
       Name: 
       Surname: 
-      IDCardNumber: 
-      PoliceStamp: {fileID: 0}
-      NeedSecondStamp: 0
-      PoliceStamp2: {fileID: 0}
+      ValidateDate:
+        Day: 0
+        Month: 0
+        Year: 0
+      Signature: 
+      HasFirstStamp: 0
+      HasSecondStamp: 0
     ObjectsToGiveToPlayer: []

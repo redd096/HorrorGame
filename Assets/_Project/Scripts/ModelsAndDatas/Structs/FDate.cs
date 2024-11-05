@@ -11,8 +11,9 @@ public struct FDate
 
     public override string ToString()
     {
-        System.DateTime date = new System.DateTime(Year, Month, Day);
+        //return base.ToString();
 
+        System.DateTime date = new System.DateTime(Year, Month, Day);
         return date.ToLongDateString();
     }
 }

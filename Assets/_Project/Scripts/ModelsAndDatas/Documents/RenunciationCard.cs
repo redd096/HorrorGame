@@ -1,8 +1,6 @@
-using UnityEngine;
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
 using redd096.NodesGraph.Editor;
-using UnityEditor.UIElements;
 #endif
 
 /// <summary>
@@ -15,7 +13,21 @@ public class RenunciationCard
     public string Surname;
     public string IDCardNumber;
     public FDate DateBirth;
-    public Sprite Signature;
+    public int DurationStayInDays;
+    public string Signature;
+
+    public RenunciationCard Clone()
+    {
+        return new RenunciationCard()
+        {
+            Name = Name,
+            Surname = Surname,
+            IDCardNumber = IDCardNumber,
+            DateBirth = DateBirth,
+            DurationStayInDays = DurationStayInDays,
+            Signature = Signature
+        };
+    }
 
 #if UNITY_EDITOR
     public void CreateGraph(VisualElement container)
@@ -34,16 +46,19 @@ public class RenunciationCard
         dateBirthFoldout.Add(month);
         dateBirthFoldout.Add(year);
 
+        //duration stay
+        IntegerField durationStayIntegerField = CreateElementsUtilities.CreateIntegerField("Duration of Stay", DurationStayInDays, x => DurationStayInDays = x.newValue);
+
         //signature
-        ObjectField signatureObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Signature", Signature, Vector2.one * 100, out Image signatureImage, x => Signature = x.newValue as Sprite);
+        TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue);
 
         //add to container
         container.Add(nameTextField);
         container.Add(surnameTextField);
         container.Add(cardNumberTextField);
         container.Add(dateBirthFoldout);
-        container.Add(signatureObjectField);
-        container.Add(signatureImage);
+        container.Add(durationStayIntegerField);
+        container.Add(signatureTextField);
     }
 #endif
 }

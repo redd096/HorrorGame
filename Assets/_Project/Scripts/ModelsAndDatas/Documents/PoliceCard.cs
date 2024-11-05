@@ -1,8 +1,6 @@
-using UnityEngine;
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
 using redd096.NodesGraph.Editor;
-using UnityEditor.UIElements;
 #endif
 
 /// <summary>
@@ -13,33 +11,54 @@ public class PoliceCard
 {
     public string Name;
     public string Surname;
-    public string IDCardNumber;
-    public Sprite PoliceStamp;
-    public bool NeedSecondStamp;
-    public Sprite PoliceStamp2;
+    public FDate ValidateDate;
+    public string Signature;
+    public bool HasFirstStamp;
+    public bool HasSecondStamp;
+
+    public PoliceCard Clone()
+    {
+        return new PoliceCard()
+        {
+            Name = Name,
+            Surname = Surname,
+            ValidateDate = ValidateDate,
+            Signature = Signature,
+            HasFirstStamp = HasFirstStamp,
+            HasSecondStamp = HasSecondStamp
+        };
+    }
 
 #if UNITY_EDITOR
     public void CreateGraph(VisualElement container)
     {
-        //name, surname and cardNumber
+        //name, surname
         TextField nameTextField = CreateElementsUtilities.CreateTextField("Name", Name, x => Name = x.newValue);
         TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue);
-        TextField cardNumberTextField = CreateElementsUtilities.CreateTextField("ID Card Number", IDCardNumber, x => IDCardNumber = x.newValue);
 
-        //police stamp, toggle, and police stamp 2
-        ObjectField stampObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Police Stamp", PoliceStamp, Vector2.one * 100, out Image stampImage, x => PoliceStamp = x.newValue as Sprite);
-        Toggle needSecondStampToggle = CreateElementsUtilities.CreateToggle("Need second stamp", NeedSecondStamp, x => NeedSecondStamp = x.newValue);
-        ObjectField stamp2ObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Police Stamp 2", PoliceStamp2, Vector2.one * 100, out Image stamp2Image, x => PoliceStamp2 = x.newValue as Sprite);
+        //validate date
+        Foldout validateDateFoldout = CreateElementsUtilities.CreateFoldout("Date");
+        IntegerField day = CreateElementsUtilities.CreateIntegerField("Day", ValidateDate.Day, x => ValidateDate.Day = x.newValue);
+        IntegerField month = CreateElementsUtilities.CreateIntegerField("Month", ValidateDate.Month, x => ValidateDate.Month = x.newValue);
+        IntegerField year = CreateElementsUtilities.CreateIntegerField("Year", ValidateDate.Year, x => ValidateDate.Year = x.newValue);
+        validateDateFoldout.Add(day);
+        validateDateFoldout.Add(month);
+        validateDateFoldout.Add(year);
+
+        //signature
+        TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue);
+
+        //police stamps
+        Toggle hasFirstStampToggle = CreateElementsUtilities.CreateToggle("Has first stamp", HasFirstStamp, x => HasFirstStamp = x.newValue);
+        Toggle hasSecondStampToggle = CreateElementsUtilities.CreateToggle("Has second stamp", HasSecondStamp, x => HasSecondStamp = x.newValue);
 
         //add to container
         container.Add(nameTextField);
         container.Add(surnameTextField);
-        container.Add(cardNumberTextField);
-        container.Add(stampObjectField);
-        container.Add(stampImage);
-        container.Add(needSecondStampToggle);
-        container.Add(stamp2ObjectField);
-        container.Add(stamp2Image);
+        container.Add(validateDateFoldout);
+        container.Add(signatureTextField);
+        container.Add(hasFirstStampToggle);
+        container.Add(hasSecondStampToggle);
     }
 #endif
 }

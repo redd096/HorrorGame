@@ -12,12 +12,15 @@ public class IDCardDraggable : DocumentDraggable
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text dateBirthText;
     [SerializeField] TMP_Text expireDateText;
+    [SerializeField] TMP_Text signatureText;
 
     public void InitDocument(IDCard doc)
     {
-        customerImage.sprite = doc.Photo;
-        idNumberText.text = doc.CardNumber;
         nameText.text = doc.Name + " " + doc.Surname;
+        idNumberText.text = doc.CardNumber;
         dateBirthText.text = doc.DateBirth.ToString();
+        expireDateText.text = doc.ExpireDate.ToString();
+        signatureText.text = doc.Signature;
+        customerImage.sprite = doc.Photo;
     }
 }
