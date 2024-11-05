@@ -9,10 +9,17 @@ using PrimeTween;
 public class LevelManager : SimpleInstance<LevelManager>
 {
     [SerializeField] LevelData levelData;
+    [Space]
+    [SerializeField] CustomerBehaviour customerPrefab;
+    [SerializeField] Transform customerContainer;
+    [SerializeField] Transform customerStartPoint;
+    [SerializeField] Transform customerEndPoint;
+    [SerializeField] float customerAnimation = 2;
 
     private LevelNodeData currentNode;
     private bool currentResult;         //user allowed customer to ENTER (true) or NOT ENTER (false)
     private bool alreadySetResult;      //this is used to save result only first time. If user put other stamps, they're ignored
+    private CustomerBehaviour currentCustomer;
 
     //used by nodes SaveChoice and GetChoice
     private Dictionary<string, bool> savedChoices = new Dictionary<string, bool>();
@@ -44,11 +51,16 @@ public class LevelManager : SimpleInstance<LevelManager>
         //reset for next turn, player can set again stamp
         alreadySetResult = false;
 
-        Debug.Log("TODO - Customer must says something and leave \n" +
-            "then we have to check if the player choice is correct");
+        //start dialogue
+        Sequence sequence = Sequence.Create();
+        sequence.ChainCallback(() => Debug.Log("Start dialogue"));
 
-        //and continue with next node
-        CheckNextNode();
+        //move customer away from screen
+        sequence.Chain(Tween.Position(currentCustomer.transform, customerEndPoint.position, customerStartPoint.position, customerAnimation));
+
+        //check if player did something wrong, then move to next node
+        sequence.ChainCallback(() => Debug.Log("Check if player did something wrong"));
+        sequence.ChainCallback(CheckNextNode);
     }
 
     #region check next node
@@ -99,22 +111,55 @@ public class LevelManager : SimpleInstance<LevelManager>
 
     void CheckCustomer(Customer customer)
     {
-        Debug.Log("TODO");
-        //istanziare prefab del customer
-        //farlo muovere ballonzando fino al bancone
-        //fargli dire le sue frasi
-        //dare i documenti e gli oggetti segnati
+        //instantiate customer
+        currentCustomer = Instantiate(customerPrefab, customerContainer);
+        currentCustomer.Init(customer.CustomerImage.ToArray());
 
+        //start move customer
+        Sequence sequence = Sequence.Create();
+        sequence.Chain(Tween.Position(currentCustomer.transform, customerStartPoint.position, customerEndPoint.position, customerAnimation));
+
+        //start dialogue
+        sequence.ChainCallback(() => Debug.Log("Start dialogue"));
+
+        //then give documents
+        sequence.ChainCallback(() => CheckCustomerGiveDocuments(currentCustomer, customer));
+    }
+
+    void CheckCustomerGiveDocuments(CustomerBehaviour customerInstance, Customer customer)
+    {
+        bool giveDocuments = false;
+
+        //give documents
         if (customer.GiveIDCard)
+        {
             DeskManager.instance.InstantiateDocument(customer.IDCard);
+            giveDocuments = true;
+        }
         if (customer.GiveRenunciationCard)
+        {
             DeskManager.instance.InstantiateDocument(customer.RenunciationCard);
+            giveDocuments = true;
+        }
         if (customer.GiveResidentCard)
+        {
             DeskManager.instance.InstantiateDocument(customer.ResidentCard);
+            giveDocuments = true;
+        }
         if (customer.GivePoliceCard)
+        {
             DeskManager.instance.InstantiateDocument(customer.PoliceCard);
+            giveDocuments = true;
+        }
         if (customer.GiveAppointmentCard)
+        {
             DeskManager.instance.InstantiateDocument(customer.AppointmentCard);
+            giveDocuments = true;
+        }
+
+        //if don't give documents, move to next node
+        if (giveDocuments == false)
+            OnGiveBackAllDocuments();
     }
 
     void CheckSaveChoice(SaveChoice saveChoice)

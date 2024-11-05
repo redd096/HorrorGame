@@ -28,5 +28,5 @@ Add new document:
       - under the region "instantiate document" create a function to instantiate and initialize your prefabs
 
    b. open LevelManager
-      - in CheckCustomer check if the bool created at point 2.a. is true
+      - in CheckCustomerGiveDocuments check if the bool created at point 2.a. is true
       - if true, call your new function created at point 7.a.

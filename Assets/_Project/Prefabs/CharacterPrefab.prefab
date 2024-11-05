@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4458883512395514032}
+  - component: {fileID: 189759864296369524}
   m_Layer: 5
   m_Name: CharacterPrefab
   m_TagString: Untagged
@@ -36,6 +37,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 749, y: 486}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &189759864296369524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7518278647519117260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c028063cb2e64346b8abf7526862635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerImage: {fileID: 7932902863486453871}
+  changeSpritesSpeed: 0.1
+  rotationTransform: {fileID: 5843945797597211886}
+  rotationIntensity: 4
+  rotationSpeed: 0.5
 --- !u!1 &8211977226839356842
 GameObject:
   m_ObjectHideFlags: 0
