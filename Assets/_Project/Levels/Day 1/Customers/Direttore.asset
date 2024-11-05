@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Direttore
   m_EditorClassIdentifier: 
   NodeOnTrue: {fileID: 11400000, guid: bdc23c02e4f78454d95ed3f0000a07c8, type: 2}
-  NodeOnFalse: {fileID: 0}
+  NodeOnFalse: {fileID: 11400000, guid: bdc23c02e4f78454d95ed3f0000a07c8, type: 2}
   Customer:
     CustomerImage:
     - {fileID: 21300000, guid: 8bf64ffa0b737da40894c2fd2aa95e31, type: 3}

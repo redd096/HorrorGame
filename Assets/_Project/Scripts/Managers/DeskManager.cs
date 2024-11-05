@@ -34,10 +34,11 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] InteractableOnTheLeft appointmentCardLeft;
     [SerializeField] AppointmentCardDraggable appointmentCardRight;
 
-    //counter of documents to give back to client or interactables to put back on desk
-    private int documentsToGiveBack;
-    private int interactablesToPutBack;
+    //list of documents to give back to customer, or interactables to put back on desk
+    private List<InteractableOnTheRight> documentsToGiveBack = new List<InteractableOnTheRight>();
+    private List<InteractableOnTheRight> interactablesToPutBack = new List<InteractableOnTheRight>();
 
+    //list of every interactable in scene (both documents and interactables. There are also objects to not give back, like customers' gifts)
     private List<InteractableOnTheRight> interactablesInScene = new List<InteractableOnTheRight>();
 
     public List<InteractableOnTheRight> InteractablesInScene => interactablesInScene;
@@ -115,7 +116,7 @@ public class DeskManager : SimpleInstance<DeskManager>
 
         //update documents counter
         if (isDocumentToGiveBack)
-            documentsToGiveBack++;
+            documentsToGiveBack.Add(docDraggable);
         
         //set parent
         Vector2 posLeft = docInScene.transform.position;
@@ -148,17 +149,20 @@ public class DeskManager : SimpleInstance<DeskManager>
             //update documents counter and check to hide area
             if (isDocumentToGiveBack)
             {
-                documentsToGiveBack--;
-                if (documentsToGiveBack <= 0)
+                documentsToGiveBack.Remove(docDraggable);
+                if (documentsToGiveBack.Count <= 0)
+                {
                     deskWindowsManager.ShowDocumentsArea(false);
+                    LevelManager.instance.OnGiveBackAllDocuments();
+                }
             }
             
             docInScene.SetInteractable(false);
             docDraggable.SetInteractable(false);
         
-            //move out of the desk
-            Tween.Position(docInScene.transform, leftStartPoint.position, putAnimationTime);
-            Tween.Position(docDraggable.transform, rightStartTopPoint.position, putAnimationTime);
+            //move out of the desk and destroy
+            Tween.Position(docInScene.transform, leftStartPoint.position, putAnimationTime).OnComplete(() => Destroy(docInScene.gameObject));
+            Tween.Position(docDraggable.transform, rightStartTopPoint.position, putAnimationTime).OnComplete(() => Destroy(docDraggable.gameObject));
 
             return true;
         }
@@ -176,8 +180,8 @@ public class DeskManager : SimpleInstance<DeskManager>
         //update interactables counter and show area
         if (isInteractableToPutBack)
         {
-            interactablesToPutBack++;
-            if (interactablesToPutBack > 0)
+            interactablesToPutBack.Add(instantiatedInScene);
+            if (interactablesToPutBack.Count > 0)
                 deskWindowsManager.ShowInteractablesArea(true);
         }
         
@@ -213,11 +217,10 @@ public class DeskManager : SimpleInstance<DeskManager>
             //update interactables counter and check to hide area
             if (isInteractableToPutBack)
             {
-                interactablesToPutBack--;
-                if (interactablesToPutBack <= 0)
+                interactablesToPutBack.Remove(instantiatedInScene);
+                if (interactablesToPutBack.Count <= 0)
                 {
                     deskWindowsManager.ShowInteractablesArea(false);
-                    LevelManager.instance.OnGiveBackAllDocuments();
                 }
             }
             
@@ -272,15 +275,15 @@ public class DeskManager : SimpleInstance<DeskManager>
             //add to documents to give back
             if (nowIsGiveBackToClient)
             {
-                documentsToGiveBack++;
+                documentsToGiveBack.Add(docDraggable);
                 if (automaticallyShowOrHideDocumentsArea)
                     deskWindowsManager.ShowDocumentsArea(true);
             }
             //remove from documents to give back
             else
             {
-                documentsToGiveBack--;
-                if (automaticallyShowOrHideDocumentsArea && documentsToGiveBack <= 0)
+                documentsToGiveBack.Remove(docDraggable);
+                if (automaticallyShowOrHideDocumentsArea && documentsToGiveBack.Count <= 0)
                     deskWindowsManager.ShowDocumentsArea(false);
             }
         }
