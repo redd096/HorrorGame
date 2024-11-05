@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8314ae87c08f89b42bc07741b1fd0b86, type: 3}
   m_Name: Save Player Choice
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 0}
-  NodeOnFalse: {fileID: 0}
+  NodeOnTrue: {fileID: 11400000, guid: 3704fdd6f355c4e409306e403d1c8d8d, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 3704fdd6f355c4e409306e403d1c8d8d, type: 2}
   SaveChoice:
-    VariableName: Barbone
+    VariableName: Sorella Destra

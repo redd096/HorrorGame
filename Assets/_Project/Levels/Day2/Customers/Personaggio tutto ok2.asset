@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
+  m_Name: Personaggio tutto ok2
+  m_EditorClassIdentifier: 
+  NodeOnTrue: {fileID: 0}
+  NodeOnFalse: {fileID: 0}
+  Customer:
+    CustomerImage:
+    - {fileID: 21300000, guid: f5ee0a37d832be84daf5f2ca689b34b0, type: 3}
+    - {fileID: 21300000, guid: 3278f88f23979f44e8319a6f0e4435bd, type: 3}
+    - {fileID: 21300000, guid: 1a9c0b87a85026645b69d66b6d53df10, type: 3}
+    DialogueWhenCome: 
+    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayYes: 
+    GiveIDCard: 1
+    IDCard:
+      Name: Bob
+      Surname: Float
+      CardNumber: BM70362
+      BirthDate:
+        Day: 7
+        Month: 9
+        Year: 1907
+      ExpireDate:
+        Day: 27
+        Month: 9
+        Year: 1942
+      Signature: Bob Float
+      Photo: {fileID: 21300000, guid: f5ee0a37d832be84daf5f2ca689b34b0, type: 3}
+    GiveRenunciationCard: 1
+    RenunciationCard:
+      Name: Bob
+      Surname: Float
+      IDCardNumber: BM70362
+      BirthDate:
+        Day: 7
+        Month: 9
+        Year: 1907
+      DurationStayInDays: 2
+      CorrectDurationStayInDays: 2
+      Signature: Bob Float
+    GiveResidentCard: 0
+    ResidentCard:
+      Name: 
+      Surname: 
+      IDCardNumber: 
+      RoomNumber:
+        Floor: 0
+        Room: 0
+      Signature: 
+    GivePoliceCard: 0
+    PoliceCard:
+      Name: 
+      Surname: 
+      ValidateDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      Signature: 
+      HasFirstStamp: 0
+      HasSecondStamp: 0
+    GiveAppointmentCard: 0
+    AppointmentCard:
+      Name: 
+      Surname: 
+      Profession: 
+      AppointmentDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      AppointmentReason: 
+      HasStamp: 0
+    ObjectsToGiveToPlayer: []

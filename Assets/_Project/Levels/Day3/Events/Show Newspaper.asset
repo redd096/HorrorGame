@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37caf3c0597af0f448a3f1ef246d5de2, type: 3}
   m_Name: Show Newspaper
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: 6903dc4d79026a849bd2fc7385b5cc58, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: 6903dc4d79026a849bd2fc7385b5cc58, type: 2}
+  NodeOnTrue: {fileID: 11400000, guid: f5b5d6d4644a75e4ca89d20f2c794889, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: f5b5d6d4644a75e4ca89d20f2c794889, type: 2}
   EventNewspaper:
-    NewspaperFileID: 626908778
-    NewspaperName: Day 1
+    NewspaperFileID: 1912561359
+    NewspaperName: Day 3

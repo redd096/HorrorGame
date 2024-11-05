@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
+  m_Name: Marito
+  m_EditorClassIdentifier: 
+  NodeOnTrue: {fileID: 11400000, guid: cd3d91fad2528b84c84c573b74578200, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: cd3d91fad2528b84c84c573b74578200, type: 2}
+  Customer:
+    CustomerImage:
+    - {fileID: 21300000, guid: 66cdae69ef65cb846875a0277103db66, type: 3}
+    - {fileID: 21300000, guid: 2f110cd3ec3f53a4e926af817b4eaccc, type: 3}
+    - {fileID: 21300000, guid: cbfa0ff2a97a12d4488ac8aabc026efa, type: 3}
+    DialogueWhenCome: 
+    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayYes: 
+    GiveIDCard: 1
+    IDCard:
+      Name: Martin
+      Surname: Clint
+      CardNumber: JD27057
+      BirthDate:
+        Day: 13
+        Month: 2
+        Year: 1895
+      ExpireDate:
+        Day: 26
+        Month: 5
+        Year: 1940
+      Signature: Martin Clint
+      Photo: {fileID: 21300000, guid: 66cdae69ef65cb846875a0277103db66, type: 3}
+    GiveRenunciationCard: 0
+    RenunciationCard:
+      Name: 
+      Surname: 
+      IDCardNumber: 
+      BirthDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      DurationStayInDays: 0
+      CorrectDurationStayInDays: 0
+      Signature: 
+    GiveResidentCard: 1
+    ResidentCard:
+      Name: Martin
+      Surname: Clint
+      IDCardNumber: JD27057
+      RoomNumber:
+        Floor: 1
+        Room: 15
+      Signature: Martin Clint
+    GivePoliceCard: 1
+    PoliceCard:
+      Name: Martin
+      Surname: Clint
+      ValidateDate:
+        Day: 4
+        Month: 4
+        Year: 1940
+      Signature: Martin Clint
+      HasFirstStamp: 1
+      HasSecondStamp: 0
+    GiveAppointmentCard: 0
+    AppointmentCard:
+      Name: 
+      Surname: 
+      Profession: 
+      AppointmentDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      AppointmentReason: 
+      HasStamp: 0
+    ObjectsToGiveToPlayer: []

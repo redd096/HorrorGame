@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76660b66ea9db70468e2d0f091f69b1f, type: 3}
   m_Name: Get Player Choice
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: e5afadcdb1886e349b5a0e65485c5958, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: 8f21fc3c1f6575c40bbf550d2ccf4469, type: 2}
+  NodeOnTrue: {fileID: 0}
+  NodeOnFalse: {fileID: 0}
   GetChoice:
-    VariableName: Hai fatto entrare Customer(Clone)
+    VariableName: Barbone

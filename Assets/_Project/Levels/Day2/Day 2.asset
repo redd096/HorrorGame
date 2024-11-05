@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b6abe991b99a4e91a37f02ae05116, type: 3}
+  m_Name: Day 2
+  m_EditorClassIdentifier: 
+  FileName: Day 2
+  Nodes:
+  - NodeName: Show Newspaper
+    ID: c0b2f699-5106-412e-88dd-b485e5cd728a
+    NodeType: EventNewspaperNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: b5485cf6-290b-4b34-a207-c58e4f1f53b6
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 216, y: 348}
+  - NodeName: Direttore
+    ID: b5485cf6-290b-4b34-a207-c58e4f1f53b6
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 0237e4c6-5d69-497f-ae3b-301058792da5
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 0237e4c6-5d69-497f-ae3b-301058792da5
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 567, y: 307}
+  - NodeName: Moglie
+    ID: 0237e4c6-5d69-497f-ae3b-301058792da5
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 1746f6ba-b70a-4769-9c0f-9f801421e963
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 1746f6ba-b70a-4769-9c0f-9f801421e963
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 861, y: 308}
+  - NodeName: Personaggio tutto ok
+    ID: 1746f6ba-b70a-4769-9c0f-9f801421e963
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 497176fe-84a8-4a06-9681-8ed277094b48
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 497176fe-84a8-4a06-9681-8ed277094b48
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 1182, y: 304}
+  - NodeName: Idraulico fantasma
+    ID: 497176fe-84a8-4a06-9681-8ed277094b48
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 5c00099e-f90f-4990-834c-562927452b53
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 5c00099e-f90f-4990-834c-562927452b53
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 1541, y: 306}
+  - NodeName: Customer
+    ID: 5c00099e-f90f-4990-834c-562927452b53
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: cacec997-ad46-4be8-96d0-e87e661b8447
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: cacec997-ad46-4be8-96d0-e87e661b8447
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 1878, y: 304}
+  - NodeName: Sorella Destra
+    ID: cacec997-ad46-4be8-96d0-e87e661b8447
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 572a0adc-3a64-4982-9504-e86b4f43a1f8
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 572a0adc-3a64-4982-9504-e86b4f43a1f8
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2244, y: 305}
+  - NodeName: Save Player Choice
+    ID: 572a0adc-3a64-4982-9504-e86b4f43a1f8
+    NodeType: SaveChoiceNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: cab60ad1-9257-4319-a55f-30eb2ab719e1
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2564, y: 304}
+  - NodeName: Personaggio tutto ok2
+    ID: cab60ad1-9257-4319-a55f-30eb2ab719e1
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2833, y: 302}
+  - NodeName: Get Player Choice
+    ID: 4beaf2c2-d50e-40f4-8e3a-f74ce072f905
+    NodeType: GetChoiceNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: b0859ac1-dbe4-4b64-8be6-e0212261be24
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3488, y: 300}
+  - NodeName: Sorella Destra(Clone)
+    ID: b0859ac1-dbe4-4b64-8be6-e0212261be24
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3826, y: 298}
+  Groups: []

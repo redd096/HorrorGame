@@ -22,8 +22,8 @@ MonoBehaviour:
       ConnectedNodeID: 55811d74-52a2-468e-bd00-0714d473a6b8
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 218.4, y: 56.000004}
-  - NodeName: Customer
+    Position: {x: 218, y: 56}
+  - NodeName: Direttore
     ID: 55811d74-52a2-468e-bd00-0714d473a6b8
     NodeType: CustomerNode
     OutputsData:
@@ -31,89 +31,89 @@ MonoBehaviour:
       ConnectedNodeID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
       ConnectedPortIndex: 0
     - OutputType: System.Boolean
-      ConnectedNodeID: e2d0a376-4c38-4371-94e0-259704d52d93
+      ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 644, y: 76}
-  - NodeName: Customer1
+    Position: {x: 623, y: 57}
+  - NodeName: Customer tutto ok1
     ID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
     NodeType: CustomerNode
     OutputsData:
     - OutputType: System.Boolean
-      ConnectedNodeID: 
+      ConnectedNodeID: e786def7-802d-404d-8063-c7375f811368
       ConnectedPortIndex: 0
     - OutputType: System.Boolean
       ConnectedNodeID: e786def7-802d-404d-8063-c7375f811368
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1193.6, y: 52.8}
-  - NodeName: Customer2
-    ID: e2d0a376-4c38-4371-94e0-259704d52d93
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 1162.4, y: 379.2}
-  - NodeName: Customer(Clone)
+    Position: {x: 947, y: 57}
+  - NodeName: Customer Minorenne
     ID: e786def7-802d-404d-8063-c7375f811368
     NodeType: CustomerNode
     OutputsData:
     - OutputType: System.Boolean
-      ConnectedNodeID: 5f963de2-07a3-4fe1-acb5-650c7cd85fb5
+      ConnectedNodeID: 5755a75b-323a-497f-9ff5-f0bc67e8ae6b
       ConnectedPortIndex: 0
     - OutputType: System.Boolean
-      ConnectedNodeID: 5f963de2-07a3-4fe1-acb5-650c7cd85fb5
+      ConnectedNodeID: 5755a75b-323a-497f-9ff5-f0bc67e8ae6b
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1484, y: 150.4}
+    Position: {x: 1257, y: 58}
+  - NodeName: Customer tutto ok2
+    ID: 5755a75b-323a-497f-9ff5-f0bc67e8ae6b
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 01ee3281-5132-41a2-beef-66a1825e464a
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 01ee3281-5132-41a2-beef-66a1825e464a
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 1555, y: 61}
+  - NodeName: Barbone
+    ID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 47b6ee3a-7f9a-4c2a-bb78-3fb1c58c2933
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 47b6ee3a-7f9a-4c2a-bb78-3fb1c58c2933
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2386, y: 70}
   - NodeName: Save Player Choice
-    ID: 5f963de2-07a3-4fe1-acb5-650c7cd85fb5
+    ID: 47b6ee3a-7f9a-4c2a-bb78-3fb1c58c2933
     NodeType: SaveChoiceNode
     OutputsData:
     - OutputType: System.Boolean
-      ConnectedNodeID: 636f577e-8b0d-4573-903c-137e0ed616dd
+      ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1835.2, y: 150.4}
-  - NodeName: Get Player Choice
-    ID: 636f577e-8b0d-4573-903c-137e0ed616dd
-    NodeType: GetChoiceNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 6f3d3576-fdfa-4b88-bb07-459c74fb1294
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 92bd9025-1726-4cb9-ba90-87873cd299c7
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 2267.2, y: 150.4}
-  - NodeName: Customer se hai fatto entrare Customer(Clone)
-    ID: 6f3d3576-fdfa-4b88-bb07-459c74fb1294
+    Position: {x: 2686, y: 75}
+  - NodeName: Bambina fantasma
+    ID: 0cfde150-ff21-4e32-852a-9b5ba13747aa
     NodeType: CustomerNode
     OutputsData:
     - OutputType: System.Boolean
-      ConnectedNodeID: 
+      ConnectedNodeID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
       ConnectedPortIndex: 0
     - OutputType: System.Boolean
-      ConnectedNodeID: 
+      ConnectedNodeID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2807.2, y: 15.200001}
-  - NodeName: Customer se NON hai fatto entrare Customer(Clone)
-    ID: 92bd9025-1726-4cb9-ba90-87873cd299c7
+    Position: {x: 2126, y: 67}
+  - NodeName: Residente Cugino1
+    ID: 01ee3281-5132-41a2-beef-66a1825e464a
     NodeType: CustomerNode
     OutputsData:
     - OutputType: System.Boolean
-      ConnectedNodeID: 
+      ConnectedNodeID: 0cfde150-ff21-4e32-852a-9b5ba13747aa
       ConnectedPortIndex: 0
     - OutputType: System.Boolean
-      ConnectedNodeID: 
+      ConnectedNodeID: 0cfde150-ff21-4e32-852a-9b5ba13747aa
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2739.2, y: 476.80002}
+    Position: {x: 1822, y: 59}
   Groups: []

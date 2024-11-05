@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b73a9f9186a956449f31642fffabc85, type: 3}
   m_Name: Cousin1
   m_EditorClassIdentifier: 
-  Photo: {fileID: 0}
-  Name: Cugino
-  Surname: Uno
-  DateBirth: 13/05/1994
-  RoomNumber: F1-02
+  Photo: {fileID: 21300000, guid: 8cd1c8e2903ec19488f63da2111396d9, type: 3}
+  Name: John Luke
+  Surname: Agostin
+  IDCardNumber: AR00735
+  RoomNumber:
+    Floor: 5
+    Room: 10

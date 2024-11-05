@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b73a9f9186a956449f31642fffabc85, type: 3}
   m_Name: Wife
   m_EditorClassIdentifier: 
-  Photo: {fileID: 0}
-  Name: 
-  Surname: 
-  DateBirth: 
-  RoomNumber: 
+  Photo: {fileID: 21300000, guid: 4bfb7f34b2d8d4546a837bb71259598b, type: 3}
+  Name: Barbara
+  Surname: Clint
+  IDCardNumber: XZ88391
+  RoomNumber:
+    Floor: 1
+    Room: 15
