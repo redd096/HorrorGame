@@ -107,6 +107,14 @@ public class LevelManager : SimpleInstance<LevelManager>
 
         if (customer.GiveIDCard)
             DeskManager.instance.InstantiateDocument(customer.IDCard);
+        if (customer.GiveRenunciationCard)
+            DeskManager.instance.InstantiateDocument(customer.RenunciationCard);
+        if (customer.GiveResidentCard)
+            DeskManager.instance.InstantiateDocument(customer.ResidentCard);
+        if (customer.GivePoliceCard)
+            DeskManager.instance.InstantiateDocument(customer.PoliceCard);
+        if (customer.GiveAppointmentCard)
+            DeskManager.instance.InstantiateDocument(customer.AppointmentCard);
     }
 
     void CheckSaveChoice(SaveChoice saveChoice)

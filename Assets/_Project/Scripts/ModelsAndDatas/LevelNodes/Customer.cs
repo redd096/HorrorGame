@@ -26,6 +26,9 @@ public class Customer
     public bool GivePoliceCard;
     public PoliceCard PoliceCard = new PoliceCard();
 
+    public bool GiveAppointmentCard;
+    public AppointmentCard AppointmentCard = new AppointmentCard();
+
     [Space]
 
     public List<FGiveToUser> ObjectsToGiveToPlayer = new List<FGiveToUser>();
@@ -46,6 +49,8 @@ public class Customer
             ResidentCard = ResidentCard.Clone(),
             GivePoliceCard = GivePoliceCard,
             PoliceCard = PoliceCard.Clone(),
+            GiveAppointmentCard = GiveAppointmentCard,
+            AppointmentCard = AppointmentCard.Clone(),
             ObjectsToGiveToPlayer = new List<FGiveToUser>(ObjectsToGiveToPlayer),
         };
     }

@@ -38,7 +38,8 @@ public class CustomerNode : GraphNode
         CreateIDCard();
         CreateRenunciationCard();
         CreateResidentCard();
-        CreatePoliceDocument();
+        CreatePoliceCard();
+        CreateAppointmentCard();
 
         CreateObjectsToGiveToPlayer();
     }
@@ -121,11 +122,18 @@ public class CustomerNode : GraphNode
         Customer.ResidentCard.CreateGraph(container);
     }
 
-    void CreatePoliceDocument()
+    void CreatePoliceCard()
     {
         //create toggle and generate Graph inside container
         CreateGiveDocumentToggle("Police Card", Customer.GivePoliceCard, out VisualElement container, x => Customer.GivePoliceCard = x.newValue);
         Customer.PoliceCard.CreateGraph(container);
+    }
+
+    void CreateAppointmentCard()
+    {
+        //create toggle and generate Graph inside container
+        CreateGiveDocumentToggle("Appointment Card", Customer.GiveAppointmentCard, out VisualElement container, x => Customer.GiveAppointmentCard = x.newValue);
+        Customer.AppointmentCard.CreateGraph(container);
     }
 
     #endregion

@@ -31,6 +31,8 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] ResidentCardDraggable residentCardRight;
     [SerializeField] InteractableOnTheLeft policeCardLeft;
     [SerializeField] PoliceCardDraggable policeCardRight;
+    [SerializeField] InteractableOnTheLeft appointmentCardLeft;
+    [SerializeField] AppointmentCardDraggable appointmentCardRight;
 
     //counter of documents to give back to client or interactables to put back on desk
     private int documentsToGiveBack;
@@ -75,6 +77,15 @@ public class DeskManager : SimpleInstance<DeskManager>
         //instantiate and initialize, then add in scene
         InstantiateGenericDocument(policeCardLeft, policeCardRight, out var left, out var right);
         ((PoliceCardDraggable)right).InitDocument(doc);
+
+        AddDocument(left, right);
+    }
+
+    public void InstantiateDocument(AppointmentCard doc)
+    {
+        //instantiate and initialize, then add in scene
+        InstantiateGenericDocument(appointmentCardLeft, appointmentCardRight, out var left, out var right);
+        ((AppointmentCardDraggable)right).InitDocument(doc);
 
         AddDocument(left, right);
     }
