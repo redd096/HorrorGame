@@ -28,14 +28,14 @@ MonoBehaviour:
       Surname: Hudson
       CardNumber: LH88302
       BirthDate:
-        Day: 1
-        Month: 1
-        Year: 1
+        Day: 6
+        Month: 2
+        Year: 1883
       ExpireDate:
-        Day: 1
-        Month: 1
-        Year: 1
-      Signature: 
+        Day: 22
+        Month: 7
+        Year: 1944
+      Signature: Martah Hudson
       Photo: {fileID: 21300000, guid: f004afc9d42691e4a904f118f3e399d1, type: 3}
     GiveRenunciationCard: 0
     RenunciationCard:

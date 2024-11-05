@@ -28,14 +28,14 @@ MonoBehaviour:
       Surname: Clint
       CardNumber: XZ88391
       BirthDate:
-        Day: 1
-        Month: 1
-        Year: 1
+        Day: 28
+        Month: 8
+        Year: 1898
       ExpireDate:
-        Day: 1
-        Month: 1
-        Year: 1
-      Signature: 
+        Day: 4
+        Month: 9
+        Year: 1941
+      Signature: Barbara Clint
       Photo: {fileID: 21300000, guid: 4bfb7f34b2d8d4546a837bb71259598b, type: 3}
     GiveRenunciationCard: 0
     RenunciationCard:
