@@ -1,6 +1,5 @@
 #if UNITY_EDITOR
 using System.IO;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -12,16 +11,21 @@ namespace redd096.NodesGraph.Editor
     /// </summary>
     public class NodesGraphToolbar : VisualElement
     {
-        protected virtual bool automaticSave => true;
+        //automatic save
+        protected AutomaticSaveTask automaticSaveTask;
+        protected virtual bool automaticSaveEnabled => true;
         protected virtual int automaticSaveTimer => 300;
 
+        //init
         protected NodesGraphView graph;
         protected SaveLoadGraph saveLoad;
         protected Toolbar toolbar;
 
+        //ui elements
         protected TextField fileNameTextfield;
         protected Button minimapButton;
 
+        //file
         protected string fileName;
         protected string filePathInProject;
 
@@ -65,18 +69,6 @@ namespace redd096.NodesGraph.Editor
             toolbar.Add(element);
         }
 
-        protected async void SaveAutomatically(string prevFileName, string prevFilePathInProject)
-        {
-            //wait few seconds
-            await Task.Delay(automaticSaveTimer * 1000);
-
-            //check if file name and path are still the same and save
-            if (fileName == prevFileName && filePathInProject == prevFilePathInProject)
-            {
-                Save();
-            }
-        }
-
         #region Save API
 
         protected virtual void Save()
@@ -88,8 +80,22 @@ namespace redd096.NodesGraph.Editor
                 saveLoad.Save(graph, filePathInProject);
 
                 //and start save automatically
-                if (automaticSave)
-                    SaveAutomatically(fileName, filePathInProject);
+                if (automaticSaveEnabled)
+                {
+                    if (automaticSaveTask != null)
+                        automaticSaveTask.Stop();
+                    automaticSaveTask = new AutomaticSaveTask(automaticSaveTimer, fileName, filePathInProject, AutomaticSave);
+                }
+            }
+        }
+
+        protected virtual void AutomaticSave(string prevFileName, string prevFilePathInProject)
+        {
+            //check if file name and path are still the same
+            if (fileName == prevFileName && filePathInProject == prevFilePathInProject)
+            {
+                //and save
+                Save();
             }
         }
 
@@ -140,6 +146,14 @@ namespace redd096.NodesGraph.Editor
                 //remove path until "Assets", because we need path relative to project folder
                 filePathInProject = filePath.Substring(filePath.LastIndexOf("Assets"));
                 saveLoad.Load(graph, filePathInProject);
+
+                //and start save automatically
+                if (automaticSaveEnabled)
+                {
+                    if (automaticSaveTask != null)
+                        automaticSaveTask.Stop();
+                    automaticSaveTask = new AutomaticSaveTask(automaticSaveTimer, fileName, filePathInProject, AutomaticSave);
+                }
             }
         }
 
