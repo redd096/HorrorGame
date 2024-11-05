@@ -79,8 +79,6 @@ namespace redd096.NodesGraph.Editor
                 //save
                 saveLoad.Save(graph, filePathInProject);
 
-                UnityEngine.Debug.Log("HA SALVATO MOROSITA " + System.DateTime.Now.ToString());
-
                 //and start save automatically
                 if (automaticSaveEnabled)
                 {
@@ -96,6 +94,8 @@ namespace redd096.NodesGraph.Editor
             //check if file name and path are still the same
             if (fileName == prevFileName && filePathInProject == prevFilePathInProject)
             {
+                UnityEngine.Debug.Log("HA SALVATO MOROSITA! " + System.DateTime.Now.ToString());
+
                 //and save
                 Save();
             }

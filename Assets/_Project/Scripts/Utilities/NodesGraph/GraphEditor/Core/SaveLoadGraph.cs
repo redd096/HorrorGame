@@ -237,7 +237,7 @@ namespace redd096.NodesGraph.Editor
             }
 
             //set values
-            asset.Initialize(fileName, nodes, groups);
+            asset.Initialize(nodes, groups);
 
             //set dirty in editor
             EditorUtility.SetDirty(asset);
