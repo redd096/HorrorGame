@@ -14,7 +14,7 @@ public class LevelManager : SimpleInstance<LevelManager>
     [SerializeField] Transform customerContainer;
     [SerializeField] Transform customerStartPoint;
     [SerializeField] Transform customerEndPoint;
-    [SerializeField] float customerAnimation = 2;
+    [SerializeField] float customerAnimation = 3;
 
     private LevelNodeData currentNode;
     private bool currentResult;         //user allowed customer to ENTER (true) or NOT ENTER (false)
@@ -51,16 +51,27 @@ public class LevelManager : SimpleInstance<LevelManager>
         //reset for next turn, player can set again stamp
         alreadySetResult = false;
 
-        //start dialogue
+        //start end dialogue
         Sequence sequence = Sequence.Create();
         sequence.ChainCallback(() => Debug.Log("Start dialogue"));
+        sequence.ChainDelay(2);
 
         //move customer away from screen
-        sequence.Chain(Tween.Position(currentCustomer.transform, customerEndPoint.position, customerStartPoint.position, customerAnimation));
+        sequence.ChainCallback(currentCustomer.StartWalk);
+        sequence.Chain(MoveCustomer(false));
+        sequence.ChainCallback(() => Destroy(currentCustomer.gameObject));
 
         //check if player did something wrong, then move to next node
         sequence.ChainCallback(() => Debug.Log("Check if player did something wrong"));
         sequence.ChainCallback(CheckNextNode);
+    }
+
+    private Tween MoveCustomer(bool enterInScene)
+    {
+        //move customer (enter in scene, or is leaving the scene)
+        Transform startPoint = enterInScene ? customerStartPoint : customerEndPoint;
+        Transform endPoint = enterInScene ? customerEndPoint : customerStartPoint;
+        return Tween.Position(currentCustomer.transform, startPoint.position, endPoint.position, customerAnimation, Ease.InOutSine);
     }
 
     #region check next node
@@ -117,49 +128,69 @@ public class LevelManager : SimpleInstance<LevelManager>
 
         //start move customer
         Sequence sequence = Sequence.Create();
-        sequence.Chain(Tween.Position(currentCustomer.transform, customerStartPoint.position, customerEndPoint.position, customerAnimation));
+        sequence.ChainCallback(currentCustomer.StartWalk);
+        sequence.Chain(MoveCustomer(true));
 
         //start dialogue
+        sequence.ChainCallback(currentCustomer.StopWalk);
         sequence.ChainCallback(() => Debug.Log("Start dialogue"));
+        sequence.ChainDelay(2);
 
         //then give documents
-        sequence.ChainCallback(() => CheckCustomerGiveDocuments(currentCustomer, customer));
+        sequence.ChainCallback(() => CheckCustomerGiveDocuments(customer));
     }
 
-    void CheckCustomerGiveDocuments(CustomerBehaviour customerInstance, Customer customer)
+    void CheckCustomerGiveDocuments(Customer customer)
     {
         bool giveDocuments = false;
+
+        Sequence sequence = Sequence.Create();
 
         //give documents
         if (customer.GiveIDCard)
         {
-            DeskManager.instance.InstantiateDocument(customer.IDCard);
+            sequence.ChainCallback(() => DeskManager.instance.InstantiateDocument(customer.IDCard));
+            sequence.ChainDelay(0.2f);
             giveDocuments = true;
         }
         if (customer.GiveRenunciationCard)
         {
-            DeskManager.instance.InstantiateDocument(customer.RenunciationCard);
+            sequence.ChainCallback(() => DeskManager.instance.InstantiateDocument(customer.RenunciationCard));
+            sequence.ChainDelay(0.2f);
             giveDocuments = true;
         }
         if (customer.GiveResidentCard)
         {
-            DeskManager.instance.InstantiateDocument(customer.ResidentCard);
+            sequence.ChainCallback(() => DeskManager.instance.InstantiateDocument(customer.ResidentCard));
+            sequence.ChainDelay(0.2f);
             giveDocuments = true;
         }
         if (customer.GivePoliceCard)
         {
-            DeskManager.instance.InstantiateDocument(customer.PoliceCard);
+            sequence.ChainCallback(() => DeskManager.instance.InstantiateDocument(customer.PoliceCard));
+            sequence.ChainDelay(0.2f);
             giveDocuments = true;
         }
         if (customer.GiveAppointmentCard)
         {
-            DeskManager.instance.InstantiateDocument(customer.AppointmentCard);
+            sequence.ChainCallback(() => DeskManager.instance.InstantiateDocument(customer.AppointmentCard));
+            sequence.ChainDelay(0.2f);
             giveDocuments = true;
         }
 
-        //if don't give documents, move to next node
+        //if don't give documents
         if (giveDocuments == false)
-            OnGiveBackAllDocuments();
+        {
+            //move customer away from screen
+            sequence.ChainCallback(currentCustomer.StartWalk);
+            sequence.Chain(MoveCustomer(false));
+            sequence.ChainCallback(() =>
+            {
+                //and move to next node
+                Destroy(currentCustomer.gameObject);
+                CheckNextNode();
+            });
+        }
     }
 
     void CheckSaveChoice(SaveChoice saveChoice)

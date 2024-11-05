@@ -8,6 +8,7 @@ using PrimeTween;
 public class LevelEventsManager : SimpleInstance<LevelEventsManager>
 {
     [SerializeField] CanvasGroup newspapersContainer;
+    [SerializeField] float durationNewspaper = 3;
 
     public Transform NewspapersContainer => newspapersContainer.transform;
 
@@ -32,7 +33,7 @@ public class LevelEventsManager : SimpleInstance<LevelEventsManager>
 
         //then wait few seconds
         Sequence sequence = Sequence.Create();
-        sequence.ChainDelay(3);
+        sequence.ChainDelay(durationNewspaper);
 
         //fade out
         sequence.Chain(Tween.Alpha(newspapersContainer, 0, duration: 1f));
