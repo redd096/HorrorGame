@@ -10,33 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
-  m_Name: Idraulico fantasma
+  m_Name: Cugino2
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: 65715fa991d3d2546b989d9d4467a32b, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: 65715fa991d3d2546b989d9d4467a32b, type: 2}
+  NodeOnTrue: {fileID: 0}
+  NodeOnFalse: {fileID: 0}
   Customer:
     CustomerImage:
-    - {fileID: 21300000, guid: 11177e1b7c484f343b37dd48790898c0, type: 3}
-    - {fileID: 21300000, guid: e772e5354a47edf4da2d0b58c427ba29, type: 3}
-    - {fileID: 21300000, guid: 4abed7752af87fb44818f8845102a446, type: 3}
+    - {fileID: 21300000, guid: 8cb784149e83479428eb53026a2ee5fc, type: 3}
+    - {fileID: 21300000, guid: 8ef1ec596afe9314c9a9411003cb564d, type: 3}
+    - {fileID: 21300000, guid: ae50abd2f0bff9e468c5bfba695580dd, type: 3}
     DialogueWhenCome: 
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
     GiveIDCard: 1
     IDCard:
-      Name: Francisco
-      Surname: Garcia
-      CardNumber: FC21088
+      Name: Tom
+      Surname: Agostin
+      CardNumber: BC66039
       BirthDate:
-        Day: 7
-        Month: 11
-        Year: 1902
+        Day: 18
+        Month: 5
+        Year: 1912
       ExpireDate:
-        Day: 5
-        Month: 7
-        Year: 1939
-      Signature: Francisco Garcia
-      Photo: {fileID: 21300000, guid: 1a0d2df2e4c544949b553f9c26452613, type: 3}
+        Day: 21
+        Month: 8
+        Year: 1943
+      Signature: Tom Agostin
+      Photo: {fileID: 21300000, guid: 8cb784149e83479428eb53026a2ee5fc, type: 3}
     GiveRenunciationCard: 0
     RenunciationCard:
       Name: 
@@ -49,26 +49,26 @@ MonoBehaviour:
       DurationStayInDays: 0
       CorrectDurationStayInDays: 0
       Signature: 
-    GiveResidentCard: 0
+    GiveResidentCard: 1
     ResidentCard:
-      Name: 
-      Surname: 
-      IDCardNumber: 
+      Name: Tom
+      Surname: Agostin
+      IDCardNumber: BC66039
       RoomNumber:
-        Floor: 0
-        Room: 0
-      Signature: 
-    GivePoliceCard: 0
+        Floor: 5
+        Room: 11
+      Signature: Tom Agostin
+    GivePoliceCard: 1
     PoliceCard:
-      Name: 
-      Surname: 
+      Name: Tom
+      Surname: Agostin
       ValidateDate:
-        Day: 1
-        Month: 1
-        Year: 1
-      Signature: 
-      HasFirstStamp: 0
-      HasSecondStamp: 0
+        Day: 5
+        Month: 4
+        Year: 1940
+      Signature: Tom Agostin
+      HasFirstStamp: 1
+      HasSecondStamp: 1
     GiveAppointmentCard: 0
     AppointmentCard:
       Name: 

@@ -10,45 +10,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
-  m_Name: Idraulico fantasma
+  m_Name: Uomo Mascherato
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: 65715fa991d3d2546b989d9d4467a32b, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: 65715fa991d3d2546b989d9d4467a32b, type: 2}
+  NodeOnTrue: {fileID: 11400000, guid: 53adae46aaf32584d8dd686dd7a54c8f, type: 2}
+  NodeOnFalse: {fileID: 0}
   Customer:
     CustomerImage:
-    - {fileID: 21300000, guid: 11177e1b7c484f343b37dd48790898c0, type: 3}
-    - {fileID: 21300000, guid: e772e5354a47edf4da2d0b58c427ba29, type: 3}
-    - {fileID: 21300000, guid: 4abed7752af87fb44818f8845102a446, type: 3}
+    - {fileID: 21300000, guid: d3281d4925f286d4cb46b7e7b22df5a0, type: 3}
+    - {fileID: 21300000, guid: a04291959746d9f4fae223759678040d, type: 3}
+    - {fileID: 21300000, guid: 6162414bc4d0b2c40895e2ab6187323e, type: 3}
     DialogueWhenCome: 
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
     GiveIDCard: 1
     IDCard:
-      Name: Francisco
-      Surname: Garcia
-      CardNumber: FC21088
+      Name: Damian
+      Surname: Bear
+      CardNumber: CP47895
       BirthDate:
-        Day: 7
-        Month: 11
+        Day: 31
+        Month: 10
         Year: 1902
       ExpireDate:
-        Day: 5
-        Month: 7
-        Year: 1939
-      Signature: Francisco Garcia
-      Photo: {fileID: 21300000, guid: 1a0d2df2e4c544949b553f9c26452613, type: 3}
-    GiveRenunciationCard: 0
+        Day: 3
+        Month: 2
+        Year: 1941
+      Signature: Damian Bear
+      Photo: {fileID: 21300000, guid: d3281d4925f286d4cb46b7e7b22df5a0, type: 3}
+    GiveRenunciationCard: 1
     RenunciationCard:
-      Name: 
-      Surname: 
-      IDCardNumber: 
+      Name: Damian
+      Surname: Bear
+      IDCardNumber: CP47895
       BirthDate:
-        Day: 1
-        Month: 1
-        Year: 1
-      DurationStayInDays: 0
-      CorrectDurationStayInDays: 0
-      Signature: 
+        Day: 31
+        Month: 10
+        Year: 1902
+      DurationStayInDays: 5
+      CorrectDurationStayInDays: 5
+      Signature: Damian Bear
     GiveResidentCard: 0
     ResidentCard:
       Name: 

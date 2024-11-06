@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
+  m_Name: Vecchia Ricca
+  m_EditorClassIdentifier: 
+  NodeOnTrue: {fileID: 11400000, guid: 6042b12ab7231634e846c563d9547d59, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 6042b12ab7231634e846c563d9547d59, type: 2}
+  Customer:
+    CustomerImage:
+    - {fileID: 21300000, guid: 74eb832a5db87d14cb06df2043f548a9, type: 3}
+    - {fileID: 21300000, guid: bc2145f2d7699e44a82a4a3285516461, type: 3}
+    - {fileID: 21300000, guid: 2e9c72334a8f2b84988a9496fdcb8c79, type: 3}
+    DialogueWhenCome: 
+    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayYes: 
+    GiveIDCard: 1
+    IDCard:
+      Name: Mirtle
+      Surname: Connor
+      CardNumber: LP78452
+      BirthDate:
+        Day: 25
+        Month: 12
+        Year: 1869
+      ExpireDate:
+        Day: 3
+        Month: 9
+        Year: 1940
+      Signature: Mirtle Connor
+      Photo: {fileID: 21300000, guid: 74eb832a5db87d14cb06df2043f548a9, type: 3}
+    GiveRenunciationCard: 1
+    RenunciationCard:
+      Name: Mirtle
+      Surname: Connor
+      IDCardNumber: LP78452
+      BirthDate:
+        Day: 25
+        Month: 12
+        Year: 1869
+      DurationStayInDays: 2
+      CorrectDurationStayInDays: 2
+      Signature: Mirtle Connor
+    GiveResidentCard: 0
+    ResidentCard:
+      Name: 
+      Surname: 
+      IDCardNumber: 
+      RoomNumber:
+        Floor: 0
+        Room: 0
+      Signature: 
+    GivePoliceCard: 1
+    PoliceCard:
+      Name: Mirtle
+      Surname: Connor
+      ValidateDate:
+        Day: 5
+        Month: 4
+        Year: 1940
+      Signature: Mirtle Connor
+      HasFirstStamp: 1
+      HasSecondStamp: 1
+    GiveAppointmentCard: 0
+    AppointmentCard:
+      Name: 
+      Surname: 
+      Profession: 
+      AppointmentDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      AppointmentReason: 
+      HasStamp: 0
+    ObjectsToGiveToPlayer: []

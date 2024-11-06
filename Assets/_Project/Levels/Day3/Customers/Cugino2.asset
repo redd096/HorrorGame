@@ -35,7 +35,7 @@ MonoBehaviour:
         Day: 21
         Month: 8
         Year: 1943
-      Signature: Tom AGostin
+      Signature: Tom Agostin
       Photo: {fileID: 21300000, guid: 8cb784149e83479428eb53026a2ee5fc, type: 3}
     GiveRenunciationCard: 0
     RenunciationCard:
