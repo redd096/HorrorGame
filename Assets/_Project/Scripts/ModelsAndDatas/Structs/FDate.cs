@@ -28,13 +28,13 @@ public struct FDate
     public string ToAmericanString()
     {
         System.DateTime date = GetDateTime();
-        return date.ToString("MMMM dd, yyyy");
+        return date.ToString("MMMM dd, yyyy", new System.Globalization.CultureInfo("en-EN"));
     }
 
     public string ToEuropeString()
     {
         System.DateTime date = GetDateTime();
-        return date.ToString("dd MMMM yyyy");
+        return date.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("en-EN"));
         //return date.ToShortDateString();
     }
 
