@@ -1,3 +1,4 @@
+using redd096.Attributes;
 using UnityEngine;
 
 /// <summary>
@@ -6,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "HORROR GAME/Resident")]
 public class ResidentData : ScriptableObject
 {
-    public Sprite Photo;
+    [ShowAssetPreview] public Sprite Photo;
     public string Name;
     public string Surname;
     public string IDCardNumber;

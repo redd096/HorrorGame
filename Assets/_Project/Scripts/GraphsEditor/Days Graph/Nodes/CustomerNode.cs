@@ -62,9 +62,9 @@ public class CustomerNode : GraphNode
             CreateCustomerIcon(iconsFoldout, i);
 
         //create dialogue textfield
-        TextField dialogueTextField = CreateElementsUtilities.CreateTextField("Dialogue When Come", Customer.DialogueWhenCome, x => Customer.DialogueWhenCome = x.newValue);
-        TextField dialogueTrueTextField = CreateElementsUtilities.CreateTextField("Dialogue OK Enter", Customer.DialogueWhenPlayerSayYes, x => Customer.DialogueWhenPlayerSayYes = x.newValue);
-        TextField dialogueFalseTextField = CreateElementsUtilities.CreateTextField("Dialogue NOT Enter", Customer.DialogueWhenPlayerSayNo, x => Customer.DialogueWhenPlayerSayNo = x.newValue);
+        TextField dialogueTextField = CreateElementsUtilities.CreateTextField("Dialogue When Come", Customer.DialogueWhenCome, x => Customer.DialogueWhenCome = x.newValue.Trim());
+        TextField dialogueTrueTextField = CreateElementsUtilities.CreateTextField("Dialogue OK Enter", Customer.DialogueWhenPlayerSayYes, x => Customer.DialogueWhenPlayerSayYes = x.newValue.Trim());
+        TextField dialogueFalseTextField = CreateElementsUtilities.CreateTextField("Dialogue NOT Enter", Customer.DialogueWhenPlayerSayNo, x => Customer.DialogueWhenPlayerSayNo = x.newValue.Trim());
 
         //and add to container
         extensionContainer.Add(iconsFoldout);

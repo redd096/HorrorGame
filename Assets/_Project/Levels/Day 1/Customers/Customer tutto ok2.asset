@@ -40,7 +40,7 @@ MonoBehaviour:
     GiveRenunciationCard: 1
     RenunciationCard:
       Name: Leonard
-      Surname: WIlson
+      Surname: Wilson
       IDCardNumber: GV99247
       BirthDate:
         Day: 30

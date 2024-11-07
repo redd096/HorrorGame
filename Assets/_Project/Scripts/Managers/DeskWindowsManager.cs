@@ -68,7 +68,7 @@ public class DeskWindowsManager : MonoBehaviour
     /// <returns></returns>
     public bool CheckIsInGiveDocumentsArea(Vector2 point)
     {
-        return CheckIsInArea(point, giveDocumentsArea, isDocumentAreaActive);
+        return CheckIsInArea(point, giveDocumentsArea, isDocumentAreaActive, canGoOutsideUp: true, canGoOutisdeDown: false);
     }
     
     /// <summary>
@@ -77,7 +77,7 @@ public class DeskWindowsManager : MonoBehaviour
     /// <returns></returns>
     public bool CheckIsInPutBackInteractablesArea(Vector2 point)
     {
-        return CheckIsInArea(point, putBackInteractablesArea, isInteractablesAreaActive);
+        return CheckIsInArea(point, putBackInteractablesArea, isInteractablesAreaActive, canGoOutsideUp: false, canGoOutisdeDown: true);
     }
 
     /// <summary>
@@ -117,14 +117,27 @@ public class DeskWindowsManager : MonoBehaviour
         }
     }
 
-    private bool CheckIsInArea(Vector2 point, RectTransform area, bool isAreaActive)
+    private bool CheckIsInArea(Vector2 point, RectTransform area, bool isAreaActive, bool canGoOutsideUp, bool canGoOutisdeDown)
     {
         //if area isn't active, return false
         if (isAreaActive == false)
             return false;
         
         //else, check if point is in area
-        return RectTransformUtility.RectangleContainsScreenPoint(area, point);
+        if (RectTransformUtility.RectangleContainsScreenPoint(area, point))
+            return true;
+
+        //check if can go outisde up or down
+        Vector2 yCenteredPoint = new Vector2(point.x, area.position.y);
+        if (RectTransformUtility.RectangleContainsScreenPoint(area, yCenteredPoint))
+        {
+            if (canGoOutsideUp && point.y > yCenteredPoint.y)
+                return true;
+            else if (canGoOutisdeDown && point.y < yCenteredPoint.y)
+                return true;
+        }
+
+        return false;
     }
 
     private bool CheckIsCompletelyInArea(RectTransform rectTr, RectTransform area, bool isAreaActive)

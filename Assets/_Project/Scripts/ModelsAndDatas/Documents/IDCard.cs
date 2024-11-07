@@ -37,9 +37,9 @@ public class IDCard
     public void CreateGraph(VisualElement container)
     {
         //name, surname and cardNumber
-        TextField nameTextField = CreateElementsUtilities.CreateTextField("Name", Name, x => Name = x.newValue);
-        TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue);
-        TextField cardNumberTextField = CreateElementsUtilities.CreateTextField("Card Number", CardNumber, x => CardNumber = x.newValue);
+        TextField nameTextField = CreateElementsUtilities.CreateTextField("Name", Name, x => Name = x.newValue.Trim());
+        TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue.Trim());
+        TextField cardNumberTextField = CreateElementsUtilities.CreateTextField("Card Number", CardNumber, x => CardNumber = x.newValue.Trim());
 
         //birth date
         Foldout birthDateFoldout = CreateElementsUtilities.CreateFoldout("Birth Date");
@@ -62,7 +62,7 @@ public class IDCard
         expireDateFoldout.Add(yearExpire);
 
         //signature and photo
-        TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue);
+        TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue.Trim());
         ObjectField photoObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Photo", Photo, Vector2.one * 100, out Image photoImage, x => Photo = x.newValue as Sprite);
 
         //add to container

@@ -33,7 +33,7 @@ MonoBehaviour:
       ConnectedNodeID: 0237e4c6-5d69-497f-ae3b-301058792da5
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 567, y: 307}
+    Position: {x: 567.2, y: 307.2}
   - NodeName: Moglie
     ID: 0237e4c6-5d69-497f-ae3b-301058792da5
     NodeType: CustomerNode
@@ -45,7 +45,7 @@ MonoBehaviour:
       ConnectedNodeID: 1746f6ba-b70a-4769-9c0f-9f801421e963
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 861, y: 308}
+    Position: {x: 860.8, y: 308}
   - NodeName: Personaggio tutto ok
     ID: 1746f6ba-b70a-4769-9c0f-9f801421e963
     NodeType: CustomerNode
@@ -57,7 +57,7 @@ MonoBehaviour:
       ConnectedNodeID: 497176fe-84a8-4a06-9681-8ed277094b48
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1182, y: 304}
+    Position: {x: 1182.4, y: 304}
   - NodeName: Idraulico fantasma
     ID: 497176fe-84a8-4a06-9681-8ed277094b48
     NodeType: CustomerNode
@@ -69,7 +69,7 @@ MonoBehaviour:
       ConnectedNodeID: 5c00099e-f90f-4990-834c-562927452b53
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1541, y: 306}
+    Position: {x: 1540.8, y: 306.40002}
   - NodeName: Sorella Destra
     ID: cacec997-ad46-4be8-96d0-e87e661b8447
     NodeType: CustomerNode
@@ -81,7 +81,7 @@ MonoBehaviour:
       ConnectedNodeID: 572a0adc-3a64-4982-9504-e86b4f43a1f8
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2244, y: 305}
+    Position: {x: 2244, y: 305.6}
   - NodeName: Save Player Choice
     ID: 572a0adc-3a64-4982-9504-e86b4f43a1f8
     NodeType: SaveChoiceNode
@@ -102,7 +102,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2833, y: 302}
+    Position: {x: 2832.8, y: 302.40002}
   - NodeName: Get Player Choice
     ID: 4beaf2c2-d50e-40f4-8e3a-f74ce072f905
     NodeType: GetChoiceNode
@@ -126,7 +126,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 3826, y: 298}
+    Position: {x: 3826.4, y: 298.40002}
   - NodeName: Idraulico vivo
     ID: 5c00099e-f90f-4990-834c-562927452b53
     NodeType: CustomerNode
@@ -138,5 +138,5 @@ MonoBehaviour:
       ConnectedNodeID: cacec997-ad46-4be8-96d0-e87e661b8447
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1878, y: 304}
+    Position: {x: 1878.4, y: 304}
   Groups: []

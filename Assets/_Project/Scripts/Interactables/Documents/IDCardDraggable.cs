@@ -18,8 +18,8 @@ public class IDCardDraggable : DocumentDraggable
     {
         nameText.text = doc.Name + " " + doc.Surname;
         idNumberText.text = doc.CardNumber;
-        dateBirthText.text = doc.BirthDate.ToString();
-        expireDateText.text = doc.ExpireDate.ToString();
+        dateBirthText.text = doc.BirthDate.ToEuropeString();
+        expireDateText.text = doc.ExpireDate.ToEuropeString();
         signatureText.text = doc.Signature;
         customerImage.sprite = doc.Photo;
     }

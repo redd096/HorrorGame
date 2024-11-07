@@ -9,6 +9,7 @@ using PrimeTween;
 public class LevelManager : SimpleInstance<LevelManager>
 {
     [SerializeField] LevelData levelData;
+    [SerializeField] FDate currentDate;
     [Space]
     [SerializeField] CustomerBehaviour customerPrefab;
     [SerializeField] Transform customerContainer;
@@ -17,12 +18,16 @@ public class LevelManager : SimpleInstance<LevelManager>
     [SerializeField] float customerAnimation = 3;
 
     private LevelNodeData currentNode;
-    private bool currentResult;         //user allowed customer to ENTER (true) or NOT ENTER (false)
-    private bool alreadySetResult;      //this is used to save result only first time. If user put other stamps, they're ignored
+    private bool currentChoice;         //user allowed customer to ENTER (true) or NOT ENTER (false)
+    private bool alreadySetChoice;      //this is used to save result only first time. If user put other stamps, they're ignored
     private CustomerBehaviour currentCustomer;
 
     //used by nodes SaveChoice and GetChoice
     private Dictionary<string, bool> savedChoices = new Dictionary<string, bool>();
+
+    public FDate CurrentDate => currentDate;
+    public LevelNodeData CurrentNode => currentNode;
+    public bool CurrentChoice => currentChoice;
 
     private void Start()
     {
@@ -32,14 +37,14 @@ public class LevelManager : SimpleInstance<LevelManager>
     /// <summary>
     /// When user set stamp on a document
     /// </summary>
-    /// <param name="result"></param>
-    public void OnDocumentReceiveStamp(bool result)
+    /// <param name="choice"></param>
+    public void OnDocumentReceiveStamp(bool choice)
     {
         //only one time
-        if (alreadySetResult == false)
+        if (alreadySetChoice == false)
         {
-            alreadySetResult = true;
-            currentResult = result;
+            alreadySetChoice = true;
+            currentChoice = choice;
         }
     }
 
@@ -49,7 +54,7 @@ public class LevelManager : SimpleInstance<LevelManager>
     public void OnGiveBackAllDocuments()
     {
         //reset for next turn, player can set again stamp
-        alreadySetResult = false;
+        alreadySetChoice = false;
 
         //start end dialogue
         Sequence sequence = Sequence.Create();
@@ -62,7 +67,7 @@ public class LevelManager : SimpleInstance<LevelManager>
         sequence.ChainCallback(() => Destroy(currentCustomer.gameObject));
 
         //check if player did something wrong, then move to next node
-        sequence.ChainCallback(() => Debug.Log("Check if player did something wrong"));
+        sequence.ChainCallback(() => CheckPlayerChoiceManager.instance.CheckPlayerChoice(currentNode, currentChoice));
         sequence.ChainCallback(CheckNextNode);
     }
 
@@ -85,7 +90,7 @@ public class LevelManager : SimpleInstance<LevelManager>
         if (currentNode == null)
             currentNode = levelData.Nodes[0];
         else
-            currentNode = currentResult ? currentNode.NodeOnTrue : currentNode.NodeOnFalse;
+            currentNode = currentChoice ? currentNode.NodeOnTrue : currentNode.NodeOnFalse;
 
         //finish level
         if (currentNode == null)
@@ -196,7 +201,7 @@ public class LevelManager : SimpleInstance<LevelManager>
     void CheckSaveChoice(SaveChoice saveChoice)
     {
         //save choice and go to next node
-        savedChoices[saveChoice.VariableName] = currentResult;
+        savedChoices[saveChoice.VariableName] = currentChoice;
         CheckNextNode();
     }
 
@@ -204,9 +209,9 @@ public class LevelManager : SimpleInstance<LevelManager>
     {
         string variableName = getChoice.VariableName;
 
-        //find saved variable and set result for next node
+        //find saved variable and set choice for next node
         if (savedChoices.ContainsKey(variableName))
-            currentResult = savedChoices[variableName];
+            currentChoice = savedChoices[variableName];
         else
             Debug.LogError($"There isn't a choice saved with this name: [{variableName}]. Keep current choice and go to next node");
 

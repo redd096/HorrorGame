@@ -1,7 +1,7 @@
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
 using redd096.NodesGraph.Editor;
-using UnityEngine;
 #endif
 
 /// <summary>
@@ -16,6 +16,46 @@ public class PoliceCard
     public string Signature;
     public bool HasFirstStamp;
     public bool HasSecondStamp;
+
+    /// <summary>
+    /// Check if this document is correct in game
+    /// </summary>
+    public bool IsCorrect(IDCard idCard, FDate currentDate, bool needSecondStamp, out string problem)
+    {
+        if (idCard.Name != Name)
+        {
+            problem = "Wrong name";
+            return false;
+        }
+        if (idCard.Surname != Surname)
+        {
+            problem = "Wrong surname";
+            return false;
+        }
+        if (currentDate.IsEqual(ValidateDate) == false)
+        {
+            problem = "This document isn't for today";
+            return false;
+        }
+        if (idCard.Signature != Signature)
+        {
+            problem = "Wrong signature";
+            return false;
+        }
+        if (HasFirstStamp == false)
+        {
+            problem = "The document is missing the stamp";
+            return false;
+        }
+        if (needSecondStamp && HasSecondStamp == false)
+        {
+            problem = "The document is missing the second stamp";
+            return false;
+        }
+
+        problem = null;
+        return true;
+    }
 
     public PoliceCard Clone()
     {
@@ -34,8 +74,8 @@ public class PoliceCard
     public void CreateGraph(VisualElement container)
     {
         //name, surname
-        TextField nameTextField = CreateElementsUtilities.CreateTextField("Name", Name, x => Name = x.newValue);
-        TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue);
+        TextField nameTextField = CreateElementsUtilities.CreateTextField("Name", Name, x => Name = x.newValue.Trim());
+        TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue.Trim());
 
         //validate date
         Foldout validateDateFoldout = CreateElementsUtilities.CreateFoldout("Validate Date");
@@ -48,7 +88,7 @@ public class PoliceCard
         validateDateFoldout.Add(year);
 
         //signature
-        TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue);
+        TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue.Trim());
 
         //police stamps
         Toggle hasFirstStampToggle = CreateElementsUtilities.CreateToggle("Has first stamp", HasFirstStamp, x => HasFirstStamp = x.newValue);

@@ -27,7 +27,7 @@ public class SaveChoiceNode : GraphNode
 
     protected override void DrawContent()
     {
-        TextField textField = CreateElementsUtilities.CreateTextField("Variable Name", SaveChoice.VariableName, x => SaveChoice.VariableName = x.newValue);
+        TextField textField = CreateElementsUtilities.CreateTextField("Variable Name", SaveChoice.VariableName, x => SaveChoice.VariableName = x.newValue.Trim());
         extensionContainer.Add(textField);
     }
 }

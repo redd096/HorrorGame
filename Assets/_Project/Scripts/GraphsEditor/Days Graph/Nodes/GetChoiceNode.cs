@@ -30,7 +30,7 @@ public class GetChoiceNode : GraphNode
 
     protected override void DrawContent()
     {
-        TextField textField = CreateElementsUtilities.CreateTextField("Variable Name", GetChoice.VariableName, x => GetChoice.VariableName = x.newValue);
+        TextField textField = CreateElementsUtilities.CreateTextField("Variable Name", GetChoice.VariableName, x => GetChoice.VariableName = x.newValue.Trim());
         extensionContainer.Add(textField);
     }
 }

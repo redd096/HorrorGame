@@ -16,7 +16,7 @@ public class AppointmentCardDraggable : DocumentDraggable
     {
         nameText.text = doc.Name + " " + doc.Surname;
         professionText.text = $"({doc.Profession})";
-        dateAppointmentText.text = doc.AppointmentDate.ToString();
+        dateAppointmentText.text = doc.AppointmentDate.ToAmericanString();
         appointmentReason.text = doc.AppointmentReason;
         stampObj.SetActive(doc.HasStamp);
     }

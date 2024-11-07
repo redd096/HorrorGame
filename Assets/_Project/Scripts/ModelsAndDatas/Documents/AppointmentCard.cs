@@ -1,7 +1,7 @@
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
 using redd096.NodesGraph.Editor;
-using UnityEngine;
 #endif
 
 /// <summary>
@@ -16,6 +16,46 @@ public class AppointmentCard
     public FDate AppointmentDate;
     public string AppointmentReason;
     public bool HasStamp;
+
+    /// <summary>
+    /// Check if this document is correct in game
+    /// </summary>
+    public bool IsCorrect(IDCard idCard, FDate currentDate, AppointmentData appointment, out string problem)
+    {
+        if (idCard.Name != Name)
+        {
+            problem = "Wrong name";
+            return false;
+        }
+        if (idCard.Surname != Surname)
+        {
+            problem = "Wrong surname";
+            return false;
+        }
+        if (appointment.Profession != Profession)               //already checked in AppointmentsManager
+        {
+            problem = "This appointment isn't scheduled";
+            return false;
+        }
+        if (currentDate.IsEqual(AppointmentDate) == false)      //already checked in AppointmentsManager
+        {
+            problem = "This appointment isn't for today";
+            return false;
+        }
+        if (appointment.AppointmentReason != AppointmentReason) //already checked in AppointmentsManager
+        {
+            problem = "This appointment isn't scheduled";
+            return false;
+        }
+        if (HasStamp == false)
+        {
+            problem = "The document is missing the stamp";
+            return false;
+        }
+
+        problem = null;
+        return true;
+    }
 
     public AppointmentCard Clone()
     {
@@ -34,9 +74,9 @@ public class AppointmentCard
     public void CreateGraph(VisualElement container)
     {
         //name, surname and profession
-        TextField nameTextField = CreateElementsUtilities.CreateTextField("Name", Name, x => Name = x.newValue);
-        TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue);
-        TextField professionTextField = CreateElementsUtilities.CreateTextField("Profession", Profession, x => Profession = x.newValue);
+        TextField nameTextField = CreateElementsUtilities.CreateTextField("Name", Name, x => Name = x.newValue.Trim());
+        TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue.Trim());
+        TextField professionTextField = CreateElementsUtilities.CreateTextField("Profession", Profession, x => Profession = x.newValue.Trim());
 
         //appointment date
         Foldout appointmentDateFoldout = CreateElementsUtilities.CreateFoldout("Appointment Date");
@@ -49,7 +89,7 @@ public class AppointmentCard
         appointmentDateFoldout.Add(year);
 
         //reason and stamp
-        TextField reasonTextField = CreateElementsUtilities.CreateTextField("Appointment Reason", AppointmentReason, x => AppointmentReason = x.newValue);
+        TextField reasonTextField = CreateElementsUtilities.CreateTextField("Appointment Reason", AppointmentReason, x => AppointmentReason = x.newValue.Trim());
         Toggle hasStampToggle = CreateElementsUtilities.CreateToggle("Has Stamp", HasStamp, x => HasStamp = x.newValue);
 
         //add to container

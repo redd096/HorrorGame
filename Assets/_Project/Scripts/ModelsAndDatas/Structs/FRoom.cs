@@ -8,9 +8,13 @@ public struct FRoom
     public int Floor;
     public int Room;
 
-    public override string ToString()
+    public bool IsEqual(FRoom other)
     {
-        //return base.ToString();
+        return Floor == other.Floor && Room == other.Room;
+    }
+
+    public string ToRoomString()
+    {
         return Floor.ToString() + Room.ToString();
     }
 }

@@ -1,7 +1,7 @@
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
 using redd096.NodesGraph.Editor;
-using UnityEngine;
 #endif
 
 /// <summary>
@@ -17,6 +17,46 @@ public class RenunciationCard
     public int DurationStayInDays;
     public int CorrectDurationStayInDays;
     public string Signature;
+
+    /// <summary>
+    /// Check if this document is correct in game
+    /// </summary>
+    public bool IsCorrect(IDCard idCard, out string problem)
+    {
+        if (idCard.Name != Name)
+        {
+            problem = "Wrong name";
+            return false;
+        }
+        if (idCard.Surname != Surname)
+        {
+            problem = "Wrong surname";
+            return false;
+        }
+        if (idCard.CardNumber != IDCardNumber)
+        {
+            problem = "Wrong ID card number";
+            return false;
+        }
+        if (idCard.BirthDate.IsEqual(BirthDate) == false)
+        {
+            problem = "Wrong date of birth";
+            return false;
+        }
+        if (DurationStayInDays != CorrectDurationStayInDays)
+        {
+            problem = "Wrong duration stay in days";
+            return false;
+        }
+        if (idCard.Signature != Signature)
+        {
+            problem = "Wrong signature";
+            return false;
+        }
+
+        problem = null;
+        return true;
+    }
 
     public RenunciationCard Clone()
     {
@@ -36,9 +76,9 @@ public class RenunciationCard
     public void CreateGraph(VisualElement container)
     {
         //name, surname and cardNumber
-        TextField nameTextField = CreateElementsUtilities.CreateTextField("Name", Name, x => Name = x.newValue);
-        TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue);
-        TextField cardNumberTextField = CreateElementsUtilities.CreateTextField("ID Card Number", IDCardNumber, x => IDCardNumber = x.newValue);
+        TextField nameTextField = CreateElementsUtilities.CreateTextField("Name", Name, x => Name = x.newValue.Trim());
+        TextField surnameTextField = CreateElementsUtilities.CreateTextField("Surname", Surname, x => Surname = x.newValue.Trim());
+        TextField cardNumberTextField = CreateElementsUtilities.CreateTextField("ID Card Number", IDCardNumber, x => IDCardNumber = x.newValue.Trim());
 
         //birth date
         Foldout birthDateFoldout = CreateElementsUtilities.CreateFoldout("Birth Date");
@@ -55,7 +95,7 @@ public class RenunciationCard
         IntegerField correctTurationStayIntegerField = CreateElementsUtilities.CreateIntegerField("Duration of Stay (correct for player)", CorrectDurationStayInDays, x => CorrectDurationStayInDays = x.newValue);
 
         //signature
-        TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue);
+        TextField signatureTextField = CreateElementsUtilities.CreateTextField("Signature", Signature, x => Signature = x.newValue.Trim());
 
         //add to container
         container.Add(nameTextField);

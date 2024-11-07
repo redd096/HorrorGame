@@ -15,7 +15,7 @@ public class PoliceCardDraggable : DocumentDraggable
     public void InitDocument(PoliceCard doc)
     {
         nameText.text = doc.Name + " " + doc.Surname;
-        dateText.text = doc.ValidateDate.ToString();
+        dateText.text = doc.ValidateDate.ToAmericanString();
         signatureText.text = doc.Signature;
         firstStamp.SetActive(doc.HasFirstStamp);
         secondStamp.SetActive(doc.HasSecondStamp);
