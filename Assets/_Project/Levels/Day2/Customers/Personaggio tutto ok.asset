@@ -39,7 +39,7 @@ MonoBehaviour:
       Photo: {fileID: 21300000, guid: db592224e84527848b8b3f9bb323cfba, type: 3}
     GiveRenunciationCard: 1
     RenunciationCard:
-      Name: 'Simon '
+      Name: Simon
       Surname: Delver
       IDCardNumber: PE11774
       BirthDate:
