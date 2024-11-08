@@ -85,7 +85,7 @@ public class LevelManager : SimpleInstance<LevelManager>
         warningsCounter++;
 
         Sequence sequence = Sequence.Create();
-        sequence.ChainDelay(2);
+        sequence.ChainDelay(1.5f);
         sequence.ChainCallback(() => DeskManager.instance.InstantiateWarning(warningsCounter, problem));
     }
 
