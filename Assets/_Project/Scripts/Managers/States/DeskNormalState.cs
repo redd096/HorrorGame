@@ -17,7 +17,7 @@ public class DeskNormalState : DeskBaseState
     public void BellClick()
     {
         //call next client
-        Debug.Log("TODO - click bell and call next client");
+        DeskManager.instance.OnPlayerClickBell();
     }
 
     public void ClickAndInstantiateInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)

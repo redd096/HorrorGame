@@ -9,7 +9,7 @@ public abstract class StampDraggableBase : InteractableDraggable
 {
     [SerializeField] private Transform stampPoint;
     
-    public System.Action<Vector2, Transform> onStamp;
+    public System.Action<Vector2, DocumentDraggable> onStamp;
     
     protected abstract void OnStamp(PointerEventData eventData, DocumentDraggable hittedDocument);
 
@@ -53,7 +53,7 @@ public abstract class StampDraggableBase : InteractableDraggable
                 if (hit)
                 {
                     OnStamp(eventData, hit);
-                    onStamp?.Invoke(eventData.position, hit.transform);
+                    onStamp?.Invoke(eventData.position, hit);
                     break;
                 }
             }

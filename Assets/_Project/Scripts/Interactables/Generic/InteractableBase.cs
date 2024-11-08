@@ -13,6 +13,9 @@ public abstract class InteractableBase : MonoBehaviour, IPointerClickHandler, IB
     protected Vector2 startAnchoredPosition;
     protected Transform startParent;
 
+    //events
+    public System.Action<bool> onSetInteractable;
+
     public bool Interactable => interactable;
     public RectTransform RectTr => rectTr;
     public Vector2 StartAnchoredPosition => startAnchoredPosition;
@@ -25,7 +28,6 @@ public abstract class InteractableBase : MonoBehaviour, IPointerClickHandler, IB
     public void Init(IInteractablesEvents callbacks)
     {
         this.callbacks = callbacks;
-        interactable = true;
 
         //save also start position and parent
         rectTr = GetComponent<RectTransform>();
@@ -40,6 +42,7 @@ public abstract class InteractableBase : MonoBehaviour, IPointerClickHandler, IB
     public void SetInteractable(bool interactable)
     {
         this.interactable = interactable;
+        onSetInteractable?.Invoke(interactable);
     }
 
     #region interfaces events

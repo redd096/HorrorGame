@@ -11,6 +11,7 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] DeskStateMachine stateMachine;
     [SerializeField] DeskWindowsManager deskWindowsManager;
     [SerializeField] RectTransform draggedObjectsContainer;
+    [SerializeField] Bell bell;
 
     [Header("Put interactables animation")]
     [SerializeField] Transform leftContainer;
@@ -44,6 +45,12 @@ public class DeskManager : SimpleInstance<DeskManager>
     //list of every interactable in scene (both documents and interactables. There are also objects to not give back, like customers' gifts)
     private List<InteractableOnTheRight> interactablesInScene = new List<InteractableOnTheRight>();
 
+    //events
+    public System.Action onClickBell;
+    public System.Action<bool> onDocumentReceiveStamp;
+    public System.Action onGiveBackAllDocuments;
+
+    public DeskStateMachine StateMachine => stateMachine;
     public List<InteractableOnTheRight> InteractablesInScene => interactablesInScene;
     public RectTransform DraggedObjectsContainer => draggedObjectsContainer;
 
@@ -119,6 +126,23 @@ public class DeskManager : SimpleInstance<DeskManager>
     #endregion
 
     /// <summary>
+    /// When player click bell in scene
+    /// </summary>
+    public void OnPlayerClickBell()
+    {
+        onClickBell?.Invoke();
+    }
+
+    /// <summary>
+    /// Set if player can click the bell
+    /// </summary>
+    /// <param name="isInteractable"></param>
+    public void SetBellInteractable(bool isInteractable)
+    {
+        bell.SetInteractable(isInteractable);
+    }
+
+    /// <summary>
     /// Add documents already instantiated, both left and right
     /// </summary>
     /// <param name="isDocumentToGiveBack">After stamp, show area to give back documents</param>
@@ -159,7 +183,7 @@ public class DeskManager : SimpleInstance<DeskManager>
     public void OnDocumentReceiveStamp(bool isGreen)
     {
         deskWindowsManager.ShowDocumentsArea(true);
-        LevelManager.instance.OnDocumentReceiveStamp(isGreen);
+        onDocumentReceiveStamp?.Invoke(isGreen);
     }
 
     /// <summary>
@@ -264,6 +288,8 @@ public class DeskManager : SimpleInstance<DeskManager>
         right.transform.SetParent(rightContainer, false);
         left.transform.position = posLeft;
         right.transform.position = posRight;
+        left.transform.SetAsLastSibling();
+        right.transform.SetAsLastSibling();
 
         left.SetInteractable(false);
         right.SetInteractable(false);
@@ -308,7 +334,7 @@ public class DeskManager : SimpleInstance<DeskManager>
                 if (documentsToGiveBack.Count <= 0)
                 {
                     deskWindowsManager.ShowDocumentsArea(false);
-                    LevelManager.instance.OnGiveBackAllDocuments();
+                    onGiveBackAllDocuments?.Invoke();
                 }
 
                 //move out of the desk and destroy

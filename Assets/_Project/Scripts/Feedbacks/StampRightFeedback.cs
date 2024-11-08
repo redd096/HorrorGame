@@ -49,9 +49,10 @@ public class StampRightFeedback : StampLeftFeedback
         }
     }
 
-    private void OnStamp(Vector2 position, Transform stampParent)
+    private void OnStamp(Vector2 position, DocumentDraggable hit)
     {
-        StartCoroutine(OnStampCoroutine(position, stampParent));
+        //if (hit.CanReceiveStamp)
+            StartCoroutine(OnStampCoroutine(position, hit.transform));
     }
 
     private IEnumerator OnStampCoroutine(Vector2 position, Transform stampParent)

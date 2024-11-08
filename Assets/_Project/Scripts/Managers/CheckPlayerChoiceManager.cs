@@ -15,6 +15,8 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
     [SerializeField] bool needPoliceCard = false;
     [SerializeField] bool policeCardNeedSecondStamp = false;
 
+    private FDate currentDate;
+
     /// <summary>
     /// DEBUG ONLY - Stamp if this customer is OK or has some wrong document
     /// </summary>
@@ -35,27 +37,38 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
     }
 
     /// <summary>
+    /// Initialize when start level
+    /// </summary>
+    /// <param name="currentDate"></param>
+    public void InitializeForThisLevel(FDate currentDate)
+    {
+        this.currentDate = currentDate;
+    }
+
+    /// <summary>
     /// Check if the player choice (lets customer enter or not) is correct. If wrong, call LevelManager
     /// </summary>
     /// <param name="currentNode"></param>
     /// <param name="currentChoice"></param>
-    public void CheckPlayerChoice(LevelNodeData currentNode, bool currentChoice)
+    public bool CheckPlayerChoice(LevelNodeData currentNode, bool currentChoice, out string problem)
     {
         if (currentNode is CustomerData customerData == false)
         {
             Debug.LogError("Trying to check player choice on a wrong LevelNode");
-            return;
+            problem = "Trying to check player choice on a wrong LevelNode";
+            return false;
         }
 
-        bool shouldEnter = CheckCustomer(customerData.Customer, out string problem);        
+        bool shouldEnter = CheckCustomer(customerData.Customer, out problem);        
         if (shouldEnter == currentChoice)
         {
             Debug.Log("<color=green>Correct choice!</color>");
+            return true;
         }
         else
         {
             Debug.Log($"<color=red>{problem}</color>");
-            LevelManager.instance.OnPlayerWrongChoice(problem);
+            return false;
         }
     }
 
@@ -73,9 +86,9 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
         //check if adult
         if (onlyAdults)
         {
-            System.DateTime currentDate = LevelManager.instance.CurrentDate.GetDateTime();
+            System.DateTime date = currentDate.GetDateTime();
             System.DateTime birthDate = idCard.BirthDate.GetDateTime();
-            if (birthDate.AddYears(adultAge) > currentDate)     //if birthday + 18 years is after today, this day still didn't come
+            if (birthDate.AddYears(adultAge) > date)        //if birthday + 18 years is after today, this day still didn't come
             {
                 problem = $"Customer doesn't have {adultAge} years";
                 return false;
@@ -110,10 +123,10 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
         //check appointment card
         if (customer.GiveAppointmentCard)
         {
-            if (AppointmentsManager.instance.IsCorrectAppointment(customer.AppointmentCard, out AppointmentData appointment, out problem) == false)
+            if (AppointmentsManager.instance.IsCorrectAppointment(customer.AppointmentCard, currentDate, out AppointmentData appointment, out problem) == false)
                 return false;
 
-            if (customer.AppointmentCard.IsCorrect(idCard, LevelManager.instance.CurrentDate, appointment, out problem) == false)
+            if (customer.AppointmentCard.IsCorrect(idCard, currentDate, appointment, out problem) == false)
                 return false;
         }
 
@@ -126,7 +139,7 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
                 return false;
             }
 
-            if (customer.PoliceCard.IsCorrect(idCard, LevelManager.instance.CurrentDate, policeCardNeedSecondStamp, out problem) == false)
+            if (customer.PoliceCard.IsCorrect(idCard, currentDate, policeCardNeedSecondStamp, out problem) == false)
                 return false;
         }
 

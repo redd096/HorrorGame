@@ -13,6 +13,7 @@ public class DocumentDraggable : InteractableDraggable
 
     protected bool isInBoardArea;
 
+    public bool CanReceiveStamp => canReceiveStamp;
     public bool DocumentToGiveBack { get => documentToGiveBack; set => documentToGiveBack = value; }
     public bool CanBePutInsideBoard { get => canBePutInsideBoard; set => canBePutInsideBoard = value; }
 
@@ -34,7 +35,7 @@ public class DocumentDraggable : InteractableDraggable
     public void OnReceiveStamp(bool isGreen)
     {
         //if this document can receive stamp, tell to DeskManager to show area to give documents back to client
-        if (canReceiveStamp && documentToGiveBack)
+        if (canReceiveStamp)
         {
             DeskManager.instance.OnDocumentReceiveStamp(isGreen);
         }

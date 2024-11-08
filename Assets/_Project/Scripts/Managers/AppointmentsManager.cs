@@ -10,12 +10,12 @@ public class AppointmentsManager : SimpleInstance<AppointmentsManager>
 
     public AppointmentData[] Appointments => appointments;
 
-    public bool IsCorrectAppointment(AppointmentCard doc, out AppointmentData appointment, out string problem)
+    public bool IsCorrectAppointment(AppointmentCard doc, FDate currentDate, out AppointmentData appointment, out string problem)
     {
         appointment = null;
 
         //check date
-        if (doc.AppointmentDate.IsEqual(LevelManager.instance.CurrentDate) == false)
+        if (doc.AppointmentDate.IsEqual(currentDate) == false)
         {
             problem = "This appointment isn't for today";
             return false;

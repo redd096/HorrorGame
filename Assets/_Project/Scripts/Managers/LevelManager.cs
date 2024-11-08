@@ -2,6 +2,7 @@ using redd096;
 using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
+using System.Collections;
 
 /// <summary>
 /// This manage the level: show customers or events, save player's choice and so on
@@ -22,6 +23,7 @@ public class LevelManager : SimpleInstance<LevelManager>
     private bool currentChoice;         //user allowed customer to ENTER (true) or NOT ENTER (false)
     private bool alreadySetChoice;      //this is used to save result only first time. If user put other stamps, they're ignored
     private CustomerBehaviour currentCustomer;
+    private bool canCustomerEnter;      //false if waiting player to press the Bell, then become true and currentCustomer is istantiated
 
     //used by nodes SaveChoice and GetChoice
     private Dictionary<string, bool> savedChoices = new Dictionary<string, bool>();
@@ -29,21 +31,58 @@ public class LevelManager : SimpleInstance<LevelManager>
     //warnings
     private int warningsCounter;
 
-    public FDate CurrentDate => currentDate;
     public LevelNodeData CurrentNode => currentNode;
-    public bool CurrentChoice => currentChoice;
 
-    private void Start()
+    protected override void InitializeInstance()
     {
+        base.InitializeInstance();
+
+        //add events
+        DeskManager.instance.onClickBell += OnPlayerClickBell;
+        DeskManager.instance.onDocumentReceiveStamp += OnDocumentReceiveStamp;
+        DeskManager.instance.onGiveBackAllDocuments += OnGiveBackAllDocuments;
+
+        //initialize
+        CheckPlayerChoiceManager.instance.InitializeForThisLevel(currentDate);
+
+        //set every interactable in scene
+        InteractableBase[] interactablesInScene = FindObjectsOfType<InteractableBase>();
+        foreach (var interactable in interactablesInScene)
+            interactable.SetInteractable(true);
+
+        //not the bell
+        DeskManager.instance.SetBellInteractable(false);
+
         //start first node
         CheckNextNode();
+    }
+
+    private void OnDestroy()
+    {
+        //remove events
+        if (DeskManager.instance)
+        {
+            DeskManager.instance.onClickBell -= OnPlayerClickBell;
+            DeskManager.instance.onDocumentReceiveStamp -= OnDocumentReceiveStamp;
+            DeskManager.instance.onGiveBackAllDocuments -= OnGiveBackAllDocuments;
+        }
+    }
+
+    #region events
+
+    /// <summary>
+    /// Player click bell to make enter next customer
+    /// </summary>
+    private void OnPlayerClickBell()
+    {
+        canCustomerEnter = true;
     }
 
     /// <summary>
     /// When user set stamp on a document
     /// </summary>
     /// <param name="choice"></param>
-    public void OnDocumentReceiveStamp(bool choice)
+    private void OnDocumentReceiveStamp(bool choice)
     {
         //only one time
         if (alreadySetChoice == false)
@@ -56,10 +95,12 @@ public class LevelManager : SimpleInstance<LevelManager>
     /// <summary>
     /// When user gave back every document, customer go away and enter new one
     /// </summary>
-    public void OnGiveBackAllDocuments()
+    private void OnGiveBackAllDocuments()
     {
-        //reset for next turn, player can set again stamp
+        //reset vars for next turn, player can set again stamp
         alreadySetChoice = false;
+
+        bool correctChoice = CheckPlayerChoiceManager.instance.CheckPlayerChoice(currentNode, currentChoice, out string problem);
 
         //start end dialogue
         Sequence sequence = Sequence.Create();
@@ -72,23 +113,33 @@ public class LevelManager : SimpleInstance<LevelManager>
         sequence.ChainCallback(() => Destroy(currentCustomer.gameObject));
 
         //check if player did something wrong, then move to next node
-        sequence.ChainCallback(() => CheckPlayerChoiceManager.instance.CheckPlayerChoice(currentNode, currentChoice));
+        sequence.ChainCallback(() => OnPlayerCheckChoice(correctChoice, problem));
         sequence.ChainCallback(CheckNextNode);
     }
 
+    #endregion
+
     /// <summary>
-    /// If player lets customer enter, but customer has wrong documents. Or viceversa
+    /// Give player a warning if player lets customer enter, but customer has wrong documents. Or viceversa
     /// </summary>
-    public void OnPlayerWrongChoice(string problem)
+    private void OnPlayerCheckChoice(bool isCorrectChoice, string problem)
     {
+        if (isCorrectChoice)
+            return;
+
         //increase warnings counter
         warningsCounter++;
 
         Sequence sequence = Sequence.Create();
-        sequence.ChainDelay(1.5f);
+        sequence.ChainDelay(2.5f);
         sequence.ChainCallback(() => DeskManager.instance.InstantiateWarning(warningsCounter, problem));
     }
 
+    /// <summary>
+    /// Move customer in front of desk or outside of the screen
+    /// </summary>
+    /// <param name="enterInScene"></param>
+    /// <returns></returns>
     private Tween MoveCustomer(bool enterInScene)
     {
         //move customer (enter in scene, or is leaving the scene)
@@ -120,7 +171,7 @@ public class LevelManager : SimpleInstance<LevelManager>
         //check node
         if (currentNode is CustomerData customerData)
         {
-            CheckCustomer(customerData.Customer);
+            StartCoroutine(CheckCustomer(customerData.Customer));
         }
         else if (currentNode is SaveChoiceData saveChoiceData)
         {
@@ -143,8 +194,21 @@ public class LevelManager : SimpleInstance<LevelManager>
         }
     }
 
-    void CheckCustomer(Customer customer)
+    IEnumerator CheckCustomer(Customer customer)
     {
+        //TEMP - press the bell only if customer give something to player
+        if (customer.GiveIDCard || customer.GiveRenunciationCard || customer.GiveResidentCard || customer.GivePoliceCard)
+        {
+            //set bell interactable and wait player to press it
+            DeskManager.instance.SetBellInteractable(true);
+            canCustomerEnter = false;
+            yield return new WaitUntil(() => canCustomerEnter);
+
+            //reset bell
+            DeskManager.instance.SetBellInteractable(false);
+            canCustomerEnter = false;
+        }
+
         //instantiate customer
         currentCustomer = Instantiate(customerPrefab, customerContainer);
         currentCustomer.Init(customer.CustomerImage.ToArray());
