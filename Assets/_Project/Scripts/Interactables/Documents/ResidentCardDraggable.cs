@@ -15,7 +15,7 @@ public class ResidentCardDraggable : DocumentDraggable
     {
         nameText.text = doc.Name + " " + doc.Surname;
         idNumberText.text = doc.IDCardNumber;
-        roomText.text = doc.RoomNumber.ToString();
+        roomText.text = doc.RoomNumber.ToRoomString();
         signatureText.text = doc.Signature;
     }
 }

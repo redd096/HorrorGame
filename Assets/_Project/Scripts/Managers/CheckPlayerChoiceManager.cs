@@ -117,7 +117,7 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
                 return false;
         }
 
-        problem = null;
+        problem = "Customer had everything OK";
         return true;
     }
 }
