@@ -158,8 +158,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -399,9 +399,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Wrong ID Card Number
-
-'
+  m_text: Wrong ID Card Number
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a0d37cb6a6bdc7a44a36e06638842418, type: 2}
   m_sharedMaterial: {fileID: 1848821597554325426, guid: a0d37cb6a6bdc7a44a36e06638842418, type: 2}
@@ -428,8 +426,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
