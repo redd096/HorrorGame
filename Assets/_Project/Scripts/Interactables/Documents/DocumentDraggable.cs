@@ -73,7 +73,7 @@ public class DocumentDraggable : InteractableDraggable
                 //check if this is a document you can give back, and give back if now is in documents area
                 if (documentToGiveBack)
                 {
-                    DeskManager.instance.CheckToRemoveDocument(CopyInScene, this, documentToGiveBack);
+                    DeskManager.instance.CheckToRemoveDocument(CopyInScene, this);
                 }
             }
         }

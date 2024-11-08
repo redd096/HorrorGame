@@ -23,7 +23,7 @@ public class DeskNormalState : DeskBaseState
     public void ClickAndInstantiateInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
     {
         //move both interactables on desk
-        DeskManager.instance.AddInteractable(clickedInteractable, instantiatedInScene);
+        DeskManager.instance.AddInteractableFromDesk(clickedInteractable, instantiatedInScene);
     }
 
     public void InteractableFromTheRightBeginDrag(InteractableDragFromTheRight interactable, PointerEventData eventData)

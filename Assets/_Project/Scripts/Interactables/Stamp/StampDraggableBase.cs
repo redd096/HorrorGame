@@ -39,7 +39,7 @@ public abstract class StampDraggableBase : InteractableDraggable
             onEndDrag?.Invoke();
             
             //check to remove interactable
-            if (DeskManager.instance.CheckToRemoveInteractable(CopyInScene, this))
+            if (DeskManager.instance.CheckToRemoveInteractableOnDesk(CopyInScene, this))
                 return;
 
             //else, check what hit where there is the shadow

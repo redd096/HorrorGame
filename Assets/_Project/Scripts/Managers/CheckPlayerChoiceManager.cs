@@ -15,6 +15,9 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
     [SerializeField] bool needPoliceCard = false;
     [SerializeField] bool policeCardNeedSecondStamp = false;
 
+    /// <summary>
+    /// DEBUG ONLY - Stamp if this customer is OK or has some wrong document
+    /// </summary>
     [Button]
     void StampCurrentSituation()
     {
@@ -31,6 +34,11 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
             Debug.Log($"<color=red>{problem}</color>");
     }
 
+    /// <summary>
+    /// Check if the player choice (lets customer enter or not) is correct. If wrong, call LevelManager
+    /// </summary>
+    /// <param name="currentNode"></param>
+    /// <param name="currentChoice"></param>
     public void CheckPlayerChoice(LevelNodeData currentNode, bool currentChoice)
     {
         if (currentNode is CustomerData customerData == false)
@@ -41,9 +49,14 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
 
         bool shouldEnter = CheckCustomer(customerData.Customer, out string problem);        
         if (shouldEnter == currentChoice)
+        {
             Debug.Log("<color=green>Correct choice!</color>");
+        }
         else
+        {
             Debug.Log($"<color=red>{problem}</color>");
+            LevelManager.instance.OnPlayerWrongChoice(problem);
+        }
     }
 
     private bool CheckCustomer(Customer customer, out string problem)
@@ -64,7 +77,7 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
             System.DateTime birthDate = idCard.BirthDate.GetDateTime();
             if (birthDate.AddYears(adultAge) > currentDate)     //if birthday + 18 years is after today, this day still didn't come
             {
-                problem = "Customer doesn't have 18 years";
+                problem = $"Customer doesn't have {adultAge} years";
                 return false;
             }
         }

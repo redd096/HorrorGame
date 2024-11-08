@@ -17,6 +17,7 @@ public class LevelManager : SimpleInstance<LevelManager>
     [SerializeField] Transform customerEndPoint;
     [SerializeField] float customerAnimation = 3;
 
+    //current vars in this LevelNode
     private LevelNodeData currentNode;
     private bool currentChoice;         //user allowed customer to ENTER (true) or NOT ENTER (false)
     private bool alreadySetChoice;      //this is used to save result only first time. If user put other stamps, they're ignored
@@ -25,12 +26,16 @@ public class LevelManager : SimpleInstance<LevelManager>
     //used by nodes SaveChoice and GetChoice
     private Dictionary<string, bool> savedChoices = new Dictionary<string, bool>();
 
+    //warnings
+    private int warningsCounter;
+
     public FDate CurrentDate => currentDate;
     public LevelNodeData CurrentNode => currentNode;
     public bool CurrentChoice => currentChoice;
 
     private void Start()
     {
+        //start first node
         CheckNextNode();
     }
 
@@ -69,6 +74,19 @@ public class LevelManager : SimpleInstance<LevelManager>
         //check if player did something wrong, then move to next node
         sequence.ChainCallback(() => CheckPlayerChoiceManager.instance.CheckPlayerChoice(currentNode, currentChoice));
         sequence.ChainCallback(CheckNextNode);
+    }
+
+    /// <summary>
+    /// If player lets customer enter, but customer has wrong documents. Or viceversa
+    /// </summary>
+    public void OnPlayerWrongChoice(string problem)
+    {
+        //increase warnings counter
+        warningsCounter++;
+
+        Sequence sequence = Sequence.Create();
+        sequence.ChainDelay(2);
+        sequence.ChainCallback(() => DeskManager.instance.InstantiateWarning(warningsCounter, problem));
     }
 
     private Tween MoveCustomer(bool enterInScene)

@@ -14,7 +14,8 @@ public class DeskManager : SimpleInstance<DeskManager>
 
     [Header("Put interactables animation")]
     [SerializeField] Transform leftContainer;
-    [SerializeField] Transform leftStartPoint;
+    [SerializeField] Transform leftStartTopPoint;
+    [SerializeField] Transform leftStartBottomPoint;
     [SerializeField] Transform leftEndPoint;
     [SerializeField] Transform rightContainer;
     [SerializeField] Transform rightStartTopPoint;
@@ -23,6 +24,8 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] float putAnimationTime = 1;
     
     [Header("Documents Prefabs")]
+    [SerializeField] InteractableOnTheLeft warningLeft;
+    [SerializeField] WarningDraggable warningRight;
     [SerializeField] InteractableOnTheLeft idCardLeft;
     [SerializeField] IDCardDraggable idCardRight;
     [SerializeField] InteractableOnTheLeft renunciationCardLeft;
@@ -45,6 +48,15 @@ public class DeskManager : SimpleInstance<DeskManager>
     public RectTransform DraggedObjectsContainer => draggedObjectsContainer;
 
     #region instantiate document
+
+    public void InstantiateWarning(int counter, string message)
+    {
+        //instantiate and initialize, then add in scene
+        InstantiateGenericDocument(warningLeft, warningRight, out var left, out var right);
+        ((WarningDraggable)right).InitDocument(counter, message);
+
+        AddInteractable(left, right, true, false, false, false);
+    }
 
     public void InstantiateDocument(IDCard doc)
     {
@@ -112,139 +124,33 @@ public class DeskManager : SimpleInstance<DeskManager>
     /// <param name="isDocumentToGiveBack">After stamp, show area to give back documents</param>
     private void AddDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable, bool isDocumentToGiveBack = true)
     {
-        interactablesInScene.Add(docDraggable);
+        AddInteractable(docInScene, docDraggable, true, true, isDocumentToGiveBack, false);
+    }
 
-        //update documents counter
-        if (isDocumentToGiveBack)
-            documentsToGiveBack.Add(docDraggable);
-        
-        //set parent
-        Vector2 posLeft = docInScene.transform.position;
-        Vector2 posRight = docDraggable.transform.position;
-        docInScene.transform.SetParent(leftContainer, false);
-        docDraggable.transform.SetParent(rightContainer, false);
-        docInScene.transform.position = posLeft;
-        docDraggable.transform.position = posRight;
-
-        docInScene.SetInteractable(false);
-        docDraggable.SetInteractable(false);
-
-        //and move on the desk
-        Tween.Position(docInScene.transform, leftStartPoint.position, leftEndPoint.position, putAnimationTime);
-        Tween.Position(docDraggable.transform, rightStartTopPoint.position, rightEndPoint.position, putAnimationTime)
-            .OnComplete(() => docDraggable.SetInteractable(true));
+    /// <summary>
+    /// Call this when click objects on the desk to the left. Move object on the left and add object already instantiated on the right
+    /// </summary>
+    public void AddInteractableFromDesk(InteractableOnTheLeft left, InteractableOnTheRight right)
+    {
+        AddInteractable(left, right, false, false, false, true);
     }
 
     /// <summary>
     /// Check if inside documents area. If inside, remove document from the scene
     /// </summary>
     /// <param name="isDocumentToGiveBack">After give back every document, hide area to give back documents</param>
-    public bool CheckToRemoveDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable, bool isDocumentToGiveBack = true)
+    public bool CheckToRemoveDocument(InteractableOnTheLeft docInScene, InteractableOnTheRight docDraggable)
     {
-        //check is inside area
-        if (deskWindowsManager.CheckIsInGiveDocumentsArea(docDraggable.transform.position))
-        {
-            interactablesInScene.Remove(docDraggable);
-
-            //update documents counter and check to hide area
-            if (isDocumentToGiveBack)
-            {
-                documentsToGiveBack.Remove(docDraggable);
-                if (documentsToGiveBack.Count <= 0)
-                {
-                    deskWindowsManager.ShowDocumentsArea(false);
-                    LevelManager.instance.OnGiveBackAllDocuments();
-                }
-            }
-            
-            docInScene.SetInteractable(false);
-            docDraggable.SetInteractable(false);
-        
-            //move out of the desk and destroy
-            Tween.Position(docInScene.transform, leftStartPoint.position, putAnimationTime).OnComplete(() => Destroy(docInScene.gameObject));
-            Tween.Position(docDraggable.transform, rightStartTopPoint.position, putAnimationTime).OnComplete(() => Destroy(docDraggable.gameObject));
-
-            return true;
-        }
-
-        return false;
+        return CheckToRemoveInteractable(docInScene, docDraggable, true, false);
     }
 
     /// <summary>
-    /// Add an object already instantiated
+    /// Check if inside interactables area. If inside, put back interactable on the desk
     /// </summary>
-    public void AddInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene, bool isInteractableToPutBack = true)
+    /// <returns></returns>
+    public bool CheckToRemoveInteractableOnDesk(InteractableOnTheLeft left, InteractableOnTheRight right)
     {
-        interactablesInScene.Add(instantiatedInScene);
-
-        //update interactables counter and show area
-        if (isInteractableToPutBack)
-        {
-            interactablesToPutBack.Add(instantiatedInScene);
-            if (interactablesToPutBack.Count > 0)
-                deskWindowsManager.ShowInteractablesArea(true);
-        }
-        
-        instantiatedInScene.gameObject.SetActive(true);
-        
-        //set parent
-        Vector2 posLeft = clickedInteractable.transform.position;
-        Vector2 posRight = instantiatedInScene.transform.position;
-        clickedInteractable.transform.SetParent(leftContainer, false);
-        instantiatedInScene.transform.SetParent(rightContainer, false);
-        clickedInteractable.transform.position = posLeft;
-        instantiatedInScene.transform.position = posRight;
-
-        clickedInteractable.SetInteractable(false);
-        instantiatedInScene.SetInteractable(false);
-
-        //and move
-        Tween.Position(clickedInteractable.transform, leftEndPoint.position, putAnimationTime);
-        Tween.Position(instantiatedInScene.transform, rightStartBottomPoint.position, rightEndPoint.position, putAnimationTime)
-            .OnComplete(() => instantiatedInScene.SetInteractable(true));
-    }
-
-    /// <summary>
-    /// Check if inside interactables area. If inside, put back interactable
-    /// </summary>
-    public bool CheckToRemoveInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene, bool isInteractableToPutBack = true)
-    {
-        //check is inside area
-        if (deskWindowsManager.CheckIsInPutBackInteractablesArea(instantiatedInScene.transform.position))
-        {
-            interactablesInScene.Remove(instantiatedInScene);
-
-            //update interactables counter and check to hide area
-            if (isInteractableToPutBack)
-            {
-                interactablesToPutBack.Remove(instantiatedInScene);
-                if (interactablesToPutBack.Count <= 0)
-                {
-                    deskWindowsManager.ShowInteractablesArea(false);
-                }
-            }
-            
-            //set parent
-            Vector2 posLeft = clickedInteractable.transform.position;
-            clickedInteractable.transform.SetParent(clickedInteractable.StartParent, false);
-            clickedInteractable.transform.position = posLeft;
-            
-            clickedInteractable.SetInteractable(false);
-            instantiatedInScene.SetInteractable(false);
-        
-            //move out of the desk
-            Tween.UIAnchoredPosition(clickedInteractable.RectTr, clickedInteractable.StartAnchoredPosition, putAnimationTime);
-            Tween.Position(instantiatedInScene.transform, rightStartBottomPoint.position, putAnimationTime)
-                .OnComplete(() =>
-                {
-                    instantiatedInScene.gameObject.SetActive(false);
-                    clickedInteractable.SetInteractable(true);
-                });
-
-            return true;
-        }
-
-        return false;
+        return CheckToRemoveInteractable(left, right, false, true);
     }
     
     /// <summary>
@@ -325,4 +231,119 @@ public class DeskManager : SimpleInstance<DeskManager>
             docDraggable.CopyInScene.ShowInScene(true);
         }
     }
+
+    #region private API
+
+    /// <summary>
+    /// Add an object already instantiated, both left and right
+    /// </summary>
+    /// <param name="isDocumentToGiveBack">After stamp, show area to give back documents</param>
+    /// <param name="isInteractableToPutBack">Show area to put back object on the desk</param>
+    private void AddInteractable(InteractableOnTheLeft left, InteractableOnTheRight right, bool setStartPositionAlsoOnLeft, bool fromTop, bool isDocumentToGiveBack, bool isInteractableToPutBack)
+    {
+        interactablesInScene.Add(right);
+
+        //update documents counter
+        if (isDocumentToGiveBack)
+            documentsToGiveBack.Add(right);
+
+        //update interactables counter and show area
+        if (isInteractableToPutBack)
+        {
+            interactablesToPutBack.Add(right);
+            if (interactablesToPutBack.Count > 0)
+                deskWindowsManager.ShowInteractablesArea(true);
+        }
+
+        right.gameObject.SetActive(true);
+
+        //set parent
+        Vector2 posLeft = left.transform.position;
+        Vector2 posRight = right.transform.position;
+        left.transform.SetParent(leftContainer, false);
+        right.transform.SetParent(rightContainer, false);
+        left.transform.position = posLeft;
+        right.transform.position = posRight;
+
+        left.SetInteractable(false);
+        right.SetInteractable(false);
+
+        //move left
+        Transform leftStartPoint = fromTop ? leftStartTopPoint : leftStartBottomPoint;
+        if (setStartPositionAlsoOnLeft)
+            Tween.Position(left.transform, leftStartPoint.position, leftEndPoint.position, putAnimationTime);
+        else
+            Tween.Position(left.transform, leftEndPoint.position, putAnimationTime);
+
+        //move right
+        Transform rightStartPoint = fromTop ? rightStartTopPoint : rightStartBottomPoint;
+        Tween.Position(right.transform, rightStartPoint.position, rightEndPoint.position, putAnimationTime)
+            .OnComplete(() => right.SetInteractable(true));
+    }
+
+    /// <summary>
+    /// Check if inside documents or interactables area. If inside, give back document to the customer or put back interactable
+    /// </summary>
+    private bool CheckToRemoveInteractable(InteractableOnTheLeft left, InteractableOnTheRight right, bool isDocumentToGiveBack, bool isInteractableToPutBack)
+    {
+        bool removeInteractable = false;
+
+        //check document or interactable to put on the desk
+        if (isDocumentToGiveBack)
+            removeInteractable = deskWindowsManager.CheckIsInGiveDocumentsArea(right.transform.position);
+        else if (isInteractableToPutBack)
+            removeInteractable = deskWindowsManager.CheckIsInPutBackInteractablesArea(right.transform.position);
+
+        if (removeInteractable)
+        {
+            interactablesInScene.Remove(right);
+
+            left.SetInteractable(false);
+            right.SetInteractable(false);
+
+            //update documents counter and check to hide area
+            if (isDocumentToGiveBack)
+            {
+                documentsToGiveBack.Remove(right);
+                if (documentsToGiveBack.Count <= 0)
+                {
+                    deskWindowsManager.ShowDocumentsArea(false);
+                    LevelManager.instance.OnGiveBackAllDocuments();
+                }
+
+                //move out of the desk and destroy
+                Tween.Position(left.transform, leftStartTopPoint.position, putAnimationTime).OnComplete(() => Destroy(left.gameObject));
+                Tween.Position(right.transform, rightStartTopPoint.position, putAnimationTime).OnComplete(() => Destroy(right.gameObject));
+            }
+            //update interactables counter and check to hide area
+            else if (isInteractableToPutBack)
+            {
+                interactablesToPutBack.Remove(right);
+                if (interactablesToPutBack.Count <= 0)
+                {
+                    deskWindowsManager.ShowInteractablesArea(false);
+                }
+
+                //set parent
+                Vector2 posLeft = left.transform.position;
+                left.transform.SetParent(left.StartParent, false);
+                left.transform.position = posLeft;
+
+                //move out of the desk
+                Tween.UIAnchoredPosition(left.RectTr, left.StartAnchoredPosition, putAnimationTime);
+                Tween.Position(right.transform, rightStartBottomPoint.position, putAnimationTime)
+                    .OnComplete(() =>
+                    {
+                        right.gameObject.SetActive(false);
+                        left.SetInteractable(true);
+                    });
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    #endregion
 }
