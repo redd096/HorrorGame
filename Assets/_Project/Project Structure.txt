@@ -1,0 +1,16 @@
+When you create a new level, you have to check these managers:
+
+- LevelManager is the manager that starts and manage the day and has the list of every LevelNode (customers, events, etc...)
+It has also:
+	- LevelEventsManager to manage specific events
+	- CheckPlayerChoiceManager to manage when player lets enter customers or not. It has also the rules for the level
+	- ResidentsManager used by CheckPlayerChoice to know which customer is a resident
+	- AppointmentsManager used by CheckPlayerChoice to know which appointment is scheduled for this level
+
+
+These are the managers for the player and interactables in scene:
+
+- DeskManager manage what happens on the desk, both left and right screen
+It has also:
+	- DeskStateMachine to know when can call different functions. This inherit IInteractablesEvents and is called by every interactable when an input occurs
+	- DeskWindowsManager to manage the windows on the right (give back documents, put back interactables, the board to put documents and the book)

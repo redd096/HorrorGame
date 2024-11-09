@@ -9,9 +9,17 @@ using System.Collections;
 /// </summary>
 public class LevelManager : SimpleInstance<LevelManager>
 {
+    [Header("Level")]
     [SerializeField] LevelData levelData;
     [SerializeField] FDate currentDate;
-    [Space]
+
+    [Header("Managers")]
+    [SerializeField] LevelEventsManager eventsManager;
+    [SerializeField] CheckPlayerChoiceManager choiceManager;
+    [SerializeField] ResidentsManager residentsManager;
+    [SerializeField] AppointmentsManager appointmentsManager;
+
+    [Header("Customer")]
     [SerializeField] CustomerBehaviour customerPrefab;
     [SerializeField] Transform customerContainer;
     [SerializeField] Transform customerStartPoint;
@@ -31,6 +39,8 @@ public class LevelManager : SimpleInstance<LevelManager>
     //warnings
     private int warningsCounter;
 
+    //used by editor
+    public LevelEventsManager EventsManager => eventsManager;
     public LevelNodeData CurrentNode => currentNode;
 
     protected override void InitializeInstance()
@@ -43,7 +53,7 @@ public class LevelManager : SimpleInstance<LevelManager>
         DeskManager.instance.onGiveBackAllDocuments += OnGiveBackAllDocuments;
 
         //initialize
-        CheckPlayerChoiceManager.instance.InitializeForThisLevel(currentDate);
+        choiceManager.InitializeForThisLevel(currentDate, residentsManager, appointmentsManager);
 
         //set every interactable in scene
         InteractableBase[] interactablesInScene = FindObjectsOfType<InteractableBase>();
@@ -100,7 +110,7 @@ public class LevelManager : SimpleInstance<LevelManager>
         //reset vars for next turn, player can set again stamp
         alreadySetChoice = false;
 
-        bool correctChoice = CheckPlayerChoiceManager.instance.CheckPlayerChoice(currentNode, currentChoice, out string problem);
+        bool correctChoice = choiceManager.CheckPlayerChoice(currentNode, currentChoice, out string problem);
 
         //start end dialogue
         Sequence sequence = Sequence.Create();
@@ -306,7 +316,7 @@ public class LevelManager : SimpleInstance<LevelManager>
         string newspaperName = eventNewspaper.NewspaperName;
 
         //show newspaper for few seconds, then go to next node
-        LevelEventsManager.instance.ShowNewspaper(newspaperName)
+        eventsManager.ShowNewspaper(newspaperName)
             .OnComplete(CheckNextNode);
     }
 

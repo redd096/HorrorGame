@@ -1,10 +1,9 @@
-using redd096;
 using UnityEngine;
 
 /// <summary>
 /// Keep track of current day date and appointments
 /// </summary>
-public class AppointmentsManager : SimpleInstance<AppointmentsManager>
+public class AppointmentsManager : MonoBehaviour
 {
     [SerializeField] AppointmentData[] appointments;
 

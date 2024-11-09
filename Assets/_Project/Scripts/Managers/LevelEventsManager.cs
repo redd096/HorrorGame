@@ -1,15 +1,15 @@
-using redd096;
 using UnityEngine;
 using PrimeTween;
 
 /// <summary>
 /// This is used by LevelManager and is specific for the events (not customers or other)
 /// </summary>
-public class LevelEventsManager : SimpleInstance<LevelEventsManager>
+public class LevelEventsManager : MonoBehaviour
 {
     [SerializeField] CanvasGroup newspapersContainer;
     [SerializeField] float durationNewspaper = 3;
 
+    //used by editor
     public Transform NewspapersContainer => newspapersContainer.transform;
 
     /// <summary>

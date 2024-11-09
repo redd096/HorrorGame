@@ -2,14 +2,18 @@ using UnityEngine;
 using PrimeTween;
 using redd096;
 using System.Collections.Generic;
+using System.Collections;
 
 /// <summary>
 /// This manages UI
 /// </summary>
 public class DeskManager : SimpleInstance<DeskManager>
 {
+    [Header("Managers")]
     [SerializeField] DeskStateMachine stateMachine;
     [SerializeField] DeskWindowsManager deskWindowsManager;
+
+    [Header("Other elements in scene")]
     [SerializeField] RectTransform draggedObjectsContainer;
     [SerializeField] Bell bell;
 
@@ -53,6 +57,20 @@ public class DeskManager : SimpleInstance<DeskManager>
     public DeskStateMachine StateMachine => stateMachine;
     public List<InteractableOnTheRight> InteractablesInScene => interactablesInScene;
     public RectTransform DraggedObjectsContainer => draggedObjectsContainer;
+
+    private IEnumerator Start()
+    {
+        //wait few seconds for the canvas to update layout, because interactables have to save their start position
+        yield return new WaitForSeconds(0.1f);
+
+        //initialize interactables in scene, to set callbacks
+        InteractableBase[] interactablesInScene = FindObjectsOfType<InteractableBase>();
+        foreach (var interactable in interactablesInScene)
+            interactable.Init(stateMachine);
+
+        //set start state
+        stateMachine.SetState(stateMachine.NormalState);
+    }
 
     #region instantiate document
 
@@ -124,6 +142,8 @@ public class DeskManager : SimpleInstance<DeskManager>
     }
 
     #endregion
+
+    #region other public API
 
     /// <summary>
     /// When player click bell in scene
@@ -255,6 +275,8 @@ public class DeskManager : SimpleInstance<DeskManager>
             docDraggable.CopyInScene.ShowInScene(true);
         }
     }
+
+    #endregion
 
     #region private API
 

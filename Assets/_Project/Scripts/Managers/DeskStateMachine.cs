@@ -1,6 +1,4 @@
 using redd096.v2.ComponentsSystem;
-using System.Collections;
-using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
@@ -15,20 +13,6 @@ public class DeskStateMachine : BasicStateMachineComponent, IInteractablesEvents
     public DeskNormalState NormalState = new DeskNormalState();
     public DeskDraggingState DraggingState = new DeskDraggingState();
     public DeskDragFromTheRightState DragFromTheRightState = new DeskDragFromTheRightState();
-
-    private IEnumerator Start()
-    {
-        //wait few seconds, for the canvas to update layout
-        yield return new WaitForSeconds(0.1f);
-
-        //set callbacks for every element in scene
-        InteractableBase[] interactablesInScene = FindObjectsOfType<InteractableBase>();
-        foreach (var interactable in interactablesInScene)
-            interactable.Init(this);
-
-        //set start state
-        SetState(NormalState);
-    }
 
     #region interactables events
 

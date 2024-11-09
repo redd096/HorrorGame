@@ -41,7 +41,7 @@ public class EventNewspaperNode : GraphNode
             if (newspaper == null)
             {
                 Debug.LogWarning($"Impossible to find newspaper by Local Identifier: {EventNewspaper.NewspaperFileID}. Try find by name: {EventNewspaper.NewspaperName}");
-                Transform newspaperTr = LevelEventsManager.instance.NewspapersContainer.Find(EventNewspaper.NewspaperName);
+                Transform newspaperTr = LevelManager.instance.EventsManager.NewspapersContainer.Find(EventNewspaper.NewspaperName);
                 newspaper = newspaperTr ? newspaperTr.gameObject : null;
             }
 

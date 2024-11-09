@@ -1,12 +1,12 @@
-using redd096;
 using redd096.Attributes;
 using UnityEngine;
 
 /// <summary>
 /// Check if player choice is correct or not
 /// </summary>
-public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
+public class CheckPlayerChoiceManager : MonoBehaviour
 {
+    [Header("Rules")]
     [SerializeField] bool showAlwaysID = true;
     [SerializeField] bool onlyAdults = true;
     [SerializeField] int adultAge = 18;
@@ -16,6 +16,8 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
     [SerializeField] bool policeCardNeedSecondStamp = false;
 
     private FDate currentDate;
+    private ResidentsManager residentsManager;
+    private AppointmentsManager appointmentsManager;
 
     /// <summary>
     /// DEBUG ONLY - Stamp if this customer is OK or has some wrong document
@@ -40,9 +42,11 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
     /// Initialize when start level
     /// </summary>
     /// <param name="currentDate"></param>
-    public void InitializeForThisLevel(FDate currentDate)
+    public void InitializeForThisLevel(FDate currentDate, ResidentsManager residentsManager, AppointmentsManager appointmentsManager)
     {
         this.currentDate = currentDate;
+        this.residentsManager = residentsManager;
+        this.appointmentsManager = appointmentsManager;
     }
 
     /// <summary>
@@ -96,7 +100,7 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
         }
 
         //check if show resident card
-        if (ResidentsManager.instance.IsResident(idCard, out ResidentData resident))
+        if (residentsManager.IsResident(idCard, out ResidentData resident))
         {
             if (residentShowResidentCard && customer.GiveResidentCard == false)
             {
@@ -123,7 +127,7 @@ public class CheckPlayerChoiceManager : SimpleInstance<CheckPlayerChoiceManager>
         //check appointment card
         if (customer.GiveAppointmentCard)
         {
-            if (AppointmentsManager.instance.IsCorrectAppointment(customer.AppointmentCard, currentDate, out AppointmentData appointment, out problem) == false)
+            if (appointmentsManager.IsCorrectAppointment(customer.AppointmentCard, currentDate, out AppointmentData appointment, out problem) == false)
                 return false;
 
             if (customer.AppointmentCard.IsCorrect(idCard, currentDate, appointment, out problem) == false)
