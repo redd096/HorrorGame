@@ -12,40 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
   m_Name: Appuntamento direttore (no foglio no lista)
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 0}
-  NodeOnFalse: {fileID: 0}
+  NodeOnTrue: {fileID: 11400000, guid: 8c8bf5a4328f340479b843a54a5ee819, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 8c8bf5a4328f340479b843a54a5ee819, type: 2}
   Customer:
-    CustomerImage: []
+    CustomerImage:
+    - {fileID: 21300000, guid: 37b85e5909980c34a827e05467e40fcc, type: 3}
+    - {fileID: 21300000, guid: 2f4d070635cad82449705cefeb4cd70c, type: 3}
+    - {fileID: 21300000, guid: 2f14ee0626fb69640b2b26a6cc72400e, type: 3}
     DialogueWhenCome: 
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
-    GiveIDCard: 0
+    GiveIDCard: 1
     IDCard:
-      Name: 
-      Surname: 
-      CardNumber: 
+      Name: Brian
+      Surname: Green
+      CardNumber: TM55435
       BirthDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 29
+        Month: 6
+        Year: 1907
       ExpireDate:
-        Day: 0
-        Month: 0
-        Year: 0
-      Signature: 
-      Photo: {fileID: 0}
-    GiveRenunciationCard: 0
+        Day: 30
+        Month: 7
+        Year: 1943
+      Signature: Brian Green
+      Photo: {fileID: 21300000, guid: 37b85e5909980c34a827e05467e40fcc, type: 3}
+    GiveRenunciationCard: 1
     RenunciationCard:
-      Name: 
-      Surname: 
-      IDCardNumber: 
+      Name: Brian
+      Surname: Green
+      IDCardNumber: TM55435
       BirthDate:
-        Day: 0
-        Month: 0
-        Year: 0
-      DurationStayInDays: 0
-      CorrectDurationStayInDays: 0
-      Signature: 
+        Day: 29
+        Month: 6
+        Year: 1907
+      DurationStayInDays: 1
+      CorrectDurationStayInDays: 1
+      Signature: Brian Green
     GiveResidentCard: 0
     ResidentCard:
       Name: 
@@ -55,26 +58,26 @@ MonoBehaviour:
         Floor: 0
         Room: 0
       Signature: 
-    GivePoliceCard: 0
+    GivePoliceCard: 1
     PoliceCard:
-      Name: 
-      Surname: 
+      Name: 'Brian '
+      Surname: Green
       ValidateDate:
-        Day: 0
-        Month: 0
-        Year: 0
-      Signature: 
-      HasFirstStamp: 0
-      HasSecondStamp: 0
+        Day: 5
+        Month: 4
+        Year: 1940
+      Signature: Brian Green
+      HasFirstStamp: 1
+      HasSecondStamp: 1
     GiveAppointmentCard: 0
     AppointmentCard:
       Name: 
       Surname: 
       Profession: 
       AppointmentDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 1
+        Month: 1
+        Year: 1
       AppointmentReason: 
       HasStamp: 0
     ObjectsToGiveToPlayer: []

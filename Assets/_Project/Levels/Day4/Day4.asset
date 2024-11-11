@@ -34,7 +34,7 @@ MonoBehaviour:
       ConnectedPortIndex: 0
     GroupID: 
     Position: {x: 337, y: 276}
-  - NodeName: Personaggio Vecchia Ricca
+  - NodeName: Vecchia Ricca
     ID: 6371e424-0e00-4e0b-bcc6-b2b5313907f4
     NodeType: CustomerNode
     OutputsData:
@@ -55,19 +55,43 @@ MonoBehaviour:
       ConnectedPortIndex: 0
     GroupID: 
     Position: {x: 922, y: 292}
-  - NodeName: Appuntamento direttore (no foglio no lista)
+  - NodeName: Cugino2
+    ID: a85de495-7332-4885-85d3-daf7749cdae9
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2117, y: 305}
+  - NodeName: 'RAgazza manca 2 timbro '
+    ID: 5d626b80-2921-4a15-a46b-b03f0a944f75
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: c67b47ae-501e-446e-b08d-f4d7cfc33fcb
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: c67b47ae-501e-446e-b08d-f4d7cfc33fcb
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2707, y: 305}
+  - NodeName: Appuntamento direttore (no foglio)
     ID: c67b47ae-501e-446e-b08d-f4d7cfc33fcb
     NodeType: CustomerNode
     OutputsData:
     - OutputType: System.Boolean
-      ConnectedNodeID: 5d7ffdfb-80c5-463f-b9c2-2d5bb6e41543
+      ConnectedNodeID: 
       ConnectedPortIndex: 0
     - OutputType: System.Boolean
-      ConnectedNodeID: 5d7ffdfb-80c5-463f-b9c2-2d5bb6e41543
+      ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
     Position: {x: 3068, y: 309}
-  - NodeName: Personaggio Uomo Mascherato
+  - NodeName: Uomo Mascherato
     ID: ffaaca87-cc78-4c8f-a8bf-149c81bda43c
     NodeType: CustomerNode
     OutputsData:
@@ -91,31 +115,19 @@ MonoBehaviour:
       ConnectedPortIndex: 0
     GroupID: 
     Position: {x: 3998, y: 311}
-  - NodeName: Residente Sorella Sinistra
+  - NodeName: Sorella Sinistra
     ID: 2dbbe8cc-32a1-4052-b6c2-3f08e146d81e
     NodeType: CustomerNode
     OutputsData:
     - OutputType: System.Boolean
-      ConnectedNodeID: 95b683b5-9fdf-4c87-9434-bc164063c860
+      ConnectedNodeID: 
       ConnectedPortIndex: 0
     - OutputType: System.Boolean
-      ConnectedNodeID: 95b683b5-9fdf-4c87-9434-bc164063c860
+      ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
     Position: {x: 1207, y: 292}
-  - NodeName: Evento mani insanguinate
-    ID: 95b683b5-9fdf-4c87-9434-bc164063c860
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 57eab255-f9d2-4884-84bd-6b12c35f1ae2
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 57eab255-f9d2-4884-84bd-6b12c35f1ae2
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 1488, y: 294}
-  - NodeName: Appuntamento Idraulico ok
+  - NodeName: Idraulico
     ID: 57eab255-f9d2-4884-84bd-6b12c35f1ae2
     NodeType: CustomerNode
     OutputsData:
@@ -127,52 +139,4 @@ MonoBehaviour:
       ConnectedPortIndex: 0
     GroupID: 
     Position: {x: 1766, y: 301}
-  - NodeName: Residente Cugino2
-    ID: a85de495-7332-4885-85d3-daf7749cdae9
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 65a6d011-4d51-4aca-846f-936a7f06b44f
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 65a6d011-4d51-4aca-846f-936a7f06b44f
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 2117, y: 305}
-  - NodeName: 'Personaggio manca 2 timbro polizia '
-    ID: 5d626b80-2921-4a15-a46b-b03f0a944f75
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: c67b47ae-501e-446e-b08d-f4d7cfc33fcb
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: c67b47ae-501e-446e-b08d-f4d7cfc33fcb
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 2707, y: 305}
-  - NodeName: Evento ombra ti guarda da porta
-    ID: 65a6d011-4d51-4aca-846f-936a7f06b44f
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 5d626b80-2921-4a15-a46b-b03f0a944f75
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 5d626b80-2921-4a15-a46b-b03f0a944f75
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 2418, y: 304}
-  - NodeName: Evento sangue allaga tutto
-    ID: 5d7ffdfb-80c5-463f-b9c2-2d5bb6e41543
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: ffaaca87-cc78-4c8f-a8bf-149c81bda43c
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: ffaaca87-cc78-4c8f-a8bf-149c81bda43c
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 3401, y: 313}
   Groups: []

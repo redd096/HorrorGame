@@ -12,40 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
   m_Name: 'Personaggio manca 2 timbro polizia '
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 0}
-  NodeOnFalse: {fileID: 0}
+  NodeOnTrue: {fileID: 11400000, guid: 49c5d6be4cc8b5b4c859e0ab541e7551, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 49c5d6be4cc8b5b4c859e0ab541e7551, type: 2}
   Customer:
-    CustomerImage: []
+    CustomerImage:
+    - {fileID: 21300000, guid: d9e162abe716b5d4eb67e96c70cd42f0, type: 3}
+    - {fileID: 21300000, guid: b0dd91c96e7a5df41bca2305daef93a5, type: 3}
+    - {fileID: 21300000, guid: 5e6e2967c7d4fd84dae71ebed3d5367b, type: 3}
     DialogueWhenCome: 
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
-    GiveIDCard: 0
+    GiveIDCard: 1
     IDCard:
-      Name: 
-      Surname: 
-      CardNumber: 
+      Name: Millie
+      Surname: Evans
+      CardNumber: FX00036
       BirthDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 9
+        Month: 11
+        Year: 1914
       ExpireDate:
-        Day: 0
-        Month: 0
-        Year: 0
-      Signature: 
-      Photo: {fileID: 0}
-    GiveRenunciationCard: 0
+        Day: 23
+        Month: 7
+        Year: 1944
+      Signature: Millie Evans
+      Photo: {fileID: 21300000, guid: d9e162abe716b5d4eb67e96c70cd42f0, type: 3}
+    GiveRenunciationCard: 1
     RenunciationCard:
-      Name: 
-      Surname: 
-      IDCardNumber: 
+      Name: Millie
+      Surname: Evans
+      IDCardNumber: FX00036
       BirthDate:
-        Day: 0
-        Month: 0
-        Year: 0
-      DurationStayInDays: 0
-      CorrectDurationStayInDays: 0
-      Signature: 
+        Day: 9
+        Month: 11
+        Year: 1914
+      DurationStayInDays: 4
+      CorrectDurationStayInDays: 4
+      Signature: Millie Evans
     GiveResidentCard: 0
     ResidentCard:
       Name: 
@@ -55,16 +58,16 @@ MonoBehaviour:
         Floor: 0
         Room: 0
       Signature: 
-    GivePoliceCard: 0
+    GivePoliceCard: 1
     PoliceCard:
-      Name: 
-      Surname: 
+      Name: Millie
+      Surname: Evans
       ValidateDate:
-        Day: 0
-        Month: 0
-        Year: 0
-      Signature: 
-      HasFirstStamp: 0
+        Day: 5
+        Month: 4
+        Year: 1940
+      Signature: Millie Evans
+      HasFirstStamp: 1
       HasSecondStamp: 0
     GiveAppointmentCard: 0
     AppointmentCard:
@@ -72,9 +75,9 @@ MonoBehaviour:
       Surname: 
       Profession: 
       AppointmentDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 1
+        Month: 1
+        Year: 1
       AppointmentReason: 
       HasStamp: 0
     ObjectsToGiveToPlayer: []

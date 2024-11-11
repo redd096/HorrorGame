@@ -19,9 +19,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 7a7b773fe987eec4990110019826e67a, type: 3}
     - {fileID: 21300000, guid: e678349e9d8207a418da29ecc9de1d82, type: 3}
     - {fileID: 21300000, guid: 97e53fc14132d244b9d49dd1867186ff, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day1/Customer ok2/start
+    DialogueWhenPlayerSayNo: Day1/Customer ok2/not enter
+    DialogueWhenPlayerSayYes: Day1/Customer ok2/ok enter
     GiveIDCard: 1
     IDCard:
       Name: Leonard
@@ -46,8 +46,8 @@ MonoBehaviour:
         Day: 30
         Month: 6
         Year: 1915
-      DurationStayInDays: 3
-      CorrectDurationStayInDays: 3
+      DurationStayInDays: 1
+      CorrectDurationStayInDays: 1
       Signature: Leonard Wilson
     GiveResidentCard: 0
     ResidentCard:

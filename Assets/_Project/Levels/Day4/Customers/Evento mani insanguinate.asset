@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
   m_Name: Evento mani insanguinate
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 0}
-  NodeOnFalse: {fileID: 0}
+  NodeOnTrue: {fileID: 11400000, guid: 32dcd3b5d8aa1f2468bf613649e8b340, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 32dcd3b5d8aa1f2468bf613649e8b340, type: 2}
   Customer:
     CustomerImage: []
     DialogueWhenCome: 
@@ -25,13 +25,13 @@ MonoBehaviour:
       Surname: 
       CardNumber: 
       BirthDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 1
+        Month: 1
+        Year: 1
       ExpireDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 1
+        Month: 1
+        Year: 1
       Signature: 
       Photo: {fileID: 0}
     GiveRenunciationCard: 0
@@ -40,9 +40,9 @@ MonoBehaviour:
       Surname: 
       IDCardNumber: 
       BirthDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 1
+        Month: 1
+        Year: 1
       DurationStayInDays: 0
       CorrectDurationStayInDays: 0
       Signature: 
@@ -60,9 +60,9 @@ MonoBehaviour:
       Name: 
       Surname: 
       ValidateDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 1
+        Month: 1
+        Year: 1
       Signature: 
       HasFirstStamp: 0
       HasSecondStamp: 0
@@ -72,9 +72,9 @@ MonoBehaviour:
       Surname: 
       Profession: 
       AppointmentDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 1
+        Month: 1
+        Year: 1
       AppointmentReason: 
       HasStamp: 0
     ObjectsToGiveToPlayer: []

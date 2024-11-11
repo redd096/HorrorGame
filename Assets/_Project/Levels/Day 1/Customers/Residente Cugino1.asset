@@ -19,9 +19,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 8cd1c8e2903ec19488f63da2111396d9, type: 3}
     - {fileID: 21300000, guid: 20e6536ab778b7041a9c99990a0ec4c5, type: 3}
     - {fileID: 21300000, guid: 5a1411e038c4e5545bc4ced91f1b9054, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day1/Cousin1/start
+    DialogueWhenPlayerSayNo: Day1/Cousin1/not enter
+    DialogueWhenPlayerSayYes: Day1/Cousin1/ok enter
     GiveIDCard: 1
     IDCard:
       Name: John Luke

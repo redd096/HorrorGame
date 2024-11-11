@@ -19,9 +19,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 37b85e5909980c34a827e05467e40fcc, type: 3}
     - {fileID: 21300000, guid: 2f4d070635cad82449705cefeb4cd70c, type: 3}
     - {fileID: 21300000, guid: 2f14ee0626fb69640b2b26a6cc72400e, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day1/Customer ok1/start
+    DialogueWhenPlayerSayNo: Day1/Customer ok1/not enter
+    DialogueWhenPlayerSayYes: Day1/Customer ok1/ok enter
     GiveIDCard: 1
     IDCard:
       Name: Charlie
