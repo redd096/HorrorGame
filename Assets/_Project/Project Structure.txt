@@ -14,3 +14,9 @@ These are the managers for the player and interactables in scene:
 It has also:
 	- DeskStateMachine to know when can call different functions. This inherit IInteractablesEvents and is called by every interactable when an input occurs
 	- DeskWindowsManager to manage the windows on the right (give back documents, put back interactables, the board to put documents and the book)
+
+
+
+Other managers:
+
+- DialogueManager, manage the dialogues

@@ -28,9 +28,10 @@ public class LevelManager : SimpleInstance<LevelManager>
 
     //current vars in this LevelNode
     private LevelNodeData currentNode;
+    private Customer currentCustomer;                   //if this node is a customer, save customer values
+    private CustomerBehaviour currentCustomerInstance;  //if this node is a customer, save customer instance in scene
     private bool currentChoice;         //user allowed customer to ENTER (true) or NOT ENTER (false)
     private bool alreadySetChoice;      //this is used to save result only first time. If user put other stamps, they're ignored
-    private CustomerBehaviour currentCustomer;
     private bool canCustomerEnter;      //false if waiting player to press the Bell, then become true and currentCustomer is istantiated
 
     //used by nodes SaveChoice and GetChoice
@@ -110,21 +111,34 @@ public class LevelManager : SimpleInstance<LevelManager>
         //reset vars for next turn, player can set again stamp
         alreadySetChoice = false;
 
+        //start coroutine
+        StartCoroutine(OnGiveBackAllDocumentsCoroutine());
+    }
+
+    private IEnumerator OnGiveBackAllDocumentsCoroutine()
+    {
+        //start Leave dialogue
+        string dialogue = currentChoice ? currentCustomer.DialogueWhenPlayerSayYes : currentCustomer.DialogueWhenPlayerSayNo;
+        yield return WaitDialogue(dialogue);
+
+        //check if player choice is correct
         bool correctChoice = choiceManager.CheckPlayerChoice(currentNode, currentChoice, out string problem);
 
-        //start end dialogue
         Sequence sequence = Sequence.Create();
-        sequence.ChainCallback(() => Debug.Log("Start dialogue"));
-        sequence.ChainDelay(2);
 
         //move customer away from screen
-        sequence.ChainCallback(currentCustomer.StartWalk);
+        sequence.ChainCallback(currentCustomerInstance.StartWalk);
         sequence.Chain(MoveCustomer(false));
-        sequence.ChainCallback(() => Destroy(currentCustomer.gameObject));
+        sequence.ChainCallback(() =>
+        {
+            //check if player did something wrong
+            OnPlayerCheckChoice(correctChoice, problem);
 
-        //check if player did something wrong, then move to next node
-        sequence.ChainCallback(() => OnPlayerCheckChoice(correctChoice, problem));
-        sequence.ChainCallback(CheckNextNode);
+            //and move to next node
+            Destroy(currentCustomerInstance.gameObject);
+            currentCustomer = null;
+            CheckNextNode();
+        });
     }
 
     #endregion
@@ -145,6 +159,8 @@ public class LevelManager : SimpleInstance<LevelManager>
         sequence.ChainCallback(() => DeskManager.instance.InstantiateWarning(warningsCounter, problem));
     }
 
+    #region private utilities
+
     /// <summary>
     /// Move customer in front of desk or outside of the screen
     /// </summary>
@@ -155,8 +171,38 @@ public class LevelManager : SimpleInstance<LevelManager>
         //move customer (enter in scene, or is leaving the scene)
         Transform startPoint = enterInScene ? customerStartPoint : customerEndPoint;
         Transform endPoint = enterInScene ? customerEndPoint : customerStartPoint;
-        return Tween.Position(currentCustomer.transform, startPoint.position, endPoint.position, customerAnimation, Ease.InOutSine);
+        return Tween.Position(currentCustomerInstance.transform, startPoint.position, endPoint.position, customerAnimation, Ease.InOutSine);
     }
+
+    /// <summary>
+    /// Start a dialogue and wait it to finish
+    /// </summary>
+    /// <param name="dialogueName"></param>
+    /// <returns></returns>
+    private IEnumerator WaitDialogue(string dialogueName)
+    {
+        //be sure there is a dialogue
+        if (string.IsNullOrEmpty(dialogueName))
+            yield break;
+
+        if (DialogueManagerUtilities.CheckConversationExists(dialogueName) == false)
+        {
+            Debug.LogError("Missing dialogue: " + dialogueName);
+            yield break;
+        }
+
+        //register to end dialogue event
+        bool isTalking = true;
+        DialogueManagerEvents.instance.onConversationEnd += () => isTalking = false;
+
+        //start dialogue
+        DialogueManagerUtilities.StartConversation(dialogueName);
+
+        //wait dialogue to finish
+        yield return new WaitWhile(() => isTalking);
+    }
+
+    #endregion
 
     #region check next node
 
@@ -220,21 +266,21 @@ public class LevelManager : SimpleInstance<LevelManager>
         }
 
         //instantiate customer
-        currentCustomer = Instantiate(customerPrefab, customerContainer);
-        currentCustomer.Init(customer.CustomerImage.ToArray());
+        currentCustomerInstance = Instantiate(customerPrefab, customerContainer);
+        currentCustomerInstance.Init(customer.CustomerImage.ToArray());
 
-        //start move customer
-        Sequence sequence = Sequence.Create();
-        sequence.ChainCallback(currentCustomer.StartWalk);
-        sequence.Chain(MoveCustomer(true));
+        currentCustomer = customer;
+
+        //move customer inside the screen
+        currentCustomerInstance.StartWalk();
+        yield return MoveCustomer(true).ToYieldInstruction();
+        currentCustomerInstance.StopWalk();
 
         //start dialogue
-        sequence.ChainCallback(currentCustomer.StopWalk);
-        sequence.ChainCallback(() => Debug.Log("Start dialogue"));
-        sequence.ChainDelay(2);
+        yield return WaitDialogue(customer.DialogueWhenCome);
 
         //then give documents
-        sequence.ChainCallback(() => CheckCustomerGiveDocuments(customer));
+        CheckCustomerGiveDocuments(customer);
     }
 
     void CheckCustomerGiveDocuments(Customer customer)
@@ -275,16 +321,17 @@ public class LevelManager : SimpleInstance<LevelManager>
             giveDocuments = true;
         }
 
-        //if don't give documents
+        //TEMP - if don't give documents (this isn't a user to check, just come in scene, tell something to player and move away)
         if (giveDocuments == false)
         {
-            //move customer away from screen
-            sequence.ChainCallback(currentCustomer.StartWalk);
+            //move customer away from screen (it's a copy-paste from OnGiveBackAllDocumentsCoroutine, but this doesn't have the check if player did something wrong)
+            sequence.ChainCallback(currentCustomerInstance.StartWalk);
             sequence.Chain(MoveCustomer(false));
             sequence.ChainCallback(() =>
             {
                 //and move to next node
-                Destroy(currentCustomer.gameObject);
+                Destroy(currentCustomerInstance.gameObject);
+                currentCustomer = null;
                 CheckNextNode();
             });
         }

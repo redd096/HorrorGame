@@ -2,6 +2,9 @@ using PixelCrushers.DialogueSystem;
 using redd096.Attributes;
 using UnityEngine;
 
+/// <summary>
+/// Attached to DialogueManager prefab to receive events. This is used just to debug how it works
+/// </summary>
 public class TestDialogueManager : MonoBehaviour
 {
     [SerializeField] string dialogueName = "TestDialogue";
@@ -83,6 +86,7 @@ public class TestDialogueManager : MonoBehaviour
     public void OnConversationLineEnd(Subtitle subtitle)
     {
         Debug.Log($"On Conversation Line End {subtitle}");
+        currentSubtitle = null;
     }
 
     public void OnConversationLineCancelled(Subtitle subtitle)

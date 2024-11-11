@@ -2,15 +2,11 @@ using PixelCrushers.DialogueSystem;
 using UnityEngine;
 
 /// <summary>
-/// Attached to DialogueManager, to help with some functions
+/// Static utilities for DialogueManager, to help with some functions
 /// </summary>
 public static class DialogueManagerUtilities
 {
     private static bool showDebugs = false;
-
-    //PPD dialogue variables
-    const string preludeComeBackLater = "DialoguePrelude1.comeBackLater";
-    const string cinematicVariable = "BooleanValue";
 
     public static bool isUIHidden;
 
@@ -79,23 +75,15 @@ public static class DialogueManagerUtilities
 
     #endregion
 
-    #region conversation functions
-
-    /// <summary>
-    /// Check if this conversation is in database
-    /// </summary>
-    /// <returns></returns>
-    public static bool CheckConversationExists(string conversationName)
-    {
-        return DialogueManager.masterDatabase.GetConversation(conversationName) != null;
-    }
+    #region conversation helpers
 
     /// <summary>
     /// Start conversation
     /// </summary>
-    public static void StartConversation(string conversationName, Transform actor, Transform conversant)
+    /// <param name="initialDialogueEntryID">The initial dialogue entry ID, or -1 to start from the beginning.</param>
+    public static void StartConversation(string conversationName, Transform actor = null, Transform conversant = null, int initialDialogueEntryID = -1)
     {
-        DialogueManager.StartConversation(conversationName, actor, conversant);
+        DialogueManager.StartConversation(conversationName, actor, conversant, initialDialogueEntryID);
     }
 
     /// <summary>
@@ -104,6 +92,15 @@ public static class DialogueManagerUtilities
     public static void StopConversation()
     {
         DialogueManager.StopConversation();
+    }
+
+    /// <summary>
+    /// Check if this conversation is in database
+    /// </summary>
+    /// <returns></returns>
+    public static bool CheckConversationExists(string conversationName)
+    {
+        return DialogueManager.masterDatabase.GetConversation(conversationName) != null;
     }
 
     /// <summary>
@@ -148,40 +145,13 @@ public static class DialogueManagerUtilities
 
     #endregion
 
-    #region PPD dialogue variables
-
-    /// <summary>
-    /// Check preludeComeBackLater variable. Return its value and reset it to false
-    /// </summary>
-    /// <returns></returns>
-    public static bool CheckPreludeComeBackLater()
-    {
-        if (TryGetVariable(preludeComeBackLater, out Lua.Result result) && result.isBool && result.asBool == true)
-        {
-            SetVariable(preludeComeBackLater, false);   //reset to false
-            return true;
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Check if there is the field to stop dialogue and start cinematic
-    /// </summary>
-    /// <returns></returns>
-    public static bool CheckCinematic(Subtitle subtitle)
-    {
-        return GetBool(cinematicVariable, subtitle);
-    }
-
-    #endregion
-
     #region variables and fields by value
 
     /// <summary>
     /// If this dialogue has a field with this name, return its value. Else check for a variable with this name and return it
     /// </summary>
-    /// <param name="variableName">field or variable name</param>
-    /// <param name="subtitle">this is used for fields, to get list of field for this subtitle</param>
+    /// <param name="variableName">Field or variable name</param>
+    /// <param name="subtitle">This is used for fields, to get list of fields for this subtitle</param>
     /// <returns></returns>
     public static string GetString(string variableName, Subtitle subtitle = null)
     {
@@ -201,8 +171,8 @@ public static class DialogueManagerUtilities
     /// <summary>
     /// If this dialogue has a field with this name, return its value. Else check for a variable with this name and return it
     /// </summary>
-    /// <param name="variableName">field or variable name</param>
-    /// <param name="subtitle">this is used for fields, to get list of field for this subtitle</param>
+    /// <param name="variableName">Field or variable name</param>
+    /// <param name="subtitle">This is used for fields, to get list of fields for this subtitle</param>
     /// <returns></returns>
     public static bool GetBool(string variableName, Subtitle subtitle = null)
     {
@@ -222,8 +192,8 @@ public static class DialogueManagerUtilities
     /// <summary>
     /// If this dialogue has a field with this name, return its value. Else check for a variable with this name and return it
     /// </summary>
-    /// <param name="variableName">field or variable name</param>
-    /// <param name="subtitle">this is used for fields, to get list of field for this subtitle</param>
+    /// <param name="variableName">Field or variable name</param>
+    /// <param name="subtitle">This is used for fields, to get list of fields for this subtitle</param>
     /// <returns></returns>
     public static float GetFloat(string variableName, Subtitle subtitle = null)
     {
@@ -243,8 +213,8 @@ public static class DialogueManagerUtilities
     /// <summary>
     /// If this dialogue has a field with this name, return its value. Else check for a variable with this name and return it
     /// </summary>
-    /// <param name="variableName">field or variable name</param>
-    /// <param name="subtitle">this is used for fields, to get list of field for this subtitle</param>
+    /// <param name="variableName">Field or variable name</param>
+    /// <param name="subtitle">This is used for fields, to get list of fields for this subtitle</param>
     /// <returns></returns>
     public static int GetInt(string variableName, Subtitle subtitle = null)
     {
@@ -321,7 +291,7 @@ public static class DialogueManagerUtilities
 
     #endregion
 
-    #region Show and Hide UI
+    #region show and hide ui
 
     public static void HideUI()
     {

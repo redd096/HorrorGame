@@ -3,7 +3,7 @@ using redd096;
 using UnityEngine;
 
 /// <summary>
-/// Attached to DialogueManager to receive events - It's possible to see every event in PixelCrushers.DialogueSystem.DialogueSystemEvents
+/// Attached to DialogueManager prefab to receive events - It's possible to see every event in PixelCrushers.DialogueSystem.DialogueSystemEvents
 /// </summary>
 public class DialogueManagerEvents : SimpleInstance<DialogueManagerEvents>
 {
@@ -33,8 +33,8 @@ public class DialogueManagerEvents : SimpleInstance<DialogueManagerEvents>
     //fix - onConversationLine is called more times instead of one, so wait onConversationLineEnd before call again event
     private bool waitingLineEnd;
     //there isn't an event for response selected, so we check when start new line after response menu is showed
-    //and fix, because it calls OnConversationLine and OnConversationLineEnd for the response too, before update speaker and settings and call again OnConversationLine for the new line 
-    //NB this isn't a real fix, it calls OnConversationLine and OnConversationLineEnd because it can show player subtitle with selected response as text (if enabled in DialogueManager)
+    //NB OnConversationLine and OnConversationLineEnd are called for the response also if player subtitles aren't visible.
+    //So, if you are hiding player subtitles, use onConversationResponseLine just to know when player select a response. If you are showing, it's the equivalent of OnConversationLine but for player
     private bool wasResponseMenuShowed;
 
     protected override void InitializeInstance()
@@ -100,9 +100,8 @@ public class DialogueManagerEvents : SimpleInstance<DialogueManagerEvents>
     {
         if (showDebugs) Debug.Log("On Conversation End");
 
+        //reset events before call OnConversationEnd
         System.Action cloneOnConversationEnd = onConversationEnd != null ? onConversationEnd.Clone() as System.Action : null;
-
-        //on end conversation, reset events
         ResetEvents();
 
         cloneOnConversationEnd?.Invoke();
@@ -110,7 +109,7 @@ public class DialogueManagerEvents : SimpleInstance<DialogueManagerEvents>
     }
 
     /// <summary>
-    /// Called on show subtitle (when someone start to talk)
+    /// Called on show subtitle (when someone starts to talk)
     /// </summary>
     /// <param name="subtitle"></param>
     void OnConversationLine(Subtitle subtitle)
@@ -126,17 +125,17 @@ public class DialogueManagerEvents : SimpleInstance<DialogueManagerEvents>
         //fix event called more times
         if (waitingLineEnd)
         {
-            if (showDebugs) Debug.Log("<color=red>On Conversation Line -> Waiting Line End </color>");
+            if (showDebugs) Debug.Log("<color=red>On Conversation Line -> Still Waiting Line End </color>");
             return;
         }
         waitingLineEnd = true;
 
-        //fix missing event, response selected - one LineStart is called only for the response, before call again with the new line updated
+        //fix missing event: response selected - if player subtitles are visible, use OnConversationLine for npc and OnConversationResponseLine for player
         if (wasResponseMenuShowed)
         {
             onConversationResponseLine?.Invoke();
             onConversationResponseLineSubtitle?.Invoke(subtitle);
-            if (showDebugs) Debug.Log("<color=yellow>On Conversation Line -> Conversation Response Selected</color>");
+            if (showDebugs) Debug.Log("<color=yellow>On Conversation Line -> Conversation Response Selected </color>");
             return;
         }
 
@@ -153,11 +152,11 @@ public class DialogueManagerEvents : SimpleInstance<DialogueManagerEvents>
     {
         waitingLineEnd = false;
 
-        //one LineEnd is called only for the response, before call new line updated
+        //fix missing response event
         if (wasResponseMenuShowed)
         {
             wasResponseMenuShowed = false;
-            if (showDebugs) Debug.Log("<color=red>On Conversation Line End -> Response Menu Showed </color>");
+            if (showDebugs) Debug.Log("<color=yellow>On Conversation Line End -> Conversation Response Selected </color>");
             onConversationResponseLineEnd?.Invoke();
             onConversationResponseLineEndSubtitle?.Invoke(subtitle);
             return;
