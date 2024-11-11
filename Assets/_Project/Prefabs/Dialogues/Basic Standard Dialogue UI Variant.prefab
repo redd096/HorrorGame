@@ -42,19 +42,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11424752, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Padding.m_Top
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11424752, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Padding.m_Left
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11424752, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Padding.m_Right
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11424752, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Padding.m_Bottom
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11439330, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Sprite
@@ -98,19 +98,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11458418, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Padding.m_Top
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11458418, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Padding.m_Left
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11458418, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Padding.m_Right
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11458418, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Padding.m_Bottom
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11466480, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: portraitName.m_uiText
