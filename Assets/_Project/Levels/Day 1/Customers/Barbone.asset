@@ -19,9 +19,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 9a5ad422052c40842a6401ca0578d03e, type: 3}
     - {fileID: 21300000, guid: 1a5d6efda88907448ae3b0dc9bc238aa, type: 3}
     - {fileID: 21300000, guid: 8ca5256994befde46832a6c6fe365562, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day1/Homeless/start
+    DialogueWhenPlayerSayNo: Day1/Homeless/not enter
+    DialogueWhenPlayerSayYes: Day1/Homeless/ok enter
     GiveIDCard: 0
     IDCard:
       Name: 

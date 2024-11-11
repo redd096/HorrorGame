@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
-  m_Name: Evento ombra ti guarda da porta
+  m_Name: Manager
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: 9f3b79d6ac475f3429c8fdb27fa6dd64, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: 9f3b79d6ac475f3429c8fdb27fa6dd64, type: 2}
+  NodeOnTrue: {fileID: 11400000, guid: d652eecba9a39314c8c1cd49b8ab1b2b, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: d652eecba9a39314c8c1cd49b8ab1b2b, type: 2}
   Customer:
-    CustomerImage: []
-    DialogueWhenCome: 
+    CustomerImage:
+    - {fileID: 21300000, guid: 8bf64ffa0b737da40894c2fd2aa95e31, type: 3}
+    - {fileID: 21300000, guid: 1b0590c0814d83a429e7d551a00dabab, type: 3}
+    - {fileID: 21300000, guid: b4ac345ea070cb44c88da2e2467eccc5, type: 3}
+    DialogueWhenCome: Day1/Manager/start
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
     GiveIDCard: 0

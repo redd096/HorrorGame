@@ -19,7 +19,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: ec5d7ec006b765044bac5002fe4b5f26, type: 3}
     - {fileID: 21300000, guid: a3a4d5b4da18bc64bbfbe820dee7d7aa, type: 3}
     - {fileID: 21300000, guid: 1617204b0f586974e84ed6387e5013d7, type: 3}
-    DialogueWhenCome: 
+    DialogueWhenCome: Day1/Little Girl Ghost/start
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
     GiveIDCard: 0

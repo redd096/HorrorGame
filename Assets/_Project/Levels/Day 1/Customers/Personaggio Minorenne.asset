@@ -19,9 +19,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: d9e162abe716b5d4eb67e96c70cd42f0, type: 3}
     - {fileID: 21300000, guid: b0dd91c96e7a5df41bca2305daef93a5, type: 3}
     - {fileID: 21300000, guid: 5e6e2967c7d4fd84dae71ebed3d5367b, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day1/Customer under 18/start
+    DialogueWhenPlayerSayNo: Day1/Customer under 18/not enter
+    DialogueWhenPlayerSayYes: Day1/Customer under 18/start
     GiveIDCard: 1
     IDCard:
       Name: Melany
@@ -46,8 +46,8 @@ MonoBehaviour:
         Day: 17
         Month: 9
         Year: 1925
-      DurationStayInDays: 1
-      CorrectDurationStayInDays: 1
+      DurationStayInDays: 2
+      CorrectDurationStayInDays: 2
       Signature: Melany White
     GiveResidentCard: 0
     ResidentCard:

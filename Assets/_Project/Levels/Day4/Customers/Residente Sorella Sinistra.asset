@@ -12,69 +12,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
   m_Name: Residente Sorella Sinistra
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 0}
-  NodeOnFalse: {fileID: 0}
+  NodeOnTrue: {fileID: 11400000, guid: 9d58bdb41abf9b3409b3cf36ec740d09, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 9d58bdb41abf9b3409b3cf36ec740d09, type: 2}
   Customer:
-    CustomerImage: []
+    CustomerImage:
+    - {fileID: 21300000, guid: 076a3e558ffa7924ab8b124d86d3e25a, type: 3}
+    - {fileID: 21300000, guid: 7b4f2768db4d055459937412a9f05edb, type: 3}
+    - {fileID: 21300000, guid: e062982c45158d449bf079c861b1d368, type: 3}
     DialogueWhenCome: 
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
-    GiveIDCard: 0
+    GiveIDCard: 1
     IDCard:
-      Name: 
-      Surname: 
-      CardNumber: 
+      Name: 'Sarah '
+      Surname: Hudson
+      CardNumber: LH88402
       BirthDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 6
+        Month: 2
+        Year: 1883
       ExpireDate:
-        Day: 0
-        Month: 0
-        Year: 0
-      Signature: 
-      Photo: {fileID: 0}
+        Day: 7
+        Month: 9
+        Year: 1941
+      Signature: Sarah Hudson
+      Photo: {fileID: 21300000, guid: 076a3e558ffa7924ab8b124d86d3e25a, type: 3}
     GiveRenunciationCard: 0
     RenunciationCard:
       Name: 
       Surname: 
       IDCardNumber: 
       BirthDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 1
+        Month: 1
+        Year: 1
       DurationStayInDays: 0
       CorrectDurationStayInDays: 0
       Signature: 
-    GiveResidentCard: 0
+    GiveResidentCard: 1
     ResidentCard:
-      Name: 
-      Surname: 
-      IDCardNumber: 
+      Name: Sarah
+      Surname: Hudson
+      IDCardNumber: LH88402
       RoomNumber:
-        Floor: 0
-        Room: 0
-      Signature: 
-    GivePoliceCard: 0
+        Floor: 5
+        Room: 20
+      Signature: Sarah Hudson
+    GivePoliceCard: 1
     PoliceCard:
-      Name: 
-      Surname: 
+      Name: Sarah
+      Surname: Hudson
       ValidateDate:
-        Day: 0
-        Month: 0
-        Year: 0
-      Signature: 
-      HasFirstStamp: 0
-      HasSecondStamp: 0
+        Day: 5
+        Month: 4
+        Year: 1940
+      Signature: Sarah Hudson
+      HasFirstStamp: 1
+      HasSecondStamp: 1
     GiveAppointmentCard: 0
     AppointmentCard:
       Name: 
       Surname: 
       Profession: 
       AppointmentDate:
-        Day: 0
-        Month: 0
-        Year: 0
+        Day: 1
+        Month: 1
+        Year: 1
       AppointmentReason: 
       HasStamp: 0
     ObjectsToGiveToPlayer: []

@@ -36,6 +36,6 @@ Material:
     - _PulsingEffect: 0
     m_Colors:
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0.69803923, g: 0.32156616, b: 0.25882107, a: 0}
+    - _OutlineColor: {r: 0.69803923, g: 0.32156405, b: 0.25881895, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
