@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Get Player Choice
   m_EditorClassIdentifier: 
   NodeOnTrue: {fileID: 0}
-  NodeOnFalse: {fileID: 11400000, guid: d4e06af7798625f428aa256cf405bb32, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 20c039d334f3fc74394da26dbbf16889, type: 2}
   GetChoice:
     VariableName: Sorella Destra

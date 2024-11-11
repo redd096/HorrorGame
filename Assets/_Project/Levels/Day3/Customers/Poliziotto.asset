@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
   m_Name: Poliziotto
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: 20bfabb997530994a87d20009d8f024c, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: 20bfabb997530994a87d20009d8f024c, type: 2}
+  NodeOnTrue: {fileID: 11400000, guid: e770b8125b52569419c31615564885b4, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: e770b8125b52569419c31615564885b4, type: 2}
   Customer:
     CustomerImage:
     - {fileID: 21300000, guid: a3149a9694567444b8e22bb915a5ee34, type: 3}

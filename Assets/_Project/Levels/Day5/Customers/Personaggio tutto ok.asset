@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
+  m_Name: Personaggio tutto ok
+  m_EditorClassIdentifier: 
+  NodeOnTrue: {fileID: 11400000, guid: 3d2070a4d22b12542a1a24bc972581de, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 3d2070a4d22b12542a1a24bc972581de, type: 2}
+  Customer:
+    CustomerImage:
+    - {fileID: 21300000, guid: 37b85e5909980c34a827e05467e40fcc, type: 3}
+    - {fileID: 21300000, guid: 2f4d070635cad82449705cefeb4cd70c, type: 3}
+    - {fileID: 21300000, guid: 2f14ee0626fb69640b2b26a6cc72400e, type: 3}
+    DialogueWhenCome: 
+    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayYes: 
+    GiveIDCard: 1
+    IDCard:
+      Name: Louis
+      Surname: Stepner
+      CardNumber: WY93859
+      BirthDate:
+        Day: 25
+        Month: 2
+        Year: 1899
+      ExpireDate:
+        Day: 31
+        Month: 1
+        Year: 1943
+      Signature: Louis Stepner
+      Photo: {fileID: 21300000, guid: 37b85e5909980c34a827e05467e40fcc, type: 3}
+    GiveRenunciationCard: 1
+    RenunciationCard:
+      Name: Louis
+      Surname: Stepner
+      IDCardNumber: WY93859
+      BirthDate:
+        Day: 25
+        Month: 2
+        Year: 1899
+      DurationStayInDays: 2
+      CorrectDurationStayInDays: 2
+      Signature: Louis Stepner
+    GiveResidentCard: 0
+    ResidentCard:
+      Name: 
+      Surname: 
+      IDCardNumber: 
+      RoomNumber:
+        Floor: 0
+        Room: 0
+      Signature: 
+    GivePoliceCard: 1
+    PoliceCard:
+      Name: Louis
+      Surname: Stepner
+      ValidateDate:
+        Day: 6
+        Month: 4
+        Year: 1940
+      Signature: Louis Stepner
+      HasFirstStamp: 1
+      HasSecondStamp: 1
+    GiveAppointmentCard: 0
+    AppointmentCard:
+      Name: 
+      Surname: 
+      Profession: 
+      AppointmentDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      AppointmentReason: 
+      HasStamp: 0
+    ObjectsToGiveToPlayer:
+    - LeftPrefab: {fileID: 0}
+      RightPrefab: {fileID: 0}

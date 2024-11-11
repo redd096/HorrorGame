@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
+  m_Name: Personaggio nome sbagliato
+  m_EditorClassIdentifier: 
+  NodeOnTrue: {fileID: 11400000, guid: d38a3067479072e41a5f012b1f6f5587, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: d38a3067479072e41a5f012b1f6f5587, type: 2}
+  Customer:
+    CustomerImage:
+    - {fileID: 21300000, guid: b7b1208db4cf5e947ad49cdf006a54a4, type: 3}
+    - {fileID: 21300000, guid: ab89d0440f0574e4b826ba52b495b200, type: 3}
+    - {fileID: 21300000, guid: 1fba3ed0e2f841b44a4c28accb577533, type: 3}
+    DialogueWhenCome: 
+    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayYes: 
+    GiveIDCard: 1
+    IDCard:
+      Name: Vanessa
+      Surname: Mortes
+      CardNumber: OK07433
+      BirthDate:
+        Day: 14
+        Month: 8
+        Year: 1884
+      ExpireDate:
+        Day: 23
+        Month: 4
+        Year: 1941
+      Signature: Vanessa Mortes
+      Photo: {fileID: 21300000, guid: b7b1208db4cf5e947ad49cdf006a54a4, type: 3}
+    GiveRenunciationCard: 1
+    RenunciationCard:
+      Name: Laura
+      Surname: Mortes
+      IDCardNumber: OK07433
+      BirthDate:
+        Day: 14
+        Month: 8
+        Year: 1984
+      DurationStayInDays: 4
+      CorrectDurationStayInDays: 4
+      Signature: Laura Mortes
+    GiveResidentCard: 0
+    ResidentCard:
+      Name: 
+      Surname: 
+      IDCardNumber: 
+      RoomNumber:
+        Floor: 0
+        Room: 0
+      Signature: 
+    GivePoliceCard: 1
+    PoliceCard:
+      Name: Laura
+      Surname: Mortes
+      ValidateDate:
+        Day: 6
+        Month: 4
+        Year: 1940
+      Signature: Laura Mortes
+      HasFirstStamp: 1
+      HasSecondStamp: 1
+    GiveAppointmentCard: 0
+    AppointmentCard:
+      Name: 
+      Surname: 
+      Profession: 
+      AppointmentDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      AppointmentReason: 
+      HasStamp: 0
+    ObjectsToGiveToPlayer: []

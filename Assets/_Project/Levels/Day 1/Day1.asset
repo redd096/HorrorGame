@@ -21,7 +21,7 @@ MonoBehaviour:
       ConnectedNodeID: 55811d74-52a2-468e-bd00-0714d473a6b8
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 218.4, y: 56.000004}
+    Position: {x: 218, y: 56}
   - NodeName: Direttore
     ID: 55811d74-52a2-468e-bd00-0714d473a6b8
     NodeType: CustomerNode
@@ -33,8 +33,8 @@ MonoBehaviour:
       ConnectedNodeID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 623.2, y: 57.600002}
-  - NodeName: Customer tutto ok1
+    Position: {x: 623, y: 58}
+  - NodeName: Personaggio tutto ok1
     ID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
     NodeType: CustomerNode
     OutputsData:
@@ -45,8 +45,8 @@ MonoBehaviour:
       ConnectedNodeID: e786def7-802d-404d-8063-c7375f811368
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 947.2, y: 57.600002}
-  - NodeName: Customer Minorenne
+    Position: {x: 947, y: 58}
+  - NodeName: Personaggio Minorenne
     ID: e786def7-802d-404d-8063-c7375f811368
     NodeType: CustomerNode
     OutputsData:
@@ -57,19 +57,7 @@ MonoBehaviour:
       ConnectedNodeID: 5755a75b-323a-497f-9ff5-f0bc67e8ae6b
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1256.8, y: 58.399998}
-  - NodeName: Customer tutto ok2
-    ID: 5755a75b-323a-497f-9ff5-f0bc67e8ae6b
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 01ee3281-5132-41a2-beef-66a1825e464a
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 01ee3281-5132-41a2-beef-66a1825e464a
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 1555.2, y: 61.600002}
+    Position: {x: 1257, y: 58}
   - NodeName: Barbone
     ID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
     NodeType: CustomerNode
@@ -81,7 +69,7 @@ MonoBehaviour:
       ConnectedNodeID: 47b6ee3a-7f9a-4c2a-bb78-3fb1c58c2933
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2386.4, y: 70.399994}
+    Position: {x: 2386, y: 70}
   - NodeName: Save Player Choice
     ID: 47b6ee3a-7f9a-4c2a-bb78-3fb1c58c2933
     NodeType: SaveChoiceNode
@@ -90,19 +78,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2686.4, y: 75.2}
-  - NodeName: Bambina fantasma
-    ID: 0cfde150-ff21-4e32-852a-9b5ba13747aa
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 2126.4, y: 67.2}
+    Position: {x: 2686, y: 75}
   - NodeName: Residente Cugino1
     ID: 01ee3281-5132-41a2-beef-66a1825e464a
     NodeType: CustomerNode
@@ -114,5 +90,29 @@ MonoBehaviour:
       ConnectedNodeID: 0cfde150-ff21-4e32-852a-9b5ba13747aa
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1822.4, y: 59.2}
+    Position: {x: 1822, y: 59}
+  - NodeName: Evento Bambina fantasma
+    ID: 0cfde150-ff21-4e32-852a-9b5ba13747aa
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2126, y: 67}
+  - NodeName: Personaggio tutto ok2
+    ID: 5755a75b-323a-497f-9ff5-f0bc67e8ae6b
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 01ee3281-5132-41a2-beef-66a1825e464a
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 01ee3281-5132-41a2-beef-66a1825e464a
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 1555, y: 62}
   Groups: []
