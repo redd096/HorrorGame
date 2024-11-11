@@ -535,8 +535,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: If you open the first tab at the top right of your desk, you can consult
-          the regulations.
+        value: If you open the second tab at the top right of your desk, you can
+          consult the regulations.
         type: 0
         typeString: 
       - title: Sequence
