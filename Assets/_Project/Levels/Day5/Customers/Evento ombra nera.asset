@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
+  m_Name: Evento ombra nera
+  m_EditorClassIdentifier: 
+  NodeOnTrue: {fileID: 11400000, guid: 564d584689b28e2499feafbd43a3ddfa, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 564d584689b28e2499feafbd43a3ddfa, type: 2}
+  Customer:
+    CustomerImage: []
+    DialogueWhenCome: 
+    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayYes: 
+    GiveIDCard: 0
+    IDCard:
+      Name: 
+      Surname: 
+      CardNumber: 
+      BirthDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      ExpireDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      Signature: 
+      Photo: {fileID: 0}
+    GiveRenunciationCard: 0
+    RenunciationCard:
+      Name: 
+      Surname: 
+      IDCardNumber: 
+      BirthDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      DurationStayInDays: 0
+      CorrectDurationStayInDays: 0
+      Signature: 
+    GiveResidentCard: 0
+    ResidentCard:
+      Name: 
+      Surname: 
+      IDCardNumber: 
+      RoomNumber:
+        Floor: 0
+        Room: 0
+      Signature: 
+    GivePoliceCard: 0
+    PoliceCard:
+      Name: 
+      Surname: 
+      ValidateDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      Signature: 
+      HasFirstStamp: 0
+      HasSecondStamp: 0
+    GiveAppointmentCard: 0
+    AppointmentCard:
+      Name: 
+      Surname: 
+      Profession: 
+      AppointmentDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      AppointmentReason: 
+      HasStamp: 0
+    ObjectsToGiveToPlayer: []

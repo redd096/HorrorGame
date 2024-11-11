@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76660b66ea9db70468e2d0f091f69b1f, type: 3}
   m_Name: Get Player Choice
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: 5735dd440236940408ca243fd857ba13, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: 9ac5c57881c660f448445af56ac025b7, type: 2}
+  NodeOnTrue: {fileID: 11400000, guid: b69f019f7a3646f49856617f15a1b0fe, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 25092bf4ab05fd045b421fa8728affd0, type: 2}
   GetChoice:
     VariableName: Barbone

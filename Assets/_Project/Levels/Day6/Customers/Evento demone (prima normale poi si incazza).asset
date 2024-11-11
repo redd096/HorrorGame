@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
+  m_Name: Evento demone (prima normale poi si incazza)
+  m_EditorClassIdentifier: 
+  NodeOnTrue: {fileID: 11400000, guid: 359cb3c460b980444b12da4ff3f3c017, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 359cb3c460b980444b12da4ff3f3c017, type: 2}
+  Customer:
+    CustomerImage:
+    - {fileID: 21300000, guid: a6730c9e14354114e9e4f82320137c44, type: 3}
+    - {fileID: 21300000, guid: 048c7823ee9d62e48ab61653b383231f, type: 3}
+    - {fileID: 21300000, guid: 28d4c8322fdcce44fbf080c1f0cd7db9, type: 3}
+    DialogueWhenCome: 
+    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayYes: 
+    GiveIDCard: 0
+    IDCard:
+      Name: 
+      Surname: 
+      CardNumber: 
+      BirthDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      ExpireDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      Signature: 
+      Photo: {fileID: 0}
+    GiveRenunciationCard: 0
+    RenunciationCard:
+      Name: 
+      Surname: 
+      IDCardNumber: 
+      BirthDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      DurationStayInDays: 0
+      CorrectDurationStayInDays: 0
+      Signature: 
+    GiveResidentCard: 0
+    ResidentCard:
+      Name: 
+      Surname: 
+      IDCardNumber: 
+      RoomNumber:
+        Floor: 0
+        Room: 0
+      Signature: 
+    GivePoliceCard: 0
+    PoliceCard:
+      Name: 
+      Surname: 
+      ValidateDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      Signature: 
+      HasFirstStamp: 0
+      HasSecondStamp: 0
+    GiveAppointmentCard: 0
+    AppointmentCard:
+      Name: 
+      Surname: 
+      Profession: 
+      AppointmentDate:
+        Day: 1
+        Month: 1
+        Year: 1
+      AppointmentReason: 
+      HasStamp: 0
+    ObjectsToGiveToPlayer: []
