@@ -242,9 +242,9 @@ public class LevelManager : SimpleInstance<LevelManager>
         {
             CheckEventNewspaper(eventNewspaperData.EventNewspaper);
         }
-        else if (currentNode is EventKillSpecificResidentData eventKillSpecificResidentData)
+        else if (currentNode is EventKillResidentData eventKillResidentData)
         {
-            CheckEventKillSpecificResident(eventKillSpecificResidentData.KillSpecificResident);
+            CheckEventKillResident(eventKillResidentData.EventKillResident);
         }
         //or error
         else
@@ -371,9 +371,12 @@ public class LevelManager : SimpleInstance<LevelManager>
             .OnComplete(CheckNextNode);
     }
 
-    void CheckEventKillSpecificResident(EventKillSpecificResident eventKillSpecificResident)
+    void CheckEventKillResident(EventKillResident eventKillResident)
     {
-        residentsManager.RemoveResident(eventKillSpecificResident.Resident);
+        if (eventKillResident.KillRandom)
+            residentsManager.RemoveRandomResident();
+        else
+            residentsManager.RemoveResident(eventKillResident.SpecificResident);
     }
 
     #endregion

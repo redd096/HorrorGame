@@ -16,6 +16,17 @@ public class ResidentsManager : MonoBehaviour
     {
         if (listOfResidents.Contains(resident))
             listOfResidents.Remove(resident);
+        else
+            Debug.LogError("Missing resident in the list: " + resident, gameObject);
+    }
+
+    /// <summary>
+    /// Remove a random resident from the list
+    /// </summary>
+    public void RemoveRandomResident()
+    {
+        if (listOfResidents.Count > 0)
+            RemoveResident(listOfResidents[Random.Range(0, listOfResidents.Count)]);
     }
 
     /// <summary>

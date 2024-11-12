@@ -36,7 +36,7 @@ public class DaysGraphView : NodesGraphView
 
             //events
             AddNodeButton<EventNewspaperNode>(evt, "Events/Newspaper", "Show Newspaper");
-            AddNodeButton<EventKillSpecificResidentNode>(evt, "Events/Kill Specific Resident", "Kill Specific Resident");
+            AddNodeButton<EventKillResidentNode>(evt, "Events/Kill Resident", "Kill Resident");
         }
     }
 

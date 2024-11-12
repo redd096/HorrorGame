@@ -47,8 +47,8 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         //events
         else if (node is EventNewspaperNode eventNewspaperNode)
             data.UserData = eventNewspaperNode.EventNewspaper;
-        else if (node is EventKillSpecificResidentNode killSpecificResidentNode)
-            data.UserData = killSpecificResidentNode.KillSpecificResident;
+        else if (node is EventKillResidentNode eventKillResidentNode)
+            data.UserData = eventKillResidentNode.EventKillResident;
 
         //be sure there aren't nodes with same NodeName, because we use it to create a ScriptableObject
         while (nodes.Find(x => x.NodeName == data.NodeName) != null)
@@ -118,11 +118,11 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 asset.EventNewspaper = eventNewspaper.Clone();
                 EditorUtility.SetDirty(asset);
             }
-            else if (nodeData.UserData is EventKillSpecificResident eventKillSpecificResident)
+            else if (nodeData.UserData is EventKillResident eventKillResident)
             {
                 string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
-                EventKillSpecificResidentData asset = CreateLevelNodeData<EventKillSpecificResidentData>(path, nodeData);
-                asset.KillSpecificResident = eventKillSpecificResident.Clone();
+                EventKillResidentData asset = CreateLevelNodeData<EventKillResidentData>(path, nodeData);
+                asset.EventKillResident = eventKillResident.Clone();
                 EditorUtility.SetDirty(asset);
             }
 
@@ -292,11 +292,11 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 return;
             }
         }
-        else if (node is EventKillSpecificResidentNode eventKillSpecificResidentNode)
+        else if (node is EventKillResidentNode eventKillResidentNode)
         {
-            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventKillSpecificResidentData killSpecificResidentData)
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventKillResidentData eventKillResidentData)
             {
-                eventKillSpecificResidentNode.KillSpecificResident = killSpecificResidentData.KillSpecificResident.Clone();
+                eventKillResidentNode.EventKillResident = eventKillResidentData.EventKillResident.Clone();
                 return;
             }
         }
