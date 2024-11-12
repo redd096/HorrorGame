@@ -21,7 +21,7 @@ MonoBehaviour:
       ConnectedNodeID: 5bc4423a-bc4e-4ad8-aaea-e1de0e084123
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 116, y: 221}
+    Position: {x: -60, y: 219.2}
   - NodeName: Poliziotto
     ID: 5bc4423a-bc4e-4ad8-aaea-e1de0e084123
     NodeType: CustomerNode
@@ -33,7 +33,7 @@ MonoBehaviour:
       ConnectedNodeID: c3755fac-084d-41ce-9b4d-a2318e152fa9
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 422, y: 219}
+    Position: {x: 422.4, y: 219.2}
   - NodeName: Residente Cugino2
     ID: c3755fac-084d-41ce-9b4d-a2318e152fa9
     NodeType: CustomerNode
@@ -45,7 +45,7 @@ MonoBehaviour:
       ConnectedNodeID: ec99cd7f-6e08-47dd-8704-19b744fda327
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 736, y: 222}
+    Position: {x: 736, y: 222.4}
   - NodeName: Get Player Choice
     ID: fe7d3c28-c0b2-4165-8650-c2ca89386565
     NodeType: GetChoiceNode
@@ -57,7 +57,7 @@ MonoBehaviour:
       ConnectedNodeID: 56600d62-79e5-4eba-9ec3-a03af07a86da
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1386, y: 216}
+    Position: {x: 1386.4, y: 216}
   - NodeName: Residente Moglie
     ID: 56600d62-79e5-4eba-9ec3-a03af07a86da
     NodeType: CustomerNode
@@ -69,7 +69,7 @@ MonoBehaviour:
       ConnectedNodeID: c01c2a42-0b4d-4300-9a9f-2b0d8959d1f5
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1708, y: 426}
+    Position: {x: 1708, y: 426.40002}
   - NodeName: Personaggio minorenne
     ID: c01c2a42-0b4d-4300-9a9f-2b0d8959d1f5
     NodeType: CustomerNode
@@ -81,7 +81,7 @@ MonoBehaviour:
       ConnectedNodeID: 48ee8f9c-f309-46d9-904a-63ba04047621
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2122, y: 85}
+    Position: {x: 2122.4, y: 85.600006}
   - NodeName: Personaggio no timbro polizia
     ID: 78c4bc35-c79c-4d73-8412-6b4c5a0e72f6
     NodeType: CustomerNode
@@ -93,7 +93,7 @@ MonoBehaviour:
       ConnectedNodeID: b13eaa03-db3c-44b3-a7a1-e5e3bef37a8d
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2915, y: 90}
+    Position: {x: 2915.2, y: 90.399994}
   - NodeName: Personaggio ID card scaduta
     ID: 01e04aae-4a83-43e4-90c2-d6f38bd80878
     NodeType: CustomerNode
@@ -117,7 +117,7 @@ MonoBehaviour:
       ConnectedNodeID: fe7d3c28-c0b2-4165-8650-c2ca89386565
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1082, y: 219}
+    Position: {x: 1082.4, y: 219.2}
   - NodeName: Residente Marito
     ID: 75c83992-6f33-4b4f-9f1e-d58fd7d76188
     NodeType: CustomerNode
@@ -129,7 +129,7 @@ MonoBehaviour:
       ConnectedNodeID: c01c2a42-0b4d-4300-9a9f-2b0d8959d1f5
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1714, y: -82}
+    Position: {x: 1714.4, y: -81.6}
   - NodeName: Evento ombra demone
     ID: 48ee8f9c-f309-46d9-904a-63ba04047621
     NodeType: CustomerNode
@@ -141,7 +141,7 @@ MonoBehaviour:
       ConnectedNodeID: 78c4bc35-c79c-4d73-8412-6b4c5a0e72f6
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2494, y: 85}
+    Position: {x: 2494.4, y: 85.600006}
   - NodeName: Evento Uomo incappucciato
     ID: b13eaa03-db3c-44b3-a7a1-e5e3bef37a8d
     NodeType: CustomerNode
@@ -165,5 +165,5 @@ MonoBehaviour:
       ConnectedNodeID: 01e04aae-4a83-43e4-90c2-d6f38bd80878
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 3755, y: 93}
+    Position: {x: 3755.2, y: 93.600006}
   Groups: []

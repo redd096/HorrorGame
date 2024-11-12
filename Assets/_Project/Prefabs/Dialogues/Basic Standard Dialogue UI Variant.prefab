@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 11403010, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: typewriterEffect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7985023785531698018}
     - target: {fileID: 11413806, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: portraitName.m_uiText
       value: 
@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 11417816, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: typewriterEffect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5015444396587086771}
     - target: {fileID: 11424752, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
       propertyPath: m_Spacing
       value: 20

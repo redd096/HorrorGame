@@ -21,7 +21,7 @@ MonoBehaviour:
       ConnectedNodeID: b5485cf6-290b-4b34-a207-c58e4f1f53b6
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 216, y: 348}
+    Position: {x: 108, y: 307.2}
   - NodeName: Direttore
     ID: b5485cf6-290b-4b34-a207-c58e4f1f53b6
     NodeType: CustomerNode
@@ -33,7 +33,7 @@ MonoBehaviour:
       ConnectedNodeID: 0237e4c6-5d69-497f-ae3b-301058792da5
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 567, y: 307}
+    Position: {x: 567.2, y: 307.2}
   - NodeName: Residente Moglie
     ID: 0237e4c6-5d69-497f-ae3b-301058792da5
     NodeType: CustomerNode
@@ -45,7 +45,7 @@ MonoBehaviour:
       ConnectedNodeID: 1746f6ba-b70a-4769-9c0f-9f801421e963
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 861, y: 308}
+    Position: {x: 860.8, y: 308}
   - NodeName: Personaggio tutto ok
     ID: 1746f6ba-b70a-4769-9c0f-9f801421e963
     NodeType: CustomerNode
@@ -57,7 +57,7 @@ MonoBehaviour:
       ConnectedNodeID: 497176fe-84a8-4a06-9681-8ed277094b48
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1245, y: 310}
+    Position: {x: 1244.8, y: 310.40002}
   - NodeName: Evento Idraulico fantasma
     ID: 497176fe-84a8-4a06-9681-8ed277094b48
     NodeType: CustomerNode
@@ -69,7 +69,7 @@ MonoBehaviour:
       ConnectedNodeID: 5c00099e-f90f-4990-834c-562927452b53
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1614, y: 308}
+    Position: {x: 1614.4, y: 308}
   - NodeName: Appuntamento Idraulico vivo
     ID: 5c00099e-f90f-4990-834c-562927452b53
     NodeType: CustomerNode
@@ -81,7 +81,7 @@ MonoBehaviour:
       ConnectedNodeID: cacec997-ad46-4be8-96d0-e87e661b8447
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2003, y: 309}
+    Position: {x: 2003.2, y: 309.6}
   - NodeName: Residente Sorella Destra
     ID: cacec997-ad46-4be8-96d0-e87e661b8447
     NodeType: CustomerNode
@@ -93,7 +93,7 @@ MonoBehaviour:
       ConnectedNodeID: 572a0adc-3a64-4982-9504-e86b4f43a1f8
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2376, y: 307}
+    Position: {x: 2376, y: 307.2}
   - NodeName: Save Player Choice
     ID: 572a0adc-3a64-4982-9504-e86b4f43a1f8
     NodeType: SaveChoiceNode
@@ -102,7 +102,7 @@ MonoBehaviour:
       ConnectedNodeID: cab60ad1-9257-4319-a55f-30eb2ab719e1
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2750, y: 307}
+    Position: {x: 2750.4, y: 307.2}
   - NodeName: Personaggio tutto ok2
     ID: cab60ad1-9257-4319-a55f-30eb2ab719e1
     NodeType: CustomerNode
@@ -114,7 +114,7 @@ MonoBehaviour:
       ConnectedNodeID: 775f2c54-2b57-4d09-9451-38279b1584fb
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 3031, y: 307}
+    Position: {x: 3031.2, y: 307.2}
   - NodeName: Evento quadro cade
     ID: 775f2c54-2b57-4d09-9451-38279b1584fb
     NodeType: CustomerNode
@@ -126,7 +126,7 @@ MonoBehaviour:
       ConnectedNodeID: 4beaf2c2-d50e-40f4-8e3a-f74ce072f905
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 3408, y: 306}
+    Position: {x: 3408, y: 306.40002}
   - NodeName: Get Player Choice
     ID: 4beaf2c2-d50e-40f4-8e3a-f74ce072f905
     NodeType: GetChoiceNode
@@ -138,7 +138,7 @@ MonoBehaviour:
       ConnectedNodeID: b0859ac1-dbe4-4b64-8be6-e0212261be24
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 3709, y: 305}
+    Position: {x: 3708.8, y: 305.6}
   - NodeName: Residente sorella destra torna
     ID: b0859ac1-dbe4-4b64-8be6-e0212261be24
     NodeType: CustomerNode
@@ -150,5 +150,5 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 4007, y: 306}
+    Position: {x: 4007.2, y: 306.40002}
   Groups: []

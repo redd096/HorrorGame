@@ -95,6 +95,16 @@ public static class DialogueManagerUtilities
     }
 
     /// <summary>
+    /// In current subtitle, simulate a click on ContinueButton
+    /// </summary>
+    public static void PressContinueButton()
+    {
+        var subtitlePanel = GetActiveSubtitlePanel();
+        if (subtitlePanel && subtitlePanel.continueButton)
+            subtitlePanel.continueButton.onClick?.Invoke();
+    }
+
+    /// <summary>
     /// Check if this conversation is in database
     /// </summary>
     /// <returns></returns>

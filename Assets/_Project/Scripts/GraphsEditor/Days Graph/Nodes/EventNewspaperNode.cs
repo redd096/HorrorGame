@@ -1,10 +1,7 @@
 #if UNITY_EDITOR
 using redd096.NodesGraph.Editor;
-using System.Reflection;
-using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
-using UnityEngine;
 
 /// <summary>
 /// Node to use inside a graph view, to declare an event of type Newspaper
@@ -30,57 +27,9 @@ public class EventNewspaperNode : GraphNode
 
     protected override void DrawContent()
     {
-        //if saved, try find newspaper in scene
-        GameObject newspaper = null;
-        if (string.IsNullOrEmpty(EventNewspaper.NewspaperName) == false)
-        {
-            //try fileID
-            newspaper = GetGameObjectFromFileID();
-
-            //else, try by name
-            if (newspaper == null)
-            {
-                Debug.LogWarning($"Impossible to find newspaper by Local Identifier: {EventNewspaper.NewspaperFileID}. Try find by name: {EventNewspaper.NewspaperName}");
-                Transform newspaperTr = LevelManager.instance.EventsManager.NewspapersContainer.Find(EventNewspaper.NewspaperName);
-                newspaper = newspaperTr ? newspaperTr.gameObject : null;
-            }
-
-        }
-
         //set object field
-        ObjectField objectField = CreateElementsUtilities.CreateObjectField("Newspaper in scene", newspaper, typeof(GameObject), x =>
-        {
-            EventNewspaper.NewspaperFileID = x.newValue ? GetFileID(x.newValue) : 0;
-            EventNewspaper.NewspaperName = x.newValue ? x.newValue.name : "";
-        },
-        allowSceneObjects: true);
-
+        ObjectField objectField = CreateElementsUtilities.CreateObjectField("Newspaper prefab", EventNewspaper.NewspaperPrefab, typeof(NewspaperBehaviour), x => EventNewspaper.NewspaperPrefab = x.newValue as NewspaperBehaviour);
         extensionContainer.Add(objectField);
-    }
-
-    private GameObject GetGameObjectFromFileID()
-    {
-        GameObject[] gameObjectsInScene = Object.FindObjectsOfType<GameObject>(true);
-
-        //find file
-        foreach (GameObject go in gameObjectsInScene)
-        {
-            if (GetFileID(go) == EventNewspaper.NewspaperFileID)
-                return go;
-        }
-
-        //file not found
-        return null;
-    }
-
-    long GetFileID(Object obj)
-    {
-        PropertyInfo inspectorModeInfo = typeof(SerializedObject).GetProperty("inspectorMode", BindingFlags.NonPublic | BindingFlags.Instance);
-        SerializedObject serializedObject = new SerializedObject(obj);
-        inspectorModeInfo.SetValue(serializedObject, InspectorMode.Debug, null);
-        SerializedProperty localIdProp = serializedObject.FindProperty("m_LocalIdentfierInFile");
-
-        return localIdProp.longValue;
     }
 }
 #endif

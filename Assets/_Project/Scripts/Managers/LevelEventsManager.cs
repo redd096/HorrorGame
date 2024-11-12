@@ -9,26 +9,23 @@ public class LevelEventsManager : MonoBehaviour
     [SerializeField] CanvasGroup newspapersContainer;
     [SerializeField] float durationNewspaper = 3;
 
-    //used by editor
-    public Transform NewspapersContainer => newspapersContainer.transform;
-
     /// <summary>
     /// Show for few seconds the newspaper
     /// </summary>
-    /// <param name="newspaperName"></param>
-    public Sequence ShowNewspaper(string newspaperName)
+    /// <param name="newspaperPrefab"></param>
+    public Sequence ShowNewspaper(NewspaperBehaviour newspaperPrefab, ResidentData killedResident)
     {
-        //find newspaper in scene
-        Transform newspaper = newspapersContainer.transform.Find(newspaperName);
-        if (newspaper == null)
+        //instantiate newspaper
+        if (newspaperPrefab == null)
         {
-            Debug.LogError($"Impossible to find newspaper with this name {newspaperName}");
+            Debug.LogError("Newspaper is null", gameObject);
             return default;
         }
 
-        //show container and newspaper, and immediatly fade in
+        //instantiate newspaper and immediatly fade in
+        NewspaperBehaviour newspaper = Instantiate(newspaperPrefab, newspapersContainer.transform);
+        newspaper.Init(killedResident);
         newspapersContainer.gameObject.SetActive(true);
-        newspaper.gameObject.SetActive(true);
         newspapersContainer.alpha = 1;
 
         //then wait few seconds
@@ -41,7 +38,7 @@ public class LevelEventsManager : MonoBehaviour
         {
             //hide container and newspaper
             newspapersContainer.gameObject.SetActive(false);
-            newspaper.gameObject.SetActive(false);
+            Destroy(newspaper.gameObject);
         });
 
         return sequence;

@@ -51,7 +51,7 @@ public class StampRightFeedback : StampLeftFeedback
 
     private void OnStamp(Vector2 position, DocumentDraggable hit)
     {
-        //if (hit.CanReceiveStamp)
+        if (hit.CanReceiveStamp)
             StartCoroutine(OnStampCoroutine(position, hit.transform));
     }
 

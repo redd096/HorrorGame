@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
 using System.Collections;
+using redd096.Attributes;
 
 /// <summary>
 /// This manage the level: show customers or events, save player's choice and so on
@@ -26,6 +27,9 @@ public class LevelManager : SimpleInstance<LevelManager>
     [SerializeField] Transform customerEndPoint;
     [SerializeField] float customerAnimation = 3;
 
+    [Button]
+    void SkipDialogue() => DialogueManagerUtilities.PressContinueButton();
+
     //current vars in this LevelNode
     private LevelNodeData currentNode;
     private Customer currentCustomer;                   //if this node is a customer, save customer values
@@ -43,7 +47,6 @@ public class LevelManager : SimpleInstance<LevelManager>
     private int warningsCounter;
 
     //used by editor
-    public LevelEventsManager EventsManager => eventsManager;
     public LevelNodeData CurrentNode => currentNode;
 
     protected override void InitializeInstance()
@@ -366,10 +369,8 @@ public class LevelManager : SimpleInstance<LevelManager>
 
     void CheckEventNewspaper(EventNewspaper eventNewspaper)
     {
-        string newspaperName = eventNewspaper.NewspaperName;
-
         //show newspaper for few seconds, then go to next node
-        eventsManager.ShowNewspaper(newspaperName)
+        eventsManager.ShowNewspaper(eventNewspaper.NewspaperPrefab, lastKilledResident)
             .OnComplete(CheckNextNode);
     }
 

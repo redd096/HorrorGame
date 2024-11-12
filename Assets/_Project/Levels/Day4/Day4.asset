@@ -21,7 +21,7 @@ MonoBehaviour:
       ConnectedNodeID: db3c768a-bcf1-4281-ba14-8021298689cd
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 83, y: 273}
+    Position: {x: -143.2, y: 276}
   - NodeName: Poliziotto
     ID: db3c768a-bcf1-4281-ba14-8021298689cd
     NodeType: CustomerNode
@@ -33,7 +33,7 @@ MonoBehaviour:
       ConnectedNodeID: 6371e424-0e00-4e0b-bcc6-b2b5313907f4
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 337, y: 276}
+    Position: {x: 336.8, y: 276}
   - NodeName: Vecchia Ricca
     ID: 6371e424-0e00-4e0b-bcc6-b2b5313907f4
     NodeType: CustomerNode
@@ -45,7 +45,7 @@ MonoBehaviour:
       ConnectedNodeID: f9e92eaa-8e43-4e68-bf63-db40427760b3
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 609, y: 294}
+    Position: {x: 608.8, y: 294.40002}
   - NodeName: Save Player Choice
     ID: f9e92eaa-8e43-4e68-bf63-db40427760b3
     NodeType: SaveChoiceNode
@@ -54,7 +54,7 @@ MonoBehaviour:
       ConnectedNodeID: 2dbbe8cc-32a1-4052-b6c2-3f08e146d81e
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 922, y: 292}
+    Position: {x: 922.4, y: 292}
   - NodeName: Cugino2
     ID: a85de495-7332-4885-85d3-daf7749cdae9
     NodeType: CustomerNode
@@ -66,7 +66,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2117, y: 305}
+    Position: {x: 2116.8, y: 305.6}
   - NodeName: 'RAgazza manca 2 timbro '
     ID: 5d626b80-2921-4a15-a46b-b03f0a944f75
     NodeType: CustomerNode
@@ -78,7 +78,7 @@ MonoBehaviour:
       ConnectedNodeID: c67b47ae-501e-446e-b08d-f4d7cfc33fcb
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2707, y: 305}
+    Position: {x: 2707.2, y: 305.6}
   - NodeName: Appuntamento direttore (no foglio)
     ID: c67b47ae-501e-446e-b08d-f4d7cfc33fcb
     NodeType: CustomerNode
@@ -90,7 +90,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 3068, y: 309}
+    Position: {x: 3068, y: 309.6}
   - NodeName: Uomo Mascherato
     ID: ffaaca87-cc78-4c8f-a8bf-149c81bda43c
     NodeType: CustomerNode
@@ -102,7 +102,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 3664, y: 314}
+    Position: {x: 3664, y: 314.40002}
   - NodeName: Get Player Choice
     ID: 21a03b3e-f7c4-485d-bce3-735fdbfbc98c
     NodeType: GetChoiceNode
@@ -114,7 +114,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 3998, y: 311}
+    Position: {x: 3998.4, y: 311.2}
   - NodeName: Sorella Sinistra
     ID: 2dbbe8cc-32a1-4052-b6c2-3f08e146d81e
     NodeType: CustomerNode
@@ -126,7 +126,7 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1207, y: 292}
+    Position: {x: 1207.2, y: 292}
   - NodeName: Idraulico
     ID: 57eab255-f9d2-4884-84bd-6b12c35f1ae2
     NodeType: CustomerNode
@@ -138,5 +138,5 @@ MonoBehaviour:
       ConnectedNodeID: a85de495-7332-4885-85d3-daf7749cdae9
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1766, y: 301}
+    Position: {x: 1766.4, y: 301.6}
   Groups: []
