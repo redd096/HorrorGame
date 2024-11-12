@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
 using System.Collections;
-using redd096.Attributes;
 
 /// <summary>
 /// This manage the level: show customers or events, save player's choice and so on
@@ -26,9 +25,6 @@ public class LevelManager : SimpleInstance<LevelManager>
     [SerializeField] Transform customerStartPoint;
     [SerializeField] Transform customerEndPoint;
     [SerializeField] float customerAnimation = 3;
-
-    [Button]
-    void SkipDialogue() => DialogueManagerUtilities.PressContinueButton();
 
     //current vars in this LevelNode
     private LevelNodeData currentNode;

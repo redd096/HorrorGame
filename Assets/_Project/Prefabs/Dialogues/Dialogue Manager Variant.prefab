@@ -69,6 +69,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5726196154090090327, guid: 62a501c29c29afb49b4c7cf03667429e, type: 3}
     - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.subtitleSettings.continueButton
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: displaySettings.subtitleSettings.minSubtitleSeconds
       value: 3
       objectReference: {fileID: 0}
