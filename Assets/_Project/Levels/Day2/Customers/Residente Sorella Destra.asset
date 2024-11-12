@@ -19,9 +19,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: f004afc9d42691e4a904f118f3e399d1, type: 3}
     - {fileID: 21300000, guid: 43a4c3cafa5816e4ab58a150ba96f104, type: 3}
     - {fileID: 21300000, guid: 3646ce56b34f60b40a8569ac1468281a, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day2/Resident right twin/start
+    DialogueWhenPlayerSayNo: Day2/Resident right twin/not enter
+    DialogueWhenPlayerSayYes: Day2/Resident right twin/ok enter
     GiveIDCard: 1
     IDCard:
       Name: Sarah

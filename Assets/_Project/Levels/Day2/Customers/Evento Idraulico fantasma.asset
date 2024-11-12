@@ -19,10 +19,10 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 11177e1b7c484f343b37dd48790898c0, type: 3}
     - {fileID: 21300000, guid: e772e5354a47edf4da2d0b58c427ba29, type: 3}
     - {fileID: 21300000, guid: 4abed7752af87fb44818f8845102a446, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
-    GiveIDCard: 1
+    DialogueWhenCome: Day2/Hydraulic ghost/start
+    DialogueWhenPlayerSayNo: Day2/Hydraulic ghost/not enter
+    DialogueWhenPlayerSayYes: Day2/Hydraulic ghost/ok enter
+    GiveIDCard: 0
     IDCard:
       Name: Francisco
       Surname: Garcia
@@ -37,18 +37,18 @@ MonoBehaviour:
         Year: 1939
       Signature: Francisco Garcia
       Photo: {fileID: 21300000, guid: 1a0d2df2e4c544949b553f9c26452613, type: 3}
-    GiveRenunciationCard: 0
+    GiveRenunciationCard: 1
     RenunciationCard:
-      Name: 
-      Surname: 
-      IDCardNumber: 
+      Name: Francisco
+      Surname: Garcia
+      IDCardNumber: FC21088
       BirthDate:
-        Day: 1
-        Month: 1
-        Year: 1
-      DurationStayInDays: 0
-      CorrectDurationStayInDays: 0
-      Signature: 
+        Day: 7
+        Month: 11
+        Year: 1902
+      DurationStayInDays: 1
+      CorrectDurationStayInDays: 1
+      Signature: Francisco Garcia
     GiveResidentCard: 0
     ResidentCard:
       Name: 
