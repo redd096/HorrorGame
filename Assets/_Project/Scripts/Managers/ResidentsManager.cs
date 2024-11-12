@@ -12,21 +12,28 @@ public class ResidentsManager : MonoBehaviour
     /// Remove a resident from the list
     /// </summary>
     /// <param name="resident"></param>
-    public void RemoveResident(ResidentData resident)
+    public ResidentData RemoveResident(ResidentData resident)
     {
         if (listOfResidents.Contains(resident))
+        {
             listOfResidents.Remove(resident);
-        else
-            Debug.LogError("Missing resident in the list: " + resident, gameObject);
+            return resident;
+        }
+        
+        Debug.LogError("Missing resident in the list: " + resident, gameObject);
+        return null;
     }
 
     /// <summary>
     /// Remove a random resident from the list
     /// </summary>
-    public void RemoveRandomResident()
+    public ResidentData RemoveRandomResident()
     {
         if (listOfResidents.Count > 0)
-            RemoveResident(listOfResidents[Random.Range(0, listOfResidents.Count)]);
+            return RemoveResident(listOfResidents[Random.Range(0, listOfResidents.Count)]);
+
+        Debug.LogError("There aren't residents in the list", gameObject);
+        return null;
     }
 
     /// <summary>

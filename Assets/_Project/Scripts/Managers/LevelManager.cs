@@ -36,6 +36,8 @@ public class LevelManager : SimpleInstance<LevelManager>
 
     //used by nodes SaveChoice and GetChoice
     private Dictionary<string, bool> savedChoices = new Dictionary<string, bool>();
+    //used by node GetKilledResident
+    private ResidentData lastKilledResident;
 
     //warnings
     private int warningsCounter;
@@ -373,10 +375,11 @@ public class LevelManager : SimpleInstance<LevelManager>
 
     void CheckEventKillResident(EventKillResident eventKillResident)
     {
+        //remove resident from the list, and save it
         if (eventKillResident.KillRandom)
-            residentsManager.RemoveRandomResident();
+            lastKilledResident = residentsManager.RemoveRandomResident();
         else
-            residentsManager.RemoveResident(eventKillResident.SpecificResident);
+            lastKilledResident = residentsManager.RemoveResident(eventKillResident.SpecificResident);
     }
 
     #endregion
