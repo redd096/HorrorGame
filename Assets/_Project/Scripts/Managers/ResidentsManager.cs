@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -5,9 +6,17 @@ using UnityEngine;
 /// </summary>
 public class ResidentsManager : MonoBehaviour
 {
-    [SerializeField] ResidentData[] listOfResidents;
+    [SerializeField] List<ResidentData> listOfResidents = new List<ResidentData>();
 
-    public ResidentData[] ListOfResidents => listOfResidents;
+    /// <summary>
+    /// Remove a resident from the list
+    /// </summary>
+    /// <param name="resident"></param>
+    public void RemoveResident(ResidentData resident)
+    {
+        if (listOfResidents.Contains(resident))
+            listOfResidents.Remove(resident);
+    }
 
     /// <summary>
     /// Check if this IDCard is for a resident

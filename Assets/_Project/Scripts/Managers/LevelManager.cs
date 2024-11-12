@@ -242,6 +242,10 @@ public class LevelManager : SimpleInstance<LevelManager>
         {
             CheckEventNewspaper(eventNewspaperData.EventNewspaper);
         }
+        else if (currentNode is EventKillSpecificResidentData eventKillSpecificResidentData)
+        {
+            CheckEventKillSpecificResident(eventKillSpecificResidentData.KillSpecificResident);
+        }
         //or error
         else
         {
@@ -365,6 +369,11 @@ public class LevelManager : SimpleInstance<LevelManager>
         //show newspaper for few seconds, then go to next node
         eventsManager.ShowNewspaper(newspaperName)
             .OnComplete(CheckNextNode);
+    }
+
+    void CheckEventKillSpecificResident(EventKillSpecificResident eventKillSpecificResident)
+    {
+        residentsManager.RemoveResident(eventKillSpecificResident.Resident);
     }
 
     #endregion

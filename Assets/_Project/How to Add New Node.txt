@@ -17,20 +17,21 @@ Add new node:
       - in SetValuesAndSaveFile create a LevelNodeData (point 1.b.) from the UserData we saved before
       - in SetNodeValues load UserData from the LevelNodeData
 
-4. click on top on HORROR GAME/Days Graph
-   a. right click and create your nodes
-   b. click on Save to save the graph, and create also the LevelData with its nodes for the game
-
-5. I'm saving in Levels/Day X
-   a. DayX is the scriptable object to load again the GraphView
-   b. LevelData_DayX is the LevelData for the LevelManager in scene
-   c. the other scriptable objects in sub-folders are the nodes for the LevelManager
-
-6. go in Scene
-   a. select ManagersInScene/LevelManager
-   b. add the LevelData we created (the scriptable object that starts with LevelData_)
-
-7. go to Scripts/Managers
+4. go to Scripts/Managers
    a. open LevelManager
       - in CheckNextNode add a check for your new LevelNodeData (point 1.b.)
       - and create a function to set what to do with its values
+
+5. click on top on HORROR GAME/Days Graph
+   a. right click and create your nodes
+   b. click on Save to save the graph, and create also the LevelData with its nodes for the game
+
+6. I'm saving in Levels/DayX
+   a. the asset with the same name of the folder, DayX, is the scriptable object to load again the GraphView
+   b. LevelData_DayX is the LevelData for the LevelManager in scene
+   c. the other scriptable objects in sub-folders are the nodes for the LevelManager
+
+7. go in Scene
+   a. select ManagersInScene/LevelManager
+   b. add the LevelData we created (the scriptable object that starts with LevelData_)
+   c. press Play

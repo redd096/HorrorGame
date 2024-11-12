@@ -23,34 +23,27 @@ public class DaysGraphView : NodesGraphView
             evt.menu.AppendAction("Add Group", (actionEvent) =>
             CreateGroup("Group", GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
         }
-        //customer node
         if (evt.target is GraphView)
         {
-            evt.menu.AppendAction("Add Customer", (actionEvent) =>
-            CreateNode("Customer", typeof(CustomerNode),
-                GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
+            //customer node
+            AddNodeButton<CustomerNode>(evt, "Add Customer", "Customer");
+
+            //save choice node
+            AddNodeButton<SaveChoiceNode>(evt, "Save Player Choice", "Save Player Choice");
+
+            //get choice node
+            AddNodeButton<GetChoiceNode>(evt, "Get Player Choice", "Get Player Choice");
+
+            //events
+            AddNodeButton<EventNewspaperNode>(evt, "Events/Newspaper", "Show Newspaper");
+            AddNodeButton<EventKillSpecificResidentNode>(evt, "Events/Kill Specific Resident", "Kill Specific Resident");
         }
-        //save choice node
-        if (evt.target is GraphView)
-        {
-            evt.menu.AppendAction("Save Player Choice", (actionEvent) =>
-            CreateNode("Save Player Choice", typeof(SaveChoiceNode),
-                GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
-        }
-        //get choice node
-        if (evt.target is GraphView)
-        {
-            evt.menu.AppendAction("Get Player Choice", (actionEvent) =>
-            CreateNode("Get Player Choice", typeof(GetChoiceNode),
-                GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
-        }
-        //events
-        if (evt.target is GraphView)
-        {
-            evt.menu.AppendAction("Events/Newspaper", (actionEvent) =>
-            CreateNode("Show Newspaper", typeof(EventNewspaperNode),
-                GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
-        }
+    }
+
+    void AddNodeButton<T>(ContextualMenuPopulateEvent evt, string buttonPath, string nodeName)
+    {
+        evt.menu.AppendAction(buttonPath, (actionEvent) => 
+        CreateNode(nodeName, typeof(T), GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)));
     }
 }
 #endif

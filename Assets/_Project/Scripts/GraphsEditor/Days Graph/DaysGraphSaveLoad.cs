@@ -47,6 +47,8 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         //events
         else if (node is EventNewspaperNode eventNewspaperNode)
             data.UserData = eventNewspaperNode.EventNewspaper;
+        else if (node is EventKillSpecificResidentNode killSpecificResidentNode)
+            data.UserData = killSpecificResidentNode.KillSpecificResident;
 
         //be sure there aren't nodes with same NodeName, because we use it to create a ScriptableObject
         while (nodes.Find(x => x.NodeName == data.NodeName) != null)
@@ -114,6 +116,13 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
                 EventNewspaperData asset = CreateLevelNodeData<EventNewspaperData>(path, nodeData);
                 asset.EventNewspaper = eventNewspaper.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            else if (nodeData.UserData is EventKillSpecificResident eventKillSpecificResident)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
+                EventKillSpecificResidentData asset = CreateLevelNodeData<EventKillSpecificResidentData>(path, nodeData);
+                asset.KillSpecificResident = eventKillSpecificResident.Clone();
                 EditorUtility.SetDirty(asset);
             }
 
@@ -283,13 +292,21 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 return;
             }
         }
+        else if (node is EventKillSpecificResidentNode eventKillSpecificResidentNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventKillSpecificResidentData killSpecificResidentData)
+            {
+                eventKillSpecificResidentNode.KillSpecificResident = killSpecificResidentData.KillSpecificResident.Clone();
+                return;
+            }
+        }
         else
         {
+            Debug.LogError($"Error load node with ID: {node.ID}. " +
+                $"Impossible to find in level data a node with name {node.NodeName} or this node isn't correct for a node of type {node.GetType()}");
+
             return;
         }
-
-        Debug.LogError($"Error load node with ID: {node.ID}. " +
-            $"Impossible to find in level data a node with name {node.NodeName} or this node isn't correct for a node of type {node.GetType()}");
     }
 
     #endregion
