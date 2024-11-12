@@ -12,11 +12,16 @@ public class InteractableOutlineFeedback : MonoBehaviour
     float pulseSpeed = 2f;
 
     InteractableBase interactableObj;
+    Material mat;
     Tween tween;
 
     private void Awake()
     {
         interactableObj = GetComponent<InteractableBase>();
+
+        //set image instance material, to not override the material in the project
+        mat = new Material(image.material);
+        image.material = mat;
 
         //add events
         interactableObj.onSetInteractable += OnSetInteractable;
@@ -33,7 +38,7 @@ public class InteractableOutlineFeedback : MonoBehaviour
     {
         //stop tween
         tween.Stop();
-        Color c = image.material.GetColor("_OutlineColor");
+        Color c = mat.GetColor("_OutlineColor");
         float startValue = c.a;
 
         //change outline alpha
@@ -41,7 +46,7 @@ public class InteractableOutlineFeedback : MonoBehaviour
         tween = Tween.Custom(startValue, endValue, pulseSpeed, onValueChange: x =>
         {
             c.a = x;
-            image.material.SetColor("_OutlineColor", c);
+            mat.SetColor("_OutlineColor", c);
         }).OnComplete(() =>
         {
             //start pulse effect
@@ -50,7 +55,7 @@ public class InteractableOutlineFeedback : MonoBehaviour
                 tween = Tween.Custom(1f, 0f, pulseSpeed, ease: Ease.InOutQuad, cycles: -1, cycleMode: CycleMode.Yoyo, onValueChange: x =>
                 {
                     c.a = x;
-                    image.material.SetColor("_OutlineColor", c);
+                    mat.SetColor("_OutlineColor", c);
                 });
             }
         });

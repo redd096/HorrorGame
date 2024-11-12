@@ -31,7 +31,7 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _AlphaCutoff: 0.5
-    - _OutlineWidth: 13
+    - _OutlineWidth: 16
     - _PulseSpeed: 4
     - _PulsingEffect: 0
     m_Colors:
