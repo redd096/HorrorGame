@@ -4,7 +4,7 @@ Shader "Custom/SpriteOutline"
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _OutlineColor ("Outline Color", Color) = (1,1,1,1)
-        _OutlineWidth ("Outline Width", Range(0, 16)) = 2
+        _OutlineWidth ("Outline Width", Range(0, 32)) = 2
         _AlphaCutoff ("Alpha Cutoff", Range(0, 1)) = 0.1
         [Toggle] _PulsingEffect ("Enable Pulsing", Float) = 0
         _PulseSpeed ("Pulse Speed", Range(0, 10)) = 2

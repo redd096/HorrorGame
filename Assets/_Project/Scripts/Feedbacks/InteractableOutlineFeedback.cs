@@ -9,6 +9,7 @@ using PrimeTween;
 public class InteractableOutlineFeedback : MonoBehaviour
 {
     [SerializeField] Image image;
+    [SerializeField] Material custom_spriteOutlineMaterial;
     float pulseSpeed = 2f;
 
     InteractableBase interactableObj;
@@ -20,7 +21,7 @@ public class InteractableOutlineFeedback : MonoBehaviour
         interactableObj = GetComponent<InteractableBase>();
 
         //set image instance material, to not override the material in the project
-        mat = new Material(image.material);
+        mat = new Material(custom_spriteOutlineMaterial);
         image.material = mat;
 
         //add events

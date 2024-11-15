@@ -1,13 +1,28 @@
 using UnityEngine;
 using PrimeTween;
+using UnityEngine.UI;
+using redd096.Attributes;
 
 /// <summary>
 /// This is used by LevelManager and is specific for the events (not customers or other)
 /// </summary>
 public class LevelEventsManager : MonoBehaviour
 {
+    [Header("Newspaper event")]
     [SerializeField] CanvasGroup newspapersContainer;
     [SerializeField] float durationNewspaper = 3;
+
+    [Header("Background events")]
+    [SerializeField] Animator backgroundAnimator;
+    [SerializeField] AnimationClip backgroundIdle;
+    [SerializeField] AnimationClip backgroundRed;
+
+    [Header("Blood events")]
+    [SerializeField] RectTransform waveRect;
+    [SerializeField] float waveAnimationDuration = 5;
+
+    //when start red event, find every object with this script and save in array
+    private RedEventFeedback[] redEventsPlaying;
 
     /// <summary>
     /// Show for few seconds the newspaper
@@ -42,5 +57,81 @@ public class LevelEventsManager : MonoBehaviour
         });
 
         return sequence;
+    }
+
+    /// <summary>
+    /// Play an animation on background image
+    /// </summary>
+    /// <param name="animationClip"></param>
+    public void PlayBackgroundEvent(AnimationClip animationClip)
+    {
+        backgroundAnimator.Play(animationClip.name);
+    }
+
+    /// <summary>
+    /// Back to normal background image (idle or red, depend if RedEvent is still playing)
+    /// </summary>
+    public void StopBackgroundEvent()
+    {
+        if (redEventsPlaying == null)
+            backgroundAnimator.Play(backgroundIdle.name);
+        else
+            backgroundAnimator.Play(backgroundRed.name);
+    }
+
+    /// <summary>
+    /// Change everything to Red
+    /// </summary>
+    /// <param name="play">play or stop</param>
+    public void RedEvent(bool play)
+    {
+        if (play)
+        {
+            //find feedbacks and start Red event
+            redEventsPlaying = FindObjectsOfType<RedEventFeedback>();
+            foreach (var v in redEventsPlaying)
+                v.StartRedEvent();
+
+            //also background
+            backgroundAnimator.Play(backgroundRed.name);
+        }
+        else
+        {
+            //previous Red events, back to normal
+            if (redEventsPlaying != null)
+            {
+                foreach (var v in redEventsPlaying)
+                    v.StopRedEvent();
+                redEventsPlaying = null;
+            }
+
+            //also background
+            backgroundAnimator.Play(backgroundIdle.name);
+        }
+    }
+
+    /// <summary>
+    /// Play blood event on backgroundImage and waveImage
+    /// </summary>
+    /// <param name="backgroundAnimation"></param>
+    public void PlayBloodEvent(AnimationClip backgroundAnimation)
+    {
+        PlayBackgroundEvent(backgroundAnimation);
+        waveRect.sizeDelta = new Vector2(waveRect.sizeDelta.x, 0f);
+        waveRect.gameObject.SetActive(true);
+
+        //blood from 0 to canvas height
+        Canvas canvas = waveRect.GetComponentInParent<Canvas>();
+        Tween.UISizeDelta(waveRect, new Vector2(waveRect.sizeDelta.x, canvas.GetComponent<RectTransform>().sizeDelta.y), waveAnimationDuration);
+    }
+
+    /// <summary>
+    /// Back to idle backgroundImage and hide waveImage
+    /// </summary>
+    public void StopBloodEvent()
+    {
+        StopBackgroundEvent();
+        waveRect.sizeDelta = new Vector2(waveRect.sizeDelta.x, 0f);
+        waveRect.gameObject.SetActive(false);
     }
 }

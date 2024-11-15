@@ -120,10 +120,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c3ccb876a9f8ec34bab3cd3f6d6b815e, type: 3}
-    - target: {fileID: 7509710122323372845, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: 44e140671650be945b42c5112c9d29d9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -134,6 +130,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1996640527894661766, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5696462955236440102}
+    - targetCorrespondingSourceObject: {fileID: 1996640527894661766, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8184687085111343711}
   m_SourcePrefab: {fileID: 100100000, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}
 --- !u!1 &2682421830108619778 stripped
 GameObject:
@@ -165,6 +164,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 6249663792524985769}
+  custom_spriteOutlineMaterial: {fileID: 2100000, guid: 44e140671650be945b42c5112c9d29d9, type: 2}
+--- !u!114 &8184687085111343711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2682421830108619778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6ffcb8428fe204f9dd9a9ae69aca3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableImage: {fileID: 6249663792524985769}
+  redSprite: {fileID: 21300000, guid: d0d480b8e18cd4740b609b53984425f6, type: 3}
 --- !u!114 &6249663792524985769 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7509710122323372845, guid: 617075dd17dde8b4391af51cfa98e93e, type: 3}

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Door opening
+  m_Name: Flooded Room
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,17 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: c185ee55647c33547bb335072058a0d0, type: 3}
+      value: {fileID: 21300000, guid: 4a19f4049f8df86438372c5e535a2535, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 4ec761656a9bfdd438e69d5fa0b337ae, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: 5eaf95029b93a8443a40574d24af876e, type: 3}
-    - time: 1
-      value: {fileID: 21300000, guid: d7ea1ecdf7bf546478b926831de5e8cb, type: 3}
-    - time: 2
-      value: {fileID: 21300000, guid: b86564f518eaad943becd6780124d805, type: 3}
-    - time: 3
-      value: {fileID: 21300000, guid: 2fad8d9e8e76bd947ba7bcd3f74c91d5, type: 3}
-    - time: 6
-      value: {fileID: 21300000, guid: 2fad8d9e8e76bd947ba7bcd3f74c91d5, type: 3}
+      value: {fileID: 21300000, guid: 6cc320b9cd42198439ce9806a06150e9, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: 6cc320b9cd42198439ce9806a06150e9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -54,18 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: c185ee55647c33547bb335072058a0d0, type: 3}
-    - {fileID: 21300000, guid: 5eaf95029b93a8443a40574d24af876e, type: 3}
-    - {fileID: 21300000, guid: d7ea1ecdf7bf546478b926831de5e8cb, type: 3}
-    - {fileID: 21300000, guid: b86564f518eaad943becd6780124d805, type: 3}
-    - {fileID: 21300000, guid: 2fad8d9e8e76bd947ba7bcd3f74c91d5, type: 3}
-    - {fileID: 21300000, guid: 2fad8d9e8e76bd947ba7bcd3f74c91d5, type: 3}
+    - {fileID: 21300000, guid: 4a19f4049f8df86438372c5e535a2535, type: 3}
+    - {fileID: 21300000, guid: 4ec761656a9bfdd438e69d5fa0b337ae, type: 3}
+    - {fileID: 21300000, guid: 6cc320b9cd42198439ce9806a06150e9, type: 3}
+    - {fileID: 21300000, guid: 6cc320b9cd42198439ce9806a06150e9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 6.016667
+    m_StopTime: 0.76666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
