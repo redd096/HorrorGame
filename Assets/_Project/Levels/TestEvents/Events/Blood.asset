@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647e4abb6e4c95b459cd472090fe60c9, type: 3}
   m_Name: Blood
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: 433360cf20fe62540b2db0ff9b128fcd, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: 433360cf20fe62540b2db0ff9b128fcd, type: 2}
+  NodeOnTrue: {fileID: 11400000, guid: 2c2b79b6220002b478ceffcd7a3fb508, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 2c2b79b6220002b478ceffcd7a3fb508, type: 2}
   EventBlood:
     BackgroundAnimation: {fileID: 7400000, guid: 9f2c22c1edbec454fb73694e1f0c28e3, type: 2}

@@ -15,4 +15,4 @@ MonoBehaviour:
   NodeOnTrue: {fileID: 11400000, guid: 725cc58a72dbc814b9fd2b72afc2d090, type: 2}
   NodeOnFalse: {fileID: 11400000, guid: 725cc58a72dbc814b9fd2b72afc2d090, type: 2}
   DelayForSeconds:
-    Delay: 5
+    Delay: 1

@@ -15,4 +15,4 @@ MonoBehaviour:
   NodeOnTrue: {fileID: 11400000, guid: b1ef52df4163e7e43b2b717e846e81c7, type: 2}
   NodeOnFalse: {fileID: 11400000, guid: b1ef52df4163e7e43b2b717e846e81c7, type: 2}
   EventStopBackgroundAnimation:
-    DelayBeforeNextNode: 5
+    DelayBeforeNextNode: 1
