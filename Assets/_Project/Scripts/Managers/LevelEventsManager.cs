@@ -123,7 +123,7 @@ public class LevelEventsManager : MonoBehaviour
 
         //blood from 0 to canvas height
         Canvas canvas = waveRect.GetComponentInParent<Canvas>();
-        sequence.Chain(Tween.UISizeDelta(waveRect, new Vector2(waveRect.sizeDelta.x, canvas.GetComponent<RectTransform>().sizeDelta.y), waveAnimationDuration));
+        sequence.Chain(Tween.UISizeDelta(waveRect, new Vector2(waveRect.sizeDelta.x, canvas.GetComponent<RectTransform>().sizeDelta.y), waveAnimationDuration, Ease.InOutSine));
 
         //delay and stop
         sequence.ChainDelay(delayAfterWaveAnimation);

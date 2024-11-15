@@ -1,0 +1,319 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97b6abe991b99a4e91a37f02ae05116, type: 3}
+  m_Name: TestEvents
+  m_EditorClassIdentifier: 
+  Nodes:
+  - NodeName: Show Newspaper
+    ID: 76e16872-2a4e-4bb2-8860-909e46e9dfe9
+    NodeType: EventNewspaperNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 55811d74-52a2-468e-bd00-0714d473a6b8
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: -684, y: 50.399998}
+  - NodeName: Personaggio Minorenne
+    ID: e786def7-802d-404d-8063-c7375f811368
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: ecb69863-5433-4526-adde-af81a5527247
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: ecb69863-5433-4526-adde-af81a5527247
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 1364.8, y: 61.600002}
+  - NodeName: Personaggio tutto ok1
+    ID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: f235169f-08e2-4c0d-9a9c-4dea6a2a5791
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: f235169f-08e2-4c0d-9a9c-4dea6a2a5791
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 240, y: 50.399998}
+  - NodeName: Manager
+    ID: 55811d74-52a2-468e-bd00-0714d473a6b8
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 92d490c8-24e2-4b9d-a102-3af6ae9bfa47
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: -188.8, y: 50.399998}
+  - NodeName: Start Background Animation
+    ID: f235169f-08e2-4c0d-9a9c-4dea6a2a5791
+    NodeType: EventStartBackgroundAnimationNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 3147db44-ad6a-4aae-810b-258d29544298
+      ConnectedPortIndex: 0
+    GroupID: 678228b1-74ed-4a81-8b75-d42dd49a9e47
+    Position: {x: 704, y: 43.2}
+  - NodeName: Stop Background Animation
+    ID: 3147db44-ad6a-4aae-810b-258d29544298
+    NodeType: EventStopBackgroundAnimationNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: e786def7-802d-404d-8063-c7375f811368
+      ConnectedPortIndex: 0
+    GroupID: 678228b1-74ed-4a81-8b75-d42dd49a9e47
+    Position: {x: 1021.6, y: 43.2}
+  - NodeName: Kill Resident
+    ID: 95905bf0-bf21-4e56-b656-b4260ab03dca
+    NodeType: EventKillResidentNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 83961fa2-ab18-4b50-9cbc-52472887746d
+      ConnectedPortIndex: 0
+    GroupID: 55665849-6129-4ee4-a0b7-e9396746d964
+    Position: {x: 4864, y: 40}
+  - NodeName: Is Resident Alive
+    ID: 83961fa2-ab18-4b50-9cbc-52472887746d
+    NodeType: IsResidentAliveNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: b0fcd81e-6141-4822-b917-8bc2ad5e07d8
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: cee4667d-86dc-49d5-964b-25139ba44df6
+      ConnectedPortIndex: 0
+    GroupID: 55665849-6129-4ee4-a0b7-e9396746d964
+    Position: {x: 5292.8, y: 39.2}
+  - NodeName: Start Red Event
+    ID: ecb69863-5433-4526-adde-af81a5527247
+    NodeType: EventStartRedEventNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: a1721065-71d3-4b06-8d70-39a26be93b7f
+      ConnectedPortIndex: 0
+    GroupID: 1125acfc-44e4-4de1-bcc0-b1f905cd7a43
+    Position: {x: 1835.2, y: 57.600002}
+  - NodeName: Delay
+    ID: a1721065-71d3-4b06-8d70-39a26be93b7f
+    NodeType: DelayForSecondsNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 29c67f59-87aa-4f74-ac09-ecde90848607
+      ConnectedPortIndex: 0
+    GroupID: 1125acfc-44e4-4de1-bcc0-b1f905cd7a43
+    Position: {x: 2099.2, y: 57.600002}
+  - NodeName: Blood
+    ID: 29c67f59-87aa-4f74-ac09-ecde90848607
+    NodeType: EventBloodNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: d8a886b2-2816-4a23-8877-cb11ffe9b744
+      ConnectedPortIndex: 0
+    GroupID: 1125acfc-44e4-4de1-bcc0-b1f905cd7a43
+    Position: {x: 2388, y: 20.8}
+  - NodeName: Personaggio tutto ok2
+    ID: 5755a75b-323a-497f-9ff5-f0bc67e8ae6b
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 12bbadc3-cc12-4802-a1d7-92a3e6096592
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 12bbadc3-cc12-4802-a1d7-92a3e6096592
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3596.8, y: 78.399994}
+  - NodeName: Residente Cugino1
+    ID: 01ee3281-5132-41a2-beef-66a1825e464a
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 0cfde150-ff21-4e32-852a-9b5ba13747aa
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 0cfde150-ff21-4e32-852a-9b5ba13747aa
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 6491.2, y: -23.199999}
+  - NodeName: Barbone
+    ID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 47b6ee3a-7f9a-4c2a-bb78-3fb1c58c2933
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 47b6ee3a-7f9a-4c2a-bb78-3fb1c58c2933
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 7209.6, y: -18.4}
+  - NodeName: Debug Text
+    ID: 5c251f4c-0d92-45d9-a08e-3e8d2313f3e6
+    NodeType: DebugLogTextNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 95905bf0-bf21-4e56-b656-b4260ab03dca
+      ConnectedPortIndex: 0
+    GroupID: 55665849-6129-4ee4-a0b7-e9396746d964
+    Position: {x: 4497.6, y: 12.799999}
+  - NodeName: Debug Text(Clone)
+    ID: d2836266-9e84-40df-ae85-53cf31a8f7c3
+    NodeType: DebugLogTextNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 95905bf0-bf21-4e56-b656-b4260ab03dca
+      ConnectedPortIndex: 0
+    GroupID: 55665849-6129-4ee4-a0b7-e9396746d964
+    Position: {x: 4484, y: 172}
+  - NodeName: Debug Text(Clone)(Clone)
+    ID: b0fcd81e-6141-4822-b917-8bc2ad5e07d8
+    NodeType: DebugLogTextNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 01ee3281-5132-41a2-beef-66a1825e464a
+      ConnectedPortIndex: 0
+    GroupID: 55665849-6129-4ee4-a0b7-e9396746d964
+    Position: {x: 5800.8, y: -42.4}
+  - NodeName: Debug Text(Clone)(Clone)(Clone)
+    ID: cee4667d-86dc-49d5-964b-25139ba44df6
+    NodeType: DebugLogTextNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 01ee3281-5132-41a2-beef-66a1825e464a
+      ConnectedPortIndex: 0
+    GroupID: 55665849-6129-4ee4-a0b7-e9396746d964
+    Position: {x: 5773.6, y: 164.8}
+  - NodeName: Debug Text(Clone)(Clone)(Clone)(Clone)
+    ID: 4f25b7e8-8da1-4fdd-beed-fd63b49f584f
+    NodeType: DebugLogTextNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 6f8d7c7c-aacf-4be4-8dfa-7e6eafb30681
+    Position: {x: 8210.4, y: -34.4}
+  - NodeName: Debug Text(Clone)(Clone)(Clone)(Clone)(Clone)
+    ID: 533dfd53-c512-4af0-9d39-681e04a5534a
+    NodeType: DebugLogTextNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 6f8d7c7c-aacf-4be4-8dfa-7e6eafb30681
+    Position: {x: 8202.4, y: 126.399994}
+  - NodeName: Save Player Choice
+    ID: 47b6ee3a-7f9a-4c2a-bb78-3fb1c58c2933
+    NodeType: SaveChoiceNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 6a6ed5ab-79b1-4fa9-a04a-92aba48e3fdc
+      ConnectedPortIndex: 0
+    GroupID: 6f8d7c7c-aacf-4be4-8dfa-7e6eafb30681
+    Position: {x: 7584.8, y: -15.199999}
+  - NodeName: Get Player Choice
+    ID: 6a6ed5ab-79b1-4fa9-a04a-92aba48e3fdc
+    NodeType: GetChoiceNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 4f25b7e8-8da1-4fdd-beed-fd63b49f584f
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 533dfd53-c512-4af0-9d39-681e04a5534a
+      ConnectedPortIndex: 0
+    GroupID: 6f8d7c7c-aacf-4be4-8dfa-7e6eafb30681
+    Position: {x: 7836, y: -15.199999}
+  - NodeName: Is Resident Alive(Clone)
+    ID: 12bbadc3-cc12-4802-a1d7-92a3e6096592
+    NodeType: IsResidentAliveNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 5c251f4c-0d92-45d9-a08e-3e8d2313f3e6
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: d2836266-9e84-40df-ae85-53cf31a8f7c3
+      ConnectedPortIndex: 0
+    GroupID: 55665849-6129-4ee4-a0b7-e9396746d964
+    Position: {x: 4115.2, y: 80.8}
+  - NodeName: Evento Bambina fantasma
+    ID: 0cfde150-ff21-4e32-852a-9b5ba13747aa
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 553472aa-5d3c-40c0-b049-67a41a30b0f8
+      ConnectedPortIndex: 0
+    GroupID: f77e4b20-4b7a-4b9d-a1dd-9ea76d9e9e19
+    Position: {x: 6842.4, y: -24}
+  - NodeName: Stop Red Event
+    ID: d8a886b2-2816-4a23-8877-cb11ffe9b744
+    NodeType: EventStopRedEventNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: ab989f9b-9699-4bae-965e-e84da777799a
+      ConnectedPortIndex: 0
+    GroupID: 1125acfc-44e4-4de1-bcc0-b1f905cd7a43
+    Position: {x: 2796.8, y: 57.600002}
+  - NodeName: Delay(Clone)
+    ID: ab989f9b-9699-4bae-965e-e84da777799a
+    NodeType: DelayForSecondsNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 5755a75b-323a-497f-9ff5-f0bc67e8ae6b
+      ConnectedPortIndex: 0
+    GroupID: 1125acfc-44e4-4de1-bcc0-b1f905cd7a43
+    Position: {x: 3116.8, y: 57.600002}
+  Groups:
+  - Title: Background Event
+    ID: 678228b1-74ed-4a81-8b75-d42dd49a9e47
+    Position: {x: 678.4, y: -16.8}
+    ContainedNodesID:
+    - f235169f-08e2-4c0d-9a9c-4dea6a2a5791
+    - 3147db44-ad6a-4aae-810b-258d29544298
+  - Title: Kill Resident Event
+    ID: 55665849-6129-4ee4-a0b7-e9396746d964
+    Position: {x: 4089.6, y: -102.4}
+    ContainedNodesID:
+    - 95905bf0-bf21-4e56-b656-b4260ab03dca
+    - 83961fa2-ab18-4b50-9cbc-52472887746d
+    - 5c251f4c-0d92-45d9-a08e-3e8d2313f3e6
+    - d2836266-9e84-40df-ae85-53cf31a8f7c3
+    - b0fcd81e-6141-4822-b917-8bc2ad5e07d8
+    - cee4667d-86dc-49d5-964b-25139ba44df6
+    - 12bbadc3-cc12-4802-a1d7-92a3e6096592
+  - Title: Red and Blood Event
+    ID: 1125acfc-44e4-4de1-bcc0-b1f905cd7a43
+    Position: {x: 1809.5999, y: -39.19998}
+    ContainedNodesID:
+    - ecb69863-5433-4526-adde-af81a5527247
+    - a1721065-71d3-4b06-8d70-39a26be93b7f
+    - 29c67f59-87aa-4f74-ac09-ecde90848607
+    - d8a886b2-2816-4a23-8877-cb11ffe9b744
+    - ab989f9b-9699-4bae-965e-e84da777799a
+  - Title: Save and Get Player Choice
+    ID: 6f8d7c7c-aacf-4be4-8dfa-7e6eafb30681
+    Position: {x: 7559.2, y: -94.4}
+    ContainedNodesID:
+    - 4f25b7e8-8da1-4fdd-beed-fd63b49f584f
+    - 533dfd53-c512-4af0-9d39-681e04a5534a
+    - 47b6ee3a-7f9a-4c2a-bb78-3fb1c58c2933
+    - 6a6ed5ab-79b1-4fa9-a04a-92aba48e3fdc
+  - Title: Ghost event
+    ID: f77e4b20-4b7a-4b9d-a1dd-9ea76d9e9e19
+    Position: {x: 6816.8, y: -84}
+    ContainedNodesID:
+    - 0cfde150-ff21-4e32-852a-9b5ba13747aa

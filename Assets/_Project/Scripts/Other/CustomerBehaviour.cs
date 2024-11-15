@@ -13,6 +13,8 @@ public class CustomerBehaviour : MonoBehaviour
     [SerializeField] Transform rotationTransform;
     [SerializeField] float rotationIntensity = 2f;
     [SerializeField] float rotationSpeed = 0.5f;
+    [Space]
+    [SerializeField] float fadeTime = 3f;
 
     Sprite[] sprites;
     int spriteIndex;
@@ -65,5 +67,14 @@ public class CustomerBehaviour : MonoBehaviour
 
         //reset rotation
         Tween.LocalRotation(rotationTransform, Quaternion.identity, rotationSpeed * 0.5f);
+    }
+
+    /// <summary>
+    /// Fade image from 1 to 0 alpha. It's used for ghosts
+    /// </summary>
+    /// <returns></returns>
+    public Tween FadeAlpha()
+    {
+        return Tween.Alpha(customerImage, 0f, fadeTime, Ease.InOutSine);
     }
 }

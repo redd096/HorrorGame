@@ -44,8 +44,9 @@ public class DaysGraphView : NodesGraphView
             AddNodeButton<EventStopRedEventNode>(evt, "Events/Red Event/Stop", "Stop Red Event");
 
             //other
-            AddNodeButton<DelayForSecondsNode>(evt, "Other/Delay", "Delay");
             AddNodeButton<IsResidentAliveNode>(evt, "Other/Is Resident Alive", "Is Resident Alive");
+            AddNodeButton<DelayForSecondsNode>(evt, "Other/Delay", "Delay");
+            AddNodeButton<DebugLogTextNode>(evt, "Other/Debug Text", "Debug Text");
         }
     }
 

@@ -65,6 +65,8 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             data.UserData = isResidentAliveNode.IsResidentAlive;
         else if (node is DelayForSecondsNode delayForSecondsNode)
             data.UserData = delayForSecondsNode.DelayForSeconds;
+        else if (node is DebugLogTextNode debugLogTextNode)
+            data.UserData = debugLogTextNode.DebugLogText;
 
         //be sure there aren't nodes with same NodeName, because we use it to create a ScriptableObject
         while (nodes.Find(x => x.NodeName == data.NodeName) != null)
@@ -190,6 +192,13 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 string path = Path.Combine(directoryPathRelativeToProject, FOLDER_OTHER);
                 DelayForSecondsData asset = CreateLevelNodeData<DelayForSecondsData>(path, nodeData);
                 asset.DelayForSeconds = delayForSeconds.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            else if (nodeData.UserData is DebugLogText debugLogText)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_OTHER);
+                DebugLogTextData asset = CreateLevelNodeData<DebugLogTextData>(path, nodeData);
+                asset.DebugLogText = debugLogText.Clone();
                 EditorUtility.SetDirty(asset);
             }
 
@@ -421,6 +430,14 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is DelayForSecondsData delayForSecondsData)
             {
                 delayForSecondsNode.DelayForSeconds = delayForSecondsData.DelayForSeconds.Clone();
+                return;
+            }
+        }
+        else if (node is DebugLogTextNode debugLogTextNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is DebugLogTextData debugLogTextData)
+            {
+                debugLogTextNode.DebugLogText = debugLogTextData.DebugLogText.Clone();
                 return;
             }
         }

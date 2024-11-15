@@ -66,11 +66,17 @@ public class CustomerNode : GraphNode
         TextField dialogueTrueTextField = CreateElementsUtilities.CreateTextField("Dialogue OK Enter", Customer.DialogueWhenPlayerSayYes, x => Customer.DialogueWhenPlayerSayYes = x.newValue.Trim());
         TextField dialogueFalseTextField = CreateElementsUtilities.CreateTextField("Dialogue NOT Enter", Customer.DialogueWhenPlayerSayNo, x => Customer.DialogueWhenPlayerSayNo = x.newValue.Trim());
 
+        //create toogle to go away like a ghost instead of a person
+        var space = CreateElementsUtilities.CreateSpace(Vector2.one * 10);
+        Toggle goAwayLikeGhostToggle = CreateElementsUtilities.CreateToggle("Fade away like ghost", Customer.GoAwayLikeGhost, x => Customer.GoAwayLikeGhost = x.newValue);
+
         //and add to container
         extensionContainer.Add(iconsFoldout);
         extensionContainer.Add(dialogueTextField);
         extensionContainer.Add(dialogueTrueTextField);
         extensionContainer.Add(dialogueFalseTextField);
+        extensionContainer.Add(space);
+        extensionContainer.Add(goAwayLikeGhostToggle);
     }
 
     private void CreateCustomerIcon(VisualElement container, int index)

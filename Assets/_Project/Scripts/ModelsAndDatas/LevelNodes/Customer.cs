@@ -14,6 +14,10 @@ public class Customer
 
     [Space]
 
+    public bool GoAwayLikeGhost;
+
+    [Space]
+
     public bool GiveIDCard;
     public IDCard IDCard = new IDCard();
 
@@ -41,6 +45,7 @@ public class Customer
             DialogueWhenCome = DialogueWhenCome,
             DialogueWhenPlayerSayNo = DialogueWhenPlayerSayNo,
             DialogueWhenPlayerSayYes = DialogueWhenPlayerSayYes,
+            GoAwayLikeGhost = GoAwayLikeGhost,
             GiveIDCard = GiveIDCard,
             IDCard = IDCard.Clone(),
             GiveRenunciationCard = GiveRenunciationCard,

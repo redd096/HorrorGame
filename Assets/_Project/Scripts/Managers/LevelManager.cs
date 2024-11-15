@@ -122,24 +122,17 @@ public class LevelManager : SimpleInstance<LevelManager>
         string dialogue = currentChoice ? currentCustomer.DialogueWhenPlayerSayYes : currentCustomer.DialogueWhenPlayerSayNo;
         yield return WaitDialogue(dialogue);
 
-        //check if player choice is correct
-        bool correctChoice = choiceManager.CheckPlayerChoice(currentNode, currentChoice, out string problem);
-
-        Sequence sequence = Sequence.Create();
-
         //move customer away from screen
-        sequence.ChainCallback(currentCustomerInstance.StartWalk);
-        sequence.Chain(MoveCustomer(false));
-        sequence.ChainCallback(() =>
-        {
-            //check if player did something wrong
-            OnPlayerCheckChoice(correctChoice, problem);
+        Sequence sequence = MoveCustomerAwayFromScreen();
 
-            //and move to next node
-            Destroy(currentCustomerInstance.gameObject);
-            currentCustomer = null;
-            CheckNextNode();
-        });
+        //check if player did something wrong
+        //TEMP - do this only if not a ghost, because we have some customer that are ghosts. It's not important what user says, they just fade away
+        //probably is better to have an "event node" just for ghosts
+        if (currentCustomer.GoAwayLikeGhost == false)
+        {
+            bool correctChoice = choiceManager.CheckPlayerChoice(currentNode, currentChoice, out string problem);
+            sequence.ChainCallback(() => OnPlayerCheckChoice(correctChoice, problem));
+        }
     }
 
     #endregion
@@ -167,12 +160,50 @@ public class LevelManager : SimpleInstance<LevelManager>
     /// </summary>
     /// <param name="enterInScene"></param>
     /// <returns></returns>
-    private Tween MoveCustomer(bool enterInScene)
+    private Sequence MoveCustomer(bool enterInScene)
     {
+        Sequence sequence = Sequence.Create();
+
+        //start walk animation
+        sequence.ChainCallback(currentCustomerInstance.StartWalk);
+
         //move customer (enter in scene, or is leaving the scene)
         Transform startPoint = enterInScene ? customerStartPoint : customerEndPoint;
         Transform endPoint = enterInScene ? customerEndPoint : customerStartPoint;
-        return Tween.Position(currentCustomerInstance.transform, startPoint.position, endPoint.position, customerAnimation, Ease.InOutSine);
+        sequence.Chain(Tween.Position(currentCustomerInstance.transform, startPoint.position, endPoint.position, customerAnimation, Ease.InOutSine));
+
+        return sequence;
+    }
+
+    /// <summary>
+    /// Move customer outside of the screen (both normal or ghost) and destroy it
+    /// </summary>
+    /// <returns></returns>
+    private Sequence MoveCustomerAwayFromScreen()
+    {
+        Sequence sequence = Sequence.Create();
+
+        //move customer away from screen normally
+        if (currentCustomer.GoAwayLikeGhost == false)
+        {
+            sequence.Chain(MoveCustomer(enterInScene: false));
+        }
+        //TEMP - or fade away, because we have some customer that are ghosts
+        //probably is better to have an "event node" just for ghosts
+        else
+        {
+            sequence.Chain(currentCustomerInstance.FadeAlpha());
+        }
+
+        //move to next node
+        sequence.ChainCallback(() =>
+        {
+            Destroy(currentCustomerInstance.gameObject);
+            currentCustomer = null;
+            CheckNextNode();
+        });
+
+        return sequence;
     }
 
     /// <summary>
@@ -276,6 +307,10 @@ public class LevelManager : SimpleInstance<LevelManager>
         {
             CheckDelayForSeconds(delayForSecondsData.DelayForSeconds);
         }
+        else if (currentNode is DebugLogTextData debugLogTextData)
+        {
+            CheckDebugLogText(debugLogTextData.DebugLogText);
+        }
         //or error
         else
         {
@@ -286,7 +321,9 @@ public class LevelManager : SimpleInstance<LevelManager>
 
     IEnumerator CheckCustomer(Customer customer)
     {
-        //TEMP - press the bell only if customer give something to player
+        //press the bell
+        //TEMP - only if customer give something to player, because we have some customer that enter, tell something, and go away
+        //probably is better to have an "event node" just for people who enter and say things or give objects to player and move away
         if (customer.GiveIDCard || customer.GiveRenunciationCard || customer.GiveResidentCard || customer.GivePoliceCard)
         {
             //set bell interactable and wait player to press it
@@ -306,7 +343,6 @@ public class LevelManager : SimpleInstance<LevelManager>
         currentCustomer = customer;
 
         //move customer inside the screen
-        currentCustomerInstance.StartWalk();
         yield return MoveCustomer(true).ToYieldInstruction();
         currentCustomerInstance.StopWalk();
 
@@ -355,19 +391,11 @@ public class LevelManager : SimpleInstance<LevelManager>
             giveDocuments = true;
         }
 
-        //TEMP - if don't give documents (this isn't a user to check, just come in scene, tell something to player and move away)
+        //TEMP - if don't give documents, just move customer away (this isn't a customer to check. We have some customer that enter, tell something, and go away)
+        //probably is better to have an "event node" just for people who enter and say things or give objects to player and move away
         if (giveDocuments == false)
         {
-            //move customer away from screen (it's a copy-paste from OnGiveBackAllDocumentsCoroutine, but this doesn't have the check if player did something wrong)
-            sequence.ChainCallback(currentCustomerInstance.StartWalk);
-            sequence.Chain(MoveCustomer(false));
-            sequence.ChainCallback(() =>
-            {
-                //and move to next node
-                Destroy(currentCustomerInstance.gameObject);
-                currentCustomer = null;
-                CheckNextNode();
-            });
+            sequence.Chain(MoveCustomerAwayFromScreen());
         }
     }
 
@@ -472,6 +500,15 @@ public class LevelManager : SimpleInstance<LevelManager>
 
         //then move to next node
         sequence.ChainCallback(CheckNextNode);
+    }
+
+    void CheckDebugLogText(DebugLogText debugLogText)
+    {
+        //stamp text in console
+        Debug.Log(debugLogText.Text);
+
+        //and move to next node
+        CheckNextNode();
     }
 
     #endregion
