@@ -50,8 +50,10 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             data.UserData = eventNewspaperNode.EventNewspaper;
         else if (node is EventKillResidentNode eventKillResidentNode)
             data.UserData = eventKillResidentNode.EventKillResident;
-        else if (node is EventBackgroundAnimationNode eventBackgroundAnimationNode)
-            data.UserData = eventBackgroundAnimationNode.EventBackgroundAnimation;
+        else if (node is EventStartBackgroundAnimationNode eventStartBackgroundAnimationNode)
+            data.UserData = eventStartBackgroundAnimationNode.EventStartBackgroundAnimation;
+        else if (node is EventStopBackgroundAnimationNode eventStopBackgroundAnimationNode)
+            data.UserData = eventStopBackgroundAnimationNode.EventStopBackgroundAnimation;
         else if (node is EventBloodNode eventBloodNode)
             data.UserData = eventBloodNode.EventBlood;
         else if (node is EventStartRedEventNode eventStartRedEventNode)
@@ -61,6 +63,8 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         //other
         else if (node is IsResidentAliveNode isResidentAliveNode)
             data.UserData = isResidentAliveNode.IsResidentAlive;
+        else if (node is DelayForSecondsNode delayForSecondsNode)
+            data.UserData = delayForSecondsNode.DelayForSeconds;
 
         //be sure there aren't nodes with same NodeName, because we use it to create a ScriptableObject
         while (nodes.Find(x => x.NodeName == data.NodeName) != null)
@@ -138,11 +142,18 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 asset.EventKillResident = eventKillResident.Clone();
                 EditorUtility.SetDirty(asset);
             }
-            else if (nodeData.UserData is EventBackgroundAnimation eventBackgroundAnimation)
+            else if (nodeData.UserData is EventStartBackgroundAnimation eventStartBackgroundAnimation)
             {
                 string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
-                EventBackgroundAnimationData asset = CreateLevelNodeData<EventBackgroundAnimationData>(path, nodeData);
-                asset.EventBackgroundAnimation = eventBackgroundAnimation.Clone();
+                EventStartBackgroundAnimationData asset = CreateLevelNodeData<EventStartBackgroundAnimationData>(path, nodeData);
+                asset.EventStartBackgroundAnimation = eventStartBackgroundAnimation.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            else if (nodeData.UserData is EventStopBackgroundAnimation eventStopBackgroundAnimation)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
+                EventStopBackgroundAnimationData asset = CreateLevelNodeData<EventStopBackgroundAnimationData>(path, nodeData);
+                asset.EventStopBackgroundAnimation = eventStopBackgroundAnimation.Clone();
                 EditorUtility.SetDirty(asset);
             }
             else if (nodeData.UserData is EventBlood eventBlood)
@@ -172,6 +183,13 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 string path = Path.Combine(directoryPathRelativeToProject, FOLDER_OTHER);
                 IsResidentAliveData asset = CreateLevelNodeData<IsResidentAliveData>(path, nodeData);
                 asset.IsResidentAlive = isResidentAlive.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            else if (nodeData.UserData is DelayForSeconds delayForSeconds)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_OTHER);
+                DelayForSecondsData asset = CreateLevelNodeData<DelayForSecondsData>(path, nodeData);
+                asset.DelayForSeconds = delayForSeconds.Clone();
                 EditorUtility.SetDirty(asset);
             }
 
@@ -349,11 +367,19 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 return;
             }
         }
-        else if (node is EventBackgroundAnimationNode eventBackgroundAnimationNode)
+        else if (node is EventStartBackgroundAnimationNode eventStartBackgroundAnimationNode)
         {
-            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventBackgroundAnimationData eventBackgroundAnimationData)
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventStartBackgroundAnimationData eventStartBackgroundAnimationData)
             {
-                eventBackgroundAnimationNode.EventBackgroundAnimation = eventBackgroundAnimationData.EventBackgroundAnimation.Clone();
+                eventStartBackgroundAnimationNode.EventStartBackgroundAnimation = eventStartBackgroundAnimationData.EventStartBackgroundAnimation.Clone();
+                return;
+            }
+        }
+        else if (node is EventStopBackgroundAnimationNode eventStopBackgroundAnimationNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventStopBackgroundAnimationData eventStopBackgroundAnimationData)
+            {
+                eventStopBackgroundAnimationNode.EventStopBackgroundAnimation = eventStopBackgroundAnimationData.EventStopBackgroundAnimation.Clone();
                 return;
             }
         }
@@ -387,6 +413,14 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is IsResidentAliveData isResidentAliveData)
             {
                 isResidentAliveNode.IsResidentAlive = isResidentAliveData.IsResidentAlive.Clone();
+                return;
+            }
+        }
+        else if (node is DelayForSecondsNode delayForSecondsNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is DelayForSecondsData delayForSecondsData)
+            {
+                delayForSecondsNode.DelayForSeconds = delayForSecondsData.DelayForSeconds.Clone();
                 return;
             }
         }

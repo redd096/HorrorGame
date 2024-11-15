@@ -247,9 +247,13 @@ public class LevelManager : SimpleInstance<LevelManager>
         {
             CheckEventKillResident(eventKillResidentData.EventKillResident);
         }
-        else if (currentNode is EventBackgroundAnimationData eventBackgroundAnimationData)
+        else if (currentNode is EventStartBackgroundAnimationData eventStartBackgroundAnimationData)
         {
-            CheckEventBackgroundAnimation(eventBackgroundAnimationData.EventBackgroundAnimation);
+            CheckEventStartBackgroundAnimation(eventStartBackgroundAnimationData.EventStartBackgroundAnimation);
+        }
+        else if (currentNode is EventStopBackgroundAnimationData eventStopBackgroundAnimationData)
+        {
+            CheckEventStopBackgroundAnimation(eventStopBackgroundAnimationData.EventStopBackgroundAnimation);
         }
         else if (currentNode is EventBloodData eventBloodData)
         {
@@ -267,6 +271,10 @@ public class LevelManager : SimpleInstance<LevelManager>
         else if (currentNode is IsResidentAliveData isResidentAliveData)
         {
             CheckIsResidentAlive(isResidentAliveData.IsResidentAlive);
+        }
+        else if (currentNode is DelayForSecondsData delayForSecondsData)
+        {
+            CheckDelayForSeconds(delayForSecondsData.DelayForSeconds);
         }
         //or error
         else
@@ -403,25 +411,32 @@ public class LevelManager : SimpleInstance<LevelManager>
         CheckNextNode();
     }
 
-    void CheckEventBackgroundAnimation(EventBackgroundAnimation eventBackgroundAnimation)
+    void CheckEventStartBackgroundAnimation(EventStartBackgroundAnimation eventStartBackgroundAnimation)
     {
-        //play or stop background animation
-        if (eventBackgroundAnimation.PlayAnimation)
-            eventsManager.PlayBackgroundEvent(eventBackgroundAnimation.AnimationToPlay);
-        else
-            eventsManager.StopBackgroundEvent();
+        Sequence sequence = Sequence.Create();
 
-        //go to next node
-        if (eventBackgroundAnimation.WaitAnimation)
-        {
-            Sequence sequence = Sequence.Create();
-            sequence.ChainDelay(eventBackgroundAnimation.AnimationToPlay.length);
-            sequence.ChainCallback(CheckNextNode);
-        }
-        else
-        {
-            CheckNextNode();
-        }
+        //play background animation
+        sequence.ChainCallback(() => eventsManager.PlayBackgroundEvent(eventStartBackgroundAnimation.AnimationToPlay));
+
+        //wait animation
+        if (eventStartBackgroundAnimation.WaitAnimation)
+            sequence.ChainDelay(eventStartBackgroundAnimation.AnimationToPlay.length);
+
+        //delay, then move to next node
+        sequence.ChainDelay(eventStartBackgroundAnimation.DelayAfterAnimation);
+        sequence.ChainCallback(CheckNextNode);
+    }
+
+    void CheckEventStopBackgroundAnimation(EventStopBackgroundAnimation eventStopBackgroundAnimation)
+    {
+        Sequence sequence = Sequence.Create();
+
+        //stop background animation
+        sequence.ChainCallback(eventsManager.StopBackgroundEvent);
+
+        //delay, then move to next node
+        sequence.ChainDelay(eventStopBackgroundAnimation.DelayBeforeNextNode);
+        sequence.ChainCallback(CheckNextNode);
     }
 
     void CheckEventBlood(EventBlood eventBlood)
@@ -446,6 +461,17 @@ public class LevelManager : SimpleInstance<LevelManager>
 
         //go to next node
         CheckNextNode();
+    }
+
+    void CheckDelayForSeconds(DelayForSeconds delayForSeconds)
+    {
+        Sequence sequence = Sequence.Create();
+
+        //delay
+        sequence.ChainDelay(delayForSeconds.Delay);
+
+        //then move to next node
+        sequence.ChainCallback(CheckNextNode);
     }
 
     #endregion

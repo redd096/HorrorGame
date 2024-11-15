@@ -15,17 +15,14 @@ MonoBehaviour:
   Elements:
   - Name: FrontEventsCanvas
     SortingLayer: 0
-    OrderInLayer: 5
+    OrderInLayer: 4
   - Name: DialogueCanvas
     SortingLayer: 0
-    OrderInLayer: 4
+    OrderInLayer: 3
   - Name: NewspapersCanvas
     SortingLayer: 0
-    OrderInLayer: 3
-  - Name: RightCanvas
-    SortingLayer: 0
     OrderInLayer: 2
-  - Name: LeftCanvas
+  - Name: DeskCanvas
     SortingLayer: 0
     OrderInLayer: 1
   - Name: BackgroundCanvas

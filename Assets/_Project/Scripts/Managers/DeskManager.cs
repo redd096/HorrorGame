@@ -3,6 +3,7 @@ using PrimeTween;
 using redd096;
 using System.Collections.Generic;
 using System.Collections;
+using redd096.Attributes;
 
 /// <summary>
 /// This manages UI
@@ -22,23 +23,30 @@ public class DeskManager : SimpleInstance<DeskManager>
     [SerializeField] Transform leftStartTopPoint;
     [SerializeField] Transform leftStartBottomPoint;
     [SerializeField] Transform leftEndPoint;
+    [HorizontalLine(8, 1)]
     [SerializeField] Transform rightContainer;
     [SerializeField] Transform rightStartTopPoint;
     [SerializeField] Transform rightStartBottomPoint;
     [SerializeField] Transform rightEndPoint;
+    [HorizontalLine(8, 1)]
     [SerializeField] float putAnimationTime = 1;
     
     [Header("Documents Prefabs")]
     [SerializeField] InteractableOnTheLeft warningLeft;
     [SerializeField] WarningDraggable warningRight;
+    [HorizontalLine(8, 1)]
     [SerializeField] InteractableOnTheLeft idCardLeft;
     [SerializeField] IDCardDraggable idCardRight;
+    [HorizontalLine(8, 1)]
     [SerializeField] InteractableOnTheLeft renunciationCardLeft;
     [SerializeField] RenunciationCardDraggable renunciationCardRight;
+    [HorizontalLine(8, 1)]
     [SerializeField] InteractableOnTheLeft residentCardLeft;
     [SerializeField] ResidentCardDraggable residentCardRight;
+    [HorizontalLine(8, 1)]
     [SerializeField] InteractableOnTheLeft policeCardLeft;
     [SerializeField] PoliceCardDraggable policeCardRight;
+    [HorizontalLine(8, 1)]
     [SerializeField] InteractableOnTheLeft appointmentCardLeft;
     [SerializeField] AppointmentCardDraggable appointmentCardRight;
 

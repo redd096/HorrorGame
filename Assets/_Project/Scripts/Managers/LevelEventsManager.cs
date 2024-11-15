@@ -1,7 +1,5 @@
 using UnityEngine;
 using PrimeTween;
-using UnityEngine.UI;
-using redd096.Attributes;
 
 /// <summary>
 /// This is used by LevelManager and is specific for the events (not customers or other)

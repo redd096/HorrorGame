@@ -37,12 +37,14 @@ public class DaysGraphView : NodesGraphView
             //events
             AddNodeButton<EventNewspaperNode>(evt, "Events/Newspaper", "Show Newspaper");
             AddNodeButton<EventKillResidentNode>(evt, "Events/Kill Resident", "Kill Resident");
-            AddNodeButton<EventBackgroundAnimationNode>(evt, "Events/Background Animation", "Background Animation");
+            AddNodeButton<EventStartBackgroundAnimationNode>(evt, "Events/Background Animation/Start", "Start Background Animation");
+            AddNodeButton<EventStopBackgroundAnimationNode>(evt, "Events/Background Animation/Stop", "Stop Background Animation");
             AddNodeButton<EventBloodNode>(evt, "Events/Blood", "Blood");
             AddNodeButton<EventStartRedEventNode>(evt, "Events/Red Event/Start", "Start Red Event");
             AddNodeButton<EventStopRedEventNode>(evt, "Events/Red Event/Stop", "Stop Red Event");
 
             //other
+            AddNodeButton<DelayForSecondsNode>(evt, "Other/Delay", "Delay");
             AddNodeButton<IsResidentAliveNode>(evt, "Other/Is Resident Alive", "Is Resident Alive");
         }
     }
