@@ -247,6 +247,27 @@ public class LevelManager : SimpleInstance<LevelManager>
         {
             CheckEventKillResident(eventKillResidentData.EventKillResident);
         }
+        else if (currentNode is EventBackgroundAnimationData eventBackgroundAnimationData)
+        {
+            CheckEventBackgroundAnimation(eventBackgroundAnimationData.EventBackgroundAnimation);
+        }
+        else if (currentNode is EventBloodData eventBloodData)
+        {
+            CheckEventBlood(eventBloodData.EventBlood);
+        }
+        else if (currentNode is EventStartRedEventData)
+        {
+            CheckEventRedEvent(true);
+        }
+        else if (currentNode is EventStopRedEventData)
+        {
+            CheckEventRedEvent(false);
+        }
+        //other
+        else if (currentNode is IsResidentAliveData isResidentAliveData)
+        {
+            CheckIsResidentAlive(isResidentAliveData.IsResidentAlive);
+        }
         //or error
         else
         {
@@ -377,6 +398,54 @@ public class LevelManager : SimpleInstance<LevelManager>
             lastKilledResident = residentsManager.RemoveRandomResident();
         else
             lastKilledResident = residentsManager.RemoveResident(eventKillResident.SpecificResident);
+
+        //go to next node
+        CheckNextNode();
+    }
+
+    void CheckEventBackgroundAnimation(EventBackgroundAnimation eventBackgroundAnimation)
+    {
+        //play or stop background animation
+        if (eventBackgroundAnimation.PlayAnimation)
+            eventsManager.PlayBackgroundEvent(eventBackgroundAnimation.AnimationToPlay);
+        else
+            eventsManager.StopBackgroundEvent();
+
+        //go to next node
+        if (eventBackgroundAnimation.WaitAnimation)
+        {
+            Sequence sequence = Sequence.Create();
+            sequence.ChainDelay(eventBackgroundAnimation.AnimationToPlay.length);
+            sequence.ChainCallback(CheckNextNode);
+        }
+        else
+        {
+            CheckNextNode();
+        }
+    }
+
+    void CheckEventBlood(EventBlood eventBlood)
+    {
+        //show event blood, then go to next node
+        eventsManager.PlayBloodEvent(eventBlood.BackgroundAnimation)
+            .OnComplete(CheckNextNode);
+    }
+
+    void CheckEventRedEvent(bool play)
+    {
+        //play or stop red event and go to next node
+        eventsManager.RedEvent(play);
+        CheckNextNode();
+    }
+
+    void CheckIsResidentAlive(IsResidentAlive isResidentAlive)
+    {
+        //check if resident is still in ResidentsManager and set choice for next node
+        bool alive = residentsManager.IsResidentAlive(isResidentAlive.Resident);
+        currentChoice = alive;
+
+        //go to next node
+        CheckNextNode();
     }
 
     #endregion

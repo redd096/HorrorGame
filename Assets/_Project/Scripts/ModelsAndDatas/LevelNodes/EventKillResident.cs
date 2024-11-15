@@ -1,3 +1,4 @@
+using UnityEngine;
 
 /// <summary>
 /// SKill a random resident, or kill a specific resident
@@ -6,7 +7,7 @@
 public class EventKillResident
 {
     public bool KillRandom;
-    public ResidentData SpecificResident;
+    [Tooltip("If random is false, set a resident")] public ResidentData SpecificResident;
 
     public EventKillResident Clone()
     {

@@ -9,6 +9,16 @@ public class ResidentsManager : MonoBehaviour
     [SerializeField] List<ResidentData> listOfResidents = new List<ResidentData>();
 
     /// <summary>
+    /// Check if resident is in the list
+    /// </summary>
+    /// <param name="resident"></param>
+    /// <returns></returns>
+    public bool IsResidentAlive(ResidentData resident)
+    {
+        return listOfResidents.Contains(resident);
+    }
+
+    /// <summary>
     /// Remove a resident from the list
     /// </summary>
     /// <param name="resident"></param>

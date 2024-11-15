@@ -20,6 +20,7 @@ public class LevelEventsManager : MonoBehaviour
     [Header("Blood events")]
     [SerializeField] RectTransform waveRect;
     [SerializeField] float waveAnimationDuration = 5;
+    [SerializeField] float delayAfterWaveAnimation = 3;
 
     //when start red event, find every object with this script and save in array
     private RedEventFeedback[] redEventsPlaying;
@@ -114,24 +115,27 @@ public class LevelEventsManager : MonoBehaviour
     /// Play blood event on backgroundImage and waveImage
     /// </summary>
     /// <param name="backgroundAnimation"></param>
-    public void PlayBloodEvent(AnimationClip backgroundAnimation)
+    public Sequence PlayBloodEvent(AnimationClip backgroundAnimation)
     {
         PlayBackgroundEvent(backgroundAnimation);
         waveRect.sizeDelta = new Vector2(waveRect.sizeDelta.x, 0f);
         waveRect.gameObject.SetActive(true);
 
+        Sequence sequence = Sequence.Create();
+
         //blood from 0 to canvas height
         Canvas canvas = waveRect.GetComponentInParent<Canvas>();
-        Tween.UISizeDelta(waveRect, new Vector2(waveRect.sizeDelta.x, canvas.GetComponent<RectTransform>().sizeDelta.y), waveAnimationDuration);
-    }
+        sequence.Chain(Tween.UISizeDelta(waveRect, new Vector2(waveRect.sizeDelta.x, canvas.GetComponent<RectTransform>().sizeDelta.y), waveAnimationDuration));
 
-    /// <summary>
-    /// Back to idle backgroundImage and hide waveImage
-    /// </summary>
-    public void StopBloodEvent()
-    {
-        StopBackgroundEvent();
-        waveRect.sizeDelta = new Vector2(waveRect.sizeDelta.x, 0f);
-        waveRect.gameObject.SetActive(false);
+        //delay and stop
+        sequence.ChainDelay(delayAfterWaveAnimation);
+        sequence.ChainCallback(() =>
+        {
+            StopBackgroundEvent();
+            waveRect.sizeDelta = new Vector2(waveRect.sizeDelta.x, 0f);
+            waveRect.gameObject.SetActive(false);
+        });
+
+        return sequence;
     }
 }

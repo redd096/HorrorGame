@@ -16,6 +16,7 @@ public class DaysGraphSaveLoad : SaveLoadGraph
     const string FOLDER_SAVE_CHOICE = "SaveChoice";
     const string FOLDER_GET_CHOICE = "GetChoice";
     const string FOLDER_EVENTS = "Events";
+    const string FOLDER_OTHER = "Other";
 
     Dictionary<string, LevelNodeData> levelNodes;
     Dictionary<string, LevelNodeData> loadedLevelNodes;
@@ -49,6 +50,17 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             data.UserData = eventNewspaperNode.EventNewspaper;
         else if (node is EventKillResidentNode eventKillResidentNode)
             data.UserData = eventKillResidentNode.EventKillResident;
+        else if (node is EventBackgroundAnimationNode eventBackgroundAnimationNode)
+            data.UserData = eventBackgroundAnimationNode.EventBackgroundAnimation;
+        else if (node is EventBloodNode eventBloodNode)
+            data.UserData = eventBloodNode.EventBlood;
+        else if (node is EventStartRedEventNode eventStartRedEventNode)
+            data.UserData = eventStartRedEventNode.EventStartRedEvent;
+        else if (node is EventStopRedEventNode eventStopRedEventNode)
+            data.UserData = eventStopRedEventNode.EventStopRedEvent;
+        //other
+        else if (node is IsResidentAliveNode isResidentAliveNode)
+            data.UserData = isResidentAliveNode.IsResidentAlive;
 
         //be sure there aren't nodes with same NodeName, because we use it to create a ScriptableObject
         while (nodes.Find(x => x.NodeName == data.NodeName) != null)
@@ -67,6 +79,7 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         CreateFolder(FOLDER_SAVE_CHOICE);
         CreateFolder(FOLDER_GET_CHOICE);
         CreateFolder(FOLDER_EVENTS);
+        CreateFolder(FOLDER_OTHER);
     }
 
     void CreateFolder(string folderName)
@@ -123,6 +136,42 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
                 EventKillResidentData asset = CreateLevelNodeData<EventKillResidentData>(path, nodeData);
                 asset.EventKillResident = eventKillResident.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            else if (nodeData.UserData is EventBackgroundAnimation eventBackgroundAnimation)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
+                EventBackgroundAnimationData asset = CreateLevelNodeData<EventBackgroundAnimationData>(path, nodeData);
+                asset.EventBackgroundAnimation = eventBackgroundAnimation.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            else if (nodeData.UserData is EventBlood eventBlood)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
+                EventBloodData asset = CreateLevelNodeData<EventBloodData>(path, nodeData);
+                asset.EventBlood = eventBlood.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            else if (nodeData.UserData is EventStartRedEvent eventStartRedEvent)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
+                EventStartRedEventData asset = CreateLevelNodeData<EventStartRedEventData>(path, nodeData);
+                asset.EventStartRedEvent = eventStartRedEvent.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            else if (nodeData.UserData is EventStopRedEvent eventStopRedEvent)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
+                EventStopRedEventData asset = CreateLevelNodeData<EventStopRedEventData>(path, nodeData);
+                asset.EventStopRedEvent = eventStopRedEvent.Clone();
+                EditorUtility.SetDirty(asset);
+            }
+            //other
+            else if (nodeData.UserData is IsResidentAlive isResidentAlive)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_OTHER);
+                IsResidentAliveData asset = CreateLevelNodeData<IsResidentAliveData>(path, nodeData);
+                asset.IsResidentAlive = isResidentAlive.Clone();
                 EditorUtility.SetDirty(asset);
             }
 
@@ -300,6 +349,48 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 return;
             }
         }
+        else if (node is EventBackgroundAnimationNode eventBackgroundAnimationNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventBackgroundAnimationData eventBackgroundAnimationData)
+            {
+                eventBackgroundAnimationNode.EventBackgroundAnimation = eventBackgroundAnimationData.EventBackgroundAnimation.Clone();
+                return;
+            }
+        }
+        else if (node is EventBloodNode eventBloodNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventBloodData eventBloodData)
+            {
+                eventBloodNode.EventBlood = eventBloodData.EventBlood.Clone();
+                return;
+            }
+        }
+        else if (node is EventStartRedEventNode eventStartRedEventNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventStartRedEventData eventStartRedEventData)
+            {
+                eventStartRedEventNode.EventStartRedEvent = eventStartRedEventData.EventStartRedEvent.Clone();
+                return;
+            }
+        }
+        else if (node is EventStopRedEventNode eventStopRedEventNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventStopRedEventData eventStopRedEventData)
+            {
+                eventStopRedEventNode.EventStopRedEvent = eventStopRedEventData.EventStopRedEvent.Clone();
+                return;
+            }
+        }
+        //other
+        else if (node is IsResidentAliveNode isResidentAliveNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is IsResidentAliveData isResidentAliveData)
+            {
+                isResidentAliveNode.IsResidentAlive = isResidentAliveData.IsResidentAlive.Clone();
+                return;
+            }
+        }
+        //else error
         else
         {
             Debug.LogError($"Error load node with ID: {node.ID}. " +
