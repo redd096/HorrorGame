@@ -2,6 +2,7 @@ using System.Collections;
 using PrimeTween;
 using redd096;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// This is used to do simple functions, like move a customer or play a dialogue and wait it to finish
@@ -14,6 +15,10 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
     [SerializeField] Transform customerStartPoint;
     [SerializeField] Transform customerEndPoint;
     [SerializeField] float customerAnimation = 3;
+
+    [Header("Fade in / Fade out")] 
+    [SerializeField] Image fadeImage;
+    [SerializeField] float fadeTime = 2;
 
     /// <summary>
     /// Instantiate, initialize and return the customer behaviour
@@ -129,5 +134,34 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
 
         //wait dialogue to finish
         yield return new WaitWhile(() => isTalking);
+    }
+
+    /// <summary>
+    /// Fade in to show scene
+    /// </summary>
+    /// <returns></returns>
+    public Tween FadeIn()
+    {
+        return FadeAlpha(alpha: 0, fadeTime);
+    }
+
+    /// <summary>
+    /// Fade out to hide scene
+    /// </summary>
+    /// <returns></returns>
+    public Tween FadeOut()
+    {
+        return FadeAlpha(alpha: 1, fadeTime);
+    }
+    
+    /// <summary>
+    /// Fade image to alpha
+    /// </summary>
+    /// <param name="alpha"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
+    public Tween FadeAlpha(float alpha, float duration)
+    {
+        return Tween.Alpha(fadeImage, alpha, duration, Ease.InOutSine);
     }
 }

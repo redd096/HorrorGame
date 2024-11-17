@@ -27,6 +27,7 @@ public class LevelEventsManager : MonoBehaviour
     /// Show for few seconds the newspaper
     /// </summary>
     /// <param name="newspaperPrefab"></param>
+    /// <param name="killedResident"></param>
     public Sequence ShowNewspaper(NewspaperBehaviour newspaperPrefab, ResidentData killedResident)
     {
         //instantiate newspaper
@@ -36,7 +37,7 @@ public class LevelEventsManager : MonoBehaviour
             return default;
         }
 
-        //instantiate newspaper and immediatly fade in
+        //instantiate newspaper and immediately fade in
         NewspaperBehaviour newspaper = Instantiate(newspaperPrefab, newspapersContainer.transform);
         newspaper.Init(killedResident);
         newspapersContainer.gameObject.SetActive(true);
@@ -68,7 +69,7 @@ public class LevelEventsManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Back to normal background image (idle or red, depend if RedEvent is still playing)
+    /// Back to normal background image (idle or red, depend on RedEvent is still playing)
     /// </summary>
     public void StopBackgroundEvent()
     {

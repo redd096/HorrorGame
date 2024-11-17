@@ -10673,6 +10673,8 @@ MonoBehaviour:
   customerStartPoint: {fileID: 1179557018}
   customerEndPoint: {fileID: 2129894519}
   customerAnimation: 3
+  fadeImage: {fileID: 842376994}
+  fadeTime: 2
 --- !u!1 &1892300720
 GameObject:
   m_ObjectHideFlags: 0
