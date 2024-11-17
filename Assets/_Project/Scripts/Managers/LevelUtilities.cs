@@ -45,7 +45,14 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
         Transform startPoint = enterInScene ? customerStartPoint : customerEndPoint;
         Transform endPoint = enterInScene ? customerEndPoint : customerStartPoint;
         
-        return MoveCustomer(customerInstance, startPoint.position, endPoint.position);
+        //move customer
+        Sequence sequence = MoveCustomer(customerInstance, startPoint.position, endPoint.position);
+
+        //stop walk when enter in scene (not necessary when go outside the screen)
+        if (enterInScene)
+            sequence.ChainCallback(customerInstance.StopWalk);
+
+        return sequence;
     }
 
     /// <summary>

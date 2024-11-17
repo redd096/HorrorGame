@@ -211,6 +211,10 @@ public class LevelManager : SimpleInstance<LevelManager>
         {
             CheckEventRedEvent(false);
         }
+        else if (currentNode is EventArrestEndOfDayData eventArrestEndOfDayData)
+        {
+            StartCoroutine(CheckEventArrestEndOfDay(eventArrestEndOfDayData.EventArrestEndOfDay));
+        }
         //other
         else if (currentNode is IsResidentAliveData isResidentAliveData)
         {
@@ -253,11 +257,8 @@ public class LevelManager : SimpleInstance<LevelManager>
         currentCustomerInstance = LevelUtilities.instance.InstantiateCustomer(customer);
         currentCustomer = customer;
 
-        //move customer inside the screen
+        //move customer inside the screen and start dialogue
         yield return LevelUtilities.instance.MoveCustomer(currentCustomerInstance, enterInScene: true).ToYieldInstruction();
-        currentCustomerInstance.StopWalk();
-
-        //start dialogue
         yield return LevelUtilities.instance.WaitDialogue(customer.DialogueWhenCome);
 
         //then give documents
@@ -420,6 +421,15 @@ public class LevelManager : SimpleInstance<LevelManager>
         Debug.Log(debugLogText.Text);
 
         //and move to next node
+        CheckNextNode();
+    }
+
+    IEnumerator CheckEventArrestEndOfDay(EventArrestEndOfDay eventArrestEndOfDay)
+    {
+        //player select who arrest
+        yield return eventsManager.PlayArrestAtTheEndOfDayEvent(eventArrestEndOfDay.CustomerImage, eventArrestEndOfDay.DialogueWhenCome);
+        
+        //then move to next node
         CheckNextNode();
     }
 

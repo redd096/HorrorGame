@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
 
@@ -136,5 +138,29 @@ public class LevelEventsManager : MonoBehaviour
         });
 
         return sequence;
+    }
+
+    /// <summary>
+    /// Show PoliceMan tell something to player, then make player choose which resident to arrest
+    /// </summary>
+    /// <param name="policeManImages"></param>
+    /// <param name="policeManDialogue"></param>
+    /// <returns></returns>
+    public IEnumerator PlayArrestAtTheEndOfDayEvent(List<Sprite> policeManImages, string policeManDialogue)
+    {
+        //instantiate policeman
+        CustomerBehaviour policeman = LevelUtilities.instance.InstantiateCustomer(new Customer() { CustomerImage = policeManImages });
+
+        //move customer inside the screen and start dialogue
+        yield return LevelUtilities.instance.MoveCustomer(policeman, enterInScene: true).ToYieldInstruction();
+        yield return LevelUtilities.instance.WaitDialogue(policeManDialogue);
+        
+        //show journal to player and wait until player select one resident to arrest
+        bool playerSelectedWhoArrest = false;
+        
+        yield return new WaitUntil(() => playerSelectedWhoArrest);
+        
+        //fade out
+        yield return LevelUtilities.instance.FadeOut().ToYieldInstruction();
     }
 }

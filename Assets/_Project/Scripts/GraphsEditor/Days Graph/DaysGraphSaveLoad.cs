@@ -60,6 +60,8 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             data.UserData = eventStartRedEventNode.EventStartRedEvent;
         else if (node is EventStopRedEventNode eventStopRedEventNode)
             data.UserData = eventStopRedEventNode.EventStopRedEvent;
+        else if (node is EventArrestEndOfDayNode eventArrestEndOfDayNode)
+            data.UserData = eventArrestEndOfDayNode.EventArrestEndOfDay;
         //other
         else if (node is IsResidentAliveNode isResidentAliveNode)
             data.UserData = isResidentAliveNode.IsResidentAlive;
@@ -179,6 +181,13 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 asset.EventStopRedEvent = eventStopRedEvent.Clone();
                 EditorUtility.SetDirty(asset);
             }
+            else if (nodeData.UserData is EventArrestEndOfDay eventArrestEndOfDay)
+            {
+                string path = Path.Combine(directoryPathRelativeToProject, FOLDER_EVENTS);
+                EventArrestEndOfDayData asset = CreateLevelNodeData<EventArrestEndOfDayData>(path, nodeData);
+                asset.EventArrestEndOfDay = eventArrestEndOfDay.Clone();
+                EditorUtility.SetDirty(asset);
+            }
             //other
             else if (nodeData.UserData is IsResidentAlive isResidentAlive)
             {
@@ -208,7 +217,7 @@ public class DaysGraphSaveLoad : SaveLoadGraph
                 await Task.Delay((int)(Time.deltaTime * 1000));
         }
 
-        //at the end, create also a scriptable object for the level. And connect every Levelnode inside it
+        //at the end, create also a scriptable object for the level. And connect every LevelNode inside it
         CreateLevelData();
         ConnectEveryAsset();
         
@@ -296,7 +305,7 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         //load file for graph
         bool loaded = base.TryLoadFile();
 
-        //load also level data. We use game datas to popolate nodes
+        //load also level data. We use game data to populate nodes
         if (loaded)
         {
             string levelFileNameWithExtension = "LevelData_" + Path.GetFileName(assetPathRelativeToProject);
@@ -325,7 +334,7 @@ public class DaysGraphSaveLoad : SaveLoadGraph
             return true;
         }
 
-        return loaded;
+        return false;
     }
 
     protected override void SetNodeValues(GraphNode node, NodeData data)
@@ -336,118 +345,82 @@ public class DaysGraphSaveLoad : SaveLoadGraph
         if (node is CustomerNode customerNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is CustomerData customerData)
-            {
                 customerNode.Customer = customerData.Customer.Clone();
-                return;
-            }
         }
         //save choice
         else if (node is SaveChoiceNode saveChoiceNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is SaveChoiceData saveChoiceData)
-            {
                 saveChoiceNode.SaveChoice = saveChoiceData.SaveChoice.Clone();
-                return;
-            }
         }
         //get choice
         else if (node is GetChoiceNode getChoiceNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is GetChoiceData getChoiceData)
-            {
                 getChoiceNode.GetChoice = getChoiceData.GetChoice.Clone();
-                return;
-            }
         }
         //events
         else if (node is EventNewspaperNode eventNewspaperNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventNewspaperData eventNewspaperData)
-            {
                 eventNewspaperNode.EventNewspaper = eventNewspaperData.EventNewspaper.Clone();
-                return;
-            }
         }
         else if (node is EventKillResidentNode eventKillResidentNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventKillResidentData eventKillResidentData)
-            {
                 eventKillResidentNode.EventKillResident = eventKillResidentData.EventKillResident.Clone();
-                return;
-            }
         }
         else if (node is EventStartBackgroundAnimationNode eventStartBackgroundAnimationNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventStartBackgroundAnimationData eventStartBackgroundAnimationData)
-            {
                 eventStartBackgroundAnimationNode.EventStartBackgroundAnimation = eventStartBackgroundAnimationData.EventStartBackgroundAnimation.Clone();
-                return;
-            }
         }
         else if (node is EventStopBackgroundAnimationNode eventStopBackgroundAnimationNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventStopBackgroundAnimationData eventStopBackgroundAnimationData)
-            {
                 eventStopBackgroundAnimationNode.EventStopBackgroundAnimation = eventStopBackgroundAnimationData.EventStopBackgroundAnimation.Clone();
-                return;
-            }
         }
         else if (node is EventBloodNode eventBloodNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventBloodData eventBloodData)
-            {
                 eventBloodNode.EventBlood = eventBloodData.EventBlood.Clone();
-                return;
-            }
         }
         else if (node is EventStartRedEventNode eventStartRedEventNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventStartRedEventData eventStartRedEventData)
-            {
                 eventStartRedEventNode.EventStartRedEvent = eventStartRedEventData.EventStartRedEvent.Clone();
-                return;
-            }
         }
         else if (node is EventStopRedEventNode eventStopRedEventNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventStopRedEventData eventStopRedEventData)
-            {
                 eventStopRedEventNode.EventStopRedEvent = eventStopRedEventData.EventStopRedEvent.Clone();
-                return;
-            }
+        }
+        else if (node is EventArrestEndOfDayNode eventArrestEndOfDayNode)
+        {
+            if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is EventArrestEndOfDayData eventArrestEndOfDayData)
+                eventArrestEndOfDayNode.EventArrestEndOfDay = eventArrestEndOfDayData.EventArrestEndOfDay.Clone();
         }
         //other
         else if (node is IsResidentAliveNode isResidentAliveNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is IsResidentAliveData isResidentAliveData)
-            {
                 isResidentAliveNode.IsResidentAlive = isResidentAliveData.IsResidentAlive.Clone();
-                return;
-            }
         }
         else if (node is DelayForSecondsNode delayForSecondsNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is DelayForSecondsData delayForSecondsData)
-            {
                 delayForSecondsNode.DelayForSeconds = delayForSecondsData.DelayForSeconds.Clone();
-                return;
-            }
         }
         else if (node is DebugLogTextNode debugLogTextNode)
         {
             if (loadedLevelNodes.ContainsKey(node.NodeName) && loadedLevelNodes[node.NodeName] is DebugLogTextData debugLogTextData)
-            {
                 debugLogTextNode.DebugLogText = debugLogTextData.DebugLogText.Clone();
-                return;
-            }
         }
         //else error
         else
         {
             Debug.LogError($"Error load node with ID: {node.ID}. " +
                 $"Impossible to find in level data a node with name {node.NodeName} or this node isn't correct for a node of type {node.GetType()}");
-
-            return;
         }
     }
 

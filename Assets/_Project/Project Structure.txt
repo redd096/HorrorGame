@@ -2,7 +2,7 @@ When you create a new level, you have to check these managers:
 
 - LevelManager is the manager that starts and manage the day and has the list of every LevelNode (customers, events, etc...)
 It has also:
-	- LevelEventsManager to manage specific events
+	- LevelEventsManager to manage specific events (probably this doesn't need changes)
 	- CheckPlayerChoiceManager to manage when player lets enter customers or not. It has also the rules for the level
 	- ResidentsManager used by CheckPlayerChoice to know which customer is a resident
 	- AppointmentsManager used by CheckPlayerChoice to know which appointment is scheduled for this level

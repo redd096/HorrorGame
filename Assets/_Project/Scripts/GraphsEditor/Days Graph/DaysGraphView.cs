@@ -42,6 +42,7 @@ public class DaysGraphView : NodesGraphView
             AddNodeButton<EventBloodNode>(evt, "Events/Blood", "Blood");
             AddNodeButton<EventStartRedEventNode>(evt, "Events/Red Event/Start", "Start Red Event");
             AddNodeButton<EventStopRedEventNode>(evt, "Events/Red Event/Stop", "Stop Red Event");
+            AddNodeButton<EventArrestEndOfDayNode>(evt, "Events/Arrest at the end of the day", "Arrest at the end of the day");
 
             //other
             AddNodeButton<IsResidentAliveNode>(evt, "Other/Is Resident Alive", "Is Resident Alive");
