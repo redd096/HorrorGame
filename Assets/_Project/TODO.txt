@@ -1,0 +1,5 @@
+- In LevelManager there are various "TEMP - " comments. They are used mainly to use CustomerNode instead of create events for people or ghosts that enter, say something and go away
+- In LevelUtilities there is another TEMP for the same reason. It's here because there is a function to move away Customer, and it has a check for the ghosts
+- JournalManager is set in editor. However, should have a list of rules text and ResidentData and create the pages automatically, almost like we do for Appointments
+- CustomerNode now has to set every document. Probably should be better to have scriptable objects with values like ResidentData for every customer, and the node just say if customer has/give specific document
+- There isn't the possibility to have random customers. We should have an Excel with various names, surnames, IDCardNumbers, etc... and get random to set random customers

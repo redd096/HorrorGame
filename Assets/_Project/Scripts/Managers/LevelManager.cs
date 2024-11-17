@@ -18,6 +18,7 @@ public class LevelManager : SimpleInstance<LevelManager>
     [SerializeField] CheckPlayerChoiceManager choiceManager;
     [SerializeField] ResidentsManager residentsManager;
     [SerializeField] AppointmentsManager appointmentsManager;
+    [SerializeField] JournalManager journalManager;
 
     //current vars in this LevelNode
     private LevelNodeData currentNode;
@@ -49,6 +50,7 @@ public class LevelManager : SimpleInstance<LevelManager>
 
         //initialize
         choiceManager.InitializeForThisLevel(currentDate, residentsManager, appointmentsManager);
+        journalManager.InitializeForThisLevel(currentDate, choiceManager, residentsManager, appointmentsManager);
 
         //set every interactable in scene
         InteractableBase[] interactablesInScene = FindObjectsOfType<InteractableBase>();

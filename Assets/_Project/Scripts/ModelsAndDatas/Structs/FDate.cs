@@ -18,19 +18,25 @@ public struct FDate
     public System.DateTime GetDateTime()
     {
         //fix DateTime error when 0
-        if (Day == 0) Day = 1;
-        if (Month == 0) Month = 1;
-        if (Year == 0) Year = 1;
+        Min1();
 
         return new System.DateTime(Year, Month, Day);
     }
 
+    /// <summary>
+    /// April 02, 1940
+    /// </summary>
+    /// <returns></returns>
     public string ToAmericanString()
     {
         System.DateTime date = GetDateTime();
         return date.ToString("MMMM dd, yyyy", new System.Globalization.CultureInfo("en-EN"));
     }
 
+    /// <summary>
+    /// 02 April 1940
+    /// </summary>
+    /// <returns></returns>
     public string ToEuropeString()
     {
         System.DateTime date = GetDateTime();
@@ -38,6 +44,9 @@ public struct FDate
         //return date.ToShortDateString();
     }
 
+    /// <summary>
+    /// Fix DateTime errors if values are 0
+    /// </summary>
     public void Min1()
     {
         Day = Mathf.Max(Day, 1);

@@ -7,6 +7,8 @@ using UnityEngine;
 public class ResidentsManager : MonoBehaviour
 {
     [SerializeField] List<ResidentData> listOfResidents = new List<ResidentData>();
+    
+    public ResidentData[] ListOfResidents => listOfResidents.ToArray();
 
     /// <summary>
     /// Check if resident is in the list

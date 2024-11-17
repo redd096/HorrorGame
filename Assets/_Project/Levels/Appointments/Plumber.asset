@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b706dafdef750ed46bcf4e91a50e2136, type: 3}
   m_Name: Plumber
   m_EditorClassIdentifier: 
+  Name: Jessie
+  Surname: Senior
   Profession: Plumber
   AppointmentReason: Check up

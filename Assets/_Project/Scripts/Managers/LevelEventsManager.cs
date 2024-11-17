@@ -157,7 +157,7 @@ public class LevelEventsManager : MonoBehaviour
         
         //show journal to player and wait until player select one resident to arrest
         bool playerSelectedWhoArrest = false;
-        
+        //TODO - show here journal and register to click event
         yield return new WaitUntil(() => playerSelectedWhoArrest);
         
         //fade out

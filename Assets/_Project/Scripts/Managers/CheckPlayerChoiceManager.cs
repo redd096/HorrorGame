@@ -7,13 +7,14 @@ using UnityEngine;
 public class CheckPlayerChoiceManager : MonoBehaviour
 {
     [Header("Rules")]
-    [SerializeField] bool showAlwaysID = true;
-    [SerializeField] bool onlyAdults = true;
-    [SerializeField] int adultAge = 18;
-    [SerializeField] bool residentShowResidentCard = true;
-    [SerializeField] bool outsiderShowRenunciationCard = true;
-    [SerializeField] bool needPoliceCard = false;
-    [SerializeField] bool policeCardNeedSecondStamp = false;
+    public bool ShowAlwaysID = true;
+    public bool OnlyAdults = true;
+    public int AdultAge = 18;
+    public bool ResidentShowResidentCard = true;
+    public bool OutsiderShowRenunciationCard = true;
+    public bool WorkersShowAppointmentCard = true;
+    public bool NeedPoliceCard = false;
+    public bool PoliceCardNeedSecondStamp = false;
 
     private FDate currentDate;
     private ResidentsManager residentsManager;
@@ -79,7 +80,7 @@ public class CheckPlayerChoiceManager : MonoBehaviour
     private bool CheckCustomer(Customer customer, out string problem)
     {
         //check if show id
-        if (showAlwaysID && customer.GiveIDCard == false)
+        if (ShowAlwaysID && customer.GiveIDCard == false)
         {
             problem = "Customer didn't showed the ID Card";
             return false;
@@ -88,13 +89,13 @@ public class CheckPlayerChoiceManager : MonoBehaviour
         IDCard idCard = customer.IDCard;
 
         //check if adult
-        if (onlyAdults)
+        if (OnlyAdults)
         {
             System.DateTime date = currentDate.GetDateTime();
             System.DateTime birthDate = idCard.BirthDate.GetDateTime();
-            if (birthDate.AddYears(adultAge) > date)        //if birthday + 18 years is after today, this day still didn't come
+            if (birthDate.AddYears(AdultAge) > date)        //if birthday + 18 years is after today, this day still didn't come
             {
-                problem = $"Customer doesn't have {adultAge} years";
+                problem = $"Customer doesn't have {AdultAge} years";
                 return false;
             }
         }
@@ -102,7 +103,7 @@ public class CheckPlayerChoiceManager : MonoBehaviour
         //check if show resident card
         if (residentsManager.IsResident(idCard, out ResidentData resident))
         {
-            if (residentShowResidentCard && customer.GiveResidentCard == false)
+            if (ResidentShowResidentCard && customer.GiveResidentCard == false)
             {
                 problem = "Customer didn't showed the Resident Card";
                 return false;
@@ -114,7 +115,7 @@ public class CheckPlayerChoiceManager : MonoBehaviour
         //or show renunciation card
         else
         {
-            if (outsiderShowRenunciationCard && customer.GiveRenunciationCard == false)
+            if (OutsiderShowRenunciationCard && customer.GiveRenunciationCard == false)
             {
                 problem = "Customer didn't showed the Renunciation Card";
                 return false;
@@ -125,7 +126,7 @@ public class CheckPlayerChoiceManager : MonoBehaviour
         }
 
         //check appointment card
-        if (customer.GiveAppointmentCard)
+        if (WorkersShowAppointmentCard && customer.GiveAppointmentCard)
         {
             if (appointmentsManager.IsCorrectAppointment(customer.AppointmentCard, currentDate, out AppointmentData appointment, out problem) == false)
                 return false;
@@ -135,7 +136,7 @@ public class CheckPlayerChoiceManager : MonoBehaviour
         }
 
         //check police card
-        if (needPoliceCard)
+        if (NeedPoliceCard)
         {
             if (customer.GivePoliceCard == false)
             {
@@ -143,7 +144,7 @@ public class CheckPlayerChoiceManager : MonoBehaviour
                 return false;
             }
 
-            if (customer.PoliceCard.IsCorrect(idCard, currentDate, policeCardNeedSecondStamp, out problem) == false)
+            if (customer.PoliceCard.IsCorrect(idCard, currentDate, PoliceCardNeedSecondStamp, out problem) == false)
                 return false;
         }
 

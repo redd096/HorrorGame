@@ -22,27 +22,27 @@ public class AppointmentCard
     /// </summary>
     public bool IsCorrect(IDCard idCard, FDate currentDate, AppointmentData appointment, out string problem)
     {
-        if (idCard.Name != Name)
+        if (idCard.Name != Name || appointment.Name != Name)                //could check only idCard, because appointment is already checked in AppointmentsManager
         {
             problem = "Wrong name";
             return false;
         }
-        if (idCard.Surname != Surname)
+        if (idCard.Surname != Surname || appointment.Surname != Surname)    //could check only idCard, because appointment is already checked in AppointmentsManager
         {
             problem = "Wrong surname";
             return false;
         }
-        if (appointment.Profession != Profession)               //already checked in AppointmentsManager
+        if (appointment.Profession != Profession)                           //already checked in AppointmentsManager
         {
             problem = "This appointment isn't scheduled";
             return false;
         }
-        if (currentDate.IsEqual(AppointmentDate) == false)      //already checked in AppointmentsManager
+        if (currentDate.IsEqual(AppointmentDate) == false)                  //already checked in AppointmentsManager
         {
             problem = "This appointment isn't for today";
             return false;
         }
-        if (appointment.AppointmentReason != AppointmentReason) //already checked in AppointmentsManager
+        if (appointment.AppointmentReason != AppointmentReason)             //already checked in AppointmentsManager
         {
             problem = "This appointment isn't scheduled";
             return false;

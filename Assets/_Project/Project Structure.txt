@@ -6,6 +6,7 @@ It has also:
 	- CheckPlayerChoiceManager to manage when player lets enter customers or not. It has also the rules for the level
 	- ResidentsManager used by CheckPlayerChoice to know which customer is a resident
 	- AppointmentsManager used by CheckPlayerChoice to know which appointment is scheduled for this level
+	- JournalManager used to update journal in scene and manage its pages (e.g. when player interact to change page)
 
 
 These are the managers for the player and interactables in scene:

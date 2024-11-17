@@ -24,7 +24,9 @@ public class AppointmentsManager : MonoBehaviour
         foreach (var v in appointments)
         {
             //if this document's values are the same, return true
-            if (doc.AppointmentReason == v.AppointmentReason
+            if (doc.Name == v.Name
+                && doc.Surname == v.Surname
+                && doc.AppointmentReason == v.AppointmentReason
                 && doc.Profession == v.Profession)
             {
                 appointment = v;
