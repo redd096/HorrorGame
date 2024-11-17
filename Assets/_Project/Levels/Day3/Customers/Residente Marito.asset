@@ -19,9 +19,10 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 66cdae69ef65cb846875a0277103db66, type: 3}
     - {fileID: 21300000, guid: 2f110cd3ec3f53a4e926af817b4eaccc, type: 3}
     - {fileID: 21300000, guid: cbfa0ff2a97a12d4488ac8aabc026efa, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day3/Resident Husband/start
+    DialogueWhenPlayerSayNo: Day3/Resident Husband/not enter
+    DialogueWhenPlayerSayYes: Day3/Resident Husband/ok enter
+    GoAwayLikeGhost: 0
     GiveIDCard: 1
     IDCard:
       Name: Martin

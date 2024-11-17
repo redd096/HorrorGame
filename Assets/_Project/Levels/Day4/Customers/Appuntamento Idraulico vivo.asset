@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
   m_Name: Appuntamento Idraulico vivo
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: 481d2b32452f14943b80d07666219238, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: 481d2b32452f14943b80d07666219238, type: 2}
+  NodeOnTrue: {fileID: 11400000, guid: 63f797457173ccb4a99c1750b1694557, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: 63f797457173ccb4a99c1750b1694557, type: 2}
   Customer:
     CustomerImage:
     - {fileID: 21300000, guid: 1a0d2df2e4c544949b553f9c26452613, type: 3}
     - {fileID: 21300000, guid: 6ef41adcb6978954b9e01426d08ad6d5, type: 3}
     - {fileID: 21300000, guid: 73aef9c82601ebd44994514c240e67e7, type: 3}
-    DialogueWhenCome: Day2/Hydraulic alive/start
-    DialogueWhenPlayerSayNo: Day2/Hydraulic alive/not enter
-    DialogueWhenPlayerSayYes: Day2/Hydraulic alive/ok enter
+    DialogueWhenCome: Day4/appointmant Hydraulic/start
+    DialogueWhenPlayerSayNo: Day4/appointmant Hydraulic/not enter
+    DialogueWhenPlayerSayYes: Day4/appointmant Hydraulic/ok enter
     GoAwayLikeGhost: 0
     GiveIDCard: 1
     IDCard:
@@ -36,7 +36,7 @@ MonoBehaviour:
         Day: 25
         Month: 8
         Year: 1943
-      Signature: Pedro Garcia
+      Signature: edro Garcia
       Photo: {fileID: 21300000, guid: 1a0d2df2e4c544949b553f9c26452613, type: 3}
     GiveRenunciationCard: 1
     RenunciationCard:
@@ -49,7 +49,7 @@ MonoBehaviour:
         Year: 1902
       DurationStayInDays: 1
       CorrectDurationStayInDays: 1
-      Signature: Pedro Garcia
+      Signature: Pedro Gracia
     GiveResidentCard: 0
     ResidentCard:
       Name: 
@@ -59,26 +59,26 @@ MonoBehaviour:
         Floor: 0
         Room: 0
       Signature: 
-    GivePoliceCard: 0
+    GivePoliceCard: 1
     PoliceCard:
+      Name: Pedro
+      Surname: Garcia
+      ValidateDate:
+        Day: 5
+        Month: 4
+        Year: 1940
+      Signature: Pedro Garcia
+      HasFirstStamp: 1
+      HasSecondStamp: 1
+    GiveAppointmentCard: 1
+    AppointmentCard:
       Name: 
       Surname: 
-      ValidateDate:
+      Profession: 
+      AppointmentDate:
         Day: 1
         Month: 1
         Year: 1
-      Signature: 
-      HasFirstStamp: 0
-      HasSecondStamp: 0
-    GiveAppointmentCard: 1
-    AppointmentCard:
-      Name: Pedro
-      Surname: Garcia
-      Profession: Hydraulic
-      AppointmentDate:
-        Day: 3
-        Month: 4
-        Year: 1940
-      AppointmentReason: Pipe leakage
-      HasStamp: 1
+      AppointmentReason: 
+      HasStamp: 0
     ObjectsToGiveToPlayer: []

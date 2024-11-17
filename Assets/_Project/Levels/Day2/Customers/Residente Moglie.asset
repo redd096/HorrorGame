@@ -22,6 +22,7 @@ MonoBehaviour:
     DialogueWhenCome: Day2/Resident wife/start
     DialogueWhenPlayerSayNo: Day2/Resident wife/not enter
     DialogueWhenPlayerSayYes: Day2/Resident wife/ok enter
+    GoAwayLikeGhost: 0
     GiveIDCard: 1
     IDCard:
       Name: Barbara

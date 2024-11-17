@@ -22,6 +22,7 @@ MonoBehaviour:
     DialogueWhenCome: Day2/Hydraulic ghost/start
     DialogueWhenPlayerSayNo: Day2/Hydraulic ghost/not enter
     DialogueWhenPlayerSayYes: Day2/Hydraulic ghost/ok enter
+    GoAwayLikeGhost: 0
     GiveIDCard: 0
     IDCard:
       Name: Francisco

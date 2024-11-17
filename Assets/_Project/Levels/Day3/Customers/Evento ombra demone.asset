@@ -19,6 +19,7 @@ MonoBehaviour:
     DialogueWhenCome: 
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
+    GoAwayLikeGhost: 0
     GiveIDCard: 0
     IDCard:
       Name: 

@@ -22,6 +22,7 @@ MonoBehaviour:
     DialogueWhenCome: Day2/customer ok1/start
     DialogueWhenPlayerSayNo: Day2/customer ok1/not enter
     DialogueWhenPlayerSayYes: Day2/customer ok1/ok enter
+    GoAwayLikeGhost: 0
     GiveIDCard: 1
     IDCard:
       Name: Simon

@@ -22,6 +22,7 @@ MonoBehaviour:
     DialogueWhenCome: Day2/Resident right twin/start
     DialogueWhenPlayerSayNo: Day2/Resident right twin/not enter
     DialogueWhenPlayerSayYes: Day2/Resident right twin/ok enter
+    GoAwayLikeGhost: 0
     GiveIDCard: 1
     IDCard:
       Name: Sarah
