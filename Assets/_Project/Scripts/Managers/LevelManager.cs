@@ -13,18 +13,11 @@ public class LevelManager : SimpleInstance<LevelManager>
     [SerializeField] LevelData levelData;
     [SerializeField] FDate currentDate;
 
-    [Header("Managers")]
+    [Header("Managers")] 
     [SerializeField] LevelEventsManager eventsManager;
     [SerializeField] CheckPlayerChoiceManager choiceManager;
     [SerializeField] ResidentsManager residentsManager;
     [SerializeField] AppointmentsManager appointmentsManager;
-
-    [Header("Customer")]
-    [SerializeField] CustomerBehaviour customerPrefab;
-    [SerializeField] Transform customerContainer;
-    [SerializeField] Transform customerStartPoint;
-    [SerializeField] Transform customerEndPoint;
-    [SerializeField] float customerAnimation = 3;
 
     //current vars in this LevelNode
     private LevelNodeData currentNode;
@@ -32,7 +25,7 @@ public class LevelManager : SimpleInstance<LevelManager>
     private CustomerBehaviour currentCustomerInstance;  //if this node is a customer, save customer instance in scene
     private bool currentChoice;         //user allowed customer to ENTER (true) or NOT ENTER (false)
     private bool alreadySetChoice;      //this is used to save result only first time. If user put other stamps, they're ignored
-    private bool canCustomerEnter;      //false if waiting player to press the Bell, then become true and currentCustomer is istantiated
+    private bool canCustomerEnter;      //false if waiting player to press the Bell, then become true and currentCustomer is instantiated
 
     //used by nodes SaveChoice and GetChoice
     private Dictionary<string, bool> savedChoices = new Dictionary<string, bool>();
@@ -80,7 +73,7 @@ public class LevelManager : SimpleInstance<LevelManager>
         }
     }
 
-    #region events
+    #region registered events
 
     /// <summary>
     /// Player click bell to make enter next customer
@@ -120,10 +113,10 @@ public class LevelManager : SimpleInstance<LevelManager>
     {
         //start Leave dialogue
         string dialogue = currentChoice ? currentCustomer.DialogueWhenPlayerSayYes : currentCustomer.DialogueWhenPlayerSayNo;
-        yield return WaitDialogue(dialogue);
+        yield return LevelUtilities.instance.WaitDialogue(dialogue);
 
         //move customer away from screen
-        Sequence sequence = MoveCustomerAwayFromScreen();
+        Sequence sequence = LevelUtilities.instance.MoveCustomerAwayFromScreen(currentCustomerInstance, currentCustomer);
 
         //check if player did something wrong
         //TEMP - do this only if not a ghost, because we have some customer that are ghosts. It's not important what user says, they just fade away
@@ -133,6 +126,9 @@ public class LevelManager : SimpleInstance<LevelManager>
             bool correctChoice = choiceManager.CheckPlayerChoice(currentNode, currentChoice, out string problem);
             sequence.ChainCallback(() => OnPlayerCheckChoice(correctChoice, problem));
         }
+        
+        //move to next node
+        sequence.ChainCallback(CheckNextNode);
     }
 
     #endregion
@@ -152,89 +148,6 @@ public class LevelManager : SimpleInstance<LevelManager>
         sequence.ChainDelay(2.5f);
         sequence.ChainCallback(() => DeskManager.instance.InstantiateWarning(warningsCounter, problem));
     }
-
-    #region private utilities
-
-    /// <summary>
-    /// Move customer in front of desk or outside of the screen
-    /// </summary>
-    /// <param name="enterInScene"></param>
-    /// <returns></returns>
-    private Sequence MoveCustomer(bool enterInScene)
-    {
-        Sequence sequence = Sequence.Create();
-
-        //start walk animation
-        sequence.ChainCallback(currentCustomerInstance.StartWalk);
-
-        //move customer (enter in scene, or is leaving the scene)
-        Transform startPoint = enterInScene ? customerStartPoint : customerEndPoint;
-        Transform endPoint = enterInScene ? customerEndPoint : customerStartPoint;
-        sequence.Chain(Tween.Position(currentCustomerInstance.transform, startPoint.position, endPoint.position, customerAnimation, Ease.InOutSine));
-
-        return sequence;
-    }
-
-    /// <summary>
-    /// Move customer outside of the screen (both normal or ghost) and destroy it
-    /// </summary>
-    /// <returns></returns>
-    private Sequence MoveCustomerAwayFromScreen()
-    {
-        Sequence sequence = Sequence.Create();
-
-        //move customer away from screen normally
-        if (currentCustomer.GoAwayLikeGhost == false)
-        {
-            sequence.Chain(MoveCustomer(enterInScene: false));
-        }
-        //TEMP - or fade away, because we have some customer that are ghosts
-        //probably is better to have an "event node" just for ghosts
-        else
-        {
-            sequence.Chain(currentCustomerInstance.FadeAlpha());
-        }
-
-        //move to next node
-        sequence.ChainCallback(() =>
-        {
-            Destroy(currentCustomerInstance.gameObject);
-            currentCustomer = null;
-            CheckNextNode();
-        });
-
-        return sequence;
-    }
-
-    /// <summary>
-    /// Start a dialogue and wait it to finish
-    /// </summary>
-    /// <param name="dialogueName"></param>
-    /// <returns></returns>
-    private IEnumerator WaitDialogue(string dialogueName)
-    {
-        //be sure there is a dialogue
-        if (string.IsNullOrEmpty(dialogueName))
-            yield break;
-
-        if (DialogueManagerUtilities.CheckConversationExists(dialogueName) == false)
-        {
-            Debug.LogError("Missing dialogue: " + dialogueName);
-            yield break;
-        }
-
-        //register to end dialogue event
-        bool isTalking = true;
-        DialogueManagerEvents.instance.onConversationEnd += () => isTalking = false;
-
-        //start dialogue
-        DialogueManagerUtilities.StartConversation(dialogueName);
-
-        //wait dialogue to finish
-        yield return new WaitWhile(() => isTalking);
-    }
-
-    #endregion
 
     #region check next node
 
@@ -337,17 +250,15 @@ public class LevelManager : SimpleInstance<LevelManager>
         }
 
         //instantiate customer
-        currentCustomerInstance = Instantiate(customerPrefab, customerContainer);
-        currentCustomerInstance.Init(customer.CustomerImage.ToArray());
-
+        currentCustomerInstance = LevelUtilities.instance.InstantiateCustomer(customer);
         currentCustomer = customer;
 
         //move customer inside the screen
-        yield return MoveCustomer(true).ToYieldInstruction();
+        yield return LevelUtilities.instance.MoveCustomer(currentCustomerInstance, enterInScene: true).ToYieldInstruction();
         currentCustomerInstance.StopWalk();
 
         //start dialogue
-        yield return WaitDialogue(customer.DialogueWhenCome);
+        yield return LevelUtilities.instance.WaitDialogue(customer.DialogueWhenCome);
 
         //then give documents
         CheckCustomerGiveDocuments(customer);
@@ -391,11 +302,12 @@ public class LevelManager : SimpleInstance<LevelManager>
             giveDocuments = true;
         }
 
-        //TEMP - if don't give documents, just move customer away (this isn't a customer to check. We have some customer that enter, tell something, and go away)
+        //TEMP - if customer doesn't give documents, just move customer away (this isn't a customer to check. We have some customer that enter, tell something, and go away)
         //probably is better to have an "event node" just for people who enter and say things or give objects to player and move away
         if (giveDocuments == false)
         {
-            sequence.Chain(MoveCustomerAwayFromScreen());
+            sequence.Chain(LevelUtilities.instance.MoveCustomerAwayFromScreen(currentCustomerInstance, currentCustomer));
+            sequence.ChainCallback(CheckNextNode);
         }
     }
 

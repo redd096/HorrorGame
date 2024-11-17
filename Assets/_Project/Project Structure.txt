@@ -20,3 +20,4 @@ It has also:
 Other managers:
 
 - DialogueManager, manage the dialogues
+- LevelUtilities, manage simple functions like move customers or play dialogues

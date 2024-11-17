@@ -66,7 +66,7 @@ public class CustomerNode : GraphNode
         TextField dialogueTrueTextField = CreateElementsUtilities.CreateTextField("Dialogue OK Enter", Customer.DialogueWhenPlayerSayYes, x => Customer.DialogueWhenPlayerSayYes = x.newValue.Trim());
         TextField dialogueFalseTextField = CreateElementsUtilities.CreateTextField("Dialogue NOT Enter", Customer.DialogueWhenPlayerSayNo, x => Customer.DialogueWhenPlayerSayNo = x.newValue.Trim());
 
-        //create toogle to go away like a ghost instead of a person
+        //create toggle to go away like a ghost instead of a person
         var space = CreateElementsUtilities.CreateSpace(Vector2.one * 10);
         Toggle goAwayLikeGhostToggle = CreateElementsUtilities.CreateToggle("Fade away like ghost", Customer.GoAwayLikeGhost, x => Customer.GoAwayLikeGhost = x.newValue);
 
@@ -81,7 +81,7 @@ public class CustomerNode : GraphNode
 
     private void CreateCustomerIcon(VisualElement container, int index)
     {
-        ObjectField iconObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview("Customer Icon", Customer.CustomerImage[index], Vector2.one * 100, out Image iconImage, x => Customer.CustomerImage[index] = x.newValue as Sprite);
+        ObjectField iconObjectField = CreateElementsUtilities.CreateObjectFieldWithPreview($"Icon {index}", Customer.CustomerImage[index], Vector2.one * 100, out Image iconImage, x => Customer.CustomerImage[index] = x.newValue as Sprite);
         
         //add before Add Button
         container.Insert(container.childCount - 1, iconObjectField);
