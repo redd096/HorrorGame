@@ -21,6 +21,6 @@ public class ResidentInJournal : MonoBehaviour
         photoImage.sprite = residentData.Photo;
         nameText.text = residentData.Name + " " + residentData.Surname;
         idCardText.text = residentData.IDCardNumber;
-        roomNumberText.text = residentData.RoomNumber.ToRoomString();
+        roomNumberText.text = "Room " + residentData.RoomNumber.ToRoomString();
     }
 }

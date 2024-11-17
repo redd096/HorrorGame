@@ -758,12 +758,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfResidents:
+  - {fileID: 11400000, guid: 0a1d2e36fe97725459433b9fec6eb2f5, type: 2}
+  - {fileID: 11400000, guid: 2833d70de79203849a0775237fb68f9a, type: 2}
   - {fileID: 11400000, guid: 60cd415df3b93814fb4a23f627ae09a3, type: 2}
   - {fileID: 11400000, guid: 5ef85dc75641ee349896a0d18a1fe013, type: 2}
   - {fileID: 11400000, guid: f9bb4d5520425cc40a3709d56d8a5517, type: 2}
-  - {fileID: 11400000, guid: 0a1d2e36fe97725459433b9fec6eb2f5, type: 2}
   - {fileID: 11400000, guid: f35ed744dc43e1f4ca7ccf54fb69a3e0, type: 2}
-  - {fileID: 11400000, guid: 2833d70de79203849a0775237fb68f9a, type: 2}
 --- !u!114 &251864108 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2553060791132946047, guid: ad6de5e529a0297459c48048c7fb037a, type: 3}
