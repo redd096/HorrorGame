@@ -19,9 +19,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: d3281d4925f286d4cb46b7e7b22df5a0, type: 3}
     - {fileID: 21300000, guid: a04291959746d9f4fae223759678040d, type: 3}
     - {fileID: 21300000, guid: 6162414bc4d0b2c40895e2ab6187323e, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day4/Masked man/start
+    DialogueWhenPlayerSayNo: Day4/Masked man/not enter
+    DialogueWhenPlayerSayYes: Day4/Masked man/ok enter
     GoAwayLikeGhost: 0
     GiveIDCard: 1
     IDCard:

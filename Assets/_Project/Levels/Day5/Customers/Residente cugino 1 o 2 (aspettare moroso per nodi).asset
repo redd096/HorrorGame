@@ -10,18 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 440ce3a95b2cb5f4f87bd310f60d8253, type: 3}
-  m_Name: Evento persone quadro
+  m_Name: Residente cugino 1 o 2 (aspettare moroso per nodi)
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 11400000, guid: cc207ff617666ca47a48b405abfa3ea9, type: 2}
-  NodeOnFalse: {fileID: 11400000, guid: cc207ff617666ca47a48b405abfa3ea9, type: 2}
+  NodeOnTrue: {fileID: 11400000, guid: d128ac45e43f21d4991826f5f0f64260, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: d128ac45e43f21d4991826f5f0f64260, type: 2}
   Customer:
-    CustomerImage:
-    - {fileID: 21300000, guid: 45d2a0a570b4ff44eaf2b2cd35e0c0b7, type: 3}
-    - {fileID: 21300000, guid: 32bb98805e43e6d45ba0ef305a597587, type: 3}
-    - {fileID: 21300000, guid: 896dc47d3ff57e047a8960d56fef3aca, type: 3}
-    DialogueWhenCome: Day5/workers with paint/start
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    CustomerImage: []
+    DialogueWhenCome: Day5/resident cousin 1or2/start
+    DialogueWhenPlayerSayNo: Day5/resident cousin 1or2/not enter
+    DialogueWhenPlayerSayYes: Day5/resident cousin 1or2/ok enter
     GoAwayLikeGhost: 0
     GiveIDCard: 0
     IDCard:

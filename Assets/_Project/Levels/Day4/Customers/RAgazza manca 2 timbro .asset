@@ -19,37 +19,37 @@ MonoBehaviour:
     - {fileID: 21300000, guid: d9e162abe716b5d4eb67e96c70cd42f0, type: 3}
     - {fileID: 21300000, guid: b0dd91c96e7a5df41bca2305daef93a5, type: 3}
     - {fileID: 21300000, guid: 5e6e2967c7d4fd84dae71ebed3d5367b, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day4/customer no second stamp/start
+    DialogueWhenPlayerSayNo: Day4/customer no second stamp/not enter
+    DialogueWhenPlayerSayYes: Day4/customer no second stamp/ok enter
     GoAwayLikeGhost: 0
     GiveIDCard: 1
     IDCard:
-      Name: Millie
-      Surname: Evans
-      CardNumber: FX00036
+      Name: Clara
+      Surname: Valencia
+      CardNumber: OL03874
       BirthDate:
-        Day: 9
-        Month: 11
-        Year: 1914
+        Day: 27
+        Month: 12
+        Year: 1909
       ExpireDate:
-        Day: 23
-        Month: 7
-        Year: 1944
-      Signature: Millie Evans
+        Day: 3
+        Month: 5
+        Year: 1942
+      Signature: Clara Valencia
       Photo: {fileID: 21300000, guid: d9e162abe716b5d4eb67e96c70cd42f0, type: 3}
     GiveRenunciationCard: 1
     RenunciationCard:
-      Name: Millie
-      Surname: Evans
-      IDCardNumber: FX00036
+      Name: Clara
+      Surname: Valencia
+      IDCardNumber: OL03874
       BirthDate:
-        Day: 9
-        Month: 11
-        Year: 1914
-      DurationStayInDays: 4
-      CorrectDurationStayInDays: 4
-      Signature: Millie Evans
+        Day: 27
+        Month: 12
+        Year: 1909
+      DurationStayInDays: 2
+      CorrectDurationStayInDays: 2
+      Signature: Clara Valencia
     GiveResidentCard: 0
     ResidentCard:
       Name: 
@@ -61,13 +61,13 @@ MonoBehaviour:
       Signature: 
     GivePoliceCard: 1
     PoliceCard:
-      Name: Millie
-      Surname: Evans
+      Name: Clara
+      Surname: Valencia
       ValidateDate:
         Day: 5
         Month: 4
         Year: 1940
-      Signature: Millie Evans
+      Signature: Clara Valencia
       HasFirstStamp: 1
       HasSecondStamp: 0
     GiveAppointmentCard: 0

@@ -22,30 +22,6 @@ MonoBehaviour:
       ConnectedPortIndex: 0
     GroupID: 
     Position: {x: -143, y: 276}
-  - NodeName: Uomo Mascherato
-    ID: ffaaca87-cc78-4c8f-a8bf-149c81bda43c
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 21a03b3e-f7c4-485d-bce3-735fdbfbc98c
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 3664, y: 314}
-  - NodeName: Get Player Choice
-    ID: 21a03b3e-f7c4-485d-bce3-735fdbfbc98c
-    NodeType: GetChoiceNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 3998, y: 311}
   - NodeName: Vecchia Ricca
     ID: 6371e424-0e00-4e0b-bcc6-b2b5313907f4
     NodeType: CustomerNode
@@ -126,7 +102,7 @@ MonoBehaviour:
       ConnectedNodeID: c67b47ae-501e-446e-b08d-f4d7cfc33fcb
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2855, y: 268}
+    Position: {x: 2853, y: 269}
   - NodeName: Appuntamento direttore (no foglio)
     ID: c67b47ae-501e-446e-b08d-f4d7cfc33fcb
     NodeType: CustomerNode
@@ -138,5 +114,29 @@ MonoBehaviour:
       ConnectedNodeID: 
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 3214, y: 269}
+    Position: {x: 3281, y: 274}
+  - NodeName: Uomo Mascherato
+    ID: ffaaca87-cc78-4c8f-a8bf-149c81bda43c
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 21a03b3e-f7c4-485d-bce3-735fdbfbc98c
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 4009, y: 278}
+  - NodeName: Get Player Choice
+    ID: 21a03b3e-f7c4-485d-bce3-735fdbfbc98c
+    NodeType: GetChoiceNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 4384, y: 278}
   Groups: []

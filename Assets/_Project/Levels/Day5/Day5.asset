@@ -21,7 +21,7 @@ MonoBehaviour:
       ConnectedNodeID: 2ef56223-efb8-48cc-ad17-062d393f2c26
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 19.2, y: 206.4}
+    Position: {x: 19, y: 206}
   - NodeName: Direttore
     ID: 2ef56223-efb8-48cc-ad17-062d393f2c26
     NodeType: CustomerNode
@@ -33,19 +33,7 @@ MonoBehaviour:
       ConnectedNodeID: c7167938-9fe6-4926-bc2c-c3e33c5993ff
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 486.4, y: 206.4}
-  - NodeName: Personaggio tutto ok
-    ID: 2c7cbecc-2890-4178-8935-bbd710fe3c8d
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 7a99dc94-825a-4657-bab1-e38da85af9ab
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 7a99dc94-825a-4657-bab1-e38da85af9ab
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 1082.4, y: 200}
+    Position: {x: 486, y: 206}
   - NodeName: Personaggio nome sbagliato
     ID: 7a99dc94-825a-4657-bab1-e38da85af9ab
     NodeType: CustomerNode
@@ -57,67 +45,7 @@ MonoBehaviour:
       ConnectedNodeID: b2691d65-013d-44c7-9fcb-a5a0aa4183ae
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1458.4, y: 201.59999}
-  - NodeName: Appuntamento direttore (colloquio lavoro cuoca) ok
-    ID: b2691d65-013d-44c7-9fcb-a5a0aa4183ae
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: e3785606-5abd-450a-9b6f-b6ed5c25dced
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: e3785606-5abd-450a-9b6f-b6ed5c25dced
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 1804, y: 202.4}
-  - NodeName: Evento persone quadro
-    ID: e3785606-5abd-450a-9b6f-b6ed5c25dced
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: cc809ae4-17eb-4cef-95fd-3a13e538ec2d
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: cc809ae4-17eb-4cef-95fd-3a13e538ec2d
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 2212, y: 202.4}
-  - NodeName: Residente (aspettare moroso per nodi)
-    ID: cc809ae4-17eb-4cef-95fd-3a13e538ec2d
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: d6e1faf4-6242-4768-90d8-1ae9cec0385d
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: d6e1faf4-6242-4768-90d8-1ae9cec0385d
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 2508, y: 203.2}
-  - NodeName: Personaggio tutto ok2
-    ID: d6e1faf4-6242-4768-90d8-1ae9cec0385d
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: dc2dccd9-3ac2-4219-9234-89005656b614
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: dc2dccd9-3ac2-4219-9234-89005656b614
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 2852, y: 202.4}
-  - NodeName: Evanto demone
-    ID: dc2dccd9-3ac2-4219-9234-89005656b614
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 3286.4, y: 202.4}
+    Position: {x: 1458, y: 202}
   - NodeName: Evento ombra nera
     ID: c7167938-9fe6-4926-bc2c-c3e33c5993ff
     NodeType: CustomerNode
@@ -129,5 +57,77 @@ MonoBehaviour:
       ConnectedNodeID: 2c7cbecc-2890-4178-8935-bbd710fe3c8d
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 799.2, y: 202.4}
+    Position: {x: 799, y: 202}
+  - NodeName: Personaggio tutto ok
+    ID: 2c7cbecc-2890-4178-8935-bbd710fe3c8d
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 7a99dc94-825a-4657-bab1-e38da85af9ab
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 7a99dc94-825a-4657-bab1-e38da85af9ab
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 1082, y: 200}
+  - NodeName: Appuntamento direttore (colloquio lavoro cuoca) ok
+    ID: b2691d65-013d-44c7-9fcb-a5a0aa4183ae
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: e3785606-5abd-450a-9b6f-b6ed5c25dced
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: e3785606-5abd-450a-9b6f-b6ed5c25dced
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 1867, y: 202}
+  - NodeName: Evento persone quadro
+    ID: e3785606-5abd-450a-9b6f-b6ed5c25dced
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: cc809ae4-17eb-4cef-95fd-3a13e538ec2d
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: cc809ae4-17eb-4cef-95fd-3a13e538ec2d
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2277, y: 201}
+  - NodeName: Residente cugino 1 o 2 (aspettare moroso per nodi)
+    ID: cc809ae4-17eb-4cef-95fd-3a13e538ec2d
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: d6e1faf4-6242-4768-90d8-1ae9cec0385d
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: d6e1faf4-6242-4768-90d8-1ae9cec0385d
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 2645, y: 200}
+  - NodeName: Personaggio tutto ok2
+    ID: d6e1faf4-6242-4768-90d8-1ae9cec0385d
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: dc2dccd9-3ac2-4219-9234-89005656b614
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: dc2dccd9-3ac2-4219-9234-89005656b614
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3045, y: 201}
+  - NodeName: Evanto demone
+    ID: dc2dccd9-3ac2-4219-9234-89005656b614
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3397, y: 200}
   Groups: []

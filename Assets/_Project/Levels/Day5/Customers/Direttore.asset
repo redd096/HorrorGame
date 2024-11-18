@@ -19,9 +19,10 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 8bf64ffa0b737da40894c2fd2aa95e31, type: 3}
     - {fileID: 21300000, guid: 1b0590c0814d83a429e7d551a00dabab, type: 3}
     - {fileID: 21300000, guid: b4ac345ea070cb44c88da2e2467eccc5, type: 3}
-    DialogueWhenCome: 
+    DialogueWhenCome: Day5/manager/start
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
+    GoAwayLikeGhost: 0
     GiveIDCard: 0
     IDCard:
       Name: 
