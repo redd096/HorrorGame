@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterAppointments
         m_Mode: 1
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterAppointments
         m_Mode: 1
@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterResidents
         m_Mode: 1
@@ -1850,7 +1850,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterRules
         m_Mode: 1
@@ -1983,7 +1983,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterAppointments
         m_Mode: 1
@@ -2116,7 +2116,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterRules
         m_Mode: 1
@@ -2249,7 +2249,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterResidents
         m_Mode: 1
@@ -2382,7 +2382,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterRules
         m_Mode: 1
@@ -2696,7 +2696,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterResidents
         m_Mode: 1
@@ -4091,7 +4091,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToPreviousPage
         m_Mode: 1
@@ -4223,7 +4223,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToNextPage
         m_Mode: 1
@@ -4533,7 +4533,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterAppointments
         m_Mode: 1
@@ -4666,7 +4666,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterResidents
         m_Mode: 1
@@ -4955,6 +4955,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2605839963737157747}
+  - component: {fileID: 5864610536686847083}
   m_Layer: 5
   m_Name: Journal pages
   m_TagString: Untagged
@@ -4987,6 +4988,47 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 139}
   m_SizeDelta: {x: 714, y: 520}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5864610536686847083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694126848054338575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef40af2d7e257b499af520bbabe4a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pages:
+  - {fileID: 4684143224592623618}
+  - {fileID: 2228555250984421582}
+  - {fileID: 7713068466377711596}
+  - {fileID: 6175571883322000890}
+  chapterRules: {fileID: 4684143224592623618}
+  chapterResidents: {fileID: 2228555250984421582}
+  chapterAppointments: {fileID: 6175571883322000890}
+  rules:
+  - {fileID: 6313057436815007507}
+  - {fileID: 9023912099582384868}
+  - {fileID: 6090050894813110706}
+  - {fileID: 8283870417303493010}
+  - {fileID: 2411978008331734453}
+  - {fileID: 2772786032116979731}
+  - {fileID: 87813529971566497}
+  - {fileID: 520227339633862302}
+  residents:
+  - {fileID: 5176866126960203259}
+  - {fileID: 4899540204252118331}
+  - {fileID: 3573004196716941329}
+  - {fileID: 4910329532262995100}
+  - {fileID: 515042469350277247}
+  - {fileID: 5910553124840190175}
+  - {fileID: 6136766473662930893}
+  - {fileID: 8555481158510530559}
+  dateText: {fileID: 6303673571398947495}
+  appointmentsPrefab: {fileID: 1923941877935102685, guid: 9728b2b4b765a304c8759941b74c85f0, type: 3}
+  appointmentsContainer: {fileID: 736687415207084807}
 --- !u!1 &8709161320532423094
 GameObject:
   m_ObjectHideFlags: 0
@@ -5108,7 +5150,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5864610536686847083}
         m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: GoToChapterRules
         m_Mode: 1
@@ -5351,6 +5393,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+--- !u!114 &515042469350277247 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 34574751990256940, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+  m_PrefabInstance: {fileID: 531171767009318227}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a408c836337b4fc408343e15028e56b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5250759256455005538 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5728974899122720817, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
@@ -5453,6 +5506,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+--- !u!114 &3573004196716941329 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 34574751990256940, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+  m_PrefabInstance: {fileID: 3598105550012319037}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a408c836337b4fc408343e15028e56b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9110326565317530892 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5728974899122720817, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
@@ -5560,6 +5624,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5728974899122720817, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
   m_PrefabInstance: {fileID: 4865150208954247191}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4899540204252118331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 34574751990256940, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+  m_PrefabInstance: {fileID: 4865150208954247191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a408c836337b4fc408343e15028e56b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4926422580400144816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5662,6 +5737,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5728974899122720817, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
   m_PrefabInstance: {fileID: 4926422580400144816}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4910329532262995100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 34574751990256940, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+  m_PrefabInstance: {fileID: 4926422580400144816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a408c836337b4fc408343e15028e56b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5164847971994730711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5764,6 +5850,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5728974899122720817, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
   m_PrefabInstance: {fileID: 5164847971994730711}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5176866126960203259 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 34574751990256940, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+  m_PrefabInstance: {fileID: 5164847971994730711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a408c836337b4fc408343e15028e56b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5943719400287708659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5866,6 +5963,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5728974899122720817, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
   m_PrefabInstance: {fileID: 5943719400287708659}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5910553124840190175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 34574751990256940, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+  m_PrefabInstance: {fileID: 5943719400287708659}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a408c836337b4fc408343e15028e56b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6147687363283192545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5968,6 +6076,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5728974899122720817, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
   m_PrefabInstance: {fileID: 6147687363283192545}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6136766473662930893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 34574751990256940, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+  m_PrefabInstance: {fileID: 6147687363283192545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a408c836337b4fc408343e15028e56b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8121151769755756550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6232,6 +6351,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5728974899122720817, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
   m_PrefabInstance: {fileID: 8557394842349656787}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8555481158510530559 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 34574751990256940, guid: e5184e4f3ecd8174fac90afaa7d73277, type: 3}
+  m_PrefabInstance: {fileID: 8557394842349656787}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a408c836337b4fc408343e15028e56b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8631174213157710637
 PrefabInstance:
   m_ObjectHideFlags: 0

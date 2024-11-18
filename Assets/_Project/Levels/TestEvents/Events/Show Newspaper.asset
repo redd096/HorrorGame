@@ -15,4 +15,4 @@ MonoBehaviour:
   NodeOnTrue: {fileID: 11400000, guid: 56be539ebdede724c8869cf603e05b9b, type: 2}
   NodeOnFalse: {fileID: 11400000, guid: 56be539ebdede724c8869cf603e05b9b, type: 2}
   EventNewspaper:
-    NewspaperPrefab: {fileID: 5316519574939590967, guid: 08d4cf1e8713071448c42d922c10d4e6, type: 3}
+    NewspaperPrefab: {fileID: 5227472702100039715, guid: fb5ee929fdf9016448700549aabfd98b, type: 3}

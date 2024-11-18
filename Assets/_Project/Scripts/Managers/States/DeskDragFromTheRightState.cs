@@ -11,9 +11,6 @@ public class DeskDragFromTheRightState : DeskBaseState
 
     private RectTransform draggedRectTr;
 
-    //used to avoid to put dragged object too much to the left, and see a bit of the background
-    private float FIX_BOUNDS = 5f;
-
     protected override void OnEnter()
     {
         base.OnEnter();
@@ -41,7 +38,7 @@ public class DeskDragFromTheRightState : DeskBaseState
 
         //clamp
         Vector2 anchoredPosition = draggedRectTr.anchoredPosition;
-        anchoredPosition.x = Mathf.Clamp(draggedRectTr.anchoredPosition.x, -draggedRectTr.sizeDelta.x + FIX_BOUNDS, draggedObject.StartAnchoredPosition.x);
+        anchoredPosition.x = Mathf.Clamp(draggedRectTr.anchoredPosition.x, draggedObject.OpenPosition, draggedObject.ClosePosition);
         draggedRectTr.anchoredPosition = anchoredPosition;
     }
 

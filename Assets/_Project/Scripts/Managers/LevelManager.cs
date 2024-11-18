@@ -30,8 +30,9 @@ public class LevelManager : SimpleInstance<LevelManager>
 
     //used by nodes SaveChoice and GetChoice
     private Dictionary<string, bool> savedChoices = new Dictionary<string, bool>();
-    //used by node GetKilledResident
-    private ResidentData lastKilledResident;
+    //used to show images on Newspaper
+    private List<ResidentData> residentsKilledThisDay = new List<ResidentData>();
+    private List<ResidentData> residentsArrestedThisDay = new List<ResidentData>();
 
     //warnings
     private int warningsCounter;
@@ -338,7 +339,7 @@ public class LevelManager : SimpleInstance<LevelManager>
     void CheckEventNewspaper(EventNewspaper eventNewspaper)
     {
         //show newspaper for few seconds, then go to next node
-        eventsManager.ShowNewspaper(eventNewspaper.NewspaperPrefab, lastKilledResident)
+        eventsManager.ShowNewspaper(eventNewspaper.NewspaperPrefab, residentsKilledThisDay)
             .OnComplete(CheckNextNode);
     }
 
@@ -346,9 +347,9 @@ public class LevelManager : SimpleInstance<LevelManager>
     {
         //remove resident from the list, and save it
         if (eventKillResident.KillRandom)
-            lastKilledResident = residentsManager.RemoveRandomResident();
+            residentsKilledThisDay.Add(residentsManager.KillRandomResident());
         else
-            lastKilledResident = residentsManager.RemoveResident(eventKillResident.SpecificResident);
+            residentsKilledThisDay.Add(residentsManager.KillResident(eventKillResident.SpecificResident));
 
         //go to next node
         CheckNextNode();
@@ -398,8 +399,8 @@ public class LevelManager : SimpleInstance<LevelManager>
 
     void CheckIsResidentAlive(IsResidentAlive isResidentAlive)
     {
-        //check if resident is still in ResidentsManager and set choice for next node
-        bool alive = residentsManager.IsResidentAlive(isResidentAlive.Resident);
+        //check if resident is still in the building and set choice for next node
+        bool alive = residentsManager.IsResidentAlive(isResidentAlive.Resident) && residentsManager.IsResidentFree(isResidentAlive.Resident);
         currentChoice = alive;
 
         //go to next node
@@ -429,8 +430,12 @@ public class LevelManager : SimpleInstance<LevelManager>
     IEnumerator CheckEventArrestEndOfDay(EventArrestEndOfDay eventArrestEndOfDay)
     {
         //player select who arrest
-        yield return eventsManager.PlayArrestAtTheEndOfDayEvent(eventArrestEndOfDay.CustomerImage, eventArrestEndOfDay.DialogueWhenCome);
-        
+        yield return eventsManager.PlayArrestAtTheEndOfDayEvent(eventArrestEndOfDay.CustomerImage, eventArrestEndOfDay.DialogueWhenCome, residentsManager,
+            arrestedResidentData =>
+            {
+                residentsArrestedThisDay.Add(residentsManager.ArrestResident(arrestedResidentData));
+            });
+
         //then move to next node
         CheckNextNode();
     }

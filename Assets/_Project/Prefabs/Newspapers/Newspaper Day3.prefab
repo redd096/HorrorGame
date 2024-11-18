@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 698870557899601007, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: images.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 698870557899601007, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: images.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1020272390283375447, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
       propertyPath: m_text
       value: "MURDER AT THE \nFREAKY HOTEL"
@@ -24,6 +32,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 5edcd2f710eaae04086a4412fc2e69e2, type: 3}
+    - target: {fileID: 2188202873957860858, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 341.3163
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188202873957860858, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 219.0108
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188202873957860858, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 228.4737
+      objectReference: {fileID: 0}
     - target: {fileID: 2634795704385993211, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
       propertyPath: m_text
       value: April 04, 1940
@@ -125,7 +145,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3760422426235019434, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+    - {fileID: 5047801257180960965, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+    - {fileID: 4301649446853954826, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}

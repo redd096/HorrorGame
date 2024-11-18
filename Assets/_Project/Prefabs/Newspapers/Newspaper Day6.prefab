@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 698870557899601007, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: images.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1020272390283375447, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
       propertyPath: m_text
       value: HAS THE KILLER OF THE FREAKY HOTEL BEEN FOUND?
@@ -26,23 +30,51 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: f82cbf9023fec0a4ba47c718c1e73555, type: 3}
     - target: {fileID: 2188202873957860858, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 446.6985
+      value: 445.83334
       objectReference: {fileID: 0}
     - target: {fileID: 2188202873957860858, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 370.9616
+      value: 486
       objectReference: {fileID: 0}
     - target: {fileID: 2188202873957860858, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 56.937927
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2188202873957860858, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 78.70624
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2634795704385993211, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
       propertyPath: m_text
       value: April 07, 1940
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683619941915108435, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683619941915108435, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683619941915108435, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683619941915108435, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 450.5019
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683619941915108435, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 377.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683619941915108435, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 58.2171
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683619941915108435, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 78.6
       objectReference: {fileID: 0}
     - target: {fileID: 4529771724931135958, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
       propertyPath: m_Sprite
@@ -137,7 +169,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3760422426235019434, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ce4204ec442a1245988df2b6fb45c6a, type: 3}

@@ -19,6 +19,8 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
     [Header("Fade in / Fade out")] 
     [SerializeField] Image fadeImage;
     [SerializeField] float fadeTime = 2;
+    
+    #region customer
 
     /// <summary>
     /// Instantiate, initialize and return the customer behaviour
@@ -114,6 +116,10 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
 
         return sequence;
     }
+    
+    #endregion
+    
+    #region dialogue
 
     /// <summary>
     /// Start a dialogue and wait it to finish
@@ -128,7 +134,7 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
 
         if (DialogueManagerUtilities.CheckConversationExists(dialogueName) == false)
         {
-            Debug.LogError("Missing dialogue: " + dialogueName);
+            Debug.LogError("Missing dialogue in database: " + dialogueName);
             yield break;
         }
 
@@ -142,6 +148,10 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
         //wait dialogue to finish
         yield return new WaitWhile(() => isTalking);
     }
+    
+    #endregion
+    
+    #region fade in / fade out
 
     /// <summary>
     /// Fade in to show scene
@@ -149,7 +159,9 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
     /// <returns></returns>
     public Tween FadeIn()
     {
-        return FadeAlpha(alpha: 0, fadeTime);
+        //on complete, be sure image is deactivated to avoid block player clicks
+        return FadeAlpha(alpha: 0, fadeTime)
+            .OnComplete(() => fadeImage.gameObject.SetActive(false));
     }
 
     /// <summary>
@@ -169,6 +181,13 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
     /// <returns></returns>
     public Tween FadeAlpha(float alpha, float duration)
     {
+        //be sure image is active
+        fadeImage.gameObject.SetActive(true);
+        
+        //do fade
+        Tween.StopAll(fadeImage);
         return Tween.Alpha(fadeImage, alpha, duration, Ease.InOutSine);
     }
+    
+    #endregion
 }

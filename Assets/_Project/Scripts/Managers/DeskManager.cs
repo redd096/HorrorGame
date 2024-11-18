@@ -54,7 +54,7 @@ public class DeskManager : SimpleInstance<DeskManager>
     private List<InteractableOnTheRight> documentsToGiveBack = new List<InteractableOnTheRight>();
     private List<InteractableOnTheRight> interactablesToPutBack = new List<InteractableOnTheRight>();
 
-    //list of every interactable in scene (both documents and interactables. There are also objects to not give back, like customers' gifts)
+    //list of every interactable that user or customers put in scene (both documents and interactables. There are also objects to not give back, like customers' gifts)
     private List<InteractableOnTheRight> interactablesInScene = new List<InteractableOnTheRight>();
 
     //events
@@ -71,9 +71,9 @@ public class DeskManager : SimpleInstance<DeskManager>
         //wait few seconds for the canvas to update layout, because interactables have to save their start position
         yield return new WaitForSeconds(0.1f);
 
-        //initialize interactables in scene, to set callbacks
-        InteractableBase[] interactablesInScene = FindObjectsOfType<InteractableBase>();
-        foreach (var interactable in interactablesInScene)
+        //initialize interactables already in scene, to set callbacks
+        InteractableBase[] interactablesAlreadyInScene = FindObjectsOfType<InteractableBase>();
+        foreach (var interactable in interactablesAlreadyInScene)
             interactable.Init(stateMachine);
 
         //set start state

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -8,41 +9,76 @@ public class ResidentsManager : MonoBehaviour
 {
     [SerializeField] List<ResidentData> listOfResidents = new List<ResidentData>();
     
-    public ResidentData[] ListOfResidents => listOfResidents.ToArray();
+    private List<ResidentData> deadResidents = new List<ResidentData>();
+    private List<ResidentData> arrestedResidents = new List<ResidentData>();
+    
+    public List<ResidentData> ListOfResidents => listOfResidents;
+    public List<ResidentData> DeadResidents => deadResidents;
+    public List<ResidentData> ArrestedResidents => arrestedResidents;
 
     /// <summary>
-    /// Check if resident is in the list
+    /// Check if resident is dead or alive
     /// </summary>
     /// <param name="resident"></param>
     /// <returns></returns>
     public bool IsResidentAlive(ResidentData resident)
     {
-        return listOfResidents.Contains(resident);
+        return deadResidents.Contains(resident) == false;
     }
 
     /// <summary>
-    /// Remove a resident from the list
+    /// Check if resident is arrested or free
     /// </summary>
     /// <param name="resident"></param>
-    public ResidentData RemoveResident(ResidentData resident)
+    /// <returns></returns>
+    public bool IsResidentFree(ResidentData resident)
     {
-        if (listOfResidents.Contains(resident))
+        return arrestedResidents.Contains(resident) == false;
+    }
+
+    /// <summary>
+    /// Arrest a resident from the list
+    /// </summary>
+    /// <param name="resident"></param>
+    public ResidentData ArrestResident(ResidentData resident)
+    {
+        if (arrestedResidents.Contains(resident) == false)
         {
-            listOfResidents.Remove(resident);
+            arrestedResidents.Add(resident);
             return resident;
         }
         
-        Debug.LogError("Missing resident in the list: " + resident, gameObject);
+        Debug.LogError("Resident is already arrested: " + resident, gameObject);
         return null;
     }
 
     /// <summary>
-    /// Remove a random resident from the list
+    /// Kill a resident from the list
     /// </summary>
-    public ResidentData RemoveRandomResident()
+    /// <param name="resident"></param>
+    public ResidentData KillResident(ResidentData resident)
     {
-        if (listOfResidents.Count > 0)
-            return RemoveResident(listOfResidents[Random.Range(0, listOfResidents.Count)]);
+        if (deadResidents.Contains(resident) == false)
+        {
+            deadResidents.Add(resident);
+            return resident;
+        }
+        
+        Debug.LogError("Resident is already dead: " + resident, gameObject);
+        return null;
+    }
+
+    /// <summary>
+    /// Kill a random resident from the list
+    /// </summary>
+    public ResidentData KillRandomResident()
+    {
+        //find random resident still alive and not arrested
+        List<ResidentData> residents = listOfResidents.Where(x => IsResidentAlive(x) && IsResidentFree(x)).ToList();
+        if (residents.Count > 0)
+        {
+            return KillResident(residents[Random.Range(0, residents.Count)]);
+        }
 
         Debug.LogError("There aren't residents in the list", gameObject);
         return null;

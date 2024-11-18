@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
@@ -5,6 +6,13 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class InteractableDragFromTheRight : InteractableBase
 {
+    //used to avoid to put dragged object too much to the left and see a bit of the background
+    private const float FIX_BOUNDS = 5f;
+    
+    //position on open or close
+    public float OpenPosition => -rectTr.sizeDelta.x + FIX_BOUNDS;
+    public float ClosePosition => startAnchoredPosition.x;
+    
     public override void OnBeginDrag_Event(PointerEventData eventData)
     {
         base.OnBeginDrag_Event(eventData);
@@ -24,5 +32,26 @@ public class InteractableDragFromTheRight : InteractableBase
         base.OnEndDrag_Event(eventData);
 
         callbacks.InteractableFromTheRightEndDrag(this, eventData);
+    }
+
+    /// <summary>
+    /// Move RectTransform to ClosePosition
+    /// </summary>
+    public void ForceClose()
+    {
+        Vector2 anchoredPosition = rectTr.anchoredPosition;
+        anchoredPosition.x = ClosePosition;
+        rectTr.anchoredPosition = anchoredPosition;
+        
+    }
+
+    /// <summary>
+    /// Move RectTransform to OpenPosition
+    /// </summary>
+    public void ForceOpen()
+    {
+        Vector2 anchoredPosition = rectTr.anchoredPosition;
+        anchoredPosition.x = OpenPosition;
+        rectTr.anchoredPosition = anchoredPosition;
     }
 }

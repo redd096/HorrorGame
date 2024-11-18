@@ -15,4 +15,4 @@ MonoBehaviour:
   NodeOnTrue: {fileID: 11400000, guid: c953a25810010af42b805feeff8a36cc, type: 2}
   NodeOnFalse: {fileID: 11400000, guid: c953a25810010af42b805feeff8a36cc, type: 2}
   DebugLogText:
-    Text: Resident IS ALIVE
+    Text: Cousin 1 IS ALIVE

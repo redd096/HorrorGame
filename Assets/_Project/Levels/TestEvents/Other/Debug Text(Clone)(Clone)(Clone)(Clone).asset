@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033da1a5b9dee194b8b64731a96963be, type: 3}
   m_Name: Debug Text(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  NodeOnTrue: {fileID: 0}
-  NodeOnFalse: {fileID: 0}
+  NodeOnTrue: {fileID: 11400000, guid: c38de07dd5f6f8b40a902d7bc7f45b69, type: 2}
+  NodeOnFalse: {fileID: 11400000, guid: c38de07dd5f6f8b40a902d7bc7f45b69, type: 2}
   DebugLogText:
     Text: Barbone OK Enter

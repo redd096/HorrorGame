@@ -22,6 +22,10 @@ public class LevelEventsManager : MonoBehaviour
     [SerializeField] float waveAnimationDuration = 5;
     [SerializeField] float delayAfterWaveAnimation = 3;
 
+    [Header("Arrest at the end of the day")] 
+    [SerializeField] InteractableDragFromTheRight journalInteractable;
+    [SerializeField] JournalManager journalManagerForArrest;
+
     //when start red event, find every object with this script and save in array
     private RedEventFeedback[] redEventsPlaying;
 
@@ -29,8 +33,8 @@ public class LevelEventsManager : MonoBehaviour
     /// Show for few seconds the newspaper
     /// </summary>
     /// <param name="newspaperPrefab"></param>
-    /// <param name="killedResident"></param>
-    public Sequence ShowNewspaper(NewspaperBehaviour newspaperPrefab, ResidentData killedResident)
+    /// <param name="residentsKilledThisDay"></param>
+    public Sequence ShowNewspaper(NewspaperBehaviour newspaperPrefab, List<ResidentData> residentsKilledThisDay)
     {
         //instantiate newspaper
         if (newspaperPrefab == null)
@@ -41,7 +45,7 @@ public class LevelEventsManager : MonoBehaviour
 
         //instantiate newspaper and immediately fade in
         NewspaperBehaviour newspaper = Instantiate(newspaperPrefab, newspapersContainer.transform);
-        newspaper.Init(killedResident);
+        newspaper.Init(residentsKilledThisDay.ToArray());
         newspapersContainer.gameObject.SetActive(true);
         newspapersContainer.alpha = 1;
 
@@ -145,8 +149,10 @@ public class LevelEventsManager : MonoBehaviour
     /// </summary>
     /// <param name="policeManImages"></param>
     /// <param name="policeManDialogue"></param>
+    /// <param name="residentsManager"></param>
+    /// <param name="onClickArrestResident"></param>
     /// <returns></returns>
-    public IEnumerator PlayArrestAtTheEndOfDayEvent(List<Sprite> policeManImages, string policeManDialogue)
+    public IEnumerator PlayArrestAtTheEndOfDayEvent(List<Sprite> policeManImages, string policeManDialogue, ResidentsManager residentsManager, System.Action<ResidentData> onClickArrestResident)
     {
         //instantiate policeman
         CustomerBehaviour policeman = LevelUtilities.instance.InstantiateCustomer(new Customer() { CustomerImage = policeManImages });
@@ -155,12 +161,26 @@ public class LevelEventsManager : MonoBehaviour
         yield return LevelUtilities.instance.MoveCustomer(policeman, enterInScene: true).ToYieldInstruction();
         yield return LevelUtilities.instance.WaitDialogue(policeManDialogue);
         
-        //show journal to player and wait until player select one resident to arrest
+        //open journal board and show journal with residents to arrest 
         bool playerSelectedWhoArrest = false;
-        //TODO - show here journal and register to click event
+        journalInteractable.ForceOpen();
+        journalInteractable.SetInteractable(false);
+        journalManagerForArrest.SetResidentsForArrest(residentsManager);
+        journalManagerForArrest.gameObject.SetActive(true);
+        
+        //wait until player select one resident to arrest
+        journalManagerForArrest.OnClickResidentForArrest += OnClick_ArrestResident;
         yield return new WaitUntil(() => playerSelectedWhoArrest);
         
         //fade out
         yield return LevelUtilities.instance.FadeOut().ToYieldInstruction();
+
+        //when player select on resident, call event from LevelManager to arrest it
+        void OnClick_ArrestResident(ResidentData residentData)
+        {
+            journalManagerForArrest.OnClickResidentForArrest -= OnClick_ArrestResident;
+            onClickArrestResident?.Invoke(residentData);
+            playerSelectedWhoArrest = true;
+        }
     }
 }

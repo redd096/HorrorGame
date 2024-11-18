@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -15,18 +16,62 @@ public class JournalManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject[] rules;
     [SerializeField] private ResidentInJournal[] residents;
-    [SerializeField] private TMP_Text dateTet;
+    [SerializeField] private TMP_Text dateText;
     [SerializeField] private AppointmentInJournal appointmentsPrefab;
     [SerializeField] private Transform appointmentsContainer;
     
     private int currentPage;
+
+    public System.Action<ResidentData> OnClickResidentForArrest;
 
     /// <summary>
     /// Initialize when start level
     /// </summary>
     public void InitializeForThisLevel(FDate currentDate, CheckPlayerChoiceManager choiceManager, ResidentsManager residentsManager, AppointmentsManager appointmentsManager)
     {
-        //show or hide rules
+        //update values in UI
+        UpdateDate(currentDate);
+        UpdateRules(choiceManager);
+        UpdateResidents(residentsManager);
+        UpdateAppointments(appointmentsManager);
+    }
+
+    /// <summary>
+    /// When journal is used for arrest at the end of the day, activate ArrestButton on every resident
+    /// </summary>
+    public void SetResidentsForArrest(ResidentsManager residentsManager)
+    {
+        UpdateResidents(residentsManager);
+        foreach (var resident in residents)
+        {
+            //be sure the resident was initialized
+            ResidentData residentData = resident.ResidentData;
+            if (residentData == null)
+                continue;
+            
+            //set arrest button
+            resident.EnableArrestButton(residentsManager.IsResidentAlive(residentData) && residentsManager.IsResidentFree(residentData), 
+                clickedResident => OnClickResidentForArrest?.Invoke(clickedResident));
+        }
+    }
+    
+    #region update ui values
+
+    /// <summary>
+    /// Update date text
+    /// </summary>
+    /// <param name="date"></param>
+    public void UpdateDate(FDate date)
+    {
+        dateText.text = date.ToAmericanString();
+    }
+
+    /// <summary>
+    /// Show or hide rules in UI
+    /// </summary>
+    /// <param name="choiceManager"></param>
+    public void UpdateRules(CheckPlayerChoiceManager choiceManager)
+    {
         rules[0].SetActive(choiceManager.ShowAlwaysID);
         rules[1].SetActive(choiceManager.OutsiderShowRenunciationCard);
         rules[2].SetActive(choiceManager.ResidentShowResidentCard);
@@ -35,22 +80,37 @@ public class JournalManager : MonoBehaviour
         rules[5].SetActive(choiceManager.NeedPoliceCard);
         rules[6].SetActive(choiceManager.PoliceCardNeedSecondStamp);
         rules[7].SetActive(false);
+    }
 
-        //update residents
-        ResidentData[] listOfResidents = residentsManager.ListOfResidents;
+    /// <summary>
+    /// Update image and text for every Resident
+    /// </summary>
+    /// <param name="residentsManager"></param>
+    public void UpdateResidents(ResidentsManager residentsManager)
+    {
+        List<ResidentData> listOfResidents = residentsManager.ListOfResidents;
         for (int i = 0; i < residents.Length; i++)
         {
             residents[i].gameObject.SetActive(true);
-            if (listOfResidents.Length > i)
-                residents[i].Initialize(listOfResidents[i]);
+            if (listOfResidents.Count > i)
+            {
+                ResidentData residentData = listOfResidents[i];
+                residents[i].Initialize(residentData, residentsManager.IsResidentAlive(residentData), residentsManager.IsResidentFree(residentData));
+            }
             else
+            {
+                //if there are more residents in journal than residents in ResidentsManager, just hide it
                 residents[i].gameObject.SetActive(false);
+            }
         }
-        
-        //set date
-        dateTet.text = currentDate.ToAmericanString();
-        
-        //update appointments
+    }
+
+    /// <summary>
+    /// Update texts for appointments
+    /// </summary>
+    /// <param name="appointmentsManager"></param>
+    public void UpdateAppointments(AppointmentsManager appointmentsManager)
+    {
         for (int i = appointmentsContainer.childCount - 1; i >= 0; i--)
             Destroy(appointmentsContainer.GetChild(i).gameObject);
         AppointmentData[] listOfAppointments = appointmentsManager.Appointments;
@@ -60,6 +120,10 @@ public class JournalManager : MonoBehaviour
             appointment.Initialize(listOfAppointments[i]);
         }
     }
+    
+    #endregion
+    
+    #region go to page functions
 
     /// <summary>
     /// Deactivate current page and open page at index
@@ -93,6 +157,10 @@ public class JournalManager : MonoBehaviour
         page.SetActive(true);
     }
     
+    #endregion
+    
+    #region functions for buttons in UI
+    
     public void GoToNextPage()
     {
         if (currentPage < pages.Length - 1)
@@ -119,4 +187,6 @@ public class JournalManager : MonoBehaviour
     {
         GoToPage(chapterAppointments);
     }
+    
+    #endregion
 }
