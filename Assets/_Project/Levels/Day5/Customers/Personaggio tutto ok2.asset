@@ -20,7 +20,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a9ad7d6ec9202f54dae06b3f0390e76d, type: 3}
     - {fileID: 21300000, guid: 5125b9a74e18a8b4485c28b300dfcb17, type: 3}
     DialogueWhenCome: Day5/customer ok2/start
-    DialogueWhenPlayerSayNo: 
+    DialogueWhenPlayerSayNo: Day5/customer ok2/not enter
     DialogueWhenPlayerSayYes: Day5/customer ok2/ok enter
     GoAwayLikeGhost: 0
     GiveIDCard: 1

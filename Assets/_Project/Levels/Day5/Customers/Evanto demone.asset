@@ -16,7 +16,7 @@ MonoBehaviour:
   NodeOnFalse: {fileID: 0}
   Customer:
     CustomerImage: []
-    DialogueWhenCome: 
+    DialogueWhenCome: Day5/demon event/start
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
     GoAwayLikeGhost: 0

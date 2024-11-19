@@ -19,9 +19,10 @@ MonoBehaviour:
     - {fileID: 21300000, guid: cd7a536d18e1aca4c8f1d2a8c187fc81, type: 3}
     - {fileID: 21300000, guid: e6780334fa0b021449d41ad70ccaedc1, type: 3}
     - {fileID: 21300000, guid: 8271804fc6d29644fb9dae750951f49c, type: 3}
-    DialogueWhenCome: 
+    DialogueWhenCome: Day6/Hoddie man 1/start
     DialogueWhenPlayerSayNo: 
     DialogueWhenPlayerSayYes: 
+    GoAwayLikeGhost: 0
     GiveIDCard: 0
     IDCard:
       Name: 

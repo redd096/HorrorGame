@@ -19,9 +19,10 @@ MonoBehaviour:
     - {fileID: 21300000, guid: f5ee0a37d832be84daf5f2ca689b34b0, type: 3}
     - {fileID: 21300000, guid: 3278f88f23979f44e8319a6f0e4435bd, type: 3}
     - {fileID: 21300000, guid: 1a9c0b87a85026645b69d66b6d53df10, type: 3}
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
+    DialogueWhenCome: Day6/customer name not ok/start
+    DialogueWhenPlayerSayNo: Day6/customer name not ok/not enter
+    DialogueWhenPlayerSayYes: Day6/customer name not ok/ok enter
+    GoAwayLikeGhost: 0
     GiveIDCard: 1
     IDCard:
       Name: Liam

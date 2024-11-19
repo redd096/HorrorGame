@@ -16,10 +16,11 @@ MonoBehaviour:
   NodeOnFalse: {fileID: 11400000, guid: eec9f9eee13387b448ea892792efad03, type: 2}
   Customer:
     CustomerImage: []
-    DialogueWhenCome: 
-    DialogueWhenPlayerSayNo: 
-    DialogueWhenPlayerSayYes: 
-    GiveIDCard: 0
+    DialogueWhenCome: Day6/Resident alive 1/start
+    DialogueWhenPlayerSayNo: Day6/Resident alive 1/not enter
+    DialogueWhenPlayerSayYes: Day6/Resident alive 1/ok enter
+    GoAwayLikeGhost: 0
+    GiveIDCard: 1
     IDCard:
       Name: 
       Surname: 
@@ -46,7 +47,7 @@ MonoBehaviour:
       DurationStayInDays: 0
       CorrectDurationStayInDays: 0
       Signature: 
-    GiveResidentCard: 0
+    GiveResidentCard: 1
     ResidentCard:
       Name: 
       Surname: 

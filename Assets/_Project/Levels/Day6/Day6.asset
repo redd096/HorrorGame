@@ -21,7 +21,7 @@ MonoBehaviour:
       ConnectedNodeID: f5a80001-8a10-4a83-b4fe-16306549626c
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 19.2, y: 275.2}
+    Position: {x: 19, y: 275}
   - NodeName: Poliziotto
     ID: f5a80001-8a10-4a83-b4fe-16306549626c
     NodeType: CustomerNode
@@ -33,7 +33,7 @@ MonoBehaviour:
       ConnectedNodeID: 82725ece-2cc5-4708-a07c-bc8671ac53dd
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 472, y: 275.2}
+    Position: {x: 472, y: 275}
   - NodeName: Residente vivo 1
     ID: 82725ece-2cc5-4708-a07c-bc8671ac53dd
     NodeType: CustomerNode
@@ -45,7 +45,7 @@ MonoBehaviour:
       ConnectedNodeID: 1b116b71-22b6-4e1b-942e-cfc16479b821
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 788.8, y: 273.6}
+    Position: {x: 773, y: 275}
   - NodeName: Appuntamento intervista ok
     ID: 1b116b71-22b6-4e1b-942e-cfc16479b821
     NodeType: CustomerNode
@@ -57,7 +57,7 @@ MonoBehaviour:
       ConnectedNodeID: 6766d007-750d-42cc-97e7-8af969a243d1
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1096.8, y: 274.40002}
+    Position: {x: 1122, y: 275}
   - NodeName: Personaggio nome consenso no ok
     ID: 6766d007-750d-42cc-97e7-8af969a243d1
     NodeType: CustomerNode
@@ -69,7 +69,7 @@ MonoBehaviour:
       ConnectedNodeID: 17425a24-eb18-43cc-bc88-9717551e26e8
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1462.4, y: 277.6}
+    Position: {x: 1514, y: 275}
   - NodeName: Evento bambina fantasma
     ID: 17425a24-eb18-43cc-bc88-9717551e26e8
     NodeType: CustomerNode
@@ -81,7 +81,7 @@ MonoBehaviour:
       ConnectedNodeID: d074c5c5-db63-423b-9e20-c7b76c8752e6
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 1796.8, y: 280}
+    Position: {x: 1902, y: 275}
   - NodeName: Appuntamento direttore (colloquio pulizie) ok
     ID: d074c5c5-db63-423b-9e20-c7b76c8752e6
     NodeType: CustomerNode
@@ -93,7 +93,7 @@ MonoBehaviour:
       ConnectedNodeID: f302bbeb-b155-435c-8a8f-f7fdb4ade5cc
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2080.8, y: 282.40002}
+    Position: {x: 2165, y: 275}
   - NodeName: Residente vivo2
     ID: f302bbeb-b155-435c-8a8f-f7fdb4ade5cc
     NodeType: CustomerNode
@@ -105,43 +105,7 @@ MonoBehaviour:
       ConnectedNodeID: 741ed9b9-440f-44b7-ac9c-942e952a6189
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2464, y: 283.2}
-  - NodeName: Evento demone (prima normale poi si incazza)
-    ID: e0c7431e-a85f-4737-8248-478ed8098778
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: e0853140-188e-49c5-948c-f281b1e7f11c
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: e0853140-188e-49c5-948c-f281b1e7f11c
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 3039.2, y: 284}
-  - NodeName: Appuntamento idraulico no ok (giorno sbagliato)
-    ID: e0853140-188e-49c5-948c-f281b1e7f11c
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 60a4f73a-7562-4e58-ba27-2a8b2b8e047e
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 60a4f73a-7562-4e58-ba27-2a8b2b8e047e
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 3424, y: 287.2}
-  - NodeName: Evento uomo incappucciato2
-    ID: 60a4f73a-7562-4e58-ba27-2a8b2b8e047e
-    NodeType: CustomerNode
-    OutputsData:
-    - OutputType: System.Boolean
-      ConnectedNodeID: 
-      ConnectedPortIndex: 0
-    - OutputType: System.Boolean
-      ConnectedNodeID: 
-      ConnectedPortIndex: 0
-    GroupID: 
-    Position: {x: 3848.8, y: 285.6}
+    Position: {x: 2565, y: 275}
   - NodeName: Evento uomo incappucciato
     ID: 741ed9b9-440f-44b7-ac9c-942e952a6189
     NodeType: CustomerNode
@@ -153,5 +117,41 @@ MonoBehaviour:
       ConnectedNodeID: e0c7431e-a85f-4737-8248-478ed8098778
       ConnectedPortIndex: 0
     GroupID: 
-    Position: {x: 2747.2, y: 285.6}
+    Position: {x: 2917, y: 275}
+  - NodeName: Evento demone (prima normale poi si incazza)
+    ID: e0c7431e-a85f-4737-8248-478ed8098778
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: e0853140-188e-49c5-948c-f281b1e7f11c
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: e0853140-188e-49c5-948c-f281b1e7f11c
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3233, y: 275}
+  - NodeName: Evento uomo incappucciato2
+    ID: 60a4f73a-7562-4e58-ba27-2a8b2b8e047e
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3949, y: 272}
+  - NodeName: Appuntamento idraulico no ok (giorno sbagliato)
+    ID: e0853140-188e-49c5-948c-f281b1e7f11c
+    NodeType: CustomerNode
+    OutputsData:
+    - OutputType: System.Boolean
+      ConnectedNodeID: 60a4f73a-7562-4e58-ba27-2a8b2b8e047e
+      ConnectedPortIndex: 0
+    - OutputType: System.Boolean
+      ConnectedNodeID: 60a4f73a-7562-4e58-ba27-2a8b2b8e047e
+      ConnectedPortIndex: 0
+    GroupID: 
+    Position: {x: 3589, y: 273}
   Groups: []
