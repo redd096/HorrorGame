@@ -11,7 +11,7 @@ public class InteractableDragFromTheRight : InteractableBase
     
     //position on open or close
     public float OpenPosition => -rectTr.sizeDelta.x + FIX_BOUNDS;
-    public float ClosePosition => startAnchoredPosition.x;
+    public float ClosePosition => startAnchoredPoint.anchoredPosition.x;
     
     public override void OnBeginDrag_Event(PointerEventData eventData)
     {

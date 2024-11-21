@@ -10,7 +10,7 @@ public abstract class InteractableBase : MonoBehaviour, IPointerClickHandler, IB
     protected bool interactable;
 
     protected RectTransform rectTr;
-    protected Vector2 startAnchoredPosition;
+    protected RectTransform startAnchoredPoint;
     protected Transform startParent;
 
     //events
@@ -18,7 +18,7 @@ public abstract class InteractableBase : MonoBehaviour, IPointerClickHandler, IB
 
     public bool Interactable => interactable;
     public RectTransform RectTr => rectTr;
-    public Vector2 StartAnchoredPosition => startAnchoredPosition;
+    public RectTransform StartAnchoredPoint => startAnchoredPoint;
     public Transform StartParent => startParent;
 
     /// <summary>
@@ -31,7 +31,8 @@ public abstract class InteractableBase : MonoBehaviour, IPointerClickHandler, IB
 
         //save also start position and parent
         rectTr = GetComponent<RectTransform>();
-        startAnchoredPosition = rectTr.anchoredPosition;
+        startAnchoredPoint = new GameObject($"{name} start anchored Point", typeof(RectTransform)).GetComponent<RectTransform>();
+        startAnchoredPoint.anchoredPosition = rectTr.anchoredPosition;
         startParent = transform.parent;
     }
 

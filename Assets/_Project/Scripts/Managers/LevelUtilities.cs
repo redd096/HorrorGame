@@ -19,7 +19,59 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
     [Header("Fade in / Fade out")] 
     [SerializeField] Image fadeImage;
     [SerializeField] float fadeTime = 2;
-    
+
+    #region generic
+
+    /// <summary>
+    /// Tween.Position but update if startPoint or endPoint change position (e.g. change resolution screen)
+    /// </summary>
+    /// <param name="tr"></param>
+    /// <param name="startPoint"></param>
+    /// <param name="endPoint"></param>
+    /// <param name="settings"></param>
+    /// <returns></returns>
+    public static Tween TweenPositionDyanmic(Transform tr, Transform startPoint, Transform endPoint, TweenSettings settings)
+    {
+        return Tween.Custom(0f, 1f, settings, x =>
+        {
+            tr.position = Vector3.Lerp(startPoint.position, endPoint.position, x);
+        });
+    }
+
+    /// <summary>
+    /// Tween.Position but update if endPoint change position (e.g. change resolution screen)
+    /// </summary>
+    /// <param name="tr"></param>
+    /// <param name="endPoint"></param>
+    /// <param name="settings"></param>
+    /// <returns></returns>
+    public static Tween TweenPositionDyanmic(Transform tr, Transform endPoint, TweenSettings settings)
+    {
+        Vector3 startPosition = tr.position;
+        return Tween.Custom(0f, 1f, settings, x =>
+        {
+            tr.position = Vector3.Lerp(startPosition, endPoint.position, x);
+        });
+    }
+
+    /// <summary>
+    /// Tween.UIAnchoredPosition but update if endPoint change position (e.g. change resolution screen)
+    /// </summary>
+    /// <param name="tr"></param>
+    /// <param name="endPoint"></param>
+    /// <param name="settings"></param>
+    /// <returns></returns>
+    public static Tween TweenUIAnchoredPositionDyanmic(RectTransform tr, RectTransform endPoint, TweenSettings settings)
+    {
+        Vector2 startPosition = tr.anchoredPosition;
+        return Tween.Custom(0f, 1f, settings, x =>
+        {
+            tr.anchoredPosition = Vector2.Lerp(startPosition, endPoint.anchoredPosition, x);
+        });
+    }
+
+    #endregion
+
     #region customer
 
     /// <summary>
@@ -48,7 +100,7 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
         Transform endPoint = enterInScene ? customerEndPoint : customerStartPoint;
         
         //move customer
-        Sequence sequence = MoveCustomer(customerInstance, startPoint.position, endPoint.position);
+        Sequence sequence = MoveCustomer(customerInstance, startPoint, endPoint);
 
         //stop walk when enter in scene (not necessary when go outside the screen)
         if (enterInScene)
@@ -57,25 +109,25 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
         return sequence;
     }
 
-    /// <summary>
-    /// Move customer from current position to end position
-    /// </summary>
-    /// <param name="customerInstance"></param>
-    /// <param name="endPosition"></param>
-    /// <returns></returns>
-    public Sequence MoveCustomer(CustomerBehaviour customerInstance, Vector3 endPosition)
-    {
-        return MoveCustomer(customerInstance, customerInstance.transform.position, endPosition);
-    }
+    ///// <summary>
+    ///// Move customer from current position to end position
+    ///// </summary>
+    ///// <param name="customerInstance"></param>
+    ///// <param name="endPosition"></param>
+    ///// <returns></returns>
+    //public Sequence MoveCustomer(CustomerBehaviour customerInstance, Vector3 endPosition)
+    //{
+    //    return MoveCustomer(customerInstance, customerInstance.transform.position, endPosition);
+    //}
 
     /// <summary>
     /// Move customer from start position to end position
     /// </summary>
     /// <param name="customerInstance"></param>
-    /// <param name="startPosition"></param>
-    /// <param name="endPosition"></param>
+    /// <param name="startPoint"></param>
+    /// <param name="endPoint"></param>
     /// <returns></returns>
-    public Sequence MoveCustomer(CustomerBehaviour customerInstance, Vector3 startPosition, Vector3 endPosition)
+    public Sequence MoveCustomer(CustomerBehaviour customerInstance, Transform startPoint, Transform endPoint)
     {
         Sequence sequence = Sequence.Create();
 
@@ -83,7 +135,7 @@ public class LevelUtilities : SimpleInstance<LevelUtilities>
         sequence.ChainCallback(customerInstance.StartWalk);
         
         //move customer
-        sequence.Chain(Tween.Position(customerInstance.transform, startPosition, endPosition, customerAnimation, Ease.InOutSine));
+        sequence.Chain(TweenPositionDyanmic(customerInstance.transform, startPoint, endPoint, new TweenSettings(customerAnimation, Ease.InOutSine)));
         return sequence;
     }
 

@@ -327,13 +327,13 @@ public class DeskManager : SimpleInstance<DeskManager>
         //move left
         Transform leftStartPoint = fromTop ? leftStartTopPoint : leftStartBottomPoint;
         if (setStartPositionAlsoOnLeft)
-            Tween.Position(left.transform, leftStartPoint.position, leftEndPoint.position, putAnimationTime);
+            LevelUtilities.TweenPositionDyanmic(left.transform, leftStartPoint, leftEndPoint, new TweenSettings(putAnimationTime));
         else
-            Tween.Position(left.transform, leftEndPoint.position, putAnimationTime);
+            LevelUtilities.TweenPositionDyanmic(left.transform, leftEndPoint, new TweenSettings(putAnimationTime));
 
         //move right
         Transform rightStartPoint = fromTop ? rightStartTopPoint : rightStartBottomPoint;
-        Tween.Position(right.transform, rightStartPoint.position, rightEndPoint.position, putAnimationTime)
+        LevelUtilities.TweenPositionDyanmic(right.transform, rightStartPoint, rightEndPoint, new TweenSettings(putAnimationTime))
             .OnComplete(() => right.SetInteractable(true));
     }
 
@@ -368,8 +368,8 @@ public class DeskManager : SimpleInstance<DeskManager>
                 }
 
                 //move out of the desk and destroy
-                Tween.Position(left.transform, leftStartTopPoint.position, putAnimationTime).OnComplete(() => Destroy(left.gameObject));
-                Tween.Position(right.transform, rightStartTopPoint.position, putAnimationTime).OnComplete(() => Destroy(right.gameObject));
+                LevelUtilities.TweenPositionDyanmic(left.transform, leftStartTopPoint, new TweenSettings(putAnimationTime)).OnComplete(() => Destroy(left.gameObject));
+                LevelUtilities.TweenPositionDyanmic(right.transform, rightStartTopPoint, new TweenSettings(putAnimationTime)).OnComplete(() => Destroy(right.gameObject));
             }
             //update interactables counter and check to hide area
             else if (isInteractableToPutBack)
@@ -386,8 +386,8 @@ public class DeskManager : SimpleInstance<DeskManager>
                 left.transform.position = posLeft;
 
                 //move out of the desk
-                Tween.UIAnchoredPosition(left.RectTr, left.StartAnchoredPosition, putAnimationTime);
-                Tween.Position(right.transform, rightStartBottomPoint.position, putAnimationTime)
+                LevelUtilities.TweenUIAnchoredPositionDyanmic(left.RectTr, left.StartAnchoredPoint, new TweenSettings(putAnimationTime));
+                LevelUtilities.TweenPositionDyanmic(right.transform, rightStartBottomPoint, new TweenSettings(putAnimationTime))
                     .OnComplete(() =>
                     {
                         right.gameObject.SetActive(false);
