@@ -46,6 +46,7 @@ public class LevelManager : SimpleInstance<LevelManager>
 
         //add events
         DeskManager.instance.onClickBell += OnPlayerClickBell;
+        DeskManager.instance.onClickCamera += OnPlayerClickCamera;
         DeskManager.instance.onDocumentReceiveStamp += OnDocumentReceiveStamp;
         DeskManager.instance.onGiveBackAllDocuments += OnGiveBackAllDocuments;
 
@@ -71,6 +72,7 @@ public class LevelManager : SimpleInstance<LevelManager>
         if (DeskManager.instance)
         {
             DeskManager.instance.onClickBell -= OnPlayerClickBell;
+            DeskManager.instance.onClickCamera -= OnPlayerClickCamera;
             DeskManager.instance.onDocumentReceiveStamp -= OnDocumentReceiveStamp;
             DeskManager.instance.onGiveBackAllDocuments -= OnGiveBackAllDocuments;
         }
@@ -84,6 +86,14 @@ public class LevelManager : SimpleInstance<LevelManager>
     private void OnPlayerClickBell()
     {
         canCustomerEnter = true;
+    }
+
+    /// <summary>
+    /// Player click camera
+    /// </summary>
+    private void OnPlayerClickCamera()
+    {
+        eventsManager.PlayCameraFlashEvent();
     }
 
     /// <summary>

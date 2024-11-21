@@ -10,8 +10,9 @@ public interface IInteractablesEvents
     bool InteractableDrag(InteractableDraggable interactable, PointerEventData eventData);
     bool InteractableEndDrag(InteractableDraggable interactable, PointerEventData eventData);
 
-    //bell
+    //interactables on the left
     bool BellClick();
+    bool CameraClick();
 
     //stamps
     bool ClickAndInstantiateInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene);

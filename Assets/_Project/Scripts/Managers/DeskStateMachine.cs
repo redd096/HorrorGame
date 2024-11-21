@@ -48,22 +48,23 @@ public class DeskStateMachine : BasicStateMachineComponent, IInteractablesEvents
 
     public bool BellClick()
     {
-        if (CurrentState == NormalState)
-        {
-            NormalState.BellClick();
-            return true;
-        }
-        return false;
+        //call next client
+        DeskManager.instance.OnPlayerClickBell();
+        return true;
+    }
+
+    public bool CameraClick()
+    {
+        //call camera flash event
+        DeskManager.instance.OnPlayerClickCamera();
+        return true;
     }
 
     public bool ClickAndInstantiateInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
     {
-        if (CurrentState == NormalState)
-        {
-            NormalState.ClickAndInstantiateInteractable(clickedInteractable, instantiatedInScene);
-            return true;
-        }
-        return false;
+        //move both interactables on desk
+        DeskManager.instance.AddInteractableFromDesk(clickedInteractable, instantiatedInScene);
+        return true;
     }
 
     public bool InteractableFromTheRightBeginDrag(InteractableDragFromTheRight interactable, PointerEventData eventData)

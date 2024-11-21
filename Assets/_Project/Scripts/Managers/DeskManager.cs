@@ -59,6 +59,7 @@ public class DeskManager : SimpleInstance<DeskManager>
 
     //events
     public System.Action onClickBell;
+    public System.Action onClickCamera;
     public System.Action<bool> onDocumentReceiveStamp;
     public System.Action onGiveBackAllDocuments;
 
@@ -159,6 +160,14 @@ public class DeskManager : SimpleInstance<DeskManager>
     public void OnPlayerClickBell()
     {
         onClickBell?.Invoke();
+    }
+
+    /// <summary>
+    /// When player click camera in scene
+    /// </summary>
+    public void OnPlayerClickCamera()
+    {
+        onClickCamera?.Invoke();
     }
 
     /// <summary>

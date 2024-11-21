@@ -198,14 +198,11 @@ public class LevelEventsManager : MonoBehaviour
     public Sequence PlayCameraFlashEvent()
     {
         Sequence sequence = Sequence.Create();
-
-        //show camera flash
-        sequence.ChainCallback(() =>
-        {
-            Color color = cameraFlashImage.color;
-            color.a = 1f;
-            cameraFlashImage.color = color;
-        });
+        
+        Color color = cameraFlashImage.color;
+        color.a = 1f;
+        cameraFlashImage.color = color;
+        cameraFlashAnimator.gameObject.SetActive(true);
 
         //play animation and wait to complete
         sequence.ChainCallback(() => cameraFlashAnimator.Play(cameraFlashAnimation.name, -1, normalizedTime: 0f));
@@ -213,6 +210,7 @@ public class LevelEventsManager : MonoBehaviour
 
         //alpha to 0
         sequence.Chain(Tween.Alpha(cameraFlashImage, 0f, duration: 1f));
+        sequence.ChainCallback(() => cameraFlashAnimator.gameObject.SetActive(false));
 
         return sequence;
     }

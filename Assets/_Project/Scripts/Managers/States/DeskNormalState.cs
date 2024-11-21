@@ -14,18 +14,6 @@ public class DeskNormalState : DeskBaseState
         deskStateMachine.SetState(deskStateMachine.DraggingState);
     }
 
-    public void BellClick()
-    {
-        //call next client
-        DeskManager.instance.OnPlayerClickBell();
-    }
-
-    public void ClickAndInstantiateInteractable(InteractableOnTheLeft clickedInteractable, InteractableOnTheRight instantiatedInScene)
-    {
-        //move both interactables on desk
-        DeskManager.instance.AddInteractableFromDesk(clickedInteractable, instantiatedInScene);
-    }
-
     public void InteractableFromTheRightBeginDrag(InteractableDragFromTheRight interactable, PointerEventData eventData)
     {
         //set drag from the right state
