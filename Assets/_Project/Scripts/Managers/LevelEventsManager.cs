@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
+using UnityEngine.UI;
 
 /// <summary>
 /// This is used by LevelManager and is specific for the events (not customers or other)
@@ -25,6 +26,12 @@ public class LevelEventsManager : MonoBehaviour
     [Header("Arrest at the end of the day")] 
     [SerializeField] InteractableDragFromTheRight journalInteractable;
     [SerializeField] JournalManager journalManagerForArrest;
+
+    [Header("Camera Flash")]
+    [SerializeField] Animator cameraFlashAnimator;
+    [SerializeField] Image cameraFlashImage;
+    [SerializeField] AnimationClip cameraFlashAnimation;
+    [SerializeField] float delayAfterFlashAnimation = 2;
 
     //when start red event, find every object with this script and save in array
     private RedEventFeedback[] redEventsPlaying;
@@ -182,5 +189,31 @@ public class LevelEventsManager : MonoBehaviour
             onClickArrestResident?.Invoke(residentData);
             playerSelectedWhoArrest = true;
         }
+    }
+
+    /// <summary>
+    /// Do camera flash, then back to normal
+    /// </summary>
+    /// <returns></returns>
+    public Sequence PlayCameraFlashEvent()
+    {
+        Sequence sequence = Sequence.Create();
+
+        //show camera flash
+        sequence.ChainCallback(() =>
+        {
+            Color color = cameraFlashImage.color;
+            color.a = 1f;
+            cameraFlashImage.color = color;
+        });
+
+        //play animation and wait to complete
+        sequence.ChainCallback(() => cameraFlashAnimator.Play(cameraFlashAnimation.name, -1, normalizedTime: 0f));
+        sequence.ChainDelay(cameraFlashAnimation.length + delayAfterFlashAnimation);        //+ delay to show white screen for few seconds
+
+        //alpha to 0
+        sequence.Chain(Tween.Alpha(cameraFlashImage, 0f, duration: 1f));
+
+        return sequence;
     }
 }
